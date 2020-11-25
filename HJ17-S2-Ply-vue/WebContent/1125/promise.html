@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+	var p = new Promise(function(resolve,reject){
+		var r = Math.random();
+		if(r > 0.5){
+			resolve("成功！");
+		} else {
+			reject("失败！");
+		}
+	});
+	
+	p.then(function(data){
+		console.info(data);
+		
+		return new Promise(...)
+	}, function(data){
+		console.info(data);
+	}).then(...).then().then();
+	
+	
+	// 链式调用
+
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

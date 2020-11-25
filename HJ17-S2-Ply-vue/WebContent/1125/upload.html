@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>文件上传</title>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+	<form id="ff">
+	<input type="file" id="file" name="file">
+	</form>
+	<button @click="upload">上传</button>
+</div>
+<script type="text/javascript">
+	var vue = new Vue({
+		el : "#app",
+		methods : {
+			upload(){
+				var url = "../upload.s";
+				/* var formdata = new FormData();  // 文件上传 post 参数
+				formdata.append("file", file) */
+				var formdata = new FormData(ff);
+				var config = {
+					headers : {
+						'Content-Type' : "multipart/form-data"
+					}
+				};
+				axios.post(url, formdata, config).then(
+					// 箭头函数 ~= 匿名函数
+					(res)=>{
+						// this ==> vue
+						alert(res.data);
+					}
+				);
+			}
+		}
+	});
+
+</script>
+
+</body>
+</html>

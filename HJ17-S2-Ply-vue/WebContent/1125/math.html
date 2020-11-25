@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+	<input v-model="a"> + <input v-model="b"> = <input v-model="result">
+	<button v-on:click="add()">加</button>
+	<br>
+	
+	<input v-model="a1"> - <input v-model="b1"> = <input v-model="result1">
+	<button v-on:click="sub()">减</button>
+	<br>
+	
+	<h3>使用 post 请求进行计算 </h3>
+	<input>
+	<select>
+		<option>+</option>
+		<option>-</option>
+		<option>*</option>
+		<option>/</option>
+		<option>%</option>
+	</select> 
+	<input> = <input>
+	<button>计算</button>
+	
+</div>
+<script type="text/javascript">
+	var vue = new Vue({
+		el : "#app",
+		data : {
+			a : 0,
+			b : 0,
+			result : 0,
+			
+			a1 : 0,
+			b1 : 0,
+			result1 : 0
+		},
+		methods : {
+			add(){
+				var url = "../math.s";
+				var params = {
+						a : this.a,
+						b : this.b
+				}
+				/* jQuery.get(url,params,function(){
+					// 输出结果  
+				}) */
+				
+				// get 方法返回promise对象
+				axios.get(url,{
+					params : params
+				}).then(function(res){
+					// 使用 箭头函数， 那么 this 表示的就是 当前vue 对象 
+					// res 是 axios 封装的响应结果
+					vue.result = res.data;  // 匿名函数中的 this 是 window
+				})
+				
+			},
+			sub(){
+				var params = new URLSearchParams();// URLSearchParams 用于封装 post 请求参数
+				params.append("a",this.a1);
+				params.append("b",this.b1);
+				axios.post("../math.s",params).then(function(res){
+					vue.result1 = res.data;
+				})
+			}
+		}
+	});
+
+</script>
+
+
+</body>
+</html>
