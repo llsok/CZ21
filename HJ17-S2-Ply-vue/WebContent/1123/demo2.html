@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 引入 VUE js -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+<span>{{num1}}</span> + <span>{{num2}}</span> = <span>{{res1}}</span>
+<div v-pre>
+	你好
+	{{num1}}
+	中国
+</div>
+
+<div>
+	<!-- 文本框绑定 value -->
+	<input v-model.lazy="text">
+	<h3>{{text}}</h3>
+	<input v-model.number="num">
+	<h3>{{num}}</h3>
+	<input v-model.trim="trimstr">
+	<pre>{{trimstr}}</pre>
+	<div>{{trimstr}}</div>
+	
+	<br>
+	
+	
+
+	<!-- 单选框绑定 checked -->
+	<input type="radio" value="男" v-model="gender"> 男
+	<input type="radio" value="女" v-model="gender" > 女<br>
+	
+	
+	<input type="checkbox" value="1" v-model="likes" > 电影
+	<input type="checkbox" value="2" v-model="likes" > 读书
+	<input type="checkbox" value="3" v-model="likes" > 篮球
+	<input type="checkbox" value="4" v-model="likes" > 长跑<br>
+	
+	
+	<select v-model="edu">
+		<option value="0">初中</option>
+		<option value="1">高中</option>
+		<option value="2">大专</option>
+		<option value="3">本科</option>
+	</select>
+
+</div>
+
+
+</div>
+<script type="text/javascript">
+		var vue = new Vue( { 
+			el : "#app", // ==> 绑定元素 element	#app id 选择器
+			data : {
+				num1 : 100,
+				num2 : 200,
+				text : "demo",
+				gender : '女',
+				likes : [2,3],
+				edu : 1,  //  ==>帮到下拉框的  高中 
+				num : 12,
+				trimstr : ""
+			},
+			computed : {
+				// 定义计算属性
+				res1(){
+					return this.num1 + this.num2;
+				}
+			}
+		
+		});
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+</script>
+
+
+
+</body>
+</html>

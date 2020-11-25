@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 引入 VUE js -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<style type="text/css">
+[v-cloak]{
+	display:none; // 隐藏样式
+}
+
+.cls1 {
+	width:30px;
+	height: 30px;
+	background: #666
+}
+
+.cls2{
+	border:5px red solid;
+	margin: 5px
+}
+
+</style>
+
+</head>
+<body>
+
+<div id="app" v-cloak>
+	<h3>{{txt}}, vue.js</h3>
+	<!-- v-text 类似于胡子语法 -->
+	<h4 v-text="txt1 + ',vue.js'"></h4>
+	<!-- v-html 渲染成html元素 -->
+	<h4 v-html="txt2"></h4>
+	<!-- v-once 只渲染一次 -->
+	<h4 v-once>{{txt3}}</h4>
+	
+	<!-- v-bind 绑定普通属性 -->
+	<a :href="taobao" >淘宝</a>
+	<!-- v-bind 对象语法 -->
+	<div v-bind:class="{cls1:true,cls2:true}" >test1</div>
+	<div v-bind:class="{cls1:true}" class="cls2" >test2</div>
+	<!-- v-bind 数组语法 -->
+	<div v-bind:class="clsArr">test3</div>
+	<!-- v-bind 函数语法 -->
+	<div v-bind:class="clsFn()">test4</div>
+
+</div>
+<script type="text/javascript">
+	setTimeout(function(){
+		var vue = new Vue( { 
+			el : "#app", // ==> 绑定元素 element	#app id 选择器
+			data : {
+				txt : "hello world", // 渲染到页面上的数据
+				txt1 : "你好中国",
+				txt2 : '<a href="#">test</a>',
+				txt3 : '不能修改的内容',
+				
+				taobao: "https://www.taobao.com",
+				
+				clsArr : ["cls1","cls3"]
+			}, 
+			methods : {
+				clsFn : function(){
+					return ["cls1","cls2"];
+				}
+			}
+		});
+	}, 500);
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+</script>
+
+
+
+</body>
+</html>

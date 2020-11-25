@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>推箱子网页版</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script type="text/javascript" src="js/map.js"></script>
+<script type="text/javascript" src="js/game.js"></script>
+<style type="text/css">
+ol,li,{
+	margin: 0px;
+	padding: 0px
+}
+</style>
+<script type="text/javascript">
+	function keydown(e) {
+		if ( e.keyCode < 37 || e.keyCode > 40 ){
+			return;
+		}
+		if(e.keyCode==37){
+			vue.game.left();
+		} else if(e.keyCode==38){
+			vue.game.up();
+		} else if(e.keyCode==39){
+			vue.game.right();
+		} else if(e.keyCode==40){
+			vue.game.down();
+		}
+		// 判断当前关结束就进入下一关
+	}
+</script>
+</head>
+<body onkeydown="keydown(event)">
+	<div id="main" style="padding: 20px;">
+		<h1>推箱子网页版</h1>
+		<div id="map" style="float: left">
+			<!-- game.map 是二维数组    嵌套for循环 -->
+			<div style="height: 30px" v-for=" row in game.map ">
+				<!-- row  是一维数组 -->
+				<img v-for=" i in row " :src="'imgs/' + i + '.gif'">
+			</div>
+		</div>
+		<div id="ctl" style="padding: 20px; float: left; text-align: center;">
+			<h2>第1关</h2>
+			<span>第{{game.stepNumber}}步</span><br>
+			<br>
+			<input placeholder="尊姓大名" style="width:96px;text-align: center">
+			<br>
+			<br>
+			<button style="width: 100px">重新开始</button>
+			<br>
+			<br>
+			<button style="width: 100px">保    存</button>
+			<br>
+			<br>
+			<button style="width: 100px">加    载</button>
+		</div>
+		<div id="ctl" style="padding: 20px; float: left; text-align: center;">
+			<h2>排名</h2>
+			<ol>
+				<li>李逵
+				<li>武松
+				<li>林冲
+				<li>宋江
+			</ol>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+	// http://localhost/HJ17-S2-Ply-vue/1124/pushbox/index.html
+	// 1.gif ==> http://localhost/HJ17-S2-Ply-vue/1124/pushbox/1.gif
+		var vue = new Vue({
+			el : "#main",
+			data : {
+				game : new Game()
+			},
+			created() {
+				this.game.next();
+			}
+		})
+	
+	</script>
+	
+	
+	
+	
+	
+</body>
+</html>
