@@ -1,0 +1,32 @@
+vue 生命周期
+	created: vue 对象构建完成之后调用钩子函数
+	mounted: 挂载完成
+
+Servlet 生命周期
+	1. init()
+	2. service()
+	3. destroy()
+	
+基于Axios的ajax调用
+	传统 js，jQuery 基于回调函数 ==》回调地狱（监狱）
+	解决方法 ==》 Promise 对象
+	
+	p.then().then().then()... 链式调用
+	
+使用步骤：
+导入 axios js 文件
+1. get 请求	（发送少量数据， 请求参数拼接在 url 地址中）
+	axios.get( url, { params : { 参数名：参数值 } } )
+2. post 请求  （发送大量数据）
+	var params = new URLSearchParams();
+	params.append("参数名","参数值");
+	...
+	axios.post( url, params)
+3. 文件上传
+	var fd = new FormData( form表单HTML元素 );
+	axios.post( url, params)
+
+
+	
+	
+
