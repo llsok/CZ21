@@ -6,6 +6,8 @@ import java.util.List;
 
 import com.yc.vue.dyg.bean.DygCategory;
 import com.yc.vue.dyg.bean.DygMovie;
+import com.yc.vue.dyg.bean.DygMovieWithBLOBs;
+import com.yc.vue.dyg.bean.DygMsg;
 import com.yc.vue.dyg.util.DBHelper;
 import com.yc.vue.dyg.util.DBHelper.ResultSetMapper;
 
@@ -48,6 +50,33 @@ public class DygDao {
 			}
 		});
 		return list;
+	}
+
+	public DygMovieWithBLOBs selectById(String id) throws SQLException {
+		String sql = "SELECT * from dyg_movie where id=?";
+		List<DygMovieWithBLOBs> list;
+		list = DBHelper.selectList(sql, new ResultSetMapper<DygMovieWithBLOBs>() {
+			@Override
+			public DygMovieWithBLOBs map(ResultSet rs) throws SQLException {
+				DygMovieWithBLOBs dm = new DygMovieWithBLOBs();
+				dm.setId(rs.getInt("id"));
+				dm.setName(rs.getString("name"));
+				dm.setPoster(rs.getString("poster"));
+				dm.setCreateDate(rs.getInt("create_date"));
+				dm.setIntro(rs.getString("intro"));
+				// 其他字段请自行添加
+				return dm;
+			}
+		}, id);
+		return list.get(0);
+	}
+	
+	public void insertMsg(DygMsg msg) throws SQLException {
+		String sql = "insert into dyg_msg values(null,?,?,?,default,null,null)";
+		DBHelper.update(sql, 
+				msg.getCreateName(),
+				msg.getEmail(),
+				msg.getContent());
 	}
 
 }

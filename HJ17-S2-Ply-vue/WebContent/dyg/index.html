@@ -169,7 +169,7 @@
                     <table class="border1" cellspacing="0" cellpadding="3" border="0"> 
                      <tbody> 
                       <tr> 
-                       <td> <a href="http://www.dygangs.com/bd/20201004/45582.htm" target="_blank"> 
+                       <td> <a :href="'detail.html#' + list[idx].id" target="_blank"> 
                        <img :src="list[idx].poster" border="0" width="120" height="150" alt="碟中谍1-6合集"> </a> </td> 
                       </tr> 
                      </tbody>
@@ -177,7 +177,7 @@
                     <table border="0" align="center" cellpadding="3" cellspacing="0"> 
                      <tbody> 
                       <tr> 
-                       <td> <a v-text="list[idx].name" href="http://www.dygangs.com/bd/20201004/45582.htm" target="_blank" class="c2">碟中谍1-6合集</a> </td>
+                       <td> <a v-text="list[idx].name" :href="'detail.html#' + list[idx].id" target="_blank" class="c2">碟中谍1-6合集</a> </td>
                       </tr> 
                      </tbody>
                     </table> 
@@ -199,7 +199,7 @@
         </table> 
        </div> 
        <script type="text/javascript">
-       new Vue({
+       var v = new Vue({
     	   el : "#tab1_div_0",
     	   data : {
     		   list : [],  // 16部最新电影

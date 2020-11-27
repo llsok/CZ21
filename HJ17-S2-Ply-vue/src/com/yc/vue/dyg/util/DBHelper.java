@@ -113,7 +113,7 @@ public class DBHelper {
 		T map(ResultSet rs) throws SQLException;
 	}
 	
-	public int update(String sql, Object...params)throws SQLException {
+	public static int update(String sql, Object...params)throws SQLException {
 		System.out.println("SQL：" + sql);
 		System.out.println("参数：" + Arrays.toString(params));
 		Connection conn = getConnection();

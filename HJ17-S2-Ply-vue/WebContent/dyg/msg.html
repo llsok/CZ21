@@ -8,6 +8,11 @@
   <meta name="description" content="留言板"> 
   <link href="./res/style.css" rel="stylesheet" type="text/css"> 
   <script type="text/javascript" src="./res/tabs.js"></script> 
+  
+    	<!-- 引入 vue 和 axios -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+  
  </head> 
  <body class="listpage"> 
   <table width="100%" border="0" cellspacing="10" cellpadding="0"> 
@@ -537,23 +542,54 @@
                  </tr> 
                  <tr bgcolor="#FFFFFF"> 
                   <td width="20%">姓名:</td> 
-                  <td width="722" height="23"><input name="name" type="text" id="name"> *</td> 
+                  <td width="722" height="23">
+                  <input v-model="msg.createName" name="name" type="text" id="name"> *</td> 
                  </tr> 
                  <tr bgcolor="#FFFFFF"> 
                   <td>联系邮箱:</td> 
-                  <td height="23"><input name="email" type="text" id="email"> *</td> 
+                  <td height="23">
+                  <input v-model="msg.email" name="email" type="text" id="email"> *</td> 
                  </tr> 
                  <tr bgcolor="#FFFFFF"> 
                   <td>留言内容(*):</td> 
-                  <td height="23"><textarea name="lytext" cols="60" rows="12" id="lytext"></textarea></td> 
+                  <td height="23">
+                  <textarea v-model="msg.content" name="lytext" cols="60" rows="12" id="lytext"></textarea></td> 
                  </tr> 
                  <tr bgcolor="#FFFFFF"> 
                   <td height="23">&nbsp;</td> 
-                  <td height="23"><input type="submit" name="Submit3" value="提交"> <input type="reset" name="Submit22" value="重置"> <input name="enews" type="hidden" id="enews" value="AddGbook"></td> 
+                  <td height="23">
+                  	<input type="button" @click="addMsg" name="Submit3" value="提交"> <input type="reset" name="Submit22" value="重置"> <input name="enews" type="hidden" id="enews" value="AddGbook"></td> 
                  </tr> 
                 </tbody>
                </table> 
-              </form></td> 
+              </form>
+              <script type="text/javascript">
+              	var v = new Vue({
+              		el : "#form1",
+              		data : {
+              			msg : {
+              				createName : "",
+              				email : "",
+              				content : ""
+              			}
+              		},
+              		methods : {
+              			addMsg(){
+              				var params = new URLSearchParams();
+              				params.append("createName",this.msg.createName);
+              				params.append("email",this.msg.email);
+              				params.append("content",this.msg.content);
+							axios.post("../addMsg.s",params).then(res=>{
+								alert(res.data);
+							})             				
+              			}
+              		}
+              	})
+              
+              </script>
+              
+              
+              </td> 
             </tr> 
            </tbody>
           </table></td> 

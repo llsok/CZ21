@@ -1,5 +1,6 @@
 package com.yc.vue.dyg.bean;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class DygMsg {
@@ -12,6 +13,10 @@ public class DygMsg {
     private String createName;
 
     private Timestamp createTime;
+    
+    private String email;
+    
+    private Date replyTime;
 
     public Integer getId() {
         return id;
@@ -52,4 +57,22 @@ public class DygMsg {
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Date getReplyTime() {
+		return replyTime;
+	}
+
+	public void setReplyTime(Date replyTime) {
+		this.replyTime = replyTime;
+	}
+    
+    
 }
