@@ -576,10 +576,11 @@
               		methods : {
               			addMsg(){
               				var params = new URLSearchParams();
+              				params.append("op","add");
               				params.append("createName",this.msg.createName);
               				params.append("email",this.msg.email);
               				params.append("content",this.msg.content);
-							axios.post("../addMsg.s",params).then(res=>{
+							axios.post("../msg.s",params).then(res=>{
 								alert(res.data);
 							})             				
               			}

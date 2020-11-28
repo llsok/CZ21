@@ -1,0 +1,20 @@
+<div id="??">
+	<table v-for=" ... ">  
+		留言    循环生成
+	</table> 
+</div>
+
+<script>
+	new Vue({
+		el : "#??"
+	})
+</script>
+
+总结： vue对象 绑定的元素必须是一静态的元素（div）
+
+
+
+案例：注册登录
+1. BaseServlet
+	用一个Servlet 响应相关多种请求
+2. 会话、文件上传
