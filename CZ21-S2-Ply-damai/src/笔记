@@ -1,0 +1,18 @@
+商品详情：==》 电影详情
+前台：
+首页
+	=>商品列表（最新，热门）点击图片链接
+		==》商品详情页面（商品pid：锚点 #pid）
+			获取 pid ==》 location.hash
+			axios 发起请求
+			将商品的信息渲染页面上
+			
+后台：
+ProductServlet.get()
+	// 获取 pid
+	// 根据 pid 查询商品
+		Product p = ProductDao.selectById(pid)
+			DBHelper.selectList() ==> list.get(0)
+			扩展:  DBHelpler.selectOne()
+	// 转成 json 返回给页面
+	
