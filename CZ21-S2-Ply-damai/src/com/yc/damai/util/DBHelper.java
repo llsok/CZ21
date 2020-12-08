@@ -3,7 +3,9 @@ package com.yc.damai.util;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.catalina.tribes.util.Arrays;
@@ -11,9 +13,12 @@ import org.apache.catalina.tribes.util.Arrays;
 public class DBHelper {
 
 	/**
-	 * DBHelper 新内容 1. 加入配置文件 .properties java 属性文件 Propertes ==> Map 2. 引入实体类
-	 * List<Map<String,Object>> selectList(sql,param...) Map map = list.get(0);
-	 * ==> row map.get("字段名"); List<实体类>selectList(sql,params...) 3. 分页查询方法
+	 * DBHelper 新内容 
+	 * 1. 加入配置文件 .properties java 属性文件 Propertes ==> Map 
+	 * 2. 引入实体类
+	 * 	List<Map<String,Object>> selectList(sql,param...) Map map = list.get(0);
+	 * 	==> row map.get("字段名"); List<实体类>selectList(sql,params...) 
+	 * 3. 分页查询方法
 	 */
 
 	private static String driver;
@@ -73,10 +78,7 @@ public class DBHelper {
 	 * 
 	 * 
 	 */
-	public static <T> List<T> selectList(
-			String sql, 
-			ResultSetMapper<T> callback, 
-			Object... params)
+	public static <T> List<T> selectList(String sql, ResultSetMapper<T> callback, Object... params)
 			throws SQLException {
 
 		System.out.println("SQL：" + sql);
@@ -112,8 +114,8 @@ public class DBHelper {
 	public static interface ResultSetMapper<T> {
 		T map(ResultSet rs) throws SQLException;
 	}
-	
-	public static int update(String sql, Object...params)throws SQLException {
+
+	public static int update(String sql, Object... params) throws SQLException {
 		System.out.println("SQL：" + sql);
 		System.out.println("参数：" + Arrays.toString(params));
 		Connection conn = getConnection();
@@ -128,6 +130,31 @@ public class DBHelper {
 		} finally {
 			conn.close();
 		}
+	}
+
+	/**
+	 * Map的不足
+	 * 	 	1. map.get("dfdf") 字段名容易写错，  
+	 * 		2. Object ==> 转型比较麻烦
+	 * Map的优势
+	 * 		简单的sql select * from 表  ==》 实体类
+	 * 		复杂的sql select *，计算列，统计列  from 表1，表2，。。  ==》 Map   查询统计==》 展示
+	 * @throws SQLException 
+	 */
+	public static List<Map<String, Object>> selectListMap(String sql, Object... params) throws SQLException {
+		return selectList(sql, new ResultSetMapper<Map<String, Object>>() {
+			@Override
+			public Map<String, Object> map(ResultSet rs) throws SQLException {
+				Map<String, Object> map = new HashMap<String, Object>();
+				ResultSetMetaData md = rs.getMetaData();
+				for (int i = 0; i < md.getColumnCount(); i++) {
+					String columnName = md.getColumnName(i + 1);
+					Object value = rs.getObject(columnName);
+					map.put(columnName, value);
+				}
+				return map;
+			}
+		}, params);
 	}
 
 }

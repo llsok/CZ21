@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context.xsd">
+     
+     <!-- 
+     	默认情况下，springIOC容器中的bean，使用的是单例模式
+     
+      -->
+     <bean id="account" scope="singleton" class="com.yc.spring.bank.bean.Account"
+     		primary="true">
+     </bean>
+     
+	 <!-- 
+	 	scope: 作用域
+	 		singleton: 单例（默认的值）
+	 		prototype：  原型（每次都创建一个新的对象）
+	 		session：	会话有效期
+	 		request：	请求有效期
+	  -->
+     <bean scope="prototype" id="account1" class="com.yc.spring.bank.bean.Account">
+     </bean>
+     
+     
+     
+     <!-- 工厂方法 ==》 工厂模式   xxxxFactory工厂类
+		factory-method: spring 将会使用该工厂方法来创建对象
+	 -->
+     
+     <bean factory-method="getInstance" id="account2" 
+     		class="com.yc.spring.bank.bean.Account">
+     </bean>
+     <bean factory-method="getInstance" id="account3" 
+      		class="com.yc.spring.bank.bean.Account">
+     </bean>
+     
+     <!-- 原型模式 + 工厂方法 -->
+     <bean  scope="prototype" factory-method="getInstance1" id="account4" 
+     		class="com.yc.spring.bank.bean.Account">
+     </bean>
+     
+     
+     <!-- 
+     
+     	懒加载    lazy-init="true"： 在getBean的这一刻，才会创建bean
+     	默认情况下SpringIOC容器在启动时，会对xml中定义进行创建
+     	getBean 时是直接从容器获取bean
+     
+      -->
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+</beans>
