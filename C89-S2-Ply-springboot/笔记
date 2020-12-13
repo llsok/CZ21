@@ -1,0 +1,18 @@
+1. SpringBoot会为每个工程创建一个主类（main）
+	Web ==> Tomcat ： main ？
+	SpringBoot 内部集成了Web服务器（Tomcat（默认），Jetty。。。）
+	传统 Web 需要将工程打包成 war 包，发布到 web 服务器（tomcat）
+	SpringBoot ： Web ==> jar ==> main 方法运行在内部的 web 服务器上
+		分布式微服务大时代背景
+	Spring ==》 肯德基
+	SpringBoot ==》 肯德基套餐
+	
+2. resources
+	static		存放 web 的静态资源：css，js，html，jpg
+	templates	模板：jsp，html（thyeleaf）
+	application.properties	配置文件  != xml 或 注解
+	
+
+3. pom.xml
+	1. 有spring 父工程
+	2. 依赖带 starter （启动器依赖：自动配置功能）
