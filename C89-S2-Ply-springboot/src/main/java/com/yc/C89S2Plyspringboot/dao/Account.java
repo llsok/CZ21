@@ -1,7 +1,5 @@
 package com.yc.C89S2Plyspringboot.dao;
 
-import org.springframework.stereotype.Component;
-
 /**
  * 银行账户
  * @author Administrator
@@ -13,6 +11,7 @@ public class Account {
 	private Double balance; // 余额
 	private String name; // 姓名
 	private String pwd; // 密码
+	private String email; // 邮箱
 	
 	public Account() { }
 	
@@ -52,6 +51,14 @@ public class Account {
 	}
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override

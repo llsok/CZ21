@@ -58,5 +58,33 @@ public class AccountDao extends BaseDao<Account> {
 			}
 		});*/
 	}
+	
+	/**
+	 * 根据用户名查用户信息
+	 */
+	public Account selectByName(String name) {
+		String sql = "select * from account where name=?";
+		return jt.query(sql, rs -> { // lamda 表达式， 匿名类简写
+			rs.next();
+			Account a = new Account();
+			a.setAccountid(rs.getInt("accountid"));
+			a.setName(rs.getString("name"));
+			a.setBalance(rs.getDouble("balance"));
+			a.setPwd(rs.getString("pwd"));
+			a.setEmail(rs.getString("email"));
+			return a;
+		}, name);
+	}
+
+	/**
+	 * 根据用户名修改密码
+	 * @param pwd
+	 * @param name
+	 */
+	public void updatePwdByName(String pwd, String name) {
+		String sql = "update account set pwd=? where name=?";
+		jt.update(sql, pwd, name);
+	}
+	
 
 }
