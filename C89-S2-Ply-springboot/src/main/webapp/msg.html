@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>在线聊天</title>
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+
+<script type="text/javascript">
+	//创建websocket对象
+	var websocket;
+
+	//关闭连接
+	function closeWebSocket() {
+		websocket.close();
+	}
+</script>
+
+</head>
+<body>
+<div id="main">
+	<textarea rows="10" cols="40" v-html="allMsg"></textarea>
+	<hr>
+	你的账号：<input v-model="myId"><button @click="conn">连接</button>
+	<hr>
+	对方账号：<input v-model="youId" ><br>
+	消息内容：<input v-model="content" ><button @click="send">发送</button>
+</div>
+<script type="text/javascript">
+	var v = new Vue({
+		el : "#main",
+		data : {
+			myId : "",
+			youId : "",
+			content : "",
+			allMsg : ""
+		},
+		methods : {
+			// 连接方法
+			conn(){
+				websocket = new WebSocket("ws://localhost/websocket/" + this.myId);
+				//连接发生错误的回调方法
+				websocket.onerror = function() {
+				};
+				//连接成功建立的回调方法
+				websocket.onopen = function(event) {
+					alert("连接成功！");
+				}
+				//接收到消息的回调方法
+				websocket.onmessage = (event)=>{
+					console.info(event);
+					this.allMsg += event.data + "\n";
+				}
+				//连接关闭的回调方法
+				websocket.onclose = function() {
+				}
+			},
+			// 发送方法
+			send(){
+				websocket.send(this.youId + ":" + this.content);
+				this.allMsg += this.myId + ":" + this.content + "\n";
+			}
+		}
+	})
+
+
+
+
+</script>
+
+
+</body>
+</html>
