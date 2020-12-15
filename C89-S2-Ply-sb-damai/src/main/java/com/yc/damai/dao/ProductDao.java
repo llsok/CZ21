@@ -31,6 +31,13 @@ public class ProductDao extends BaseDao {
 			return rs.next() ? productRowMapper.mapRow(rs, -1)  :  null;
 		}, id);
 	}
+	
+	
+	//分类查询商品
+	public List<Product> selectList(int id){
+		String sql="select * from product where csid=?";
+		return jt.query(sql, productRowMapper, id);
+	}
 
 	private RowMapper<Product> productRowMapper = new RowMapper<Product>() {
 

@@ -79,53 +79,28 @@
 					<li>
 						<a href="index.html">首页</a>
 						|
-					</li>
-					
-					<li>
-<a href="clist.html?1&pageIndex=1">
-					女装男装
+					</li>					
+					<li v-for="c in list">
+<a :href="'clist.html#'+ c.cid ">
+					{{c.cname}}
 </a>
-					|</li>
-					
-					<li>
-<a href="clist.html?2&pageIndex=1">
-					鞋靴箱包
-</a>
-					|</li>
-					
-					<li>
-<a href="clist.html?3&pageIndex=1">
-					运动户外
-</a>
-					|</li>
-					
-					<li>
-<a href="clist.html?4&pageIndex=1">
-					珠宝配饰
-</a>
-					|</li>
-					
-					<li>
-<a href="clist.html?5&pageIndex=1">
-					手机数码
-</a>
-					|</li>
-					
-					<li>
-<a href="clist.html?6&pageIndex=1">
-					家电办公
-</a>
-					|</li>
-					
-					<li>
-<a href="clist.html?7&pageIndex=1">
-					护肤彩妆
-</a>
-					|</li>
-							
+					|</li>										
 		</ul>
 	</div>
+<script type="text/javascript">
+	new Vue({
+		el:".span24",
+		data:{
+			list:[]
+		},
+		created(){
+			axios.get("queryList").then(res=>{
+				this.list =res.data;
+			})
+		}
+	})
 
+</script>
 
 </div>	
 

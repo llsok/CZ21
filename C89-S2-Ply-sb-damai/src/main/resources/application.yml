@@ -11,7 +11,7 @@ spring:
       url: jdbc:mysql://127.0.0.1:3306/C89-S2-Ply-sb-damai
       username: root
       # 配置项之间可以有空行
-      password: a
+      password: root
       # yml 支持驼峰命名 + -号分隔符
       driverClassName: com.mysql.jdbc.Driver
       #driver-class-name: com.mysql.jdbc.Driver

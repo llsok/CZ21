@@ -25,5 +25,10 @@ public class ProductAction {
 	public Product queryById(int id) {
 		return pdao.selectById(id);
 	}
-
+	
+	@RequestMapping("selectList")
+	public List<?> selectList(int id){
+		System.out.println(id+"------------csid");
+		return pdao.selectList(id);
+	}
 }
