@@ -11,6 +11,7 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 // 定义服务器地址
@@ -60,6 +61,14 @@ public class MyWebSocket {
 		Session recvSession = webSocketMap.get(youid);
 		// 发送消息
 		recvSession.getBasicRemote().sendText(myid + ":" + msg);
+	}
+	
+	@Scheduled(cron = "0 * 9-17 * * *")
+	public void hello() throws IOException {
+		for(Session session : webSocketMap.values()) {
+			String id = (String) session.getUserProperties().get("myid");
+			session.getBasicRemote().sendText("系统消息:" + id + "你好");
+		}
 	}
 }
 
