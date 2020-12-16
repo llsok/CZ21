@@ -6,28 +6,26 @@ import java.util.List;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import com.yc.damai.po.category;
+
+import com.yc.damai.po.Category;
+
 
 @Repository
 public class CategoryDao extends BaseDao{
-	
-	public List<category> selectAll(){
-		String sql="select * from category order by cid";
-		return jt.query(sql, categoryRowMapper);
+
+	public List<Category> queryCategory(){
+		String sql = "select * from category";
+		return jt.query(sql,categoryRowMapper);
 	}
 	
-	
-	
-	
-	private RowMapper<category> categoryRowMapper = new RowMapper<category>() {
+	private RowMapper<Category> categoryRowMapper = new RowMapper<Category>() {
 
 		@Override
-		public category mapRow(ResultSet rs, int rowNum) throws SQLException {
-			category c = new category();
+		public Category mapRow(ResultSet rs, int rowNum) throws SQLException {
+			Category c = new Category();
 			c.setCid(rs.getInt("cid"));
 			c.setCname(rs.getString("cname"));
 			return c;
 		}
-
-	};
+	}; 
 }
