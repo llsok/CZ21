@@ -1,11 +1,9 @@
 package com.yc.damai.po;
 
-public class category implements java.io.Serializable{
-
-
-	private static final long serialVersionUID = 1L;
+public class Category {
 	private Integer cid;
 	private String cname;
+	
 	public Integer getCid() {
 		return cid;
 	}
@@ -18,12 +16,9 @@ public class category implements java.io.Serializable{
 	public void setCname(String cname) {
 		this.cname = cname;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	@Override
 	public String toString() {
-		return "cateGory [cid=" + cid + ", cname=" + cname + "]";
+		return "Category [cid=" + cid + ", cname=" + cname + "]";
 	}
 	
 }
