@@ -246,7 +246,7 @@
 				methods:{
 					addCart(){
 						
-						axios.get("user.s?op=getLoginedUser").then(res=>{
+						axios.get("getLoginedUser").then(res=>{
 							
 							if( res.data && res.data.uid ){
 								//console.log(this.$refs.counts.value);
