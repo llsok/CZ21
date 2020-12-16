@@ -1,5 +1,7 @@
 package com.yc.damai.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yc.damai.dao.CartDao;
+import com.yc.damai.po.Cart;
 import com.yc.damai.po.Result;
 import com.yc.damai.po.User;
 
@@ -35,5 +38,16 @@ public class CartAction {
 		cdao.insert(user.getUid(),pid,count);
 		// 返回结果
 		return Result.success("添加购物车成功!");
+	}
+	
+	/**
+	 * 查询购物车
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(path="cart.s" ,params = "op=queryCart")
+	public List<?> queryCart(HttpSession session){
+		User user = (User) session.getAttribute("loginedUser");
+		return cdao.selectCart(user.getUid());
 	}
 }
