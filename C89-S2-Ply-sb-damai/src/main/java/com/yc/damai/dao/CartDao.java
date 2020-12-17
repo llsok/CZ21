@@ -72,4 +72,28 @@ public class CartDao extends BaseDao {
 		}
 	};
 
+	/**
+	 * 查询指定用户的购物车商品总价值
+	 * @param uid
+	 * @return
+	 */
+	public Double selectTotalByUid(Integer uid) {
+		String sql = "SELECT\n" +
+				"	sum(count * b.shop_price)\n" +
+				"FROM\n" +
+				"	cart a\n" +
+				"JOIN product b ON a.pid = b.pid\n" +
+				"WHERE\n" +
+				"	uid = ?";
+		return jt.queryForObject(sql, Double.class, uid);
+	}
+
+	/**
+	 * 根据用户id 删除购物车
+	 * @param uid
+	 */
+	public void deleteByUid(Integer uid) {
+		jt.update("delete from cart where uid=?",uid);
+	}
+
 }
