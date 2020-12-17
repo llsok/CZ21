@@ -138,7 +138,7 @@
 			</div>
 			<div class="bottom">
 				<a id="clear" class="clear" @click="clearCart()">清空购物车</a> <a
-					href="pay.html" id="submit" class="submit">提交订单</a>
+					href="pay.html" id="submit" class="submit" @click="sbOreder()">提交订单</a>
 			</div>
 
 		</div>
@@ -184,6 +184,10 @@
 							axios.get("cart.s?op=clearCart").then(res=>{
 								alert(res.data.msg);
 							})
+						}
+					},
+					sbOrder(){
+						if(confirm("确定要提交订单?")){
 						}
 					}
 				}
