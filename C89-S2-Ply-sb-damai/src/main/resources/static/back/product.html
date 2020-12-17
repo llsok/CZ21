@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>商品信息</title>
+	<link rel="stylesheet" type="text/css" href="../js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../js/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../demo.css">
+	<script type="text/javascript" src="../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/easyui/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<h2>商品信息</h2>
+	<div style="margin:20px 0;"></div>
+	<div class="easyui-panel" title="商品信息" style="width:100%;max-width:400px;padding:30px 60px;">
+		<form id="ff" method="post" action="../createProduct">
+			<div style="margin-bottom:20px">
+				<input class="easyui-textbox" name="pname" style="width:100%" 
+					data-options="label:'名称:',required:true">
+			</div>
+			<div style="margin-bottom:20px">
+				<input class="easyui-textbox" name="image" style="width:100%" 
+					data-options="label:'图片:',required:true">
+			</div>
+			<div style="margin-bottom:20px">
+				<input class="easyui-textbox" name="shopPrice" style="width:100%"
+					data-options="label:'商城价:',required:true">
+			</div>
+			<div style="margin-bottom:20px">
+				<input class="easyui-textbox" name="pdesc" style="width:100%;height:60px" 
+					data-options="label:'描述:',multiline:true">
+			</div>
+			<div style="margin-bottom:20px">
+				<select class="easyui-combobox" name="isHot" label="热卖" style="width:100%">
+					<option value="1">热卖</option>
+					<option value="0">非热卖</option>
+					</select>
+			</div>
+		</form>
+		<div style="text-align:center;padding:5px 0">
+			<a href="javascript:void(0)" class="easyui-linkbutton" 
+					onclick="submitForm()" style="width:80px">保存</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" 
+					onclick="clearForm()" style="width:80px">重置</a>
+		</div>
+	</div>
+	<script>
+		function submitForm(){
+			// easyui 会提交表单中所有带 name 的字段(输入框)的值
+			$('#ff').form('submit',{
+				success(res){
+					// res 应该是 json 格式的字符串
+					var result = JSON.parse(res);
+					alert(result.msg)
+				}
+			});
+		}
+		function clearForm(){
+			$('#ff').form('clear');
+		}
+	</script>
+</body>
+</html>
