@@ -55,7 +55,7 @@
 					user:{}
 				},
 				created(){
-					axios.get("user.s?op=getLoginedUser").then(res=>{
+					axios.get("getLoginedUser").then(res=>{
 						this.user = res.data;
 					})
 				},
@@ -124,9 +124,8 @@
 				</ul>
 			</div>
 			<table>
-				<tbody >
-
-					<tr v-for="o in olist">
+				<tbody v-for="o in olist">
+					<tr >
 						<th colspan="5">订单号:{{o.oid}} 金额:<font color="red">{{o.total}} </font>
 							状态 : <a href="pay.html?oid=73"><font color="red">付款</font></a>
 
@@ -139,37 +138,28 @@
 						<th>数量</th>
 						<th>小计</th>
 					</tr>
-
-					<tr v-for="p in plist">
-						<td width="60"><img :src="p.image" /></td>
-						<td><a target="_blank">{{p.pname}}</a></td>
-						<td>{{p.shop_price}}</td>
-						<td class="quantity" width="60">{{p.count}} --></td>
-						<td width="140"><span class="subtotal">￥<!-- {{o.total}} --></span></td>
+					<tr >
+						<td width="60"><img :src="o.image" /></td>
+						<td><a target="_blank">{{o.pname}}</a></td>
+						<td>{{o.shop_price}}</td>
+						<td class="quantity" width="60">{{o.count}} --></td>
+						<td width="140"><span class="subtotal">￥{{o.subtotal}}</span></td>
 					</tr>
-
 				</tbody>
-
 			</table>
-
 		</div>
 		
 		<script type="text/javascript">
-			new Vue({
+		var v5=	new Vue({
 				el:"#olistnav",
 				data:{
-					olist:[],
-					plist:[]
+					olist:{}
 				},
 				created(){
 					axios.get("olist.s?op=queryOlist").then(res=>{
 						this.olist = res.data;
-					}),
-					axios.get("olist.s?op=queryProduct").then(res=>{
-						this.plist = res.data;
 					})
 				}
-				
 			})
 			
 		
