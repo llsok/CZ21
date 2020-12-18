@@ -22,7 +22,7 @@ public class ProductBiz {
 		Utils.checkNull(p.getImage(), "商品图片不能为空");
 		Utils.checkNull(p.getMarketPrice(), "商品商城价不能为空");
 		Utils.checkNull(p.getShopPrice(), "商品销售价不能为空");
-		Utils.checkNull(p.getPname(), "商品描述");
+		Utils.checkNull(p.getPdesc(), "商品描述不能为空");
 		// ...其他字段请自行扩展: 2价格,图片,说明
 		
 		// 添加到数据库
