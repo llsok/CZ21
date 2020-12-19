@@ -17,16 +17,22 @@
 		<form id="ff" method="post" action="../createProduct">
 			<div style="margin-bottom:20px">
 				<input class="easyui-textbox" name="pname" style="width:100%" 
-					data-options="label:'名称:',required:true">
+					data-options="label:'名称:',">
 			</div>
 			<div style="margin-bottom:20px">
 				<input class="easyui-textbox" name="image" style="width:100%" 
-					data-options="label:'图片:',required:true">
+					data-options="label:'图片:',">
 			</div>
 			<div style="margin-bottom:20px">
-				<input class="easyui-textbox" name="shopPrice" style="width:100%"
-					data-options="label:'商城价:',required:true">
+				<input class="easyui-textbox" name="marketPrice" style="width:100%"
+					data-options="label:'商城价:',">
 			</div>
+			
+			<div style="margin-bottom:20px">
+				<input class="easyui-textbox" name="shopPrice" style="width:100%"
+					data-options="label:'销售价:',">
+			</div>
+			
 			<div style="margin-bottom:20px">
 				<input class="easyui-textbox" name="pdesc" style="width:100%;height:60px" 
 					data-options="label:'描述:',multiline:true">
@@ -37,6 +43,33 @@
 					<option value="0">非热卖</option>
 					</select>
 			</div>
+			
+			<div style="margin-bottom:20px">
+				<select class="easyui-combobox" name="csid" label="商品类型" style="width:100%">
+					<option value="1">潮流女装</option>
+					<option value="2">初冬羽绒</option>
+					<option value="3">毛呢大衣</option>
+					<option value="4">温暖毛衣</option>
+					<option value="5">精选男装</option>
+					<option value="6">冬季外套</option>
+					<option value="7">羽绒服</option>
+					<option value="9">女鞋</option>
+					<option value="10">短靴</option>
+					<option value="11">男鞋</option>
+					<option value="12">女包</option>
+					<option value="13">男包</option>
+					<option value="14">服饰配件</option>
+					<option value="15">运动鞋</option>
+					<option value="16">运动服</option>
+					<option value="17">户外运动</option>
+					<option value="18">健身装备</option>
+					<option value="19">骑行装备</option>
+					<option value="20">珠宝首饰</option>
+					<option value="21">时尚饰品</option>
+					<option value="22">品质手表</option>
+					</select>
+			</div>
+			
 		</form>
 		<div style="text-align:center;padding:5px 0">
 			<a href="javascript:void(0)" class="easyui-linkbutton" 
@@ -52,7 +85,7 @@
 				success(res){
 					// res 应该是 json 格式的字符串
 					var result = JSON.parse(res);
-					alert(result.msg)
+					alert(result.msg);
 				}
 			});
 		}
