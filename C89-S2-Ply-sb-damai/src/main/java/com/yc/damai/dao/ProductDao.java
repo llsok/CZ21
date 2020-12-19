@@ -75,6 +75,10 @@ public class ProductDao extends BaseDao{
 			return p;
 		}
 	};
+	public List<Product> queryAllP() {
+		String sql="select *from product ";
+		return jt.query(sql, productRowMapper);
+	}
 
 	
 
