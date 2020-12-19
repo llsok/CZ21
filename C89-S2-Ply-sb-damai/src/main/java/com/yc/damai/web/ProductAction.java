@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +22,9 @@ public class ProductAction {
 	
 	@Resource
 	private ProductBiz pbiz;
+	
+	@Resource
+	private StringRedisTemplate rt;
 	
 	@RequestMapping(path="product.s",params = "op=queryHot")
 	public List<Product> queryHot(){
@@ -43,6 +47,8 @@ public class ProductAction {
 	
 	@RequestMapping(path="product.s",params = "op=queryProductById")
 	public Product queryProductById(int pid){
+		String key = "product_bcount_" + pid;
+		rt.opsForValue().increment(key);
 		return pdao.queryProductById(pid);
 	}
 	

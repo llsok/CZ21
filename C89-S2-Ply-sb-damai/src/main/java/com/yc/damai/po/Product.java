@@ -14,6 +14,16 @@ public class Product implements java.io.Serializable{
 	private Integer isHot;
 	private Date pdate;
 	private Integer csid;
+	// 浏览量
+	private Long bcount;
+	
+	public Long getBcount() {
+		return bcount;
+	}
+	public void setBcount(Long bcount) {
+		this.bcount = bcount;
+	}
+	
 	public Integer getPid() {
 		return pid;
 	}
