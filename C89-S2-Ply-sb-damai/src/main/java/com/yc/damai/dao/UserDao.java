@@ -14,40 +14,39 @@ import com.yc.damai.biz.UserBiz;
 import com.yc.damai.po.User;
 
 @Repository
-public class UserDao extends BaseDao{
-	
+public class UserDao extends BaseDao {
+
 	@Resource
 	private UserBiz ubiz;
-	
+
 	public void insert(User user) throws SQLException {
 		String sql = "insert into user values(null,?,?,?,?,?,?,1,null,?)";
-		jt.update(sql,
-				user.getUsername(),user.getPassword(),
-				user.getName(),user.getEmail(),user.getPhone(),
-				user.getSex(),user.getAddr());
+		jt.update(sql, user.getUsername(), user.getPassword(), user.getName(), user.getEmail(), user.getPhone(),
+				user.getSex(), user.getAddr());
 	}
-	
+
 	/**
 	 * 根据用户名查用户
+	 * 
 	 * @param name
 	 * @return
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	public User selectByName(String username) {
 		String sql = "select * from user where username=?";
-		return jt.query(sql, rs->{
+		return jt.query(sql, rs -> {
 			return rs.next() ? UserRowMapper.mapRow(rs, -1) : null;
 		}, username);
 	}
-	
-	public User login(String username, String password, String vcode,HttpSession session) throws BizException {
-		return ubiz.login(username, password,vcode,session);
+
+	public User login(String username, String password, String vcode, HttpSession session) throws BizException {
+		return ubiz.login(username, password, vcode, session);
 	}
-	
+
 	public void register(User user) throws BizException, SQLException {
 		ubiz.register(user);
 	}
-	
+
 	private RowMapper<User> UserRowMapper = new RowMapper<User>() {
 
 		@Override
@@ -66,6 +65,5 @@ public class UserDao extends BaseDao{
 			return user;
 		}
 	};
-
 
 }
