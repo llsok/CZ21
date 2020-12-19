@@ -3,6 +3,8 @@ package com.yc.damai.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -13,12 +15,12 @@ import com.yc.damai.po.Orders;
 
 @Repository
 public class OrdersDao extends BaseDao{
-
 	/**
 	 * 新增订单主表
 	 * @param orders
 	 * @return 
 	 */
+	
 	public int insertOrders(Orders orders) {
 		String sql = "insert into orders values(null,?,now(),?,?,?,?,?)";
 		KeyHolder kh = new GeneratedKeyHolder();
@@ -64,6 +66,14 @@ public class OrdersDao extends BaseDao{
 				"	a.uid = ?";
 		jt.update(sql, orders.getOid(), orders.getUid());
 	}
+
+	public List<Map<String,Object>> selectOrders(Integer uid) {
+		return jt.queryForList("select * from orders a "
+				+ "left join orderitem b on a.oid=b.oid"
+				+ " left join product c on b.pid=c.pid "
+				+ "where a.uid=?", uid);
+	}
+	
 	
 
 }
