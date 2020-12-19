@@ -42,7 +42,6 @@ public class OrderAction {
 			return Result.failure(e.getMessage());
 		}
 	}
-	
 	@RequestMapping(path="olist.s" ,params = "op=queryOlist")
 	public List<?> queryCart(HttpSession session){
 		User user = (User) session.getAttribute("loginedUser");
