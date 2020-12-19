@@ -21,6 +21,7 @@ public class OrdersDao extends BaseDao{
 	 * @param orders
 	 * @return 
 	 */
+	
 	public int insertOrders(Orders orders) {
 		String sql = "insert into orders values(null,?,now(),?,?,?,?,?)";
 		KeyHolder kh = new GeneratedKeyHolder();
