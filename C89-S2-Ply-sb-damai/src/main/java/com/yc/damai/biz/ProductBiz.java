@@ -2,6 +2,7 @@ package com.yc.damai.biz;
 
 import javax.annotation.Resource;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,5 +29,5 @@ public class ProductBiz {
 		// 添加到数据库
 		pdao.insert(p);
 	}
-
+	
 }
