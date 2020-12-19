@@ -8,7 +8,7 @@ server:
 
 spring:
    datasource:
-      url: jdbc:mysql://127.0.0.1:3306/c89-s2-phk-damai
+      url: jdbc:mysql://127.0.0.1:3306/S2-damai
       username: root
       # 配置项之间可以有空行
       password: a

@@ -80,7 +80,7 @@ public class CartDao extends BaseDao {
 	public Double selectTotalByUid(Integer uid) {
 		String sql = "SELECT\n" +
 				"	sum(count * b.shop_price)\n" +
-				"FROM\n" +
+				/////"FROM\n" +
 				"	cart a\n" +
 				"JOIN product b ON a.pid = b.pid\n" +
 				"WHERE\n" +
