@@ -21,7 +21,7 @@ public class OrdersBizTest {
 		o.setAddr("衡阳");
 		o.setPhone("13800000111");
 		o.setName("zhangsan");
-		o.setUid(13);
+		o.setUid(1);
 		try {
 			obiz.pay(o);
 		} catch (BizException e) {

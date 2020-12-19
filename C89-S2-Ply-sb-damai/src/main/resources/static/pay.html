@@ -180,11 +180,11 @@
 				<input type="hidden" name="order.oid" value="73"/>
 				<div class="span24">
 					<p>
-							收货地址：<input name="order.addr" type="text" value="" style="width:350px" />
+							收货地址：<input name="order.addr" type="text" v-model="addr" style="width:350px" />
 								<br />
-							收货人&nbsp;&nbsp;&nbsp;：<input name="order.name" type="text" value="" style="width:150px" />
+							收货人&nbsp;&nbsp;&nbsp;：<input name="order.name" type="text" v-model="name" style="width:150px" />
 								<br /> 
-							联系方式：<input name="order.phone" type="text" value="" style="width:150px" />
+							联系方式：<input name="order.phone" type="text" v-model="phone" style="width:150px" />
 
 						</p>
 						<hr />
@@ -211,8 +211,8 @@
 						</p>
 						<hr />
 						<p style="text-align:right">
-							<a href="javascript:document.getElementById('orderForm').submit();">
-								<img src="images/finalbutton.gif" width="204" height="51" border="0" />
+							<a >
+								<img src="images/finalbutton.gif" width="204" height="51" border="0" @click="Order()"/>
 							</a>
 						</p>
 				</div>
@@ -245,6 +245,20 @@
 					           sum+=this.plist[i].shop_price*this.plist[i].count;
 					       }
 					    return sum;
+					}
+				},
+				methods:{
+					Order(){
+						if(confirm("确认提交?")){
+							var params = new URLSearchParams();
+							params.append("name",this.name);
+							params.append("addr",this.addr);
+							params.append("phone",this.phone);
+							axios.post("order.s",params).then(res=>{
+								alert(res.data.msg);
+								location.href = "olist.html";
+							})
+						}
 					}
 				}
 			})

@@ -34,8 +34,9 @@ public class OrdersBiz {
 		
 		// 写入数据库
 		// 订单主表  orders
-		odao.insertOrders(orders);
+		int oid = odao.insertOrders(orders);
 		// 订单明细 orderitem
+		orders.setOid(oid);
 		odao.insertItems(orders);
 		// 清空购物车 cart ==> uid
 		cdao.deleteByUid(orders.getUid());
