@@ -68,6 +68,7 @@ public class OrdersDao extends BaseDao{
 	}
 
 	public List<Map<String,Object>> selectOrders(Integer uid) {
+		
 		return jt.queryForList("select * from orders a "
 				+ "left join orderitem b on a.oid=b.oid"
 				+ " left join product c on b.pid=c.pid "

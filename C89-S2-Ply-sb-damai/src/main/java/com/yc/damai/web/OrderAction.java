@@ -21,13 +21,20 @@ public class OrderAction {
 	@Resource
 	private OrdersBiz obiz;
 	
+
 	@Resource
 	private OrdersDao odao;
 	
-	public Result pay(Orders orders, HttpSession session) {
+
+	@RequestMapping("order.s")
+	public Result pay(Orders orders, HttpSession session ,String addr,String phone,String name) {
+
 		try {
 			User user = (User) session.getAttribute("loginedUser");
 			orders.setUid(user.getUid());
+			orders.setName(name);
+			orders.setPhone(phone);
+			orders.setAddr(addr);
 			obiz.pay(orders);
 			return Result.success("下单成功!");
 		} catch (BizException e) {
@@ -40,6 +47,7 @@ public class OrderAction {
 	public List<?> queryCart(HttpSession session){
 		User user = (User) session.getAttribute("loginedUser");
 		return odao.selectOrders(user.getUid());
+		
 	}
 	
 

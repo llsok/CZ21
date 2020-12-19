@@ -157,6 +157,7 @@
 				},
 				created(){
 					axios.get("olist.s?op=queryOlist").then(res=>{
+						
 						this.olist = res.data;
 					})
 				}
