@@ -20,7 +20,7 @@ public class CartDao extends BaseDao {
 		return list;
 	}
 
-	public void addCart(int pid, int count, int uid) throws SQLException {
+	public void addCart(int uid, int pid, int count) throws SQLException {
 		/*
 		 * String sql = "select * from cart where uid=? and pid=?"; if
 		 * (DBHelper.selectOne(sql, uid,pid) != null) { sql =
