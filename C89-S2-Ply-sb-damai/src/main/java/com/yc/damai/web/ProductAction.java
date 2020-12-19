@@ -47,7 +47,14 @@ public class ProductAction {
 	
 	@RequestMapping(path="product.s",params = "op=queryProductById")
 	public Product queryProductById(int pid){
+		/**
+		 * 定义当前商品浏览器在redis中的键值
+		 */
 		String key = "product_bcount_" + pid;
+		/**
+		 * rt.opsForValue() 获取操作 stirng 类型的 redis对象
+		 * increment(key), 让 key 自增 1 ==> key++ 
+		 */
 		rt.opsForValue().increment(key);
 		return pdao.queryProductById(pid);
 	}
