@@ -42,6 +42,22 @@ public class ProductDao extends BaseDao{
 		return jt.query(sql, productRowMapper,cid);
 	}
 	
+	/**
+	 * 新增商品
+	 * @param p
+	 */
+	public void insert(Product p) {
+		String sql = "insert into product values(null,?,?,?,?,?,?,now(),?)";
+		jt.update(sql,
+		p.getPname(),
+		p.getMarketPrice(),
+		p.getShopPrice(),
+		p.getImage(),
+		p.getPdesc(),
+		p.getIsHot(),
+		p.getCsid());
+	}
+	
 	private RowMapper<Product> productRowMapper = new RowMapper<Product>() {
 
 		@Override

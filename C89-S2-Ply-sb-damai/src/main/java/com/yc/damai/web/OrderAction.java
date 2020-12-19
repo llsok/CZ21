@@ -18,7 +18,6 @@ import com.yc.damai.po.User;
 @RestController
 public class OrderAction {
 	
-	
 	@Resource
 	private OrdersBiz obiz;
 	

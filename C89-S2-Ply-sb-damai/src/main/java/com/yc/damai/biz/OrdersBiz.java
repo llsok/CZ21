@@ -13,7 +13,6 @@ import com.yc.damai.util.Utils;
 @Service
 public class OrdersBiz {
 
-	
 	@Resource
 	private CartDao cdao;
 	
