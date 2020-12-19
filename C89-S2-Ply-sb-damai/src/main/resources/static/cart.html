@@ -121,7 +121,11 @@
 						<td width="60"><img :src="p.image"></td>
 						<td><a target="_blank">{{p.pname}}</a></td>
 						<td>￥{{p.shop_price}}</td>
-						<td class="quantity" width="60">{{p.count}}</td>
+						<td class="quantity" width="60">
+						<button @click="addP(p,-1)">-</button>
+						{{p.count}}
+						<button @click="addP(p,1)">+</button>
+						</td>
 						<td width="140"><span class="subtotal">￥{{p.shop_price*p.count}}</span></td>
 						<td><a href="cart.html" @click="deleteCart(p.pid)"
 							class="delete">删除</a></td>
@@ -189,6 +193,20 @@
 					sbOrder(){
 						if(confirm("确定要提交订单?")){
 						}
+					},
+					addP(p,value1){
+						p.count += value1; 
+						if(p.count<=1){
+							p.count =1;
+							alert("已经不能再减了！")
+						}
+						var params = new URLSearchParams();
+						console.log(p);
+						params.append("op","upCart");
+						params.append("pid",p.pid);
+						params.append("count",p.count);
+						axios.post("cart.s",params).then(res=>{
+						})
 					}
 				}
 			})
