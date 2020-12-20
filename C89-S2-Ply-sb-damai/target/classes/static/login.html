@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>大麦商城</title>
+<link href="css/common.css" rel="stylesheet" type="text/css" />
+<link href="css/login.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script
+	src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script type="text/javascript">
+	function checkImg(){
+		// 更新验证码
+	}
+</script>
+</head>
+<body>
+
+	<div class="container header">
+
+		<div class="span5">
+			<div class="logo">
+				<a href="index.html"> <img
+					src="image/r___________renleipic_01/logo.png" alt="依依不舍" />
+				</a>
+			</div>
+		</div>
+		<div class="span9">
+			<div class="headerAd">
+				<img src="image/header.jpg" width="320" height="50" alt="正品保障"
+					title="正品保障" />
+			</div>
+		</div>
+		<div class="span10 last">
+			<div class="topNav clearfix">
+				<ul>
+
+
+					<li id="headerLogin" class="headerLogin"
+						style="display: list-item;"><a href="login.html">登录</a>|</li>
+					<li id="headerRegister" class="headerRegister"
+						style="display: list-item;"><a href="reg.html">注册</a>|</li>
+
+
+
+					<li id="headerUsername" class="headerUsername"></li>
+					<li id="headerLogout" class="headerLogout"><a>[退出]</a>|</li>
+					<li><a>会员中心</a> |</li>
+					<li><a>购物指南</a> |</li>
+					<li><a>关于我们</a></li>
+				</ul>
+			</div>
+			<div class="cart">
+				<a href="cart.html">购物车</a>
+			</div>
+			<div class="phone">
+				客服热线: <strong>96008/53277764</strong>
+			</div>
+		</div>
+
+
+
+		<div id="nav" class="span24">
+			<ul class="mainNav">
+				<li><a href="index.html">首页</a> |</li>
+
+				<li v-for="c in category"><a :href="'clist.html#'+c.cid">
+						{{c.cname}} </a> |</li>
+
+			</ul>
+		</div>
+		<script type="text/javascript">
+			var v = new Vue({
+				el : "#nav",
+				data :{
+					category:[]
+				},
+				created(){
+					axios.get("category.s?op=queryCategory").then(res=>{
+						this.category = res.data;
+					})
+				}
+			})
+			
+		</script>
+
+
+	</div>
+	<div class="container login">
+		<div class="span12">
+			<div class="ad">
+				<img src="image/login.jpg" width="500" height="330" alt="会员登录"
+					title="会员登录">
+			</div>
+		</div>
+		<div class="span12 last">
+			<div class="wrap">
+				<div class="main">
+					<div class="title">
+						<strong>会员登录</strong>USER LOGIN
+					</div>
+					<div class="title"></div>
+					<form id="loginForm" action="login.html" method="post"
+						novalidate="novalidate">
+						<table>
+							<tbody>
+								<tr>
+									<th>用户名:</th>
+									<td><input type="text" id="username" name="username"
+										v-model="username" class="text" maxlength="20" /><span></span></td>
+								</tr>
+								<tr>
+									<th>密&nbsp;&nbsp;码:</th>
+									<td><input type="password" id="password" name="password"
+										v-model="password" class="text" maxlength="20" autocomplete="off" /><span></span>
+									</td>
+								</tr>
+								<tr>
+									<th>验证码:</th>
+									<td>
+										<span class="fieldSet"> 
+										<input v-model="vcode"
+												id="vcode" name="captcha" class="text captcha"
+												maxlength="4" autocomplete="off">
+											<img id="captchaImage" class="captchaImage" 
+											:src="imgsrc" height="20px;"
+												title="点击更换验证码" @click="changeImg()">
+										</span>
+									</td>
+								</tr>
+								<tr>
+									<th>&nbsp;</th>
+									<td><label> <input type="checkbox"
+											id="isRememberUsername" name="isRememberUsername"
+											value="true">记住用户名
+									</label> <label> &nbsp;&nbsp;<a>找回密码</a>
+									</label></td>
+								</tr>
+								<tr>
+									<th>&nbsp;</th>
+									<td><input @click="login()" type="button" class="submit" value="登 录">
+									</td>
+								</tr>
+								<tr class="register">
+									<th>&nbsp;</th>
+									<td>
+										<dl>
+											<dt>还没有注册账号？</dt>
+											<dd>
+												立即注册即可体验在线购物！ <a href="reg.html">立即注册</a>
+											</dd>
+										</dl>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+					<script type="text/javascript">
+						new Vue({
+							el:"#loginForm",
+							data:{
+								username:"",
+								password:"",
+								vcode:"",
+								imgsrc:"verifyCode.s?a="
+							},
+							methods:{
+								changeImg(){
+									this.imgsrc += new Date();
+								},
+								login(){
+									var params = new URLSearchParams();
+									params.append("username",this.username);
+									params.append("password",this.password);
+									params.append("vcode",this.vcode);
+									axios.post("login.s",params).then(res=>{
+										alert(res.data.msg);
+										if(res.data.code == 1){
+											location.href="index.html";
+										}
+									}).catch(error=>{
+										alert("系统错误，请联系管理员");
+									})
+								}
+							}
+						})
+					
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container footer">
+		<div class="span24">
+			<div class="footerAd">
+				<img src="image/footer.jpg" width="950" height="52" alt="我们的优势"
+					title="我们的优势" />
+			</div>
+		</div>
+		<div class="span24">
+			<ul class="bottomNav">
+				<li><a>关于我们</a> |</li>
+				<li><a>联系我们</a> |</li>
+				<li><a>招贤纳士</a> |</li>
+				<li><a>法律声明</a> |</li>
+				<li><a>友情链接</a> |</li>
+				<li><a target="_blank">支付方式</a> |</li>
+				<li><a target="_blank">配送方式</a> |</li>
+				<li><a>服务声明</a> |</li>
+				<li><a>广告声明</a></li>
+			</ul>
+		</div>
+		<div class="span24">
+			<div class="copyright">Copyright © 2005-2013 Mango商城 版权所有</div>
+		</div>
+	</div>
+</body>
+</html>

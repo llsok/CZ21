@@ -69,4 +69,9 @@ public class ProductAction {
 			return Result.failure(e.getMessage());
 		}
 	}
+	@RequestMapping("queryAllP")
+	public List<Product> queryAllP(){
+		return pdao.queryAllP();
+	}
+	 
 }

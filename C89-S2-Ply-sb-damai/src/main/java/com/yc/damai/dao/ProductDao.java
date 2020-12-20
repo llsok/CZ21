@@ -81,6 +81,10 @@ public class ProductDao extends BaseDao{
 			return p;
 		}
 	};
+	public List<Product> queryAllP() {
+		String sql="select *from product ";
+		return jt.query(sql, productRowMapper);
+	}
 
 	/**
 	 * 定时更新商品的浏览量字段
