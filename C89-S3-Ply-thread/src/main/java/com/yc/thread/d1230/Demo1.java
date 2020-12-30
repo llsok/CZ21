@@ -14,7 +14,7 @@ public class Demo1 {
 	
 	public void doLogin() {
 		System.out.println("=========doLogin begin==========");
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10000; i++) {
 			System.out.println("=========doLogin "+ i +" ==========");
 		}
 		System.out.println("=========doLogin end==========");
@@ -22,7 +22,7 @@ public class Demo1 {
 	
 	public void doRegister() {
 		System.out.println("=========doRegister begin==========");
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10000; i++) {
 			System.out.println("=========doRegister "+ i +" ==========");
 		}
 		System.out.println("=========doRegister end==========");
@@ -38,7 +38,7 @@ public class Demo1 {
 				d.doLogin();
 			}
 		};
-		t1.start(); // 启动线程
+		
 		
 		// 创建线程方式2: 实现Runnable 接口 : 匿名类 ==> 更灵活
 		Runnable r1 = new Runnable() {
@@ -52,6 +52,10 @@ public class Demo1 {
 		 */
 		Thread t2 = new Thread(r1);
 		
+		t1.setPriority(1);
+		t2.setPriority(10);
+		
+		t1.start(); // 启动线程
 		t2.start();// 启动线程
 		
 		//d.doLogin();
