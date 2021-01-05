@@ -14,8 +14,8 @@ public class Cookie {
 	
 	private String name;
 	private String value;
-	private int maxAge;
-	private String path;
+	private Integer maxAge;
+	private String path = "/";
 	
 	public Cookie(String name, String value) {
 		super();
@@ -35,10 +35,10 @@ public class Cookie {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	public int getMaxAge() {
+	public Integer getMaxAge() {
 		return maxAge;
 	}
-	public void setMaxAge(int maxAge) {
+	public void setMaxAge(Integer maxAge) {
 		this.maxAge = maxAge;
 	}
 	public String getPath() {
@@ -48,6 +48,14 @@ public class Cookie {
 		this.path = path;
 	}
 	
-	
+	public String toString() {
+		String ret = "Set-Cookie: %s=%s; Path=%s";
+		ret = String.format(ret, name, value, path);
+		if(maxAge != null) {
+			// int类型的字段 默认值是 0, 0 在maxAge值表示立即删除该cookie 
+			ret += "; Max-Age=" + maxAge;
+		}
+		return ret;
+	}
 
 }

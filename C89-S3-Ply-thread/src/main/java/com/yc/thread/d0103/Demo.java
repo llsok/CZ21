@@ -35,7 +35,8 @@ public class Demo {
 		a.getHeader("头域字段名");  // 底层==> map
 	 *
 	 * 
-	 * @throws IOException 
+	 * 动态请求的响应:
+	 * 	Servlet ==> HttpServlet
 	 */
 
 	public static void main(String[] args) throws IOException {
