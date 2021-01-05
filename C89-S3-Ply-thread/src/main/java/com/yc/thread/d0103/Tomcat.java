@@ -13,7 +13,9 @@ public class Tomcat {
 
 	private int port = 8080;
 	private boolean running = true;
-	private String webContent = "d:/tomcat";
+	public static String webContent = "d:/tomcat";
+	// servlet.getServletContext().getContextPath ==> webContent
+	// ServletContext 应用上下文对象 , 全局最大的对象: 作用域广, 生命周期长
 
 	/**
 	 * 启动服务
@@ -30,45 +32,13 @@ public class Tomcat {
 			new Thread() {
 				public void run() {
 					try {
-						byte[] buffer = new byte[1024 * 4];
-						int count;
-						count = socket.getInputStream().read(buffer);
-						String request = new String(buffer, 0, count);
-						System.out.print(request);
-						System.out.println();
-						System.out.println("=============================");
 						
-						String path = request.split("\\s")[1];
+						HttpServletRequest req = new HttpServletRequest(socket);
 						
-						OutputStream out = socket.getOutputStream();
-						PrintWriter pw = new PrintWriter(out);
+						HttpServletResponse resp = new HttpServletResponse(socket, req);
 						
-						// 响应头行
-						pw.println("HTTP/1.1 200 OK");
-						// 响应头域
-						if(path.endsWith(".css")) {
-							pw.println("Content-Type: text/css; charset=utf-8");
-						} else if(path.endsWith(".js")) {
-							pw.println("Content-Type: application/javascript; charset=utf-8");
-						} else {
-							// 图片也可以写成 text/html
-							pw.println("Content-Type: text/html; charset=utf-8");
-						}
-						// 空行
-						pw.println();
-						pw.flush();
-						// 响应实体
-						//pw.println("<h1>hello world!</h1>");
-						/*BufferedReader br = new BufferedReader(new FileReader(webContent + path));
-						String line;
-						while((line = br.readLine())!=null) {
-							pw.println(line);
-						}*/
-						FileInputStream fis = new FileInputStream(webContent + path);
-						while((count = fis.read(buffer))>0) {
-							out.write(buffer, 0, count);
-						}
-						fis.close();
+						resp.flushBuffer();
+						
 					} catch (IOException e) {
 						throw new RuntimeException("Socket操作失败!", e);
 					} finally {

@@ -23,6 +23,17 @@ public class Demo {
 	 *	2. 响应头域: 格式参考请求头域
 	 *		空行
 	 *	3. 响应实体: 格式变化多端
+	 *
+	 *
+	 *	HttpServletRequest a = null;
+	 *	a.getServletPath(); // 请求地址
+		a.getMethod();		// 请求方法  get post
+		a.getParameter("参数名"); // 请求参数  底层==> map
+		a.getParameterValues("数组型的参数名"); //请求参数  index.html?a=1&a=2&a=3  ==> String[] a = {1,2,3}
+		a.getCookies();		// 获取cookie
+		a.getContentType(); // 获取内容类型
+		a.getHeader("头域字段名");  // 底层==> map
+	 *
 	 * 
 	 * @throws IOException 
 	 */
