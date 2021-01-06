@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<!-- MyBatis(google) 框架配置文件 ==> iBatis(github) -->
+<configuration>
+	<!-- 数据库环境 default 指定当前的数据库环境-->
+	<environments default="test">
+	
+		<environment id="development">
+			<!-- transactionManager 事务管理机制   -->
+			<transactionManager type="JDBC" />
+			<!-- "POOLED" 连接池  -->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://127.0.0.1/C89-S3-Ply-mybatis" />
+				<property name="username" value="root" />
+				<property name="password" value="a" />
+			</dataSource>
+		</environment>
+		
+		<environment id="test">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://127.0.0.1/C89-S3-Ply-mybatis" />
+				<property name="username" value="root" />
+				<property name="password" value="a" />
+			</dataSource>
+		</environment>
+		
+		<environment id="produce">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://127.0.0.1/C89-S3-Ply-mybatis" />
+				<property name="username" value="root" />
+				<property name="password" value="a" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- 注册  SQL 映射文件   SQL 写在这些映射文件中  实现解耦  -->
+	<mappers>
+		<!-- 注册XML -->
+		<mapper resource="com/yc/mybatis/dao/CategoryMapper.xml" />
+		<!-- 注册接口 -->
+		<mapper class="com.yc.mybatis.dao.UserMapper"/>
+	</mappers>
+	
+</configuration>

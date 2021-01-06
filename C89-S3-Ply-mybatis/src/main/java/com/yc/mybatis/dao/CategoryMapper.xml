@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- namespace 命名空间  -->
+<mapper namespace="com.yc.mybatis.dao.CategoryMapper">
+
+	<select id="selectAll" resultType="map">
+		select * from jsj_category
+	</select>
+	
+	<!-- XML 中验证类路径是否正确的诀窍:  Ctrl + 鼠标 变手 ==> 正确  -->
+	<select id="selectAll1" resultType="com.yc.mybatis.bean.JsjCategory">
+		select * from jsj_category
+	</select>
+	
+	<!-- MyBatis 支持命名参数 #{参数名}-->
+	<select id="selectById" resultType="com.yc.mybatis.bean.JsjCategory">
+		select * from jsj_category where id = #{id} 
+	</select>
+	
+	<select id="selectByNameAndPress" resultType="com.yc.mybatis.bean.JsjBook">
+		select * from jsj_book where name like #{name}  and press like #{press} 
+	</select>
+	
+	<insert id="insert">
+		insert into jsj_search values(null, #{keyword}, #{hots})
+	</insert>
+	
+	
+</mapper>

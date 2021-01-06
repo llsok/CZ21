@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- namespace 命名空间  XML 关联接口, 必须保证 xml的命名空间==接口的完全限定名  -->
+<mapper namespace="com.yc.mybatis.dao.UserMapper">
+
+	<!-- 接口的方法名 == id -->
+	<select id="selectById" resultType="com.yc.mybatis.bean.JsjUser">
+		select * from jsj_user where id=#{id}
+	</select>
+
+</mapper>
