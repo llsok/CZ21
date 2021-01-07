@@ -17,6 +17,12 @@
 		<collection property="books" column="id"
 			select="selectByOwnerId"
 			fetchType="lazy"></collection>
+		
+		<!-- 查询用户粉丝的一对多关联 -->
+		<collection property="fans" column="id"
+			select="selectFansById"
+			fetchType="lazy"></collection>
+		
 	</resultMap>
 
 	<!-- 接口的方法名 == id -->
@@ -27,5 +33,13 @@
 	<select id="selectByOwnerId" resultType="com.yc.mybatis.bean.JsjBook">
 		select * from jsj_book where owner_id=#{ownerId}
 	</select>
+	
+	<select id="selectFansById" resultMap="rmUser">
+		select * 
+		  from jsj_fans a 
+		  left join jsj_user b on a.fid = b.id 
+		 where uid=#{id} order by a.id
+	</select>
+	
 
 </mapper>

@@ -148,6 +148,8 @@ public class BaseTest {
 	 * 	用户 与 粉丝 关系
 	 * 	jsj_user ==> jsj_fans 关系表
 	 * 
+	 * jsj_fans 中间表 ==> 关联查询 sql
+	 * 
 	 */
 	@Test
 	public void test7() {

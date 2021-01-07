@@ -20,11 +20,17 @@ public class JsjUser {
 	}
 	
 	/**
+	 * 粉丝集合
+	 */
+	private List<JsjUser> fans;
+	/**
 	 * 获取用户粉丝属性方法
 	 */
 	public List<JsjUser> getFans() {
-		// TODO Auto-generated method stub
-		return null;
+		return fans;
+	}
+	public void setFans(List<JsjUser> fans) {
+		this.fans = fans;
 	}
 
 
