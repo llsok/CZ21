@@ -3,7 +3,21 @@ package com.yc.mybatis.bean;
 import java.sql.Timestamp;
 
 public class JsjBook {
-    private Integer id;
+	
+	/**
+	 * 一对一关联: 一本书只属于一个用户, 书的所有者
+	 */
+	private JsjUser user;
+	
+    public JsjUser getUser() {
+		return user;
+	}
+
+	public void setUser(JsjUser user) {
+		this.user = user;
+	}
+
+	private Integer id;
 
     private String name;
 

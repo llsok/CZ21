@@ -47,6 +47,7 @@
 		<mapper resource="com/yc/mybatis/dao/CategoryMapper.xml" />
 		<!-- 注册接口 -->
 		<mapper class="com.yc.mybatis.dao.UserMapper"/>
+		<mapper class="com.yc.mybatis.dao.BookMapper"/>
 	</mappers>
 	
 </configuration>

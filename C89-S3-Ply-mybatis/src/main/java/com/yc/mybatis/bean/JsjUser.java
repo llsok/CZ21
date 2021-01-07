@@ -2,9 +2,33 @@ package com.yc.mybatis.bean;
 
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 public class JsjUser {
-    private Integer id;
+	
+	/**
+	 * 从用户角度看, 与书的关系是 1对多
+	 */
+	private List<JsjBook> books;
+	
+    public List<JsjBook> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<JsjBook> books) {
+		this.books = books;
+	}
+	
+	/**
+	 * 获取用户粉丝属性方法
+	 */
+	public List<JsjUser> getFans() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	private Integer id;
 
     private String account;
 
@@ -213,4 +237,5 @@ public class JsjUser {
     public void setLastLoginTime(Date lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
+
 }

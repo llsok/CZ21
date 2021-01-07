@@ -6,9 +6,26 @@
 <!-- namespace 命名空间  XML 关联接口, 必须保证 xml的命名空间==接口的完全限定名  -->
 <mapper namespace="com.yc.mybatis.dao.UserMapper">
 
+	<resultMap type="com.yc.mybatis.bean.JsjUser" id="rmUser">
+		<id column="id" property="id"/>
+		<!-- 省略对用户字段的自定义映射 -->
+		<!-- 一对多关联
+			property="books" 定义查询结果集合
+			column="id" 	 定义当前表的主键 id,
+			关联查询的问题: N+1 查询问题
+		 -->
+		<collection property="books" column="id"
+			select="selectByOwnerId"
+			fetchType="lazy"></collection>
+	</resultMap>
+
 	<!-- 接口的方法名 == id -->
-	<select id="selectById" resultType="com.yc.mybatis.bean.JsjUser">
+	<select id="selectById" resultMap="rmUser">
 		select * from jsj_user where id=#{id}
+	</select>
+	
+	<select id="selectByOwnerId" resultType="com.yc.mybatis.bean.JsjBook">
+		select * from jsj_book where owner_id=#{ownerId}
 	</select>
 
 </mapper>

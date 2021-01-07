@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- namespace 命名空间  XML 关联接口, 必须保证 xml的命名空间==接口的完全限定名  -->
+<mapper namespace="com.yc.mybatis.dao.BookMapper">
+
+	<!-- resultMap 自定义的字段映射  和 关联映射的 标签 -->
+	<resultMap type="com.yc.mybatis.bean.JsjBook" id="rmBook">
+		<!-- 定义表的主键  可以提升性能-->
+		<id column="id" property="id"/>
+		<!-- 自定义字段与属性的关系 -->
+		<result column="mark_price" property="markPrice"/>
+		<result column="owner_id" property="ownerId"/>
+		<!-- 一对一关联配置 
+			property	要注入数据的属性名    
+			column 		根据owner_id的值来查询用户信息
+			select 		用于定义执行查询的id
+			fetchType="lazy" 惰性加载 懒加载   延迟加载
+						只有在访问到关联的属性时, 才会触发关联查询
+			-->
+		<association property="user" column="owner_id" 
+			select="com.yc.mybatis.dao.UserMapper.selectById"
+			fetchType="lazy"></association>
+		
+	</resultMap>
+
+	<!-- 接口的方法名 == id 
+		resultType="com.yc.mybatis.bean.JsjBook" 只能做简单根据名字的字段和属性映射
+		resultMap="引用上面的resultMap标签的id属性"
+	-->
+	<select id="selectById" resultMap="rmBook">
+		select * from jsj_book where id=#{id}
+	</select>
+	
+</mapper>
