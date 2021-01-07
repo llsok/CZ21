@@ -211,4 +211,23 @@ public class BaseTest {
 		
 	}
 
+	@Test
+	public void test10() {
+		SchoolMapper sm = session.getMapper(SchoolMapper.class);
+		sm.selectByNameAndFlag("北京", 1);
+		sm.selectByNameAndFlag("北京", 2);
+		sm.selectByNameAndFlag("北京", 3);
+		sm.selectByNameAndFlag("北京", 0);
+		sm.selectByNameAndFlag("北京", 4);
+	}
+	
+	@Test
+	public void test11() {
+		SchoolMapper sm = session.getMapper(SchoolMapper.class);
+		String[] names = {"清华大学","北京大学","湖南大学","复旦大学"};
+		List<JsjSchool> list = sm.selectInNames(names,"id");
+		Assert.assertEquals(4, list.size());
+		sm.selectInNames(names,"name");
+		sm.selectInNames(names,"province");
+	}
 }

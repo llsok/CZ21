@@ -5,9 +5,9 @@
   
 <!-- namespace 命名空间  XML 关联接口, 必须保证 xml的命名空间==接口的完全限定名  -->
 <mapper namespace="com.yc.mybatis.dao.SchoolMapper">
-
+	<!-- 如果 标签内只有一个参数, 单参数场景, 参数名没有任何的要求,只要命名合法 -->
 	<select id="selectById" resultType="com.yc.mybatis.bean.JsjSchool">
-		select * from jsj_school WHERE id = #{id}
+		select * from jsj_school WHERE id = #{iiiiiiiiiiiiiiiid}
 	</select>
 
 	<select id="selectByObj" resultType="com.yc.mybatis.bean.JsjSchool">
@@ -52,7 +52,36 @@
 		 -->
 	</update>
 	
+	<select id="selectByNameAndFlag" resultType="com.yc.mybatis.bean.JsjSchool">
+		select * from jsj_school
+		<where>
+			<choose>
+				<when test=" flag == 1 ">
+					name = #{name}
+				</when>			
+				<when test=" flag == 2 ">
+					name like concat('%', #{name} , '%')
+				</when>	
+				<when test=" flag == 3 ">
+					name is null
+				</when>	
+				<otherwise>
+					name is not null				
+				</otherwise>
+			</choose>
+		</where>
+	</select>
 	
-	
-	
+	<select id="selectInNames" resultType="com.yc.mybatis.bean.JsjSchool">
+		select * from jsj_school
+		<where>
+			<!-- name in (?,?,?,?) -->
+			<foreach collection="names" item="name" open="name in (" close=")" separator=",">
+				#{name}
+			</foreach>
+		</where>
+		<!-- ${} 构建sql语句   #{}查询参数 -->
+		order by ${orderby}
+		
+	</select>
 </mapper>
