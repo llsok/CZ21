@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import com.yc.mybatis.bean.JsjBook;
 import com.yc.mybatis.bean.JsjCategory;
+import com.yc.mybatis.bean.JsjSchool;
 import com.yc.mybatis.bean.JsjSearch;
 import com.yc.mybatis.bean.JsjUser;
 
@@ -161,7 +162,33 @@ public class BaseTest {
 	}
 	
 	
-	
+	/**
+	 * 	组合条件查询
+	 * 	传统写法
+	 * 	String sql = "select * from table where 1=1 "
+	 * 	if ==> sql += " and  a = ?"
+	 * 	params.add(值)
+	 */
+	@Test
+	public void test8() {
+		SchoolMapper sm = session.getMapper(SchoolMapper.class);
+		System.out.println("==========1==========");
+		JsjSchool s = null;
+		sm.selectByObj(s);
+		System.out.println("==========2==========");
+		s = new JsjSchool();
+		sm.selectByObj(s);
+		System.out.println("==========3==========");
+		s.setId(1);
+		sm.selectByObj(s);
+		System.out.println("==========4==========");
+		s.setName("上海");
+		sm.selectByObj(s);
+		System.out.println("==========5==========");
+		s.setProvince("上海");
+		sm.selectByObj(s);
+		System.out.println("==========6==========");
+	}
 	
 	
 	

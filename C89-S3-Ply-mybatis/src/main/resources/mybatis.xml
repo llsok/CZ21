@@ -44,10 +44,12 @@
 	<!-- 注册  SQL 映射文件   SQL 写在这些映射文件中  实现解耦  -->
 	<mappers>
 		<!-- 注册XML -->
-		<mapper resource="com/yc/mybatis/dao/CategoryMapper.xml" />
+		<!-- <mapper resource="com/yc/mybatis/dao/CategoryMapper.xml" /> -->
 		<!-- 注册接口 -->
-		<mapper class="com.yc.mybatis.dao.UserMapper"/>
-		<mapper class="com.yc.mybatis.dao.BookMapper"/>
+		<!-- <mapper class="com.yc.mybatis.dao.UserMapper"/>
+		<mapper class="com.yc.mybatis.dao.BookMapper"/> -->
+		<!-- 将某个包下的接口和XML都注册成为MyBatis映射接口 -->
+		<package name="com.yc.mybatis.dao"/>
 	</mappers>
 	
 </configuration>
