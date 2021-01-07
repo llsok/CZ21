@@ -191,7 +191,24 @@ public class BaseTest {
 	}
 	
 	
-	
-	
+	@Test
+	public void test9() {
+		SchoolMapper sm = session.getMapper(SchoolMapper.class);
+		JsjSchool s = new JsjSchool();
+		s.setId(1);
+		s.setName("北大分校");
+		sm.update(s);
+		session.commit();
+		
+		s = sm.selectById(1);
+		Assert.assertEquals("北大分校", s.getName());
+		Assert.assertEquals("北京", s.getProvince());
+		
+		// 恢复数据
+		s.setName("北京大学");
+		sm.update(s);
+		session.commit();
+		
+	}
 
 }

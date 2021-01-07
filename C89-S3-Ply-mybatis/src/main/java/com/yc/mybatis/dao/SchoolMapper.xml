@@ -6,6 +6,10 @@
 <!-- namespace 命名空间  XML 关联接口, 必须保证 xml的命名空间==接口的完全限定名  -->
 <mapper namespace="com.yc.mybatis.dao.SchoolMapper">
 
+	<select id="selectById" resultType="com.yc.mybatis.bean.JsjSchool">
+		select * from jsj_school WHERE id = #{id}
+	</select>
+
 	<select id="selectByObj" resultType="com.yc.mybatis.bean.JsjSchool">
 		select * from jsj_school 
 		<!-- where 用于生成 WHERE 关键字, 
@@ -26,5 +30,29 @@
 			</if>
 		</where>
 	</select>
+	
+	<update id="update">
+		update jsj_school
+		<set>
+			<if test="name != null">
+				name = #{name} , 
+			</if>
+			<if test="province != null">
+				province = #{province} , 
+			</if>
+		</set>
+		where id= #{id}
+		<!-- 
+			JsjSchool s = new JsjSchool();
+			s.setId(1);
+			s.setName("清华");
+			mapper.udpate(s);
+			
+			if  +  set
+		 -->
+	</update>
+	
+	
+	
 	
 </mapper>
