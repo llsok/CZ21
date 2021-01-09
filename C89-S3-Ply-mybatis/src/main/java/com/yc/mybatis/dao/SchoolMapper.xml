@@ -80,8 +80,13 @@
 				#{name}
 			</foreach>
 		</where>
-		<!-- ${} 构建sql语句   #{}查询参数 -->
+		<!-- ${} 构建sql语句   #{}查询参数  ==> 导致注入攻击  -->
 		order by ${orderby}
-		
 	</select>
+	
+	<!-- 缓存属性都有默认值 -->
+	<cache />
+	
+	
+	
 </mapper>

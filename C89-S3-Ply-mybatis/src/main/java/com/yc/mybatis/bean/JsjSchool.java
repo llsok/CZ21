@@ -1,7 +1,10 @@
 package com.yc.mybatis.bean;
 
-public class JsjSchool {
-    private Integer id;
+public class JsjSchool implements java.io.Serializable{
+	
+	private static final long serialVersionUID = 2028909196711864219L;
+
+	private Integer id;
 
     private String name;
 

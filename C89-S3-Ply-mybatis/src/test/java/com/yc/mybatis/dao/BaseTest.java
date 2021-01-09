@@ -23,6 +23,7 @@ import com.yc.mybatis.bean.JsjUser;
 public class BaseTest {
 	
 	private SqlSession session;
+	private SqlSession session1;
 	
 	@Before
 	public void before() throws IOException {
@@ -33,6 +34,7 @@ public class BaseTest {
 		// 构建mybatis会话工厂
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 		session = sqlSessionFactory.openSession();
+		session1 = sqlSessionFactory.openSession();
 	}
 	
 	
@@ -214,11 +216,17 @@ public class BaseTest {
 	@Test
 	public void test10() {
 		SchoolMapper sm = session.getMapper(SchoolMapper.class);
+		System.out.println("===========1==========");
 		sm.selectByNameAndFlag("北京", 1);
-		sm.selectByNameAndFlag("北京", 2);
-		sm.selectByNameAndFlag("北京", 3);
+		System.out.println("===========2==========");
+		sm.selectByNameAndFlag("北京", 1);
+		System.out.println("===========3==========");
+		sm.selectByNameAndFlag("北京", 1);
+		System.out.println("===========4==========");
 		sm.selectByNameAndFlag("北京", 0);
+		System.out.println("===========5==========");
 		sm.selectByNameAndFlag("北京", 4);
+		System.out.println("============6=========");
 	}
 	
 	@Test
@@ -230,4 +238,40 @@ public class BaseTest {
 		sm.selectInNames(names,"name");
 		sm.selectInNames(names,"province");
 	}
+	
+	
+	@Test
+	public void test12() {
+		// sm1 从 session 中获取
+		SchoolMapper sm1 = session.getMapper(SchoolMapper.class);
+		// sm2 从 session 中获取
+		SchoolMapper sm2 = session.getMapper(SchoolMapper.class);
+		// sm3 从 session1 中获取
+		SchoolMapper sm3 = session1.getMapper(SchoolMapper.class);
+		System.out.println("===========1==========");
+		sm1.selectById(1);
+		System.out.println("===========2==========");
+		sm2.selectById(1);
+		
+		session.commit();
+		// session1 中 selectById(1) 查询使用 session 缓存的数据
+		System.out.println("===========3==========");
+		sm3.selectById(1);
+		sm3.selectById(1);
+		sm3.selectById(1);
+		sm3.selectById(1);
+		System.out.println("===========3==========");
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
