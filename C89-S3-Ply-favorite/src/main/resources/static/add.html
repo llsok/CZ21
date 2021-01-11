@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>添加链接</title>
+<style type="text/css">
+form{
+	margin: 60px;
+	text-align: center;
+}
+</style>
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+</head>
+<body>
+
+<form action="">
+	名称：<input v-model="tag.flabel"><br>
+	地址：<input v-model="tag.furl"><br>
+	标签：<input v-model="tag.ftags"><br>
+	描述：<input v-model="tag.fdesc"><br>
+	<!-- 默认是提交按钮 sumbit    vue ? 修饰符  抑制默认行为 prevent-->
+	<button @click.prevent="add">保存</button>
+	<button>取消</button>
+</form>
+	<script type="text/javascript">
+	var v = new Vue({
+		el : "form",
+		data : {
+			tag: {
+				flabel:"",
+				furl:"",
+				ftags:"",
+				fdesc:"",
+			}
+		} , methods:{
+			add(){
+				var params = buildParams(this.tag);
+				axios.post("add.do", params).then(res=>{
+					alert(res.data);
+				});
+			}
+		}
+	});
+	
+	function buildParams(obj){
+		var params = new URLSearchParams();
+		for( field in obj){
+			params.append(field, obj[field]);
+		}
+		return params;
+	}
+	
+	</script>
+
+</body>
+</html>

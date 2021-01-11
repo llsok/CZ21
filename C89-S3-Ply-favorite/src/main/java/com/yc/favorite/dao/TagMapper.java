@@ -1,5 +1,7 @@
 package com.yc.favorite.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
@@ -24,7 +26,8 @@ public interface TagMapper {
 	int updateCountByName(String tag);
 	
 	
-	
+	@Select("select * from tag")
+	List<Tag> selectAll();
 
 	/**
 	 * 	业务类中需要的方法， 请大家自行扩展
