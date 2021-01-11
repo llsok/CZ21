@@ -32,6 +32,11 @@ public class BaseTest {
 		tm.insert(tag);
 	}
 	
+	/**
+	 * 	测试数据环境
+	 * 	tag 表中只有一条记录， tname=娱乐  tcount=1
+	 * 	favorite 表中没有“淘宝”的记录
+	 */
 	@Test  // 测试驱动开发
 	public void testAddFavorite() {
 		

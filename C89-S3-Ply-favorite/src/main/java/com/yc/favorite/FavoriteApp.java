@@ -18,6 +18,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * 1. SpringBoot 如何集成 MyBatis ==》 其它框架
@@ -50,6 +51,7 @@ import org.springframework.context.annotation.Import;
  */
 @SpringBootApplication
 @MapperScan("com.yc.favorite.dao")
+@EnableTransactionManagement  // 开启事务的注解
 public class FavoriteApp {
 	public static void main(String[] args) {
 		SpringApplication.run(FavoriteApp.class, args);

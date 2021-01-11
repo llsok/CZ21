@@ -10,5 +10,15 @@ spring:
 
 mybatis:
   configuration:
-	# 开启驼峰命名映射
-	mapUnderscoreToCamelCase: true
+    # 开启驼峰命名映射
+    mapUnderscoreToCamelCase: true
+
+logging:
+  level:
+    # 下面是对指定的包下的日志输出进行设定
+    # 日志级别： debug， info， warn， error
+    com:
+      yc:
+        favorite:
+          dao: debug
+          web: warn
