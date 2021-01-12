@@ -1,5 +1,7 @@
 package com.yc.favorite.bean;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data  // 自动的生成 get set toString 方法
@@ -9,5 +11,6 @@ public class Tag implements java.io.Serializable{
 	private Integer tid;
 	private String tname;
 	private Long tcount;
+	private List<Favorite> favorites;
 	
 }
