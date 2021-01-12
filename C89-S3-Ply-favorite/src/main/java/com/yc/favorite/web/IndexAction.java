@@ -53,4 +53,13 @@ public class IndexAction {
 		return tm.selectByTid(tid);
 	}
 	
+	/**
+	 * 	查询没有tag的favorite
+	 * @return
+	 */
+	@RequestMapping("queryNotTag.do")
+	public List<Favorite> queryNotTag(){
+		return fm.selectNotTag();
+	}
+	
 }

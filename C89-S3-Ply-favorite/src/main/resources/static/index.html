@@ -38,21 +38,25 @@
 				<table class="labels_table" cellspacing="0" cellpadding="0" border="0">
 					<tr><td><a href="#" onclick="add();" style="font-weight:bold;">添加书签</a></td></tr>
 					<tr>
-						<td class="selected_label">
-							<a href="fav.do?op=toList&type=-1">全部</a>
+						<td :class="selected == 0 ? 'selected_label' : ''">
+							<a href="#" @click="queryAll">全部</a>
 						</td>
 					</tr>
 					<tr>
-						<td >
-							<a href="fav.do?op=toList&type=0">未分类</a>
+						<td :class="selected == -1 ? 'selected_label' : ''">
+							<a href="#" @click="queryNotTag">未分类</a>
 						</td>
 					</tr>
 						
-					<tr v-for="t in tlist"><td><a href="#" @click.prevent="choose(t.tid)">{{t.tname}}</a></td></tr>
+					<tr v-for="t in tlist">
+						<td :class="selected == t.tid ? 'selected_label' : ''">
+							<a href="#" @click.prevent="choose(t.tid)">{{t.tname}}</a>
+						</td>
+					</tr>
 						
 					<tr>
 						<td>
-							<a style="font-weight:bold;" href="fav.do?op=toCloud">云图</a>
+							<a style="font-weight:bold;" href="#" @click="showYuntu">云图</a>
 						</td>
 					</tr>
 				</table>
@@ -60,19 +64,25 @@
 			</td>
 			<td>
 			<!-- 右边fav内容 -->
-				<div class="content_links">
+				<div class="content_links" v-if="isYuntu == false">
 				
-				<div v-for="f in flist" style="padding:6px 10px;">	
-					<div>
-						<a :href="'http://' + f.furl" style="color:blue;font-size:18px;" target="_blank">{{f.flabel}}</a>
-					</div>
-					<div style="color:black;font-size:16px;">	
-						{{f.fdesc}}
-					</div>
-					<div style="color:green;font-size:14px;">
-						http://{{f.furl}}
-					</div>
-				</div>	
+					<div v-for="f in flist" :key="1" style="padding:6px 10px;">	
+						<div>
+							<a :href="'http://' + f.furl" style="color:blue;font-size:18px;" target="_blank">{{f.flabel}}</a>
+						</div>
+						<div style="color:black;font-size:16px;">	
+							{{f.fdesc}}
+						</div>
+						<div style="color:green;font-size:14px;">
+							http://{{f.furl}}
+						</div>
+					</div>	
+				</div>
+				<div class="content_links" v-else>
+					<span v-for="t in tlist" 
+						:style="{'font-size': yuSize(t) , 'font-weight': yuWeight(t)}">
+						{{t.tname}}
+					</span>
 				</div>
 			</td>
 		</tr>
@@ -80,20 +90,57 @@
 	<script type="text/javascript">
 		var v1 = new Vue({
 			el : "#main",
-			data : { tlist : [] , flist : [] } ,
-			created : function(){
+			data : { 
+				tlist : [] , 
+				flist : [] , 
+				selected: 0,
+				isYuntu : false,
+				maxCount: 0
+			} ,
+			created:function(){
 				axios.get("queryAllTag.do").then(res=>{
 					this.tlist = res.data;
+					// 获取tcount的最大值
+					for( var tag of this.tlist){
+						if(tag.tcount > this.maxCount){
+							this.maxCount = tag.tcount;
+						}
+					}
 				});
-				axios.get("queryAllFavorite.do").then(res=>{
-					this.flist = res.data;
-				});
+				this.queryAll();
 			},
 			methods:{
 				choose(tid){
+					this.isYuntu = false;
+					this.selected = tid;
 					axios.get("queryFavoriteByTid.do?tid="+tid).then(res=>{
 						this.flist = res.data.favorites;
 					});
+				},
+				queryNotTag(){
+					this.isYuntu = false;
+					this.selected = -1;
+					axios.get("queryNotTag.do").then(res=>{
+						this.flist = res.data;
+					});
+				},
+				queryAll(){
+					this.isYuntu = false;
+					this.selected = 0;
+					axios.get("queryAllFavorite.do").then(res=>{
+						this.flist = res.data;
+					});
+				},
+				showYuntu(){
+					this.isYuntu = true;
+				},
+				yuSize(t){
+					var rate = parseInt( t.tcount / this.maxCount * 200);
+					return rate + '%';
+				},
+				yuWeight(t){
+					var rate = parseInt( t.tcount / this.maxCount * 900);
+					return rate;
 				}
 			}
 		})
