@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="keywords" content="旧书,二手书,二手教材,旧教材,校园书籍,校园旧书，旧书网">
+<meta name="description" content="买卖二手书，就上旧书街">
+<meta name="language" content="zh">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" type="text/css" href="res/form.css">
+<link rel="stylesheet" type="text/css" href="res/ubm_basic.css">
+<link rel="shortcut icon"
+	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
+
+<title>买卖二手书,就上旧书街</title>
+</head>
+<body>
+	<div class="site_top_row">
+		<div class="center_980">
+			<div class="school_location" style="float: left;">
+				[<a href="javascript:void(0)"
+					onclick="showSchoolList();return false;">所有学校</a>]
+			</div>
+			<div id="top_user_info" style="float: right;">
+				<a href="http://www.jiushujie.com/site/login">登录</a>|<a
+					href="http://www.jiushujie.com/sell/create">出售</a>|<a
+					style="color: rgb(254, 137, 0);"
+					href="http://www.jiushujie.com/regist">立即注册</a>|<a
+					class="app_mobile" target="_blank"
+					href="http://www.jiushujie.com/site/app">下载APP</a>
+			</div>
+			<div class="clearfloat"></div>
+		</div>
+	</div>
+	<div id="top">
+		<div class="center_980">
+			<div id="logo">
+				<a href="http://www.jiushujie.com/"> <img
+					src="res/jiushujie-logo.png" alt="买卖二手书,就上旧书街" title="买卖二手书,就上旧书街">
+				</a>
+			</div>
+			<div style="float: left;">
+				<img src="res/slogan1124.png">
+			</div>
+			<div id="top-nav">
+				<ul class="top_menu">
+					<li><a id="home_tab" href="http://www.jiushujie.com/home"
+						class="selectedtab">首页</a></li>
+					<li><a id="sell_tab" href="http://www.jiushujie.com/sell">出售</a>
+					</li>
+					<li><a id="buy_tab" href="http://www.jiushujie.com/buy">求购</a>
+					</li>
+					<!--li>
+        <a id="free_tab" href="/sell?tag=free">免费赠送</a>
+    </li-->
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="main_middle">
+
+
+		<div id="main_content" class="center_980">
+
+			<div class="border_white" style="margin-bottom: 10px; padding: 10px;">
+				<div class="search_tag">
+					<span style="font-size: 16px;">热搜:&nbsp;&nbsp;</span> <a
+						href="http://www.jiushujie.com/sell?q=%E8%8B%B1%E8%AF%AD">英语</a> <a
+						href="http://www.jiushujie.com/sell?q=%E8%AE%A1%E7%AE%97%E6%9C%BA">计算机</a>
+					<a href="http://www.jiushujie.com/sell?q=%E6%95%B0%E5%AD%A6">数学</a>
+					<a href="http://www.jiushujie.com/sell?q=%E6%B3%95%E5%BE%8B">法律</a>
+					<a href="http://www.jiushujie.com/sell?q=%E7%BB%8F%E6%B5%8E">经济</a>
+					<a href="http://www.jiushujie.com/sell?q=CET4">CET4</a>
+				</div>
+				<div class="search_div">
+					<form id="search_title_form" action="http://www.jiushujie.com/sell"
+						method="get">
+						<input placeholder="请输入关键字" class="queryinput"
+							style="width: 300px;" type="text" value="" name="q" id="q"><input
+							type="button" class="search_div_button" value="搜 索"
+							onclick="submitSearch();">
+					</form>
+				</div>
+				<div class="clearfloat"></div>
+			</div>
+			<div class="content_left">
+				<div class="side_block">
+					<div class="title">热门书店</div>
+					<div class="separate"></div>
+					<div class="hot_seller">
+						<ul>
+							<li><a href="http://www.jiushujie.com/user/26398619/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/26398619_u8qh0icocnbarbes.jpg!tiny" alt="启航ing"
+									title="启航ing"></a><a
+								href="http://www.jiushujie.com/user/26398619/sell"
+								target="_blank">启航ing&nbsp;&nbsp;(409738)</a></li>
+							<li><a href="http://www.jiushujie.com/user/26226787/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/93860536_pvmk0snsd9fxqkmu.jpg!tiny" alt="一方书店"
+									title="一方书店"></a><a
+								href="http://www.jiushujie.com/user/26226787/sell"
+								target="_blank">一方书店&nbsp;&nbsp;(102913)</a></li>
+							<li><a href="http://www.jiushujie.com/user/26256434/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/26256434_stxmrnzp8s19jyun.jpg!tiny" alt="zxsd69"
+									title="zxsd69"></a><a
+								href="http://www.jiushujie.com/user/26256434/sell"
+								target="_blank">zxsd69&nbsp;&nbsp;(94131)</a></li>
+							<li><a href="http://www.jiushujie.com/user/26323795/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/26323795_9cqz7krwnhdcbyj5.jpg!tiny" alt="友佳特价书店"
+									title="友佳特价书店"></a><a
+								href="http://www.jiushujie.com/user/26323795/sell"
+								target="_blank">友佳特价书店&nbsp;&nbsp;(93289)</a></li>
+							<li><a href="http://www.jiushujie.com/user/16982378/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/8692929230_1504180972.jpg!tiny" alt="上游" title="上游"></a><a
+								href="http://www.jiushujie.com/user/16982378/sell"
+								target="_blank">上游&nbsp;&nbsp;(90381)</a></li>
+							<li><a href="http://www.jiushujie.com/user/26438497/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/1803262834_1606718236.jpg!tiny" alt="honestyisgold"
+									title="honestyisgold"></a><a
+								href="http://www.jiushujie.com/user/26438497/sell"
+								target="_blank">honestyisgold&nbsp;&nbsp;(46459)</a></li>
+							<li><a href="http://www.jiushujie.com/user/26257385/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/26257385_dzjjvwws5m6omira.jpg!tiny" alt="三未书屋"
+									title="三未书屋"></a><a
+								href="http://www.jiushujie.com/user/26257385/sell"
+								target="_blank">三未书屋&nbsp;&nbsp;(35416)</a></li>
+							<li><a href="http://www.jiushujie.com/user/24099523/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/24099523_pn70je326thqjkic.jpg!tiny" alt="倾城小小"
+									title="倾城小小"></a><a
+								href="http://www.jiushujie.com/user/24099523/sell"
+								target="_blank">倾城小小&nbsp;&nbsp;(23582)</a></li>
+							<li><a href="http://www.jiushujie.com/user/25158186/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/25158186_dzg5rxx0nj36dwel.jpg!tiny" alt="激素脸啊"
+									title="激素脸啊"></a><a
+								href="http://www.jiushujie.com/user/25158186/sell"
+								target="_blank">激素脸啊&nbsp;&nbsp;(13373)</a></li>
+							<li><a href="http://www.jiushujie.com/user/26154282/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/26154282_0epqtcprt6t3c2mo.jpg!tiny" alt="拼搏精灵"
+									title="拼搏精灵"></a><a
+								href="http://www.jiushujie.com/user/26154282/sell"
+								target="_blank">拼搏精灵&nbsp;&nbsp;(12558)</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="side_block">
+					<div class="title">热门个人</div>
+					<div class="separate"></div>
+					<div class="hot_seller">
+						<ul>
+							<li><a href="http://www.jiushujie.com/user/26332672/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/26332672_dsjyhphalu0w1kui.jpg!tiny" alt="呼LL"
+									title="呼LL"></a><a
+								href="http://www.jiushujie.com/user/26332672/sell"
+								target="_blank">呼LL&nbsp;&nbsp;(98)</a></li>
+							<li><a href="http://www.jiushujie.com/user/26257747/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/default.jpg!tiny" alt="孔文明" title="孔文明"></a><a
+								href="http://www.jiushujie.com/user/26257747/sell"
+								target="_blank">孔文明&nbsp;&nbsp;(98)</a></li>
+							<li><a href="http://www.jiushujie.com/user/21551094/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/21551094_fmmmmatn23vqyd98.jpg!tiny" alt="kongquegege"
+									title="kongquegege"></a><a
+								href="http://www.jiushujie.com/user/21551094/sell"
+								target="_blank">kongquegege&nbsp;&nbsp;(97)</a></li>
+							<li><a href="http://www.jiushujie.com/user/26455368/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/default.jpg!tiny" alt="奇琪轩" title="奇琪轩"></a><a
+								href="http://www.jiushujie.com/user/26455368/sell"
+								target="_blank">奇琪轩&nbsp;&nbsp;(96)</a></li>
+							<li><a href="http://www.jiushujie.com/user/19022825/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/82717568_btrd8ju0x1303bnx.jpg!tiny" alt="二宮漣"
+									title="二宮漣"></a><a
+								href="http://www.jiushujie.com/user/19022825/sell"
+								target="_blank">二宮漣&nbsp;&nbsp;(96)</a></li>
+							<li><a href="http://www.jiushujie.com/user/22511421/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/22511421_quy1jxfo9o18f04v.jpg!tiny" alt="sippen"
+									title="sippen"></a><a
+								href="http://www.jiushujie.com/user/22511421/sell"
+								target="_blank">sippen&nbsp;&nbsp;(95)</a></li>
+							<li><a href="http://www.jiushujie.com/user/26249879/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/default.jpg!tiny" alt="jnsht0535" title="jnsht0535"></a><a
+								href="http://www.jiushujie.com/user/26249879/sell"
+								target="_blank">jnsht0535&nbsp;&nbsp;(93)</a></li>
+							<li><a href="http://www.jiushujie.com/user/25660862/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/64265162_alksikhxuv354n87.jpg!tiny" alt="冷月孤心"
+									title="冷月孤心"></a><a
+								href="http://www.jiushujie.com/user/25660862/sell"
+								target="_blank">冷月孤心&nbsp;&nbsp;(92)</a></li>
+							<li><a href="http://www.jiushujie.com/user/21151884/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/21151884_jjgxvn74bc8hdtcp.jpg!tiny" alt="我的书库"
+									title="我的书库"></a><a
+								href="http://www.jiushujie.com/user/21151884/sell"
+								target="_blank">我的书库&nbsp;&nbsp;(92)</a></li>
+							<li><a href="http://www.jiushujie.com/user/19142673/sell"
+								target="_blank"><img class="user_pic_tiny"
+									src="res/71610350_7ih19wkjvm9k6jqh.jpg!tiny" alt="吟风为歌"
+									title="吟风为歌"></a><a
+								href="http://www.jiushujie.com/user/19142673/sell"
+								target="_blank">吟风为歌&nbsp;&nbsp;(92)</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="side_block">
+					<div class="title">最多人关注</div>
+					<div class="separate"></div>
+					<div class="side_user_list">
+						<ul>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/540305"><img
+									src="res/540305_n1dab5l6dee972hc.jpg!middle"
+									title="旧书街客服 ♂ 北京交通大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/543702"><img
+									src="res/4801464973_1447948297.jpg!middle"
+									title="daihanla ♀ 北京邮电大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/1730678"><img
+									src="res/4949898217_1395410353.jpg!middle"
+									title="旧书街官方活动 ♂ 北京邮电大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/4822592"><img
+									src="res/4822592_v0g8zc4s448n2zp6.jpg!middle"
+									title="eddison ♂ 北京大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/11494418"><img
+									src="res/1390796519_1467885194.jpg!middle"
+									title="布科书屋 ♂ 山东传媒职业学院"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/11525234"><img
+									src="res/5139204071_1479230482.jpg!middle" title="艾念333 ♂ 河北大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/15624945"><img
+									src="res/9819130012_1468891330.jpg!middle"
+									title="小豆腐啊 ♀ 山东师范大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/15768037"><img
+									src="res/8701011384_1489841601.jpg!middle"
+									title="醉三年 ♂ 河北交通职业技术学院"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/15853618"><img
+									src="res/8767971901_1470919411.jpg!middle" title="怪盗 ♀ 清华大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/16034138"><img
+									src="res/16034138_qgmqrf65vicok57v.jpg!middle"
+									title="梵歌旧书帮 ♂ 莆田学院"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/16605959"><img
+									src="res/0091191133_1479986351.jpg!middle"
+									title="西施书屋 ♀ 宁波工程学院"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/16638354"><img
+									src="res/7468920359_1480572497.jpg!middle"
+									title="蒲公英TM ♂ 河北师范大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/16745713"><img
+									src="res/4357262108_1493876789.jpg!middle" title="翠研 ♀ 重庆大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/16982378"><img
+									src="res/8692929230_1504180972.jpg!middle"
+									title="上游 ♂ 哈尔滨工程技术职业学院"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/17297648"><img
+									src="res/8446001075_1491383097.jpg!middle"
+									title="冰儿790315 ♀ 东北财经大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/17898422"><img
+									src="res/17898422_dxj4hgmaygvu5esd.jpg!middle"
+									title="琅嬛 ♂ 枣庄学院"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/17931502"><img
+									src="res/2303436157_1500259991.jpg!middle"
+									title="吉光片羽 ♂ 河南财经政法大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/18631084"><img
+									src="res/18631084_8las37adrgyvwys7.jpg!middle"
+									title="争取5元10元出 ♂ 对外经济贸易大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/19167800"><img
+									src="res/6630286866_1541560291.jpg!middle"
+									title="卖图书的女汉纸 ♂ 南京大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/19175418"><img
+									src="res/19175418_qak54pv61lqmxrkn.jpg!middle"
+									title="心灵书屋 ♀ 上海外国语大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/22333097"><img
+									src="res/22333097_6eygylayxuykgex4.jpg!middle"
+									title="sky78 ♂ 北京大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/22466149"><img
+									src="res/3987045210_1544458241.jpg!middle" title="四眼猫 ♂ 成都学院"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/22476232"><img
+									src="res/22476232_nn68l1csye5f9nwd.jpg!middle"
+									title="清水精品书屋 ♂ 延边大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/22486582"><img
+									src="res/94822324_gul21wtmdp3phxag.jpg!middle"
+									title="王二丫 ♀ 宁夏医科大学"></a></li>
+						</ul>
+					</div>
+					<div class="clearfloat"></div>
+				</div>
+				<div class="side_block">
+					<div class="title">最近登录用户</div>
+					<div class="separate"></div>
+					<div class="side_user_list">
+						<ul>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/25775812"><img
+									src="res/51778590_shnhvuhv1vd8dvyq.jpg!middle"
+									title="赵不秃 ♀ 福建师范大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26477734"><img
+									src="res/26477734_jdyv0revyq5fypdk.jpg!middle"
+									title="读书王者 ♂ 西安汽车科技职业学院"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/1927336"><img
+									src="res/2661373066_1397057645.jpg!middle"
+									title="taohele ♂ 北京理工大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/325603"><img
+									src="res/165_m.jpg!middle" title="巫山曾迪 ♂ 北京语言大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/43606"><img
+									src="res/24_m.jpg!middle" title="小搓搓进化光年 ♂ 清华大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/285767"><img
+									src="res/145_m.jpg!middle" title="Miuccc ♂ 北京师范大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26479544"><img
+									src="res/26479544_z0a9wjfhk3q3awor.jpg!middle"
+									title="21世纪图书 ♂ 中国音乐学院"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26468205"><img
+									src="res/26468205_uds639290wftburi.jpg!middle"
+									title="乐乐学姐 ♀ 西安交通大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/284312"><img
+									src="res/145_f.jpg!middle" title="音乐的尹悦 ♀ 北京师范大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/227551"><img
+									src="res/116_m.jpg!middle" title="Empress ♂ 中国农业大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/339498"><img
+									src="res/172_m.jpg!middle" title="和八戒抢媳妇 ♂ 北京语言大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26287288"><img
+									src="res/26287288_bgsdlovdq3j56uxf.jpg!middle"
+									title="Carrie啊 ♀ 昆明理工大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/540305"><img
+									src="res/540305_n1dab5l6dee972hc.jpg!middle"
+									title="旧书街客服 ♂ 北京交通大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/178627"><img
+									src="res/92_f.jpg!middle" title="熊很邪恶 ♀ 北京邮电大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/341628"><img
+									src="res/173_m.jpg!middle" title="山东小小坤 ♂ 中国传媒大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26188874"><img
+									src="res/70439633_nzx132qohdyl0gd6.jpg!middle"
+									title="yk123 ♂ 北京中医药大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26440651"><img
+									src="res/26440651_75qk1n9b4y202l17.jpg!middle"
+									title="展示鱼 ♀ 新疆财经大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26468537"><img
+									src="res/26468537_nhp2n271daef5kkg.jpg!middle"
+									title="Sgyler ♀ 北京交通大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/169982"><img
+									src="res/87_m.jpg!middle" title="hzl8705 ♂ 北京邮电大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/77447"><img
+									src="res/41_m.jpg!middle" title="每天一杯 ♂ 北京交通大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/80307"><img
+									src="res/43_f.jpg!middle" title="夏花秋葉720 ♀ 北京航空航天大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/364997"><img
+									src="res/185_f.jpg!middle" title="其实这都不算粽 ♀ 中央财经大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26478181"><img
+									src="res/26478181_xmczeace9asu8uhn.jpg!middle"
+									title="有书社 ♂ 北京科技大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26475935"><img
+									src="res/26475935_qay6lbldj3f5zs5s.jpg!middle"
+									title="做个好名字 ♂ 电子科技大学"></a></li>
+						</ul>
+					</div>
+					<div class="clearfloat"></div>
+				</div>
+				<div class="side_block">
+					<div class="title">新注册用户</div>
+					<div class="separate"></div>
+					<div class="side_user_list">
+						<ul>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26478257"><img
+									src="res/26478257_eafappw3u89oyh8h.jpg!middle"
+									title="青神0417 ♀ 临沂大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26476973"><img
+									src="res/26476973_ulocshfo1dz4drls.jpg!middle"
+									title="拉普拉斯女孩 ♀ 学校未设置"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26478050"><img
+									src="res/26478050_u5inu5fzxpzeim51.jpg!middle"
+									title="晨雨初听 ♂ 郑州大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26477709"><img
+									src="res/26477709_1sqvi4nh3z40y7p5.jpg!middle"
+									title="是熙沫喔 ♀ 辽宁工业大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26478579"><img
+									src="res/26478579_pwzy3ymfihxj6639.jpg!middle"
+									title="北派二舅爸 ♂ 兰州大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26478140"><img
+									src="res/26478140_r3s1pl3xgawhdpg5.jpg!middle"
+									title="苏囦囦 ♀ 学校未设置"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26478772"><img
+									src="res/26478772_dunhskxrh76hnzyf.jpg!middle"
+									title="LotusLeaf ♀ 学校未设置"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26478846"><img
+									src="res/26478846_fx0v1ptbfszugbql.jpg!middle"
+									title="爱看书的小耿 ♂ 山东大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26479312"><img
+									src="res/26479312_ke99ajk13zr4aaso.jpg!middle"
+									title="廿师傅 ♂ 福建农林大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26478181"><img
+									src="res/26478181_xmczeace9asu8uhn.jpg!middle"
+									title="有书社 ♂ 北京科技大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26479104"><img
+									src="res/26479104_udg6vco7xaytnie3.jpg!middle"
+									title="小胖墩儿 ♀ 南昌大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26478219"><img
+									src="res/26478219_2fvbdgrzmtad65li.jpg!middle"
+									title="少年有为 ♀ 宁波大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26478344"><img
+									src="res/26478344_2wscehiglr5vbi71.jpg!middle"
+									title="一一书屋 ♀ 西南科技大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26478583"><img
+									src="res/26478583_aseb77ev9s1pkxqh.jpg!middle"
+									title="学海无底 ♂ 广东第二师范学院"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26479562"><img
+									src="res/58089983_ex8822deydvd14pa.jpg!middle"
+									title="有璇书店 ♂ 衡阳师范学院"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26479544"><img
+									src="res/26479544_z0a9wjfhk3q3awor.jpg!middle"
+									title="21世纪图书 ♂ 中国音乐学院"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26477096"><img
+									src="res/26477096_ao5lh1jdyh5o1sm4.jpg!middle"
+									title="故事机的小花 ♀ 河南牧业经济学院"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26479262"><img
+									src="res/26479262_9z3bk6ondonbkr2n.jpg!middle"
+									title="南夕—— ♂ 山东旅游职业学院"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26478640"><img
+									src="res/26478640_lhq44cdktud5xgcb.jpg!middle"
+									title="莲花书店 ♂ 学校未设置"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26479460"><img
+									src="res/26479460_67fdd1eegpal460b.jpg!middle"
+									title="zⅹ825273 ♀ 山西医科大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26478884"><img
+									src="res/26478884_xmi9a9s9y8d46wr0.jpg!middle"
+									title="点烟抽寂寞 ♂ 南阳理工学院"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26476954"><img
+									src="res/26476954_073om37suu3ilkxr.jpg!middle"
+									title="doudoushuwu ♀ 山西大学"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26478894"><img
+									src="res/26478894_msdkvkr426ko8uz4.jpg!middle"
+									title="嘚嘚嘚～ ♀ 学校未设置"></a></li>
+							<li><a target="_blank"
+								href="http://www.jiushujie.com/user/26478442"><img
+									src="res/26478442_90t9izszd9huf74x.jpg!middle"
+									title="书店小跑腿 ♂ 山东青年政治学院"></a></li>
+						</ul>
+					</div>
+					<div class="clearfloat"></div>
+				</div>
+			</div>
+			<div class="content_right">
+				<div class="border_white padding_10">
+					<div class="home_book_block">
+						<div class="title">
+							<div class="left_title">好书推荐</div>
+							<div class="more_link">
+								<a
+									href="http://www.jiushujie.com/sell?sort=created_at.desc&amp;tag=recommend">更多&gt;</a>
+							</div>
+							<div class="clearfloat"></div>
+						</div>
+						<div class="book_list">
+							<ul>
+								<li><a href="http://www.jiushujie.com/sell/395243711"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787508672069_19.jpg!w600"
+										title="未来简史
+jiebaixiuhua ♂ 海南大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395243711" title="未来简史">未来简史</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥19.00</div>
+										<div class="origin_price">￥68.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395243712"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787544285148_34.jpg!w600"
+										title="恶意
+jiebaixiuhua ♂ 海南大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395243712" title="恶意">恶意</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥15.00</div>
+										<div class="origin_price">￥39.50</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395248187"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787544280662_16.jpg!w600"
+										title="沉默的巡游
+Sgyler ♀ 北京交通大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395248187" title="沉默的巡游">沉默的巡游</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥18.00</div>
+										<div class="origin_price">￥59.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395248291"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787543898752_46.jpg!w600" title="无证之罪
+阿伯呀 ♂ 青岛理工大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395248291" title="无证之罪">无证之罪</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥18.00</div>
+										<div class="origin_price">￥49.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395248376"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787530216835_89.jpg!w600"
+										title="大雪中的山庄
+Sgyler ♀ 北京交通大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395248376" title="大雪中的山庄">大雪中的山庄</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥15.00</div>
+										<div class="origin_price">￥35.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395248381"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787544281102_26.jpg!w600"
+										title="新参者
+Sgyler ♀ 北京交通大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395248381" title="新参者">新参者</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥17.00</div>
+										<div class="origin_price">￥39.50</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395248382"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787544277716_80.jpg!w600"
+										title="麒麟之翼
+Sgyler ♀ 北京交通大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395248382" title="麒麟之翼">麒麟之翼</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥17.00</div>
+										<div class="origin_price">￥39.50</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395249205"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787540487645_44.jpg!w600"
+										title="云边有个小卖部
+Sgyler ♀ 北京交通大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395249205"
+											title="云边有个小卖部">云边有个小卖部</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥16.00</div>
+										<div class="origin_price">￥42.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395249213"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787559608949_01.jpg!w600"
+										title="我在未来等你
+Sgyler ♀ 北京交通大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395249213" title="我在未来等你">我在未来等你</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥16.00</div>
+										<div class="origin_price">￥42.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395249215"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787536693968_09.jpg!w600"
+										title="三体Ⅱ
+Sgyler ♀ 北京交通大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395249215" title="三体Ⅱ">三体Ⅱ</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥15.00</div>
+										<div class="origin_price">￥32.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395249216"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787229030933_62.jpg!w600"
+										title="三体Ⅲ
+Sgyler ♀ 北京交通大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395249216" title="三体Ⅲ">三体Ⅲ</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥16.00</div>
+										<div class="origin_price">￥38.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395249527"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787535481108_23.jpg!w600"
+										title="白说
+Lucas0929 ♂ 西北政法大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395249527" title="白说">白说</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥18.00</div>
+										<div class="origin_price">￥39.80</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395249530"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787544276986_76.jpg!w600"
+										title="你当像鸟飞往你的山
+Lucas0929 ♂ 西北政法大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395249530"
+											title="你当像鸟飞往你的山">你当像鸟飞往你的山</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥22.00</div>
+										<div class="origin_price">￥59.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395252033"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787535439765_86.jpg!w600"
+										title="一句顶一万句
+漠冰书苑 ♂ 新疆职业大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395252033" title="一句顶一万句">一句顶一万句</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥9.00</div>
+										<div class="origin_price">￥29.80</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395252036"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787506365437_44.jpg!w600" title="活着
+漠冰书苑 ♂ 新疆职业大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395252036" title="活着">活着</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥8.50</div>
+										<div class="origin_price">￥20.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395252038"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787530210116_82.jpg!w600" title="白鹿原
+漠冰书苑 ♂ 新疆职业大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395252038" title="白鹿原">白鹿原</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥7.00</div>
+										<div class="origin_price">￥32.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254177"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787201116693_26.jpg!w600"
+										title="外婆的道歉信
+漠冰书苑 ♂ 新疆职业大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254177" title="外婆的道歉信">外婆的道歉信</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥6.00</div>
+										<div class="origin_price">￥42.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254178"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787550017771_54.jpg!w600"
+										title="夏目友人帐
+漠冰书苑 ♂ 新疆职业大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254178" title="夏目友人帐">夏目友人帐</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥12.60</div>
+										<div class="origin_price">￥32.80</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254179"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787541151736_45.jpg!w600" title="无羁
+漠冰书苑 ♂ 新疆职业大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254179" title="无羁">无羁</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥12.00</div>
+										<div class="origin_price">￥48.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254183"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787508634159_19.jpg!w600"
+										title="自私的基因
+漠冰书苑 ♂ 新疆职业大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254183" title="自私的基因">自私的基因</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥14.00</div>
+										<div class="origin_price">￥68.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254186"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787549529322_56.jpg!w600" title="看见
+漠冰书苑 ♂ 新疆职业大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254186" title="看见">看见</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥8.80</div>
+										<div class="origin_price">￥39.80</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254247"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787542669964_02.jpg!w600"
+										title="夜晚的潜水艇
+新青年书社 ♀ 北京大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254247" title="夜晚的潜水艇">夜晚的潜水艇</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥23.60</div>
+										<div class="origin_price">￥52.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254266"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787020159178_36.jpg!w600" title="碎片
+新青年书社 ♀ 北京大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254266" title="碎片">碎片</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥28.80</div>
+										<div class="origin_price">￥69.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254271"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787549631452_63.jpg!w600" title="失落的卫星
+新青年书社 ♀ 北京大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254271" title="失落的卫星">失落的卫星</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥31.33</div>
+										<div class="origin_price">￥69.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254283"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787510886768_38.jpg!w600"
+										title="第三帝国的到来
+新青年书社 ♀ 北京大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254283"
+											title="第三帝国的到来">第三帝国的到来</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥62.00</div>
+										<div class="origin_price">￥145.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254286"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787208164956_32.jpg!w600" title="知晓我姓名
+新青年书社 ♀ 北京大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254286" title="知晓我姓名">知晓我姓名</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥26.50</div>
+										<div class="origin_price">￥59.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254352"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787559611352_26.jpg!w600" title="爆款文案
+希姐真美 ♂ 北京大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254352" title="爆款文案">爆款文案</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥12.00</div>
+										<div class="origin_price">￥42.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254354"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787508649719_75.jpg!w600" title="从0到1
+希姐真美 ♂ 北京大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254354" title="从0到1">从0到1</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥12.00</div>
+										<div class="origin_price">￥45.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254402"
+									target="_blank"> <img class="book_pic_border"
+										src="res/26472701_ubdw8xapuxbis89m.jpg!w600"
+										title="海权论
+今月迷离 ♂ 北京大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254402" title="海权论">海权论</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥10.00</div>
+										<div class="origin_price">￥29.80</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254425"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787550025295_24.jpg!w600"
+										title="知更鸟女孩4末日风暴
+牛油果3 ♀ 广州大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254425"
+											title="知更鸟女孩4末日风暴">知更鸟女孩4末日风暴</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥16.00</div>
+										<div class="origin_price">￥42.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254432"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787544291170_06.jpg!w600" title="百年孤独
+牛油果3 ♀ 广州大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254432" title="百年孤独">百年孤独</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥22.00</div>
+										<div class="origin_price">￥55.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254439"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787559626530_35.jpg!w600"
+										title="别做那只迷途的候鸟
+牛油果3 ♀ 广州大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254439"
+											title="别做那只迷途的候鸟">别做那只迷途的候鸟</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥22.00</div>
+										<div class="origin_price">￥45.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254441"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787559608949_01.jpg!w600" title="我在未来等你
+牛油果3 ♀ 广州大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254441" title="我在未来等你">我在未来等你</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥17.00</div>
+										<div class="origin_price">￥42.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254442"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787536493759_43.jpg!w600" title="流浪地球
+牛油果3 ♀ 广州大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254442" title="流浪地球">流浪地球</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥15.00</div>
+										<div class="origin_price">￥68.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395254445"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787532767373_42.jpg!w600" title="夏洛的网
+牛油果3 ♀ 广州大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395254445" title="夏洛的网">夏洛的网</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥9.00</div>
+										<div class="origin_price">￥26.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395259399"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787513322331_31.jpg!w600"
+										title="无人生还
+堇色安年 ♀ 浙江同济科技职业学院">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395259399" title="无人生还">无人生还</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥16.00</div>
+										<div class="origin_price">￥35.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395259401"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787559634276_28.jpg!w600"
+										title="写在身体上
+堇色安年 ♀ 浙江同济科技职业学院">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395259401" title="写在身体上">写在身体上</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥18.00</div>
+										<div class="origin_price">￥49.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395259403"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787108030375_66.jpg!w600"
+										title="美的历程
+堇色安年 ♀ 浙江同济科技职业学院">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395259403" title="美的历程">美的历程</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥18.00</div>
+										<div class="origin_price">￥43.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395259404"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787544285148_34.jpg!w600"
+										title="恶意
+堇色安年 ♀ 浙江同济科技职业学院">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395259404" title="恶意">恶意</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥17.00</div>
+										<div class="origin_price">￥39.50</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/395259417"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787210086420_49.jpg!w600"
+										title="叶之震颤
+堇色安年 ♀ 浙江同济科技职业学院">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/395259417" title="叶之震颤">叶之震颤</a>
+									</p>
+									<div class="price">
+										<div class="now_price">￥15.00</div>
+										<div class="origin_price">￥36.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+							</ul>
+							<div class="clearfloat"></div>
+						</div>
+					</div>
+					<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
+					<div class="home_book_block">
+						<div class="title">
+							<div class="left_title">特惠书籍</div>
+							<div class="more_link">
+								<a
+									href="http://www.jiushujie.com/sell?sort=now_price&amp;tag=free">更多&gt;</a>
+							</div>
+							<div class="clearfloat"></div>
+						</div>
+						<div class="book_list">
+							<ul>
+								<li><a href="http://www.jiushujie.com/sell/393547102"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787540468743_12.jpg!w600"
+										title="我们都是突然长大的
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393547102"
+											title="我们都是突然长大的">我们都是突然长大的</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥35.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393547104"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787802255807_68.jpg!w600"
+										title="向着明亮那方
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393547104" title="向着明亮那方">向着明亮那方</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥28.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393547112"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787530211076_78.jpg!w600"
+										title="梦里花落知多少
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393547112"
+											title="梦里花落知多少">梦里花落知多少</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥24.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393547114"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787800734762_17.jpg!w600"
+										title="基业长青
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393547114" title="基业长青">基业长青</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥39.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393547116"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787535449023_00.jpg!w600"
+										title="沙海1
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393547116" title="沙海1">沙海1</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥32.80</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393547117"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787535468635_18.jpg!w600"
+										title="沙海2
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393547117" title="沙海2">沙海2</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥32.80</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393547119"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787536539433_98.jpg!w600"
+										title="当世界年纪还小的时候
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393547119"
+											title="当世界年纪还小的时候">当世界年纪还小的时候</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥28.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393547120"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787544244077_18.jpg!w600" title="岛
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393547120" title="岛">岛</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥28.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393567586"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787544761819_30.jpg!w600"
+										title="假如给我三天光明
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393567586"
+											title="假如给我三天光明">假如给我三天光明</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥18.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393567590"
+									target="_blank"> <img class="book_pic_border"
+										src="res/26419608_001r5f76kp4dxkez.jpg!w600"
+										title="DK儿童目击者:开始独立阅读
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393567590"
+											title="DK儿童目击者:开始独立阅读">DK儿童目击者:开始独立阅读</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥0.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393595563"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787115165893_32.jpg!w600" title="运营管理
+Jadeai ♀ 中山大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393595563" title="运营管理">运营管理</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥85.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393680583"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787530209578_55.jpg!w600"
+										title="人生
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393680583" title="人生">人生</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥20.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393680586"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787806793015_08.jpg!w600"
+										title="你不可不知的人性
+书风封面 ♂ 燕山大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393680586"
+											title="你不可不知的人性">你不可不知的人性</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥22.80</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393680587"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787539971810_73.jpg!w600" title="岛上书店
+书风封面 ♂ 燕山大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393680587" title="岛上书店">岛上书店</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥35.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393833181"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787801878977_28.jpg!w600"
+										title="九州·缥缈录Ⅱ·苍云古齿
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393833181"
+											title="九州·缥缈录Ⅱ·苍云古齿">九州·缥缈录Ⅱ·苍云古齿</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥20.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393833182"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787802282834_60.jpg!w600"
+										title="九州·缥缈录Ⅲ·天下名将
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393833182"
+											title="九州·缥缈录Ⅲ·天下名将">九州·缥缈录Ⅲ·天下名将</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥22.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393833191"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787513300360_09.jpg!w600"
+										title="八百万种死法
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393833191" title="八百万种死法">八百万种死法</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥26.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393974280"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787535461957_63.jpg!w600"
+										title="行者无疆
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393974280" title="行者无疆">行者无疆</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥32.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393974282"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787535461940_07.jpg!w600"
+										title="山河之书
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393974282" title="山河之书">山河之书</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥38.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/393975904"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787544149082_43.jpg!w600"
+										title="自卑与超越
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/393975904" title="自卑与超越">自卑与超越</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥22.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394175820"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787532734160_05.jpg!w600"
+										title="左手倒影，右手年华。
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394175820"
+											title="左手倒影，右手年华。">左手倒影，右手年华。</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥16.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394175822"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787539936833_44.jpg!w600"
+										title="杜拉拉3
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394175822" title="杜拉拉3">杜拉拉3</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥29.80</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394175823"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787561339121_48.jpg!w600"
+										title="杜拉拉升职记
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394175823" title="杜拉拉升职记">杜拉拉升职记</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥26.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394175824"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787561345429_59.jpg!w600"
+										title="杜拉拉2华年似水
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394175824"
+											title="杜拉拉2华年似水">杜拉拉2华年似水</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥28.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394304283"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787802569508_32.jpg!w600"
+										title="天生变态狂
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394304283" title="天生变态狂">天生变态狂</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥38.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394340337"
+									target="_blank"> <img class="book_pic_border"
+										src="res/26419608_jcoohgzotx93kvgl.jpg!w600"
+										title="不可思议事件簿6 怪物医院
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394340337"
+											title="不可思议事件簿6 怪物医院">不可思议事件簿6 怪物医院</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥22.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394340338"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787544828789_94.jpg!w600"
+										title="怪物大师
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394340338" title="怪物大师">怪物大师</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥15.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394453298"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787213052545_45.jpg!w600"
+										title="大数据时代
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394453298" title="大数据时代">大数据时代</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥49.90</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394453299"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787532925247_26.jpg!w600"
+										title="童年不骑马
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394453299" title="童年不骑马">童年不骑马</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥13.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394720724"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787810274364_77.jpg!w600"
+										title="趣味推理--一分钟破案（第五集）
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394720724"
+											title="趣味推理--一分钟破案（第五集）">趣味推理--一分钟破案（第五集）</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥5.90</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394721749"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787544230001_58.jpg!w600"
+										title="阴阳师·飞天卷
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394721749"
+											title="阴阳师·飞天卷">阴阳师·飞天卷</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥18.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394721750"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787540473990_85.jpg!w600"
+										title="告白
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394721750" title="告白">告白</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥36.80</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394721751"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787540465445_50.jpg!w600"
+										title="闺密
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394721751" title="闺密">闺密</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥29.80</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394721752"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787540451967_89.jpg!w600"
+										title="夜行观览车
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394721752" title="夜行观览车">夜行观览车</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥32.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394723034"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787508630885_41.jpg!w600"
+										title="往复书简
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394723034" title="往复书简">往复书简</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥28.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394724235"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787544251938_16.jpg!w600"
+										title="赎罪
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394724235" title="赎罪">赎罪</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥22.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394793852"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787504445834_75.jpg!w600"
+										title="幸福女人
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394793852" title="幸福女人">幸福女人</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥23.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394793853"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787508637426_48.jpg!w600"
+										title="幸福的方法
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394793853" title="幸福的方法">幸福的方法</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥28.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394793854"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787505728721_15.jpg!w600"
+										title="幸福的1001种方法
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394793854"
+											title="幸福的1001种方法">幸福的1001种方法</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥28.00</div>
+										<div class="clearfloat"></div>
+									</div></li>
+								<li><a href="http://www.jiushujie.com/sell/394831582"
+									target="_blank"> <img class="book_pic_border"
+										src="res/9787543464575_33.jpg!w600"
+										title="我妈妈
+长青书 ♀ 天津职业技术师范大学">
+								</a>
+									<p class="book_name">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/394831582" title="我妈妈">我妈妈</a>
+									</p>
+									<div class="price">
+										<div class="now_price">赠送</div>
+										<div class="origin_price">￥29.80</div>
+										<div class="clearfloat"></div>
+									</div></li>
+							</ul>
+							<div class="clearfloat"></div>
+						</div>
+					</div>
+					<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
+				</div>
+				<div style="position: fixed; top: 122px; right: 20px;">
+					<img style="width: 120px; margin-bottom: 10px;"
+						src="res/ios_download.jpg"><br> <img
+						style="width: 120px; margin-bottom: 10px;"
+						src="res/android_download.jpg">
+				</div>
+			</div>
+			<div class="clearfloat"></div>
+		</div>
+	</div>
+	<div class="bottom">
+		<div class="center_980">
+			<div class="bottom_left">
+				<ul>
+					<li><a href="http://www.jiushujie.com/site/about">关于我们</a></li>
+					<li><a href="http://www.jiushujie.com/site/joinus">申请合作</a></li>
+					<li><a href="http://www.jiushujie.com/site/privacy">隐私政策</a></li>
+					<li><a href="http://www.jiushujie.com/site/term">服务条款</a></li>
+					<li><a href="http://www.jiushujie.com/site/help">帮助</a></li>
+					<li><a href="http://www.jiushujie.com/site/link">友情链接</a></li>
+				</ul>
+			</div>
+			<div id="copyright">
+				© 2020 by 旧书街 <a href="http://beian.miit.gov.cn/">蜀ICP备16007902号-2</a>
+			</div>
+		</div>
+	</div>
+	<h1 class="jiushujie_slogan">买卖二手书，就上旧书街。旧书街二手书交易网-您身边的旧书网站</h1>
+</body>
+</html>

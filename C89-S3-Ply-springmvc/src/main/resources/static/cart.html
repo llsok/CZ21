@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="keywords" content="旧书,二手书,二手教材,旧教材,校园书籍,校园旧书，旧书网">
+<meta name="description" content="买卖二手书，就上旧书街">
+<meta name="language" content="zh">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" type="text/css" href="res/form.css">
+<link rel="stylesheet" type="text/css" href="res/pager.css">
+<link rel="stylesheet" type="text/css" href="res/ubm_basic.css">
+<link rel="shortcut icon"
+	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
+
+<title>买卖二手书,就上旧书街</title>
+</head>
+<body>
+	<div class="site_top_row">
+		<div class="center_980">
+			<div class="school_location" style="float: left;">
+				[<a href="javascript:void(0)"
+					onclick="showSchoolList();return false;">所有学校</a>]
+			</div>
+			<div id="top_user_info" style="float: right;">
+				<a href="http://www.jiushujie.com/site/login">登录</a>|<a
+					href="http://www.jiushujie.com/sell/create">出售</a>|<a
+					style="color: rgb(254, 137, 0);"
+					href="http://www.jiushujie.com/regist">立即注册</a>|<a
+					class="app_mobile" target="_blank"
+					href="http://www.jiushujie.com/site/app">下载APP</a>
+			</div>
+			<div class="clearfloat"></div>
+		</div>
+	</div>
+	<div id="top">
+		<div class="center_980">
+			<div id="logo">
+				<a href="http://www.jiushujie.com/"> <img
+					src="res/jiushujie-logo.png" alt="买卖二手书,就上旧书街" title="买卖二手书,就上旧书街">
+				</a>
+			</div>
+			<div style="float: left;">
+				<img src="res/slogan1124.png">
+			</div>
+			<div id="top-nav">
+				<ul class="top_menu">
+					<li><a id="home_tab" href="http://www.jiushujie.com/home"
+						class="selectedtab">首页</a></li>
+					<li><a id="sell_tab" href="http://www.jiushujie.com/sell">出售</a>
+					</li>
+					<li><a id="buy_tab" href="http://www.jiushujie.com/buy">求购</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="main_middle">
+		<div id="main_content" class="center_980">
+			<style type="text/css">
+				div.grid-view th {
+					border-bottom: 1px !important;
+					background-color: rgb(248, 248, 248) !important;
+				}
+			</style>
+			<div class="border_white padding_10" style="margin-bottom: 10px;">
+				<div class="cart_order_title">我的购物车</div>
+				<div style="float: right;">
+					<ul class="cart_step">
+						<li class="now">1. 我的购物车 &gt;&gt;&gt;</li>
+						<li>2. 填写订单 &gt;&gt;&gt;</li>
+						<li>3. 完成订单</li>
+					</ul>
+				</div>
+				<div class="clearfloat"></div>
+			</div>
+			<div class="border_white">
+				<div id="gridview-list-grid" class="grid-view">
+					<table class="items">
+						<thead>
+							<tr style="background-color: rgb(255, 255, 255);">
+								<th id="gridview-list-grid_c0">&nbsp;</th>
+								<th class="checkbox-column" id="gridview-list-grid_c1"><input
+									type="checkbox" value="1" name="gridview-list-grid_c1_all"
+									id="gridview-list-grid_c1_all"></th>
+								<th id="gridview-list-grid_c2">&nbsp;</th>
+								<th id="gridview-list-grid_c3">书名</th>
+								<th id="gridview-list-grid_c4">卖家</th>
+								<th id="gridview-list-grid_c5">原价</th>
+								<th id="gridview-list-grid_c6">库存量</th>
+								<th id="gridview-list-grid_c7">售价</th>
+								<th id="gridview-list-grid_c8">购买数量</th>
+								<th id="gridview-list-grid_c9">小计</th>
+								<th id="gridview-list-grid_c10">操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr style="background-color: rgb(255, 255, 255);">
+								<td colspan="11" class="empty"><span class="empty">购物车内暂时没有书籍,去<a
+										href="/home">首页</a>购买
+								</span></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="keys" style="display: none" title="/cart/index"></div>
+				</div>
+				<form id="create_order_form" action="/order/index" method="post">
+					<input type="hidden"
+						value="X0J2bzJPTlJDNnVKR1VlM2MyZGxSM3kwdk5RdnlQZVBZ3-XQ36kulkbowelmV8XT2E7ueyPvc9Wu5p6UlRqdvA=="
+						name="YII_CSRF_TOKEN">
+					<div style="background-color: rgb(248, 248, 248); padding: 10px;">
+						<div style="float: left;">
+							<input class="button_user_action" style="padding: 1px 3px;"
+								onclick="deleteBooks(getSelectedIdStr());" type="button"
+								value="删除选中">
+						</div>
+						<div style="float: right;">
+							<span class="total_span" style="display: inline;"> <span
+								class="selected_count">0</span>本图书&nbsp;&nbsp;总计(不含运费) : <span
+								class="selected_price">￥0.00</span>
+							</span> <input type="hidden" value="" name="book_ids" id="book_ids">
+							<!--            <a href="/site/app" class="button_link">使用旧书街APP进行结算</a>-->
+							<input id="submit_button" class="button" onclick="createOrder();"
+								type="button" value="去结算>">
+						</div>
+						<div class="clearfloat"></div>
+					</div>
+				</form>
+			</div>
+
+
+		</div>
+	</div>
+
+	<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
+	<div style="position: fixed; top: 122px; right: 20px;">
+		<img style="width: 120px; margin-bottom: 10px;"
+			src="res/ios_download.jpg"><br> <img
+			style="width: 120px; margin-bottom: 10px;"
+			src="res/android_download.jpg">
+	</div>
+	<div class="clearfloat"></div>
+	<div class="bottom">
+		<div class="center_980">
+			<div class="bottom_left">
+				<ul>
+					<li><a href="http://www.jiushujie.com/site/about">关于我们</a></li>
+					<li><a href="http://www.jiushujie.com/site/joinus">申请合作</a></li>
+					<li><a href="http://www.jiushujie.com/site/privacy">隐私政策</a></li>
+					<li><a href="http://www.jiushujie.com/site/term">服务条款</a></li>
+					<li><a href="http://www.jiushujie.com/site/help">帮助</a></li>
+					<li><a href="http://www.jiushujie.com/site/link">友情链接</a></li>
+				</ul>
+			</div>
+			<div id="copyright">
+				© 2020 by 旧书街 <a href="http://beian.miit.gov.cn/">蜀ICP备16007902号-2</a>
+			</div>
+		</div>
+	</div>
+	<h1 class="jiushujie_slogan">买卖二手书，就上旧书街。旧书街二手书交易网-您身边的旧书网站</h1>
+</body>
+</html>

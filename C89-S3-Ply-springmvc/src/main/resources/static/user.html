@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="keywords" content="旧书,二手书,二手教材,旧教材,校园书籍,校园旧书，旧书网">
+<meta name="description" content="买卖二手书，就上旧书街">
+<meta name="language" content="zh">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" type="text/css" href="res/form.css">
+<link rel="stylesheet" type="text/css" href="res/pager.css">
+<link rel="stylesheet" type="text/css" href="res/styles.css">
+<link rel="stylesheet" type="text/css" href="res/ubm_basic.css">
+<link rel="shortcut icon"
+	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
+
+<title>买卖二手书,就上旧书街</title>
+</head>
+<body>
+	<div class="site_top_row">
+		<div class="center_980">
+			<div class="school_location" style="float: left;">
+				[<a href="javascript:void(0)"
+					onclick="showSchoolList();return false;">所有学校</a>]
+			</div>
+			<div id="top_user_info" style="float: right;">
+				<a href="http://www.jiushujie.com/site/login">登录</a>|<a
+					href="http://www.jiushujie.com/sell/create">出售</a>|<a
+					style="color: rgb(254, 137, 0);"
+					href="http://www.jiushujie.com/regist">立即注册</a>|<a
+					class="app_mobile" target="_blank"
+					href="http://www.jiushujie.com/site/app">下载APP</a>
+			</div>
+			<div class="clearfloat"></div>
+		</div>
+	</div>
+	<div id="top">
+		<div class="center_980">
+			<div id="logo">
+				<a href="http://www.jiushujie.com/"> <img
+					src="res/jiushujie-logo.png" alt="买卖二手书,就上旧书街" title="买卖二手书,就上旧书街">
+				</a>
+			</div>
+			<div style="float: left;">
+				<img src="res/slogan1124.png">
+			</div>
+			<div id="top-nav">
+				<ul class="top_menu">
+					<li><a id="home_tab" href="http://www.jiushujie.com/home"
+						class="selectedtab">首页</a></li>
+					<li><a id="sell_tab" href="http://www.jiushujie.com/sell">出售</a>
+					</li>
+					<li><a id="buy_tab" href="http://www.jiushujie.com/buy">求购</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="main_middle">
+		<div id="main_content" class="center_980">
+			<div class="content_left">
+				<div class="user_left_nav">
+					<div class="user_photo">
+						<div>
+							<img class="user_profile"
+								src="http://cdn.shujie.me/user/2020/12/11/11/26398619_u8qh0icocnbarbes.jpg!big"
+								alt="启航ing">
+						</div>
+						<div class="user_nav_info">
+							<ul>
+								<li>启航ing</li>
+								<li>男生</li>
+								<li>北京交通大学</li>
+								<li>上次登录:&nbsp;今天</li>
+								<li><a class="user_fan_faned_link"
+									href="http://www.jiushujie.com/user/26398619/follow">关注(2)</a>&nbsp;<a
+									class="user_fan_faned_link"
+									href="http://www.jiushujie.com/user/26398619/fan">粉丝(30)</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="self_introduction">
+						姓名: 徐先生<br>手机: 1597119****(下单后可见)<br>地址: 湖北省孝感市孝昌县
+					</div>
+					<input style="width: 300px;" class="button_user_action"
+						onclick="openLoginPageWithFrom();" name="yt0" type="button"
+						value="详细联系方式下单后可见">
+					<div class="clearfloat"></div>
+				</div>
+
+
+			</div>
+			<div class="content_right">
+				<div class="border_white padding_10">
+					<div style="float: left; margin: -6px 0 -2px 10px; width: 100%;">
+						<ul class="mypage_nav">
+							<!--        <li>
+            <a id="news_list_tab" href="/user/26398619/news">动态</a>
+        </li>-->
+							<li><a id="sell_list_tab" href="/user/26398619/sell"
+								class="selectedtab">出售</a></li>
+							<!--        <li>
+            <a id="buy_list_tab" href="/user/26398619/buy" >求购</a>
+        </li>-->
+							<li><a id="follow_list_tab" href="/user/26398619/follow">关注</a>
+							</li>
+							<li><a id="fan_list_tab" href="/user/26398619/fan">粉丝</a></li>
+						</ul>
+					</div>
+					<div class="clearfloat"
+						style="border-top: 2px solid rgb(222, 222, 222); margin-bottom: 16px;"></div>
+					<div style="margin-bottom: 10px; text-align: center;">
+						<form id="search_title_form" action="/user/26398619/sell"
+							method="get">
+							<input placeholder="请输入关键字搜索"
+								class="queryinput user_book_search_query" type="text" value=""
+								name="q" id="q"><input type="button"
+								class="search_div_button user_book_search_button"
+								style="float: left;" value="搜 索" onclick="submitSearch();">
+						</form>
+					</div>
+					<div style="clear: both;"></div>
+					<div style="margin-top: 15px;">
+						<div id="yw0" class="list-view">
+							<div class="sorter">
+								排序:
+								<ul>
+									<li>更新时间</li>
+									<li><a href="/user/26398619/sell?sort=created_at.desc">上架时间</a></li>
+									<li>留言数</li>
+									<li>售价</li>
+									<li>折扣</li>
+								</ul>
+							</div>
+							<div class="pager">
+								<ul id="yw1" class="yiiPager">
+									<li class="first hidden"><a href="/user/26398619/sell">&lt;&lt;
+											首页</a></li>
+									<li class="previous hidden"><a href="/user/26398619/sell">&lt;
+											前页</a></li>
+									<li class="page selected"><a href="/user/26398619/sell">1</a></li>
+									<li class="page"><a href="/user/26398619/sell?page=2">2</a></li>
+									<li class="page"><a href="/user/26398619/sell?page=3">3</a></li>
+									<li class="page"><a href="/user/26398619/sell?page=4">4</a></li>
+									<li class="page"><a href="/user/26398619/sell?page=5">5</a></li>
+									<li class="next"><a href="/user/26398619/sell?page=2">后页
+											&gt;</a></li>
+									<li class="last"><a href="/user/26398619/sell?page=10">末页
+											&gt;&gt;</a></li>
+								</ul>
+							</div>
+							<div class="items">
+								<div class="book_item dashed_border_bottom">
+									<div class="book_pic">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/390899617"> <img
+											class="book_pic"
+											src="http://cdn.shujie.me/isbn/208/040/9787208040434_16.jpg!w600"
+											alt="上下五千年（上中下）" title="上下五千年（上中下）">
+										</a>
+									</div>
+									<div class="info">
+										<div class="title">
+											<a target="_blank" href="/sell/390899617">上下五千年（上中下）</a>
+										</div>
+										<div class="detail padding_10">
+											<div class="buy_action">
+												<a href="javascript:addCart(390899617);" class="button_link">购&nbsp;&nbsp;买</a>
+											</div>
+											上海人民出版社 / 林汉达,曹余章 <br>
+											<br> ￥6.49 &nbsp;&nbsp;<span class="line-through-price">￥50.00</span>
+											&nbsp;&nbsp;(1.6折) <br>
+											<br> 九成新
+										</div>
+										<div class="align_right">
+											<span style="margin-right: 20px;"> </span>
+										</div>
+									</div>
+									<div class="clearfloat"></div>
+								</div>
+								<div class="book_item dashed_border_bottom">
+									<div class="book_pic">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/390968964"> <img
+											class="book_pic"
+											src="http://cdn.shujie.me/isbn/534/253/9787534253973_98.jpg!w600"
+											alt="世界少年文学经典文库" title="世界少年文学经典文库">
+										</a>
+									</div>
+									<div class="info">
+										<div class="title">
+											<a target="_blank" href="/sell/390968964">世界少年文学经典文库</a>
+										</div>
+										<div class="detail padding_10">
+											<div class="buy_action">
+												<a href="javascript:addCart(390968964);" class="button_link">购&nbsp;&nbsp;买</a>
+											</div>
+											unknown / 潘勇 注释 <br>
+											<br> ￥16.68 &nbsp;&nbsp;<span class="line-through-price">￥15.50</span>
+											&nbsp;&nbsp;(6.3折) <br>
+											<br> 八成新
+										</div>
+										<div class="align_right">
+											<span style="margin-right: 20px;"> </span>
+										</div>
+									</div>
+									<div class="clearfloat"></div>
+								</div>
+								<div class="book_item dashed_border_bottom">
+									<div class="book_pic">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/391741879"> <img
+											class="book_pic"
+											src="http://cdn.shujie.me/isbn/540/457/9787540457570_29.jpg!w600"
+											alt="遇见未知的自己" title="遇见未知的自己">
+										</a>
+									</div>
+									<div class="info">
+										<div class="title">
+											<a target="_blank" href="/sell/391741879">遇见未知的自己</a>
+										</div>
+										<div class="detail padding_10">
+											<div class="buy_action">
+												<a href="javascript:addCart(391741879);" class="button_link">购&nbsp;&nbsp;买</a>
+											</div>
+											湖南文艺出版社 / 张德芬 著,范薇 绘 <br>
+											<br> ￥8.80 &nbsp;&nbsp;<span class="line-through-price">￥29.00</span>
+											&nbsp;&nbsp;(2.4折) <br>
+											<br> 九成新
+										</div>
+										<div class="align_right">
+											<span style="margin-right: 20px;"> </span>
+										</div>
+									</div>
+									<div class="clearfloat"></div>
+								</div>
+								<div class="book_item dashed_border_bottom">
+									<div class="book_pic">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/391741888"> <img
+											class="book_pic"
+											src="http://cdn.shujie.me/isbn/806/983/9787806983126_94.jpg!w600"
+											alt="初中生必背优秀诗文" title="初中生必背优秀诗文">
+										</a>
+									</div>
+									<div class="info">
+										<div class="title">
+											<a target="_blank" href="/sell/391741888">初中生必背优秀诗文</a>
+										</div>
+										<div class="detail padding_10">
+											<div class="buy_action">
+												<a href="javascript:addCart(391741888);" class="button_link">购&nbsp;&nbsp;买</a>
+											</div>
+											延边人民出版社 / 赵贵文注释 <br>
+											<br> ￥6.60 &nbsp;&nbsp;<span class="line-through-price">￥0.00</span>
+											&nbsp;&nbsp;(10.0折) <br>
+											<br> 九成新
+										</div>
+										<div class="align_right">
+											<span style="margin-right: 20px;"> </span>
+										</div>
+									</div>
+									<div class="clearfloat"></div>
+								</div>
+								<div class="book_item dashed_border_bottom">
+									<div class="book_pic">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/391742542"> <img
+											class="book_pic"
+											src="http://www.kfzimg.com/sw/kfzimg/2479/020092610e81ced665_s.jpg"
+											alt="小学生黄冈作文 作文大全" title="小学生黄冈作文 作文大全">
+										</a>
+									</div>
+									<div class="info">
+										<div class="title">
+											<a target="_blank" href="/sell/391742542">小学生黄冈作文 作文大全</a>
+										</div>
+										<div class="detail padding_10">
+											<div class="buy_action">
+												<a href="javascript:addCart(391742542);" class="button_link">购&nbsp;&nbsp;买</a>
+											</div>
+											云南出版集团公司晨光出版社 / unknown <br>
+											<br> ￥8.47 &nbsp;&nbsp;<span class="line-through-price">￥12.50</span>
+											&nbsp;&nbsp;(5.6折) <br>
+											<br> 九成新
+										</div>
+										<div class="align_right">
+											<span style="margin-right: 20px;"> </span>
+										</div>
+									</div>
+									<div class="clearfloat"></div>
+								</div>
+								<div class="book_item dashed_border_bottom">
+									<div class="book_pic">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/391742545"> <img
+											class="book_pic"
+											src="http://www.kfzimg.com/sw/kfzimg/2479/0200924be2650c3a99_s.jpg"
+											alt="小学生黄冈作文 获奖作文" title="小学生黄冈作文 获奖作文">
+										</a>
+									</div>
+									<div class="info">
+										<div class="title">
+											<a target="_blank" href="/sell/391742545">小学生黄冈作文 获奖作文</a>
+										</div>
+										<div class="detail padding_10">
+											<div class="buy_action">
+												<a href="javascript:addCart(391742545);" class="button_link">购&nbsp;&nbsp;买</a>
+											</div>
+											云南出版集团公司晨光出版社 / unknown <br>
+											<br> ￥9.35 &nbsp;&nbsp;<span class="line-through-price">￥12.50</span>
+											&nbsp;&nbsp;(5.6折) <br>
+											<br> 九成新
+										</div>
+										<div class="align_right">
+											<span style="margin-right: 20px;"> </span>
+										</div>
+									</div>
+									<div class="clearfloat"></div>
+								</div>
+								<div class="book_item dashed_border_bottom">
+									<div class="book_pic">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/391742558"> <img
+											class="book_pic"
+											src="http://www.kfzimg.com/sw/kfzimg/2477/02009235dae49ae0f2_s.jpg"
+											alt="小学生黄冈作文 想象作文" title="小学生黄冈作文 想象作文">
+										</a>
+									</div>
+									<div class="info">
+										<div class="title">
+											<a target="_blank" href="/sell/391742558">小学生黄冈作文 想象作文</a>
+										</div>
+										<div class="detail padding_10">
+											<div class="buy_action">
+												<a href="javascript:addCart(391742558);" class="button_link">购&nbsp;&nbsp;买</a>
+											</div>
+											云南出版集团公司晨光出版社 / 汲庆海 <br>
+											<br> ￥6.60 &nbsp;&nbsp;<span class="line-through-price">￥12.50</span>
+											&nbsp;&nbsp;(5.6折) <br>
+											<br> 九成新
+										</div>
+										<div class="align_right">
+											<span style="margin-right: 20px;"> </span>
+										</div>
+									</div>
+									<div class="clearfloat"></div>
+								</div>
+								<div class="book_item dashed_border_bottom">
+									<div class="book_pic">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/391742566"> <img
+											class="book_pic"
+											src="http://cdn.shujie.me/isbn/547/230/9787547230053_72.jpg!w600"
+											alt="做最好的自己(第1辑共4册)" title="做最好的自己(第1辑共4册)">
+										</a>
+									</div>
+									<div class="info">
+										<div class="title">
+											<a target="_blank" href="/sell/391742566">做最好的自己(第1辑共4册)</a>
+										</div>
+										<div class="detail padding_10">
+											<div class="buy_action">
+												<a href="javascript:addCart(391742566);" class="button_link">购&nbsp;&nbsp;买</a>
+											</div>
+											吉林文史 / 编者:姝默 <br>
+											<br> ￥8.80 &nbsp;&nbsp;<span class="line-through-price">￥92.00</span>
+											&nbsp;&nbsp;(0.8折) <br>
+											<br> 九成新
+										</div>
+										<div class="align_right">
+											<span style="margin-right: 20px;"> </span>
+										</div>
+									</div>
+									<div class="clearfloat"></div>
+								</div>
+								<div class="book_item dashed_border_bottom">
+									<div class="book_pic">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/391742576"> <img
+											class="book_pic"
+											src="http://cdn.shujie.me/isbn/532/767/9787532767373_42.jpg!w600"
+											alt="夏洛的网" title="夏洛的网">
+										</a>
+									</div>
+									<div class="info">
+										<div class="title">
+											<a target="_blank" href="/sell/391742576">夏洛的网</a>
+										</div>
+										<div class="detail padding_10">
+											<div class="buy_action">
+												<a href="javascript:addCart(391742576);" class="button_link">购&nbsp;&nbsp;买</a>
+											</div>
+											上海译文出版社 / 任溶溶 <br>
+											<br> ￥9.35 &nbsp;&nbsp;<span class="line-through-price">￥26.00</span>
+											&nbsp;&nbsp;(2.9折) <br>
+											<br> 九成新
+										</div>
+										<div class="align_right">
+											<span style="margin-right: 20px;"> </span>
+										</div>
+									</div>
+									<div class="clearfloat"></div>
+								</div>
+								<div class="book_item dashed_border_bottom">
+									<div class="book_pic">
+										<a target="_blank"
+											href="http://www.jiushujie.com/sell/391742593"> <img
+											class="book_pic"
+											src="http://cdn.shujie.me/isbn/534/233/9787534233371_38.jpg!w600"
+											alt="格林童话精选" title="格林童话精选">
+										</a>
+									</div>
+									<div class="info">
+										<div class="title">
+											<a target="_blank" href="/sell/391742593">格林童话精选</a>
+										</div>
+										<div class="detail padding_10">
+											<div class="buy_action">
+												<a href="javascript:addCart(391742593);" class="button_link">购&nbsp;&nbsp;买</a>
+											</div>
+											浙江少儿 / 李想,俞姜,格林兄弟,赵洋 <br>
+											<br> ￥7.72 &nbsp;&nbsp;<span class="line-through-price">￥13.00</span>
+											&nbsp;&nbsp;(5.4折) <br>
+											<br> 九成新
+										</div>
+										<div class="align_right">
+											<span style="margin-right: 20px;"> </span>
+										</div>
+									</div>
+									<div class="clearfloat"></div>
+								</div>
+							</div>
+							<div class="pager">
+								<ul id="yw2" class="yiiPager">
+									<li class="first hidden"><a href="/user/26398619/sell">&lt;&lt;
+											首页</a></li>
+									<li class="previous hidden"><a href="/user/26398619/sell">&lt;
+											前页</a></li>
+									<li class="page selected"><a href="/user/26398619/sell">1</a></li>
+									<li class="page"><a href="/user/26398619/sell?page=2">2</a></li>
+									<li class="page"><a href="/user/26398619/sell?page=3">3</a></li>
+									<li class="page"><a href="/user/26398619/sell?page=4">4</a></li>
+									<li class="page"><a href="/user/26398619/sell?page=5">5</a></li>
+									<li class="next"><a href="/user/26398619/sell?page=2">后页
+											&gt;</a></li>
+									<li class="last"><a href="/user/26398619/sell?page=10">末页
+											&gt;&gt;</a></li>
+								</ul>
+							</div>
+							<div class="keys" style="display: none"
+								title="/user/26398619/sell">
+								<span>390899617</span><span>390968964</span><span>391741879</span><span>391741888</span><span>391742542</span><span>391742545</span><span>391742558</span><span>391742566</span><span>391742576</span><span>391742593</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="clearfloat"></div>
+		</div>
+	</div>
+
+	<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
+	<div style="position: fixed; top: 122px; right: 20px;">
+		<img style="width: 120px; margin-bottom: 10px;"
+			src="res/ios_download.jpg"><br> <img
+			style="width: 120px; margin-bottom: 10px;"
+			src="res/android_download.jpg">
+	</div>
+	<div class="clearfloat"></div>
+	<div class="bottom">
+		<div class="center_980">
+			<div class="bottom_left">
+				<ul>
+					<li><a href="http://www.jiushujie.com/site/about">关于我们</a></li>
+					<li><a href="http://www.jiushujie.com/site/joinus">申请合作</a></li>
+					<li><a href="http://www.jiushujie.com/site/privacy">隐私政策</a></li>
+					<li><a href="http://www.jiushujie.com/site/term">服务条款</a></li>
+					<li><a href="http://www.jiushujie.com/site/help">帮助</a></li>
+					<li><a href="http://www.jiushujie.com/site/link">友情链接</a></li>
+				</ul>
+			</div>
+			<div id="copyright">
+				© 2020 by 旧书街 <a href="http://beian.miit.gov.cn/">蜀ICP备16007902号-2</a>
+			</div>
+		</div>
+	</div>
+	<h1 class="jiushujie_slogan">买卖二手书，就上旧书街。旧书街二手书交易网-您身边的旧书网站</h1>
+</body>
+</html>

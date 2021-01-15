@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="keywords" content="旧书,二手书,二手教材,旧教材,校园书籍,校园旧书，旧书网">
+<meta name="description" content="买卖二手书，就上旧书街">
+<meta name="language" content="zh">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" type="text/css" href="res/form.css">
+<link rel="stylesheet" type="text/css" href="res/pager.css">
+<link rel="stylesheet" type="text/css" href="res/ubm_basic.css">
+<link rel="stylesheet" type="text/css" href="res/styles.css">
+<link rel="shortcut icon"
+	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
+
+<title>买卖二手书,就上旧书街</title>
+</head>
+<body>
+	<div class="site_top_row">
+		<div class="center_980">
+			<div class="school_location" style="float: left;">
+				[<a href="javascript:void(0)"
+					onclick="showSchoolList();return false;">所有学校</a>]
+			</div>
+			<div id="top_user_info" style="float: right;">
+				<a href="http://www.jiushujie.com/site/login">登录</a>|<a
+					href="http://www.jiushujie.com/sell/create">出售</a>|<a
+					style="color: rgb(254, 137, 0);"
+					href="http://www.jiushujie.com/regist">立即注册</a>|<a
+					class="app_mobile" target="_blank"
+					href="http://www.jiushujie.com/site/app">下载APP</a>
+			</div>
+			<div class="clearfloat"></div>
+		</div>
+	</div>
+	<div id="top">
+		<div class="center_980">
+			<div id="logo">
+				<a href="http://www.jiushujie.com/"> <img
+					src="res/jiushujie-logo.png" alt="买卖二手书,就上旧书街" title="买卖二手书,就上旧书街">
+				</a>
+			</div>
+			<div style="float: left;">
+				<img src="res/slogan1124.png">
+			</div>
+			<div id="top-nav">
+				<ul class="top_menu">
+					<li><a id="home_tab" href="http://www.jiushujie.com/home"
+						class="selectedtab">首页</a></li>
+					<li><a id="sell_tab" href="http://www.jiushujie.com/sell">出售</a>
+					</li>
+					<li><a id="buy_tab" href="http://www.jiushujie.com/buy">求购</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="main_middle">
+		<div id="main_content" class="center_980">
+			<div class="content_left">
+				<div class="padding_10 border_white">
+					<div class="user_setting_block">
+						<div class="title">个人设置</div>
+						<ul>
+							<li><a id="user_basic" href="/set">头像&amp;基本信息</a></li>
+							<li><a id="self_introduction" href="/intro">签名档</a></li>
+							<li><a id="user_pwd" href="/changepwd">修改密码</a></li>
+							<li><a id="invite_link" href="/my/inviteLink">我的邀请链接</a></li>
+						</ul>
+					</div>
+					<div class="user_setting_block">
+						<div class="title">我是卖家</div>
+						<ul>
+							<li><a id="sell_order_list" href="/my/sellOrderList">收到的订单</a></li>
+							<li><a id="mail_fee_set" href="/mailFee">运费设置</a></li>
+							<li><a id="bank_account" href="/set/bankAccount">收款账号设置</a></li>
+						</ul>
+					</div>
+					<div class="user_setting_block">
+						<div class="title">我是买家</div>
+						<ul>
+							<li><a id="my_order_list" href="/my/orderList">我下的订单</a></li>
+							<li><a id="address_info_set" href="/address/index">收货信息</a></li>
+						</ul>
+					</div>
+					<div class="user_setting_block">
+						<div class="title">动态</div>
+						<ul>
+							<li><a id="news_list" href="/my/newsList">我的动态</a></li>
+						</ul>
+					</div>
+					<div class="user_setting_block">
+						<div class="title">书籍</div>
+						<ul>
+							<li><a id="sell_list" href="/mysell">我的出售</a></li>
+							<li><a id="soldout_list" href="/mysell?soldout=1">我的售罄</a></li>
+							<li><a id="buy_list" href="/mybuy">我的求购</a></li>
+						</ul>
+					</div>
+					<div class="user_setting_block">
+						<div class="title">留言</div>
+						<ul>
+							<li><a id="sell_comment_tab"
+								href="/my/commentList/type/sell" class="active_link">留言-出售</a></li>
+							<li><a id="buy_comment_tab" href="/my/commentList/type/buy">留言-求购</a></li>
+							<li><a id="news_comment_tab"
+								href="/my/commentList/type/news">留言-动态</a></li>
+						</ul>
+					</div>
+					<div class="user_setting_block">
+						<div class="title">消息</div>
+						<ul>
+							<li><a id="inbox_tab" href="/inbox">收件箱</a></li>
+							<li><a id="outbox_tab" href="/outbox">发件箱</a></li>
+						</ul>
+					</div>
+					<div class="user_setting_block">
+						<div class="title">用户</div>
+						<ul>
+							<li><a id="fan_by_me_tab" href="/follow">我的关注</a></li>
+							<li><a id="fan_of_me_tab" href="/fan">我的粉丝</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="content_right">
+				<div class="border_white padding_10">
+					<div>
+						<div id="gridview-list-grid" class="grid-view">
+
+							<table class="items">
+								<thead>
+									<tr>
+										<th class="checkbox-column" id="gridview-list-grid_c0"><input
+											type="checkbox" value="1" name="gridview-list-grid_c0_all"
+											id="gridview-list-grid_c0_all"></th>
+										<th id="gridview-list-grid_c1">留言内容</th>
+										<th id="gridview-list-grid_c2"><input
+											class="button_user_action" onclick="batchDelete();"
+											type="button" value="删除选中" style="padding: 1px 3px;"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="3" class="empty"><span class="empty">没有找到数据</span></td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="keys" style="display: none"
+								title="/my/commentList/type/sell"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="clearfloat"></div>
+		</div>
+	</div>
+
+	<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
+	<div style="position: fixed; top: 122px; right: 20px;">
+		<img style="width: 120px; margin-bottom: 10px;"
+			src="res/ios_download.jpg"><br> <img
+			style="width: 120px; margin-bottom: 10px;"
+			src="res/android_download.jpg">
+	</div>
+	<div class="clearfloat"></div>
+	<div class="bottom">
+		<div class="center_980">
+			<div class="bottom_left">
+				<ul>
+					<li><a href="http://www.jiushujie.com/site/about">关于我们</a></li>
+					<li><a href="http://www.jiushujie.com/site/joinus">申请合作</a></li>
+					<li><a href="http://www.jiushujie.com/site/privacy">隐私政策</a></li>
+					<li><a href="http://www.jiushujie.com/site/term">服务条款</a></li>
+					<li><a href="http://www.jiushujie.com/site/help">帮助</a></li>
+					<li><a href="http://www.jiushujie.com/site/link">友情链接</a></li>
+				</ul>
+			</div>
+			<div id="copyright">
+				© 2020 by 旧书街 <a href="http://beian.miit.gov.cn/">蜀ICP备16007902号-2</a>
+			</div>
+		</div>
+	</div>
+	<h1 class="jiushujie_slogan">买卖二手书，就上旧书街。旧书街二手书交易网-您身边的旧书网站</h1>
+</body>
+</html>
