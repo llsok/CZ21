@@ -12,6 +12,9 @@
 <link rel="stylesheet" type="text/css" href="res/ubm_basic.css">
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
+	
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
 
 <title>买卖二手书,就上旧书街</title>
 </head>
@@ -62,7 +65,7 @@
 				<div class="border_white align_center padding_10">
 					<div
 						style="font-size: 30px; font-weight: bold; color: rgb(167, 167, 167);">还未注册旧书街?</div>
-					<br> <input onclick="location.href=&quot;/regist&quot;"
+					<br> <input onclick=""
 						class="button" name="yt0" type="button" value="立即注册">
 				</div>
 				<div style="margin-top: 20px;">
@@ -138,7 +141,7 @@
 									<td><label for="LoginForm_email" class="required">账号
 											<span class="required">*</span>
 									</label></td>
-									<td><input maxlength="45" class="input_public"
+									<td><input v-model="user.account" maxlength="45" class="input_public"
 										tabindex="1" name="LoginForm[email]" id="LoginForm_email"
 										type="text" style="color: rgb(153, 153, 153);"></td>
 									<td><div id="LoginForm_emailTip" class="onShow"
@@ -148,7 +151,7 @@
 									<td><label for="LoginForm_password" class="required">密码
 											<span class="required">*</span>
 									</label></td>
-									<td><input maxlength="45" class="input_public"
+									<td><input v-model="user.pwd" maxlength="45" class="input_public"
 										tabindex="2" name="LoginForm[password]"
 										id="LoginForm_password" type="password"></td>
 									<td><div id="LoginForm_passwordTip" class="onShow"
@@ -158,12 +161,36 @@
 						</table>
 						<br>
 						<div class="margin_left_134">
-							<input id="submit_button" class="button" tabindex="4"
+							<input @click.prevent="login" id="submit_button" class="button" tabindex="4"
 								type="submit" name="yt1" value="登录">&nbsp;&nbsp;<a
 								href="/set/askReset">忘记密码？</a>
 						</div>
 						<br>
 					</form>
+					<script type="text/javascript">
+						var v = new Vue({
+							el : "#login-form",
+							data : {
+								user : { account:"" , pwd:""}
+							},
+							methods : {
+								login(){
+									var p = new URLSearchParams();
+									p.append("account",this.user.account);
+									p.append("pwd",this.user.pwd);
+									axios.post("login.do", p).then(res=>{
+										if(res.data.code == 1){
+											location.href="index.html";
+										} else {
+											alert(res.data.msg);
+										}
+									});
+								}
+							}
+						
+						})
+					
+					</script>
 				</div>
 				<div class="form border_white"
 					style="margin-top: 10px; padding: 9px;">
