@@ -4,7 +4,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.yc.mvc.biz.BizException;
 import com.yc.mvc.biz.UserBiz;
@@ -28,6 +30,11 @@ public class UserAction {
 			e.printStackTrace();
 			return Result.failure(e.getMessage(), null);
 		}
+	}
+	
+	@RequestMapping("getLoginedUser.do")
+	public Result getLoginedUser(@SessionAttribute JsjUser loginedUser) {
+		return Result.success("获取用户对象成功", loginedUser);
 	}
 
 }

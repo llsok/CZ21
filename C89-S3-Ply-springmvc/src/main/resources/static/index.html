@@ -11,6 +11,9 @@
 <link rel="stylesheet" type="text/css" href="res/ubm_basic.css">
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
+	
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
 
 <title>买卖二手书,就上旧书街</title>
 </head>
@@ -22,16 +25,27 @@
 					onclick="showSchoolList();return false;">所有学校</a>]
 			</div>
 			<div id="top_user_info" style="float: right;">
-				<a href="login.html">登录</a>|<a
-					href="sell/create">出售</a>|<a
-					style="color: rgb(254, 137, 0);"
-					href="regist">立即注册</a>|<a
-					class="app_mobile" target="_blank"
-					href="site/app">下载APP</a>
+				<a v-if="lu.name" href="#">{{lu.name}}</a>
+				<a v-else href="login.html">登录</a>
+				|
+				<a href="sell/create">出售</a>|
+				<a style="color: rgb(254, 137, 0);" href="regist">立即注册</a>|
+				<a class="app_mobile" target="_blank" href="site/app">下载APP</a>
 			</div>
 			<div class="clearfloat"></div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		var v = new Vue({
+			el : ".site_top_row",
+			data : { lu : {} }, // lu ==> loginedUser
+			created(){
+				axios.get("getLoginedUser.do").then(res=>{
+					this.lu = res.data.data;
+				})
+			}
+		})
+	</script>
 	<div id="top">
 		<div class="center_980">
 			<div id="logo">
