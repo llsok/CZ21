@@ -67,10 +67,12 @@ public class JsjUser {
     private String phone;
 
     @Email(message = "邮箱地址格式错误")
+    @NotEmpty(message = "邮箱不能为空")
     private String email;
 
     private String school;
 
+    @NotEmpty(message = "性别不能位空")
     private String gender;
 
     private String sign;

@@ -157,7 +157,7 @@
 									<td><label for="UserRegist_cellphone" class="required">邮箱
 											<span class="required">*</span>
 									</label></td>
-									<td><input maxlength="15" class="ubm_textinput"
+									<td><input maxlength="30" class="ubm_textinput"
 										name="UserRegist[cellphone]" id="UserRegist_cellphone"
 										type="text" v-model="user.email"></td>
 									<td><div>{{errors.email}}</div></td>
@@ -176,13 +176,13 @@
 											<span class="required">*</span>
 									</label></td>
 									<td><select class="ubm_textinput"
-										name="UserRegist[gender]" id="UserRegist_gender">
+										name="UserRegist[gender]" id="UserRegist_gender" v-model="user.gender">
 											<option value="" selected="selected">-- 请选择 --</option>
 											<option value="m">男生</option>
 											<option value="f">女生</option>
 									</select></td>
 									<td><div id="UserRegist_genderTip" class="onShow"
-											style="margin: 0px; padding: 0px; background: transparent;"></div></td>
+											style="margin: 0px; padding: 0px; background: transparent;">{{errors.gender}}</div></td>
 								</tr>
 								<tr>
 									<td></td>
@@ -208,6 +208,7 @@
 									name : "",
 									email : "",
 									pwd : "",
+									gender:"",
 								},
 								errors : {
 									phone : "",
@@ -215,6 +216,7 @@
 									name : "",
 									email : "",
 									pwd : "",
+									gender:"",
 								}
 							},
 							methods : {
@@ -225,9 +227,11 @@
 									param.append('name',this.user.name);
 									param.append('email',this.user.email);
 									param.append('pwd',this.user.pwd);
+									param.append('gender',this.user.gender);
 									axios.post("regist.do",param).then(res=>{
 										if(res.data.code==1){
 											alert(res.data.msg);
+											location.href="login.html"
 										}
 										// 清除之前的错误提示
 										for( let e in this.errors){  // let 定义的局部变量  ~=  var
