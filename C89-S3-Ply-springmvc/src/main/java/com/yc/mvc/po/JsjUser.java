@@ -4,6 +4,13 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
+
 public class JsjUser {
 	
 	/**
@@ -36,18 +43,30 @@ public class JsjUser {
 
 	private Integer id;
 
+	@NotNull(message = "账号不能为空！")
+	@NotEmpty(message = "账号不能为空！")
     private String account;
 
+	@NotNull(message = "姓名不能为空！")
+	@NotEmpty(message = "姓名不能为空！")
     private String name;
 
+	@Length(min = 6, max = 16, message = "密码长度必须是6-16位")
+	@NotEmpty(message = "密码不能为空！")
+	// 密码必须是以字母开头的数字+字母字符串
+	@Pattern(regexp = "[a-zA-Z][a-zA-Z0-9]{5,15}", 
+		message = "密码必须是以字母开头的数字+字母字符串")
     private String pwd;
 
     private Integer inviteId;
 
     private String headImg;
 
+	@Pattern(regexp = "1\\d{10}", 
+			message = "电话号码必须是1开头的11位数字")
     private String phone;
 
+    @Email(message = "邮箱地址格式错误")
     private String email;
 
     private String school;
