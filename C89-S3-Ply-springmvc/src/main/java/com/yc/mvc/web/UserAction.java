@@ -67,7 +67,15 @@ public class UserAction {
 			return Result.failure("字段验证错误！", errors.getAllErrors());
 		}
 		// TODO 业务层代码， 未完待续
-		return Result.failure("注册成功！", null);
+		try {
+			ubiz.register(user);
+			return Result.success("注册成功！", null);
+		} catch (Exception e) {
+			//e.printStackTrace();
+			errors.rejectValue("account", "NotOne", e.getMessage());
+			return Result.failure("字段验证错误", errors.getAllErrors());
+		}
+		
 	}
 
 }
