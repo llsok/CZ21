@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yc.mvc.dao.UserMapper;
 import com.yc.mvc.po.JsjUser;
+import com.yc.mvc.web.po.Result;
 
 @Service
 public class UserBiz {
@@ -16,16 +17,24 @@ public class UserBiz {
 	
 	public JsjUser login(JsjUser user) throws BizException {
 		// yc 123 扩展： mybatis 实现数据库的查询
-		if("yc".equals(user.getAccount()) && "123".equals(user.getPwd())) {
-			JsjUser dbuser = new JsjUser();
-			dbuser.setAccount(user.getAccount());
-			dbuser.setPwd(user.getPwd());
-			dbuser.setName("root");
-			//....
-			return dbuser;
-		} else {
-			throw new BizException("用户名或密码错误！");
+//		if("yc".equals(user.getAccount()) && "123".equals(user.getPwd())) {
+//			JsjUser dbuser = new JsjUser();
+//			dbuser.setAccount(user.getAccount());
+//			dbuser.setPwd(user.getPwd());
+//			dbuser.setName("root");
+//			//....
+//			return dbuser;
+//		} else {
+//			throw new BizException("用户名或密码错误！");
+//		}
+		JsjUser user2 = um.selectByAccountAndPwd(user.getAccount(),user.getPwd());
+		if(user2 !=null) {
+			return user2;
+		}else {
+			throw new BizException("用户名或密码错误");
 		}
+		
+		
 	}
 	
 	
