@@ -27,6 +27,11 @@ public class UserBiz {
 //		} else {
 //			throw new BizException("用户名或密码错误！");
 //		}
+		
+		// 避免对数据库连接资源的滥用
+		if(user.getAccount()==null || user.getAccount().trim().isEmpty()) {
+			throw new BizException("请填写用户名");
+		}
 		JsjUser user2 = um.selectByAccountAndPwd(user.getAccount(),user.getPwd());
 		if(user2 !=null) {
 			return user2;
