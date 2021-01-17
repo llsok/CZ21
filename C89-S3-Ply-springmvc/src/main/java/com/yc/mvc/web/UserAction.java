@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.yc.mvc.biz.BizException;
 import com.yc.mvc.biz.UserBiz;
+import com.yc.mvc.dao.UserMapper;
 import com.yc.mvc.po.JsjUser;
 import com.yc.mvc.web.po.Result;
 
@@ -20,9 +21,9 @@ public class UserAction {
 
 	@Resource
 	private UserBiz ubiz;
-
+	
 	@PostMapping("login.do")
-	public Result login(JsjUser user, HttpSession session) {
+	public Result login(JsjUser user, HttpSession session) throws BizException {
 		JsjUser dbuser;
 		try {
 			dbuser = ubiz.login(user);
@@ -67,7 +68,15 @@ public class UserAction {
 			return Result.failure("字段验证错误！", errors.getAllErrors());
 		}
 		// TODO 业务层代码， 未完待续
-		return Result.failure("注册成功！", null);
+		try {
+			ubiz.register(user);
+			return Result.success("注册成功！", null);
+		} catch (Exception e) {
+			//e.printStackTrace();
+			errors.rejectValue("account", "NotOne", e.getMessage());
+			return Result.failure("字段验证错误", errors.getAllErrors());
+		}
+		
 	}
 
 }

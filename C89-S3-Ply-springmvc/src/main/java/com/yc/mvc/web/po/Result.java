@@ -28,4 +28,5 @@ public class Result implements java.io.Serializable {
 		this.msg = msg;
 		this.data = data;
 	}
+	
 }
