@@ -90,11 +90,33 @@
 					<form id="search_title_form" action="sell"
 						method="get">
 						<input placeholder="请输入关键字" class="queryinput"
-							style="width: 300px;" type="text" value="" name="q" id="q"><input
+							style="width: 300px;" type="text" value="" name="q" id="q" v-model="name"><input
 							type="button" class="search_div_button" value="搜 索"
-							onclick="submitSearch();">
+							@click="search()">
 					</form>
 				</div>
+				<script type="text/javascript">
+							var v=new Vue({
+							el:".search_div",
+							data:{
+								name:""
+							},
+							methods:{
+								search(){
+									var params = new URLSearchParams();
+									params.append("name",this.name);
+									axios.post("queryname",params).then(res=>{
+									    if(res.data.code==1){
+											location.href="search.html#"+this.name;
+										}else{
+											alert(res.data.msg);
+										}
+									})
+								}
+							}
+						})
+				</script>
+				
 				<div class="clearfloat"></div>
 			</div>
 			<div class="content_left">

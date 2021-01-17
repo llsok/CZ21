@@ -28,4 +28,12 @@ public interface BooksMapper {
   @Select("select * from jsj_book order by price limit 0,40")
   public List<JsjBook> SelectBookT();
   
+  @Results(value= {
+	 		 @Result(column = "mark_price",property = "markPrice"),
+	 		 @Result(column="owner_id", property="ownerId")
+	       }
+	  )
+  @Select("select * from jsj_book where name like concat('%',#{name},'%')")
+  public List<JsjBook> queryBookByname(String name);
+  
 }
