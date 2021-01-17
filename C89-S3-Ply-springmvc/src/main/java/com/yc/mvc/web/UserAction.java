@@ -2,6 +2,7 @@ package com.yc.mvc.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -27,6 +28,9 @@ public class UserAction {
 
 	@Resource
 	private UserBiz ubiz;
+	
+	@Resource
+	private UserMapper um;
 	
 	@PostMapping("login.do")
 	public Result login(JsjUser user, HttpSession session) throws BizException {
@@ -122,4 +126,8 @@ public class UserAction {
 		return Result.success("文件上传成功！", webpath);
 	}
 
+	@RequestMapping("getlastTimeUsers.do")
+	public List<JsjUser> getlastTimeUsers() {
+		return um.getlastTimeUsers();
+	}
 }

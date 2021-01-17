@@ -1,5 +1,7 @@
 package com.yc.mvc.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Results;
@@ -22,8 +24,9 @@ public interface UserMapper {
 
 	@Update("update jsj_user set head_img=#{headImg} where id=#{id}")
 	void updateHeadImg(JsjUser loginedUser);
-
-
+	
+	@Select("select * from jsj_user order by last_login_time desc limit 0,24")
+	public List<JsjUser> getlastTimeUsers();
 
 
 }
