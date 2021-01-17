@@ -9,5 +9,21 @@ spring:
       # yml 支持驼峰命名 + -号分隔符
       driverClassName: com.mysql.jdbc.Driver
       #driver-class-name: com.mysql.jdbc.Driver
-
-     
+   web:
+      resources:
+         # staticLocations == static-locations
+         # yml 数组类型配置,  file: 表示从磁盘路径读取 ， classpath: 类路径
+         static-locations: 
+            - classpath:/META-INF/resources/
+            - classpath:/resources/
+            - classpath:/static/
+            - classpath:/public/
+            - file:/e:/jsj/
+   servlet:
+      multipart:
+         # 配置文件上传大小限制
+         maxFileSize: 1000000
+mybatis:
+   configuration:
+      # 开启驼峰命名映射
+      mapUnderscoreToCamelCase: true

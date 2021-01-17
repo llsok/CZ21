@@ -2,6 +2,7 @@ package com.yc.mvc.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -103,18 +104,22 @@ public class UserAction {
 	public Result upload(@RequestParam("headImgFile") MultipartFile headImgFile,
 			@SessionAttribute JsjUser loginedUser){
 		// 1. 保存文件 （保存到磁盘上）
+		String newfile = UUID.randomUUID().toString();//   1  时间戳， 2 随机数，  3，UUID
+		String oldfile = headImgFile.getOriginalFilename();
+		// 获取原文件的后缀名
+		String suffix = oldfile.substring(oldfile.lastIndexOf("."));
+		newfile += suffix;
 		try {
-			headImgFile.transferTo(new File("e:/jsj/upload_head", headImgFile.getOriginalFilename()));
+			headImgFile.transferTo(new File("e:/jsj/upload_head", newfile));
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 			return Result.success("文件上传失败！", null);
 		}
-		// 2. 返回图片的web路径 ？？？？？
-		String webpath = "upload_head/" + headImgFile.getOriginalFilename();
+		// 2. 返回图片的web路径 
+		String webpath = "upload_head/" + newfile;
 		loginedUser.setHeadImg(webpath);
 		ubiz.updateHeadImg(loginedUser);
 		return Result.success("文件上传成功！", webpath);
-		
 	}
 
 }
