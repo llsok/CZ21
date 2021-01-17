@@ -34,11 +34,12 @@ public class UserBiz {
 		if (um.selectByAccount(user.getAccount()) != null) {
 			throw new BizException("该账号已被使用！");
 		}
-		if (user.getGender().equals("m")) {
+		if (user.getGender().equals("m")) { // 空指针异常的风险
 			user.setGender("男");
 		}else {
 			user.setGender("女");
 		}
+		user.setGender("m".equals(user.getGender())?"男":"女");
 		String phone = user.getPhone().replaceAll("(\\d{7})\\d{4}", "$1****");
 		user.setPhone(phone);
 		um.insert(user);		
