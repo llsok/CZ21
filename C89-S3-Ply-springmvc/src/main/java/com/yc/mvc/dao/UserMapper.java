@@ -3,6 +3,7 @@ package com.yc.mvc.dao;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.yc.mvc.po.JsjUser;
 
@@ -17,6 +18,9 @@ public interface UserMapper {
 
 	@Select("select *from jsj_user where account = #{account}")
 	JsjUser selectByAccount(String account);
+
+	@Update("update jsj_user set head_img=#{headImg} where id=#{id}")
+	void updateHeadImg(JsjUser loginedUser);
 
 
 

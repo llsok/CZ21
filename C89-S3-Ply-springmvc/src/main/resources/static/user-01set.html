@@ -129,16 +129,21 @@
 			</div>
 			<div class="content_right">
 				<div class="border_white padding_10">
-					<div style="float: left; text-align: center;">
-					
-						<img class="user_profile" v-if="lu.headImg"
-							:src="lu.headImg" alt="user profile">
-						<img class="user_profile" v-else
-							src="http://cdn.shujie.me/user/default.jpg" alt="user profile">
-							
-						<br> <br> <a class="button_link"
-							href="javascript:showDlgById('user_pic_dialog');">设置头像</a>
-					</div>
+					<form id="headImgForm">
+						<div style="float: left; text-align: center;">
+						
+							<img class="user_profile" v-if="lu.headImg"
+								:src="lu.headImg" alt="user profile">
+							<img class="user_profile" v-else
+								src="http://cdn.shujie.me/user/default.jpg" alt="user profile">
+	
+							<input type="file" style="display: none;" name="headImgFile"
+								id="headImgFile" @change="uploadHeadImg">
+							<br> <br> <a class="button_link"
+								href="javascript:headImgFile.click()">设置头像</a>
+								
+						</div>
+					</form>
 					<div class="align_left user_basic_info">
 						邮箱: {{lu.email}} <br> 昵称: {{lu.name}} <br> 性别: {{lu.gender}} <br>
 						学校: {{lu.school}} <br> 上次登录: {{lu.lastLoginTime}}
@@ -157,6 +162,15 @@
 						axios.get("getLoginedUser.do").then(res=>{
 							this.lu = res.data.data;
 						})
+					},
+					methods:{
+						uploadHeadImg(){
+							// 创建文件上传表单对象
+							var fd = new FormData(headImgForm);
+							axios.post("upload.do", fd).then(res=>{
+								alert(res.data.msg + "===" + res.data.data);
+							}) 
+						}
 					}
 				})
 			</script>

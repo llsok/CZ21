@@ -1,5 +1,8 @@
 package com.yc.mvc.web;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -7,8 +10,10 @@ import javax.validation.Valid;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.yc.mvc.biz.BizException;
 import com.yc.mvc.biz.UserBiz;
@@ -76,6 +81,39 @@ public class UserAction {
 			errors.rejectValue("account", "NotOne", e.getMessage());
 			return Result.failure("字段验证错误", errors.getAllErrors());
 		}
+		
+	}
+	
+	/**
+	 * 	二阶段 Servlet 如何接收上传的文件
+	 * 	@MutilPartConfig
+	 * 	public class XXXServlet extends HttpServlet{
+	 * 		public void doPost(req,resp){
+	 * 			Part part = req.getPart("headImgFile");
+	 * 			part.write("文件路径");
+	 * 		}
+	 * 	}
+	 * 
+	 * 
+	 * @return
+	 * @throws IOException 
+	 * @throws IllegalStateException 
+	 */
+	@PostMapping("upload.do")
+	public Result upload(@RequestParam("headImgFile") MultipartFile headImgFile,
+			@SessionAttribute JsjUser loginedUser){
+		// 1. 保存文件 （保存到磁盘上）
+		try {
+			headImgFile.transferTo(new File("e:/jsj/upload_head", headImgFile.getOriginalFilename()));
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+			return Result.success("文件上传失败！", null);
+		}
+		// 2. 返回图片的web路径 ？？？？？
+		String webpath = "upload_head/" + headImgFile.getOriginalFilename();
+		loginedUser.setHeadImg(webpath);
+		ubiz.updateHeadImg(loginedUser);
+		return Result.success("文件上传成功！", webpath);
 		
 	}
 

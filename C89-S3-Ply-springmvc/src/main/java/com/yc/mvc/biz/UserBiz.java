@@ -59,4 +59,9 @@ public class UserBiz {
 		um.insert(user);		
 	}
 
+
+	public void updateHeadImg(JsjUser loginedUser) {
+		um.updateHeadImg(loginedUser);
+	}
+
 }
