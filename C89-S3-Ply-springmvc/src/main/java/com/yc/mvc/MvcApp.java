@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @MapperScan("com.yc.mvc.dao")
+
 @EnableTransactionManagement
+
 public class MvcApp {
 
 	public static void main(String[] args) {

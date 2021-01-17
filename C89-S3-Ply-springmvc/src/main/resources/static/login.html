@@ -180,6 +180,7 @@
 									p.append("pwd",this.user.pwd);
 									axios.post("login.do", p).then(res=>{
 										if(res.data.code == 1){
+											alert(res.data.msg);
 											location.href="index.html";
 										} else {
 											alert(res.data.msg);

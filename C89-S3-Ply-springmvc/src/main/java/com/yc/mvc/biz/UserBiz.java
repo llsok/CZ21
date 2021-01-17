@@ -48,7 +48,7 @@ public class UserBiz {
 		}else {
 			user.setGender("女");
 		}
-		String phone = user.getPhone().replaceAll("(\\d{3}\\d{4})\\d{4}", "$1****");
+		String phone = user.getPhone().replaceAll("(\\d{7})\\d{4}", "$1****");
 		user.setPhone(phone);
 		um.insert(user);		
 	}

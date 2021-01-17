@@ -15,7 +15,8 @@
 
 <script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
 <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
-
+<script type="text/javascript"
+	src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
@@ -131,7 +132,7 @@
 											<span class="required">*</span>
 									</label></td>
 									<td><input maxlength="15" class="ubm_textinput"
-										name="UserRegist[cellphone]" id="UserRegist_cellphone"
+										name="phone" id="UserRegist_cellphone"
 										type="text" v-model="user.phone"></td>
 									<td><div>{{errors.phone}}</div></td>
 								</tr>
@@ -140,7 +141,7 @@
 											<span class="required">*</span>
 									</label></td>
 									<td><input maxlength="15" class="ubm_textinput"
-										name="UserRegist[cellphone]" id="UserRegist_cellphone"
+										name="account" id="UserRegist_cellphone"
 										type="text" v-model="user.account"></td>
 									<td><div>{{errors.account}}</div></td>
 								</tr>
@@ -149,7 +150,7 @@
 											<span class="required">*</span>
 									</label></td>
 									<td><input maxlength="15" class="ubm_textinput"
-										name="UserRegist[cellphone]" id="UserRegist_cellphone"
+										name="pwd" id="UserRegist_cellphone"
 										type="text" v-model="user.pwd"></td>
 									<td><div>{{errors.pwd}}</div></td>
 								</tr>
@@ -158,7 +159,7 @@
 											<span class="required">*</span>
 									</label></td>
 									<td><input maxlength="30" class="ubm_textinput"
-										name="UserRegist[cellphone]" id="UserRegist_cellphone"
+										name="email" id="UserRegist_cellphone"
 										type="text" v-model="user.email"></td>
 									<td><div>{{errors.email}}</div></td>
 								</tr>
@@ -167,7 +168,7 @@
 											<span class="required">*</span>
 									</label></td>
 									<td><input maxlength="15" class="ubm_textinput"
-										name="UserRegist[cellphone]" id="UserRegist_cellphone"
+										name="name" id="UserRegist_cellphone"
 										type="text" v-model="user.name"></td>
 									<td><div>{{errors.name}}</div></td>
 								</tr>
@@ -176,7 +177,7 @@
 											<span class="required">*</span>
 									</label></td>
 									<td><select class="ubm_textinput"
-										name="UserRegist[gender]" id="UserRegist_gender" v-model="user.gender">
+										name="gender" id="UserRegist_gender" v-model="user.gender">
 											<option value="" selected="selected">-- 请选择 --</option>
 											<option value="m">男生</option>
 											<option value="f">女生</option>
@@ -235,6 +236,8 @@
 										}
 										// 清除之前的错误提示
 										for( let e in this.errors){  // let 定义的局部变量  ~=  var
+											var na = document.getElementsByName(e);
+											$(na).css('boxShadow','');
 											this.errors[e] = '';
 										}
 										// 如果code不等于1，表示失败，要将错误提示展示在页面
@@ -242,6 +245,8 @@
 											// 将报错信息展示到对应的字段下面
 											var es = res.data.data;
 											for( let e of es){  // == java for( e : es)
+												var na = document.getElementsByName(e.field);
+												$(na).css("boxShadow","0px 0px 5px 3px red");	
 												this.errors[e.field] = e.defaultMessage;  // [ ] 对对象的数字哪个复制
 											}
 										}
