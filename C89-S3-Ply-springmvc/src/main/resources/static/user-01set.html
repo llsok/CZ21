@@ -13,6 +13,9 @@
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
 
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
@@ -127,19 +130,36 @@
 			<div class="content_right">
 				<div class="border_white padding_10">
 					<div style="float: left; text-align: center;">
-						<img class="user_profile"
+					
+						<img class="user_profile" v-if="lu.headImg"
+							:src="lu.headImg" alt="user profile">
+						<img class="user_profile" v-else
 							src="http://cdn.shujie.me/user/default.jpg" alt="user profile">
+							
 						<br> <br> <a class="button_link"
 							href="javascript:showDlgById('user_pic_dialog');">设置头像</a>
 					</div>
 					<div class="align_left user_basic_info">
-						邮箱: 18073404071@phone.com <br> 昵称: 湖南工学院 <br> 性别: 男生 <br>
-						学校: 湖南工学院 <br> 上次登录: 2021-01-05 17:20:52
+						邮箱: {{lu.email}} <br> 昵称: {{lu.name}} <br> 性别: {{lu.gender}} <br>
+						学校: {{lu.school}} <br> 上次登录: {{lu.lastLoginTime}}
 					</div>
 					<br>
 					<div style="clear: both;"></div>
 				</div>
 			</div>
+			<script type="text/javascript">
+				var v = new Vue({
+					el : ".content_right",
+					data : {
+						lu : {}
+					},
+					created(){
+						axios.get("getLoginedUser.do").then(res=>{
+							this.lu = res.data.data;
+						})
+					}
+				})
+			</script>
 			<div class="clearfloat"></div>
 		</div>
 	</div>
