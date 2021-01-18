@@ -5,9 +5,10 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.github.pagehelper.PageHelper;
 import com.yc.mvc.dao.BooksMapper;
 import com.yc.mvc.po.JsjBook;
 import com.yc.mvc.web.po.Result;
@@ -46,5 +47,15 @@ public class BooksAction {
   public List<JsjBook> queryByname(String name){
 	   return bm.queryBookByname(name);
   }
+  
+  @RequestMapping(path="queryByCategory.do")
+  public List<JsjBook> queryByCategory(int category, 
+		  @RequestParam(defaultValue = "1") int page,
+		  @RequestParam(defaultValue = "10")int size){
+	  // 分页查询
+	  // count 参数： 表示是否查询总行数
+	  PageHelper.startPage(page, size, true);
+	  return bm.SelectByCategory(category);
+ }
   
 }

@@ -36,4 +36,7 @@ public interface BooksMapper {
   @Select("select * from jsj_book where name like concat('%',#{name},'%')")
   public List<JsjBook> queryBookByname(String name);
   
+  @Select("select * from jsj_book where category=#{cgy}")
+  public List<JsjBook> SelectByCategory(int category);
+  
 }
