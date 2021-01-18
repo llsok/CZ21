@@ -71,7 +71,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="main_middle">
+	<div class="main_middle" >
 
 
 		<div id="main_content" class="center_980">
@@ -95,27 +95,7 @@
 							@click="search()">
 					</form>
 				</div>
-				<script type="text/javascript">
-							var v=new Vue({
-							el:".search_div",
-							data:{
-								name:""
-							},
-							methods:{
-								search(){
-									var params = new URLSearchParams();
-									params.append("name",this.name);
-									axios.post("queryname",params).then(res=>{
-									    if(res.data.code==1){
-											location.href="search.html#"+this.name;
-										}else{
-											alert(res.data.msg);
-										}
-									})
-								}
-							}
-						})
-				</script>
+				
 				
 				<div class="clearfloat"></div>
 			</div>
@@ -592,24 +572,34 @@
 				
 				
 			</div>
-			<script type="text/javascript">
+			<div class="clearfloat"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
                      var vue=new Vue({
-                       el:".content_right",
+                       el:".main_middle",
                        data:{
                     	  		books:{},
+                    	  		name:"",
                     	  	},
                     	  	created(){
                     	  		var p =location.hash.substring(1);
                     	  		axios.get("search.s?name="+p).then(res=>{
                     	  			this.books=res.data;
                     	  		})
-                    	  	}
+                    	  	},
+                    	  	methods:{
+								search(){
+									var params = new URLSearchParams();
+									params.append("name",this.name);
+									axios.post("search.s",params).then(res=>{
+									    this.books=res.data;
+								})
+								}
+							}
                     	  })
                 </script>
-			
-			<div class="clearfloat"></div>
-		</div>
-	</div>
+                
 	<div class="bottom">
 		<div class="center_980">
 			<div class="bottom_left">
