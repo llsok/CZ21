@@ -29,6 +29,7 @@ public class UserAction {
 
 	@Resource
 	private UserBiz ubiz;
+	
 	@Resource
 	private UserMapper um;
 	
@@ -125,6 +126,11 @@ public class UserAction {
 		ubiz.updateHeadImg(loginedUser);
 		return Result.success("文件上传成功！", webpath);
 	}
+
+	@RequestMapping("getlastTimeUsers.do")
+	public List<JsjUser> getlastTimeUsers() {
+		return um.getlastTimeUsers();
+	}
 	
 	@GetMapping("NewReg.do")
 	public List<JsjUser> selectNewReg() {
@@ -132,4 +138,6 @@ public class UserAction {
 		newReg =um.selectNewRegUser();
 		return newReg;
 	}
+	
+	
 }

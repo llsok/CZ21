@@ -355,100 +355,33 @@
 					</div>
 					<div class="clearfloat"></div>
 				</div>
-				<div class="side_block">
+				<div class="side_block" id="lastLoginedUsers">
 					<div class="title">最近登录用户</div>
 					<div class="separate"></div>
 					<div class="side_user_list">
-						<ul>
+						<ul v-for="u in users">
 							<li><a target="_blank"
-								href="user/25775812"><img
-									src="res/51778590_shnhvuhv1vd8dvyq.jpg!middle"
-									title="赵不秃 ♀ 福建师范大学"></a></li>
-							<li><a target="_blank"
-								href="user/26477734"><img
-									src="res/26477734_jdyv0revyq5fypdk.jpg!middle"
-									title="读书王者 ♂ 西安汽车科技职业学院"></a></li>
-							<li><a target="_blank"
-								href="user/1927336"><img
-									src="res/2661373066_1397057645.jpg!middle"
-									title="taohele ♂ 北京理工大学"></a></li>
-							<li><a target="_blank"
-								href="user/325603"><img
-									src="res/165_m.jpg!middle" title="巫山曾迪 ♂ 北京语言大学"></a></li>
-							<li><a target="_blank"
-								href="user/43606"><img
-									src="res/24_m.jpg!middle" title="小搓搓进化光年 ♂ 清华大学"></a></li>
-							<li><a target="_blank"
-								href="user/285767"><img
-									src="res/145_m.jpg!middle" title="Miuccc ♂ 北京师范大学"></a></li>
-							<li><a target="_blank"
-								href="user/26479544"><img
-									src="res/26479544_z0a9wjfhk3q3awor.jpg!middle"
-									title="21世纪图书 ♂ 中国音乐学院"></a></li>
-							<li><a target="_blank"
-								href="user/26468205"><img
-									src="res/26468205_uds639290wftburi.jpg!middle"
-									title="乐乐学姐 ♀ 西安交通大学"></a></li>
-							<li><a target="_blank"
-								href="user/284312"><img
-									src="res/145_f.jpg!middle" title="音乐的尹悦 ♀ 北京师范大学"></a></li>
-							<li><a target="_blank"
-								href="user/227551"><img
-									src="res/116_m.jpg!middle" title="Empress ♂ 中国农业大学"></a></li>
-							<li><a target="_blank"
-								href="user/339498"><img
-									src="res/172_m.jpg!middle" title="和八戒抢媳妇 ♂ 北京语言大学"></a></li>
-							<li><a target="_blank"
-								href="user/26287288"><img
-									src="res/26287288_bgsdlovdq3j56uxf.jpg!middle"
-									title="Carrie啊 ♀ 昆明理工大学"></a></li>
-							<li><a target="_blank"
-								href="user/540305"><img
-									src="res/540305_n1dab5l6dee972hc.jpg!middle"
-									title="旧书街客服 ♂ 北京交通大学"></a></li>
-							<li><a target="_blank"
-								href="user/178627"><img
-									src="res/92_f.jpg!middle" title="熊很邪恶 ♀ 北京邮电大学"></a></li>
-							<li><a target="_blank"
-								href="user/341628"><img
-									src="res/173_m.jpg!middle" title="山东小小坤 ♂ 中国传媒大学"></a></li>
-							<li><a target="_blank"
-								href="user/26188874"><img
-									src="res/70439633_nzx132qohdyl0gd6.jpg!middle"
-									title="yk123 ♂ 北京中医药大学"></a></li>
-							<li><a target="_blank"
-								href="user/26440651"><img
-									src="res/26440651_75qk1n9b4y202l17.jpg!middle"
-									title="展示鱼 ♀ 新疆财经大学"></a></li>
-							<li><a target="_blank"
-								href="user/26468537"><img
-									src="res/26468537_nhp2n271daef5kkg.jpg!middle"
-									title="Sgyler ♀ 北京交通大学"></a></li>
-							<li><a target="_blank"
-								href="user/169982"><img
-									src="res/87_m.jpg!middle" title="hzl8705 ♂ 北京邮电大学"></a></li>
-							<li><a target="_blank"
-								href="user/77447"><img
-									src="res/41_m.jpg!middle" title="每天一杯 ♂ 北京交通大学"></a></li>
-							<li><a target="_blank"
-								href="user/80307"><img
-									src="res/43_f.jpg!middle" title="夏花秋葉720 ♀ 北京航空航天大学"></a></li>
-							<li><a target="_blank"
-								href="user/364997"><img
-									src="res/185_f.jpg!middle" title="其实这都不算粽 ♀ 中央财经大学"></a></li>
-							<li><a target="_blank"
-								href="user/26478181"><img
-									src="res/26478181_xmczeace9asu8uhn.jpg!middle"
-									title="有书社 ♂ 北京科技大学"></a></li>
-							<li><a target="_blank"
-								href="user/26475935"><img
-									src="res/26475935_qay6lbldj3f5zs5s.jpg!middle"
-									title="做个好名字 ♂ 电子科技大学"></a></li>
+								:href="'user/' + u.id"><img
+									:src="u.headImg"
+									:title="u.account+' ♀ '+u.school"></a></li>
 						</ul>
 					</div>
 					<div class="clearfloat"></div>
 				</div>
-			<div class="side_block" id="E01">
+				<script type="text/javascript">
+				var vue1 = new Vue({
+					el : "#lastLoginedUsers",
+					data : {
+						users : []
+					},
+					created(){
+						axios.get("getlastTimeUsers.do").then(res=>{
+							this.users = res.data;
+						});
+					}
+				});
+				</script>
+				<div class="side_block" id="E05">
 					<div class="title">新注册用户</div>
 					<div class="separate"></div>
 					<div class="side_user_list">
@@ -464,7 +397,7 @@
 				</div>
 				<script type="text/javascript">
 				var v1=new Vue({
-					el:"#E01",
+					el:"#E05",
 					data:{
 						list:[]
 					},

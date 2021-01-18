@@ -43,6 +43,7 @@ public class UserBiz {
 			String time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
 			Timestamp timestamp=Timestamp.valueOf(time);
 			user2.setLastLoginTime(timestamp);
+			um.updatelastLoginTime(user2);
 			return user2;
 		}else {
 			throw new BizException("用户名或密码错误");
