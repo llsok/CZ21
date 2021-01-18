@@ -27,3 +27,9 @@ mybatis:
    configuration:
       # 开启驼峰命名映射
       mapUnderscoreToCamelCase: true
+
+      
+      
+logger:
+   level:
+      com.yc: debug
