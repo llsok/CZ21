@@ -423,13 +423,13 @@
 						</div>
 						<div class="book_list" >
 							<ul v-for="h in Hbooks">
-								<li><a href="sell/395243711"
+								<li><a :href="'book.html#' + h.id"
 									target="_blank"> <img class="book_pic_border"
 										:src="h.pic">
 								</a>
 									<p class="book_name">
 										<a target="_blank"
-											href="sell/395243711">{{h.name}}</a>
+											:href="'book.html#' + h.id">{{h.name}}</a>
 									</p>
 									<div class="price">
 										<div class="now_price">￥{{h.price}}</div>
@@ -455,14 +455,14 @@
 						</div>
 						<div class="book_list" >
 							<ul v-for="t in Tbooks">
-								<li><a href="sell/393547102"
+								<li><a :href="'book.html#' + t.id"
 									target="_blank"> <img class="book_pic_border"
 										:src="t.pic"
 									>
 								</a>
 									<p class="book_name">
 										<a target="_blank"
-											href="sell/393547102"
+											:href="'book.html#' + t.id"
 											>{{t.name}}</a>
 									</p>
 									<div class="price">

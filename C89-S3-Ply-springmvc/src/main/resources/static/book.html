@@ -11,27 +11,41 @@
 <link rel="stylesheet" type="text/css" href="res/ubm_basic.css">
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
+	
+	<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
 
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
-	<div class="site_top_row">
+<div class="site_top_row">
 		<div class="center_980">
 			<div class="school_location" style="float: left;">
 				[<a href="javascript:void(0)"
 					onclick="showSchoolList();return false;">所有学校</a>]
 			</div>
 			<div id="top_user_info" style="float: right;">
-				<a href="login.html">登录</a>|<a
-					href="sell/create">出售</a>|<a
-					style="color: rgb(254, 137, 0);"
-					href="register.html">立即注册</a>|<a
-					class="app_mobile" target="_blank"
-					href="site/app">下载APP</a>
+				<a v-if="lu.account" href="user-01set.html">{{lu.account}}</a>
+				<a v-else href="login.html">登录</a>
+				|
+				<a href="sell/create">出售</a>|
+				<a style="color: rgb(254, 137, 0);" href="register.html">立即注册</a>|
+				<a class="app_mobile" target="_blank" href="site/app">下载APP</a>
 			</div>
 			<div class="clearfloat"></div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		var v = new Vue({
+			el : ".site_top_row",
+			data : { lu : {} }, // lu ==> loginedUser
+			created(){
+				axios.get("getLoginedUser.do").then(res=>{
+					this.lu = res.data.data;
+				})
+			}
+		})
+	</script>
 	<div id="top">
 		<div class="center_980">
 			<div id="logo">
@@ -65,33 +79,31 @@
 					<div class="user_photo">
 						<div>
 							<img class="user_profile"
-								src="http://cdn.shujie.me/user/2020/12/29/0504543958_1609244742.jpg!big"
+								:src="detail.user.headImg"
 								alt="jiebaixiuhua">
 						</div>
 						<div class="user_nav_info">
 							<ul>
-								<li>jiebaixiuhua</li>
-								<li>男生</li>
-								<li>海南大学</li>
-								<li>上次登录:&nbsp;今天</li>
+								<li>{{detail.user.account}}</li>
+								<li>{{detail.user.gender}}</li>
+								<li>{{detail.user.school}}</li>
+								<!-- <li>上次登录:&nbsp;今天</li>
 								<li><a class="user_fan_faned_link"
 									href="user/26469640/follow">关注(1)</a>&nbsp;<a
 									class="user_fan_faned_link"
-									href="user/26469640/fan">粉丝(0)</a></li>
+									href="user/26469640/fan">粉丝(0)</a></li> -->
 							</ul>
 						</div>
 					</div>
 
 					<div class="self_introduction">
-						姓名: 陈先生<br>手机: 1345080****(下单后可见)<br>地址: 海南省海口市琼山区旧州镇
+						姓名: {{detail.user.name}}<br>手机: 1{{detail.user.phone}}(下单后可见)<br>地址: {{detail.user.addrDesc}}
 					</div>
 					<input style="width: 300px;" class="button_user_action"
 						onclick="openLoginPageWithFrom();" name="yt0" type="button"
 						value="详细联系方式下单后可见">
 					<div class="clearfloat"></div>
 				</div>
-
-
 				<div class="side_block">
 					<div class="title">最近看过</div>
 					<div class="separate"></div>
@@ -212,27 +224,25 @@
 			</div>
 			<div class="content_right">
 				<div class="breadcrumbs">
-					<a href="/user/26469640/sell">jiebaixiuhua的主页</a> » <a
-						href="/user/26469640/sell">TA出售的二手书</a> » <span>未来简史</span>
+					<a href="/user/26469640/sell">{{detail.user.account}}</a> » <a
+						href="/user/26469640/sell">TA出售的二手书</a> » <span>{{detail.name}}</span>
 				</div>
 				<div class="book_item">
 					<div class="book_pic">
-						<img class="book_pic" alt="未来简史-买卖二手书,就上旧书街"
-							title="未来简史-买卖二手书,就上旧书街"
-							src="http://cdn.shujie.me/isbn/508/672/9787508672069_19.jpg!w600">
+						<img class="book_pic" :src="detail.pic">
 					</div>
 					<div class="info">
-						<h2>未来简史</h2>
+						<h2>{{detail.name}}</h2>
 						<div class="detail">
-							<br> 中信出版集团 / 林俊宏 <br> <br> 9787508672069 <br>
-							<br> ￥19.00 &nbsp;&nbsp;<span class="line-through-price">￥68.00</span>
-							&nbsp;&nbsp;(2.8折) <br> <br> 全新
-							&nbsp;&nbsp;&nbsp;&nbsp;文学艺术
+							<br> {{detail.press}} <br> <br> {{detail.author}} <br>
+							<br> ￥{{detail.price}} &nbsp;&nbsp;<span class="line-through-price">￥{{detail.markPrice}}</span>
+							&nbsp;&nbsp;({{detail.discount}}) <br> <br> 全新
+							&nbsp;&nbsp;&nbsp;&nbsp;{{detail.category}}
 						</div>
 					</div>
 					<div class="clearfloat"></div>
-					<div class="book_introduction_container">
-						进入21世纪后，曾经长期威胁人类生存、发展的瘟疫、饥荒和战争已经被攻克，智人面临着新的待办议题：永生不老、幸福快乐和成为具有“神性”的人类。在解决这些新问题的过程中，科学技术的发展将颠覆我们很多当下认为无需佐证的“常识”，比如人文主义所推崇的自由意志将面临严峻挑战，机器将会代替人类做出更明智的选择。<br>更重要的，当以大数据、人工智能为代表的科学技术发展的日益成熟，人类将面临着从进化到智人以来zui大的一次改变，绝大部分人将沦为“无价值的群体”，只有少部分人能进化成特质发生改变的&nbsp;“神人”。<br>未来，人类将面临着三大问题：生物本身就是算法，生命是不断处理数据的过程；意识与智能的分离；拥有大数据积累的外部环境将比我们自己更了解自己。如何看待这三大问题，以及如何采取应对措施，将直接影响着人类未来的发展。<br>
+					<div class="book_introduction_container" v-html="detail.intro">
+					
 					</div>
 					<div class="align_right book_view_action_container">
 						<div style="float: left; width: 134px;">
@@ -249,6 +259,20 @@
 			</div>
 			<div class="clearfloat"></div>
 		</div>
+		<script type="text/javascript">
+					var v = new Vue({
+						el : "#main_content",
+						data : {
+							detail : {}
+						},
+						created(){
+							axios.get("quertBookDetail.do?id="+ location.hash.substring(1)).then(res=>{
+								this.detail = res.data;
+							})
+						}
+					})
+				
+		</script>
 	</div>
 
 	<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
