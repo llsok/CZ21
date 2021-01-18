@@ -1,5 +1,9 @@
 package com.yc.mvc.biz;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -34,6 +38,12 @@ public class UserBiz {
 		}
 		JsjUser user2 = um.selectByAccountAndPwd(user.getAccount(),user.getPwd());
 		if(user2 !=null) {
+			
+			Date date=new Date();
+			String time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+			Timestamp timestamp=Timestamp.valueOf(time);
+			user2.setLastLoginTime(timestamp);
+			um.updatelastLoginTime(user2);
 			return user2;
 		}else {
 			throw new BizException("用户名或密码错误");

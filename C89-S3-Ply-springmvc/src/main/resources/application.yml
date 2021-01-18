@@ -23,6 +23,11 @@ spring:
       multipart:
          # 配置文件上传大小限制
          maxFileSize: 1000000
+         
+   jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+      time-zone: GMT+8    
+        
 mybatis:
    configuration:
       # 开启驼峰命名映射
