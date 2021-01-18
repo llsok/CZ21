@@ -448,111 +448,33 @@
 					</div>
 					<div class="clearfloat"></div>
 				</div>
-				<div class="side_block">
+			<div class="side_block" id="E01">
 					<div class="title">新注册用户</div>
 					<div class="separate"></div>
 					<div class="side_user_list">
 						<ul>
-							<li><a target="_blank"
-								href="user/26478257"><img
-									src="res/26478257_eafappw3u89oyh8h.jpg!middle"
-									title="青神0417 ♀ 临沂大学"></a></li>
-							<li><a target="_blank"
-								href="user/26476973"><img
-									src="res/26476973_ulocshfo1dz4drls.jpg!middle"
-									title="拉普拉斯女孩 ♀ 学校未设置"></a></li>
-							<li><a target="_blank"
-								href="user/26478050"><img
-									src="res/26478050_u5inu5fzxpzeim51.jpg!middle"
-									title="晨雨初听 ♂ 郑州大学"></a></li>
-							<li><a target="_blank"
-								href="user/26477709"><img
-									src="res/26477709_1sqvi4nh3z40y7p5.jpg!middle"
-									title="是熙沫喔 ♀ 辽宁工业大学"></a></li>
-							<li><a target="_blank"
-								href="user/26478579"><img
-									src="res/26478579_pwzy3ymfihxj6639.jpg!middle"
-									title="北派二舅爸 ♂ 兰州大学"></a></li>
-							<li><a target="_blank"
-								href="user/26478140"><img
-									src="res/26478140_r3s1pl3xgawhdpg5.jpg!middle"
-									title="苏囦囦 ♀ 学校未设置"></a></li>
-							<li><a target="_blank"
-								href="user/26478772"><img
-									src="res/26478772_dunhskxrh76hnzyf.jpg!middle"
-									title="LotusLeaf ♀ 学校未设置"></a></li>
-							<li><a target="_blank"
-								href="user/26478846"><img
-									src="res/26478846_fx0v1ptbfszugbql.jpg!middle"
-									title="爱看书的小耿 ♂ 山东大学"></a></li>
-							<li><a target="_blank"
-								href="user/26479312"><img
-									src="res/26479312_ke99ajk13zr4aaso.jpg!middle"
-									title="廿师傅 ♂ 福建农林大学"></a></li>
-							<li><a target="_blank"
-								href="user/26478181"><img
-									src="res/26478181_xmczeace9asu8uhn.jpg!middle"
-									title="有书社 ♂ 北京科技大学"></a></li>
-							<li><a target="_blank"
-								href="user/26479104"><img
-									src="res/26479104_udg6vco7xaytnie3.jpg!middle"
-									title="小胖墩儿 ♀ 南昌大学"></a></li>
-							<li><a target="_blank"
-								href="user/26478219"><img
-									src="res/26478219_2fvbdgrzmtad65li.jpg!middle"
-									title="少年有为 ♀ 宁波大学"></a></li>
-							<li><a target="_blank"
-								href="user/26478344"><img
-									src="res/26478344_2wscehiglr5vbi71.jpg!middle"
-									title="一一书屋 ♀ 西南科技大学"></a></li>
-							<li><a target="_blank"
-								href="user/26478583"><img
-									src="res/26478583_aseb77ev9s1pkxqh.jpg!middle"
-									title="学海无底 ♂ 广东第二师范学院"></a></li>
-							<li><a target="_blank"
-								href="user/26479562"><img
-									src="res/58089983_ex8822deydvd14pa.jpg!middle"
-									title="有璇书店 ♂ 衡阳师范学院"></a></li>
-							<li><a target="_blank"
-								href="user/26479544"><img
-									src="res/26479544_z0a9wjfhk3q3awor.jpg!middle"
-									title="21世纪图书 ♂ 中国音乐学院"></a></li>
-							<li><a target="_blank"
-								href="user/26477096"><img
-									src="res/26477096_ao5lh1jdyh5o1sm4.jpg!middle"
-									title="故事机的小花 ♀ 河南牧业经济学院"></a></li>
-							<li><a target="_blank"
-								href="user/26479262"><img
-									src="res/26479262_9z3bk6ondonbkr2n.jpg!middle"
-									title="南夕—— ♂ 山东旅游职业学院"></a></li>
-							<li><a target="_blank"
-								href="user/26478640"><img
-									src="res/26478640_lhq44cdktud5xgcb.jpg!middle"
-									title="莲花书店 ♂ 学校未设置"></a></li>
-							<li><a target="_blank"
-								href="user/26479460"><img
-									src="res/26479460_67fdd1eegpal460b.jpg!middle"
-									title="zⅹ825273 ♀ 山西医科大学"></a></li>
-							<li><a target="_blank"
-								href="user/26478884"><img
-									src="res/26478884_xmi9a9s9y8d46wr0.jpg!middle"
-									title="点烟抽寂寞 ♂ 南阳理工学院"></a></li>
-							<li><a target="_blank"
-								href="user/26476954"><img
-									src="res/26476954_073om37suu3ilkxr.jpg!middle"
-									title="doudoushuwu ♀ 山西大学"></a></li>
-							<li><a target="_blank"
-								href="user/26478894"><img
-									src="res/26478894_msdkvkr426ko8uz4.jpg!middle"
-									title="嘚嘚嘚～ ♀ 学校未设置"></a></li>
-							<li><a target="_blank"
-								href="user/26478442"><img
-									src="res/26478442_90t9izszd9huf74x.jpg!middle"
-									title="书店小跑腿 ♂ 山东青年政治学院"></a></li>
+							<li v-for="n in list">
+							<a target="_blank" href="user-.html">
+							<img :src="n.headImg" :title="n.school">
+							</a>
+							</li>							
 						</ul>
 					</div>
 					<div class="clearfloat"></div>
 				</div>
+				<script type="text/javascript">
+				var v1=new Vue({
+					el:"#E01",
+					data:{
+						list:[]
+					},
+					created(){
+						axios.get("NewReg.do").then(res=>{
+							this.list=res.data;
+						})
+					}
+				})
+				</script>
 			</div>
 			
 			<div class="content_right">

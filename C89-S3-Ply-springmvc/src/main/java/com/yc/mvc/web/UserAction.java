@@ -2,6 +2,7 @@ package com.yc.mvc.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +29,8 @@ public class UserAction {
 
 	@Resource
 	private UserBiz ubiz;
+	@Resource
+	private UserMapper um;
 	
 	@PostMapping("login.do")
 	public Result login(JsjUser user, HttpSession session) throws BizException {
@@ -121,5 +125,11 @@ public class UserAction {
 		ubiz.updateHeadImg(loginedUser);
 		return Result.success("文件上传成功！", webpath);
 	}
-
+	
+	@GetMapping("NewReg.do")
+	public List<JsjUser> selectNewReg() {
+		List<JsjUser> newReg;
+		newReg =um.selectNewRegUser();
+		return newReg;
+	}
 }
