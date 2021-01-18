@@ -24,9 +24,14 @@ public interface UserMapper {
 
 	@Update("update jsj_user set head_img=#{headImg} where id=#{id}")
 	void updateHeadImg(JsjUser loginedUser);
+
 	
 	@Select("select * from jsj_user order by last_login_time desc limit 0,24")
 	public List<JsjUser> getlastTimeUsers();
+
+
+	@Update("update jsj_user set last_login_time=#{lastLoginTime} where id=#{id}")
+	void updatelastLoginTime(JsjUser loginedUser);
 
 
 }
