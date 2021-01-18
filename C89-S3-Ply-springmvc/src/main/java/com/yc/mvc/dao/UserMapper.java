@@ -24,6 +24,8 @@ public interface UserMapper {
 	void updateHeadImg(JsjUser loginedUser);
 
 
+	@Update("update jsj_user set last_login_time=#{lastLoginTime} where id=#{id}")
+	void updatelastLoginTime(JsjUser loginedUser);
 
 
 }
