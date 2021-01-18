@@ -35,6 +35,6 @@ mybatis:
 
       
       
-logger:
+logging:
    level:
       com.yc: debug

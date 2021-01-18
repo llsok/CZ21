@@ -1,6 +1,8 @@
 package com.yc.mvc.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.yc.mvc.dao.BooksMapper;
 import com.yc.mvc.po.JsjBook;
@@ -49,13 +52,26 @@ public class BooksAction {
   }
   
   @RequestMapping(path="queryByCategory.do")
-  public List<JsjBook> queryByCategory(int category, 
+  public Map<String,Object> queryByCategory(int category, 
 		  @RequestParam(defaultValue = "1") int page,
 		  @RequestParam(defaultValue = "10")int size){
 	  // 分页查询
 	  // count 参数： 表示是否查询总行数
-	  PageHelper.startPage(page, size, true);
-	  return bm.SelectByCategory(category);
+	  boolean count = true;
+	  Page<JsjBook> p = PageHelper.startPage(page, size, count);
+	  // Page 封装分页的页码相关的数值： 第几页，每页行数 。。。
+	  bm.SelectByCategory(category);
+	  Map<String,Object> ret = new HashMap<>();
+	  // 分页数据
+	  ret.put("list", p);
+	  // 总页数
+	  ret.put("pages", p.getPages());
+	  // 当前页
+	  ret.put("page", p.getPageNum());
+	  return ret;
+	  
+	  // 1. Page 是 ArrayList的子类  也就是 List 的子类
+	  // 2. PageHelper 会讲查询的数据写入到 Page 中
  }
   
 }

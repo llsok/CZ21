@@ -13,6 +13,9 @@
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
 
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
@@ -422,39 +425,37 @@
 							<ul id="yw1" class="yiiPager">
 								<li class="first hidden"><a href="/sell/category/id/3000">&lt;&lt;
 										首页</a></li>
-								<li class="previous hidden"><a
-									href="/sell/category/id/3000">&lt; 前页</a></li>
-								<li class="page selected"><a href="/sell/category/id/3000">1</a></li>
-								<li class="page"><a href="/sell/category/id/3000/page/2">2</a></li>
-								<li class="page"><a href="/sell/category/id/3000/page/3">3</a></li>
-								<li class="page"><a href="/sell/category/id/3000/page/4">4</a></li>
-								<li class="page"><a href="/sell/category/id/3000/page/5">5</a></li>
-								<li class="next"><a href="/sell/category/id/3000/page/2">后页
-										&gt;</a></li>
-								<li class="last"><a href="/sell/category/id/3000/page/99">末页
-										&gt;&gt;</a></li>
+								<li class="previous"><a :href="'category.html?1000&page='+(page.page-1)">&lt; 前页</a></li>
+								
+								<li class="page" v-for=" num in 5 ">
+									<a :href="'category.html?1000&page='+num">{{num}}</a>
+								</li>
+								
+								<li class="next"><a :href="'category.html?1000&page='+(page.page+1)">后页 &gt;</a></li>
+								<li class="last"><a :href="'category.html?1000&page='+page.pages">末页 &gt;&gt;</a></li>
 							</ul>
 						</div>
 						<div class="items">
-							<div class="book_item dashed_border_bottom">
+							<div v-for="b in page.list" class="book_item dashed_border_bottom">
 								<div class="book_pic">
 									<a target="_blank"
 										href="sell/12071462"> <img
 										class="book_pic"
-										src="http://cdn.shujie.me/book/2017/05/31/1883431347_1496232606.jpg!w600"
-										alt="网络营销决胜武器" title="网络营销决胜武器">
+										:src="b.pic"
+										:alt="b.name" :title="b.name">
 									</a>
 								</div>
 								<div class="info">
 									<div class="title">
-										<a target="_blank" href="/sell/12071462">网络营销决胜武器</a>
+										<a target="_blank" href="/sell/12071462">{{b.name}}</a>
 									</div>
 									<div class="detail padding_10">
 
-										电子工业出版社 / 徐茂权 <br>
-										<br> ￥9.00 &nbsp;&nbsp;<span class="line-through-price">￥49.00</span>
-										&nbsp;&nbsp;(1.8折) <br>
-										<br> 九成新
+										{{b.press}} / {{b.author}} <br>
+										<br> ￥{{b.price}} &nbsp;&nbsp;
+										<span class="line-through-price">￥{{b.markPrice}}</span>
+										&nbsp;&nbsp;({{b.discount}}) <br>
+										<br> {{b.oldnew}}
 									</div>
 									<div class="user_info_tiny">
 										<div style="float: left;">
@@ -462,108 +463,8 @@
 												class="user_pic_tiny"
 												src="http://cdn.shujie.me/user/2017/05/31/5199700371_1496231027.jpg!tiny"
 												alt="思明" title="思明"></a><a href="/user/17628138"
-												target="_blank">思明</a>&nbsp;&nbsp;&nbsp;&nbsp;<span
-												title="女生" class="female">♀</span>&nbsp;&nbsp;&nbsp;&nbsp;北京中医药大学
-										</div>
-										<div class="comment_count"></div>
-									</div>
-								</div>
-							</div>
-							<div class="book_item dashed_border_bottom">
-								<div class="book_pic">
-									<a target="_blank"
-										href="sell/14150936"> <img
-										class="book_pic"
-										src="http://cdn.shujie.me/book/2017/07/07/7069996360_1499420150.jpg!w600"
-										alt="富爸爸穷爸爸（最新修订版）" title="富爸爸穷爸爸（最新修订版）">
-									</a>
-								</div>
-								<div class="info">
-									<div class="title">
-										<a target="_blank" href="/sell/14150936">富爸爸穷爸爸（最新修订版）</a>
-									</div>
-									<div class="detail padding_10">
-
-										四川文艺出版社 / 萧明 <br>
-										<br> ￥14.00 &nbsp;&nbsp;<span class="line-through-price">￥28.00</span>
-										&nbsp;&nbsp;(5.0折) <br>
-										<br> 九成新
-									</div>
-									<div class="user_info_tiny">
-										<div style="float: left;">
-											<a href="/user/17884250" target="_blank"><img
-												class="user_pic_tiny"
-												src="http://cdn.shujie.me/user/2017/07/07/4357953192_1499419913.jpg!tiny"
-												alt="Keno" title="Keno"></a><a href="/user/17884250"
-												target="_blank">Keno</a>&nbsp;&nbsp;&nbsp;&nbsp;<span
-												title="女生" class="female">♀</span>&nbsp;&nbsp;&nbsp;&nbsp;北京中医药大学
-										</div>
-										<div class="comment_count"></div>
-									</div>
-								</div>
-							</div>
-							<div class="book_item dashed_border_bottom">
-								<div class="book_pic">
-									<a target="_blank"
-										href="sell/14169745"> <img
-										class="book_pic"
-										src="http://cdn.shujie.me/book/2017/07/07/5013518637_1499422427.jpg!w600"
-										alt="圣才教育•国内外经典教材辅导系列•金融类•黄达《金融学》"
-										title="圣才教育•国内外经典教材辅导系列•金融类•黄达《金融学》">
-									</a>
-								</div>
-								<div class="info">
-									<div class="title">
-										<a target="_blank" href="/sell/14169745">圣才教育•国内外经典教材辅导系列•金融类•黄达《金融学》</a>
-									</div>
-									<div class="detail padding_10">
-
-										中国石化出版社 / 圣才考研网 <br>
-										<br> ￥25.00 &nbsp;&nbsp;<span class="line-through-price">￥45.00</span>
-										&nbsp;&nbsp;(5.6折) <br>
-										<br> 全新
-									</div>
-									<div class="user_info_tiny">
-										<div style="float: left;">
-											<a href="/user/17884250" target="_blank"><img
-												class="user_pic_tiny"
-												src="http://cdn.shujie.me/user/2017/07/07/4357953192_1499419913.jpg!tiny"
-												alt="Keno" title="Keno"></a><a href="/user/17884250"
-												target="_blank">Keno</a>&nbsp;&nbsp;&nbsp;&nbsp;<span
-												title="女生" class="female">♀</span>&nbsp;&nbsp;&nbsp;&nbsp;北京中医药大学
-										</div>
-										<div class="comment_count"></div>
-									</div>
-								</div>
-							</div>
-							<div class="book_item dashed_border_bottom">
-								<div class="book_pic">
-									<a target="_blank"
-										href="sell/14169900"> <img
-										class="book_pic"
-										src="http://cdn.shujie.me/book/2017/07/07/0200591839_1499422476.jpg!w600"
-										alt="金融学" title="金融学">
-									</a>
-								</div>
-								<div class="info">
-									<div class="title">
-										<a target="_blank" href="/sell/14169900">金融学</a>
-									</div>
-									<div class="detail padding_10">
-
-										unknown / 黄达 <br>
-										<br> ￥49.00 &nbsp;&nbsp;<span class="line-through-price">￥75.00</span>
-										&nbsp;&nbsp;(6.5折) <br>
-										<br> 全新
-									</div>
-									<div class="user_info_tiny">
-										<div style="float: left;">
-											<a href="/user/17884250" target="_blank"><img
-												class="user_pic_tiny"
-												src="http://cdn.shujie.me/user/2017/07/07/4357953192_1499419913.jpg!tiny"
-												alt="Keno" title="Keno"></a><a href="/user/17884250"
-												target="_blank">Keno</a>&nbsp;&nbsp;&nbsp;&nbsp;<span
-												title="女生" class="female">♀</span>&nbsp;&nbsp;&nbsp;&nbsp;北京中医药大学
+												target="_blank">???</a>&nbsp;&nbsp;&nbsp;&nbsp;<span
+												title="女生" class="female">♀</span>&nbsp;&nbsp;&nbsp;&nbsp;?????
 										</div>
 										<div class="comment_count"></div>
 									</div>
@@ -594,6 +495,21 @@
 					</div>
 				</div>
 			</div>
+			<script type="text/javascript">
+				var v = new Vue({
+					el:".content_right",
+					data:{
+						page : {}
+					},
+					created(){
+						// 127.0.0.1/category.html?1000
+						var category = location.search.substring(1);
+						axios.get("queryByCategory.do?category="+category).then(res=>{
+							this.page = res.data;
+						})
+					}
+				})
+			</script>
 			<div class="clearfloat"></div>
 		</div>
 	</div>
