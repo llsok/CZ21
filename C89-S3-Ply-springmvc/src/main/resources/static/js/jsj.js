@@ -146,3 +146,35 @@ Vue.component(
 				</div>`
 	}
 )
+Vue.component(
+		"yetou",
+		{
+			data : function(){
+				return { 
+					lu : {}
+				};
+			},
+			created(){
+				axios.get("getLoginedUser.do").then(res=>{
+					this.lu = res.data.data;
+				})
+			},
+			template : `<div class="site_top_row">
+							<div class="center_980">
+								<div class="school_location" style="float: left;">
+									[<a href="javascript:void(0)"
+										onclick="showSchoolList();return false;">所有学校</a>]
+								</div>
+								<div id="top_user_info" style="float: right;">
+									<a v-if="lu.account" href="user-01set.html">{{lu.account}}</a>
+									<a v-else href="login.html">登录</a>
+									|
+									<a href="sell/create">出售</a>|
+									<a style="color: rgb(254, 137, 0);" href="register.html">立即注册</a>|
+									<a class="app_mobile" target="_blank" href="site/app">下载APP</a>
+								</div>
+								<div class="clearfloat"></div>
+							</div>
+						</div>`
+		}
+)
