@@ -57,6 +57,9 @@ public class BooksAction {
 		// 分页查询
 		// count 参数： 表示是否查询总行数
 		boolean count = true;
+		if (page<2) {
+			page = 1;
+		}
 		Page<JsjBook> p = PageHelper.startPage(page, size, count);
 		// Page 封装分页的页码相关的数值： 第几页，每页行数 。。。
 		bm.SelectByCategory(category);

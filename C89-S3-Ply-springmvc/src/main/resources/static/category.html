@@ -435,11 +435,11 @@
 										首页</a></li>
 								<li class="previous"><a :href="'category.html?1000&page='+(page.page-1)">&lt; 前页</a></li>
 								
-								<li class="page" v-for=" num in 5 ">
+								<li :class="active==num?'selected':''" v-for=" num in plist ">
 									<a :href="'category.html?1000&page='+num">{{num}}</a>
 								</li>
 								
-								<li class="next"><a :href="'category.html?1000&page='+(page.page+1)">后页 &gt;</a></li>
+								<li class="previous"><a :href="'category.html?1000&page='+(page.page+1)">后页 &gt;</a></li>
 								<li class="last"><a :href="'category.html?1000&page='+page.pages">末页 &gt;&gt;</a></li>
 							</ul>
 						</div>
@@ -483,15 +483,13 @@
 							<ul id="yw2" class="yiiPager">
 								<li class="first hidden"><a href="/sell/category/id/3000">&lt;&lt;
 										首页</a></li>
-								<li class="previous hidden"><a
-									href="/sell/category/id/3000">&lt; 前页</a></li>
-								<li class="page selected"><a href="/sell/category/id/3000">1</a></li>
-								<li class="page"><a href="/sell/category/id/3000/page/2">2</a></li>
-								<li class="page"><a href="/sell/category/id/3000/page/3">3</a></li>
-								<li class="page"><a href="/sell/category/id/3000/page/4">4</a></li>
-								<li class="page"><a href="/sell/category/id/3000/page/5">5</a></li>
-								<li class="next"><a href="/sell/category/id/3000/page/2">后页
-										&gt;</a></li>
+								<li class="previous"><a :href="'category.html?1000&page='+(page.page-1)">&lt; 前页</a></li>
+								
+								<li :class="active==num?'selected':''" v-for=" num in plist ">
+									<a :href="'category.html?1000&page='+num">{{num}}</a>
+								</li>
+								
+								<li class="previous"><a :href="'category.html?1000&page='+(page.page+1)">后页 &gt;</a></li>
 								<li class="last"><a href="/sell/category/id/3000/page/99">末页
 										&gt;&gt;</a></li>
 							</ul>
@@ -508,6 +506,8 @@
 					el:".content_right",
 					data:{
 						page : {},
+						plist:[1,2,3,4,5],
+						active:1,
 						cate : [],
 					},
 					created(){
@@ -515,7 +515,21 @@
 						var category = location.search.substring(1);
 						axios.get("queryByCategory.do?category="+category).then(res=>{
 							this.page = res.data;
-							
+							var p = this.page.page;
+							var ps = this.page.pages;
+							this.active = p;
+							if(p>3){
+								this.plist = [];
+								if(ps-p-2<0){
+									for(var i = 0;i<5;i++){
+										this.plist.unshift(ps-i);
+									}
+								}else{
+									for(var i = 0;i<5;i++){
+										this.plist.push(p-2+i);
+									}	
+								}														
+							}
 						}),
 						axios.get("selectByCateId.do?category="+category).then(res=>{
 							this.cate = res.data;
