@@ -250,3 +250,119 @@ Vue.component(
 				</div>`
 	}
 )
+
+
+Vue.component(
+	'mul',
+	{
+		template : 
+			`<div class="side_block">
+					<div class="title">最多人关注</div>
+					<div class="separate"></div>
+					<div class="side_user_list">
+						<ul>
+							<li><a target="_blank"
+								href="user/540305"><img
+									src="res/540305_n1dab5l6dee972hc.jpg!middle"
+									title="旧书街客服 ♂ 北京交通大学"></a></li>
+							<li><a target="_blank"
+								href="user/543702"><img
+									src="res/4801464973_1447948297.jpg!middle"
+									title="daihanla ♀ 北京邮电大学"></a></li>
+							<li><a target="_blank"
+								href="user/1730678"><img
+									src="res/4949898217_1395410353.jpg!middle"
+									title="旧书街官方活动 ♂ 北京邮电大学"></a></li>
+							<li><a target="_blank"
+								href="user/4822592"><img
+									src="res/4822592_v0g8zc4s448n2zp6.jpg!middle"
+									title="eddison ♂ 北京大学"></a></li>
+							<li><a target="_blank"
+								href="user/11494418"><img
+									src="res/1390796519_1467885194.jpg!middle"
+									title="布科书屋 ♂ 山东传媒职业学院"></a></li>
+							<li><a target="_blank"
+								href="user/11525234"><img
+									src="res/5139204071_1479230482.jpg!middle" title="艾念333 ♂ 河北大学"></a></li>
+							<li><a target="_blank"
+								href="user/15624945"><img
+									src="res/9819130012_1468891330.jpg!middle"
+									title="小豆腐啊 ♀ 山东师范大学"></a></li>
+							<li><a target="_blank"
+								href="user/15768037"><img
+									src="res/8701011384_1489841601.jpg!middle"
+									title="醉三年 ♂ 河北交通职业技术学院"></a></li>
+							<li><a target="_blank"
+								href="user/15853618"><img
+									src="res/8767971901_1470919411.jpg!middle" title="怪盗 ♀ 清华大学"></a></li>
+							<li><a target="_blank"
+								href="user/16034138"><img
+									src="res/16034138_qgmqrf65vicok57v.jpg!middle"
+									title="梵歌旧书帮 ♂ 莆田学院"></a></li>
+							<li><a target="_blank"
+								href="user/16605959"><img
+									src="res/0091191133_1479986351.jpg!middle"
+									title="西施书屋 ♀ 宁波工程学院"></a></li>
+							<li><a target="_blank"
+								href="user/16638354"><img
+									src="res/7468920359_1480572497.jpg!middle"
+									title="蒲公英TM ♂ 河北师范大学"></a></li>
+							<li><a target="_blank"
+								href="user/16745713"><img
+									src="res/4357262108_1493876789.jpg!middle" title="翠研 ♀ 重庆大学"></a></li>
+							<li><a target="_blank"
+								href="user/16982378"><img
+									src="res/8692929230_1504180972.jpg!middle"
+									title="上游 ♂ 哈尔滨工程技术职业学院"></a></li>
+							<li><a target="_blank"
+								href="user/17297648"><img
+									src="res/8446001075_1491383097.jpg!middle"
+									title="冰儿790315 ♀ 东北财经大学"></a></li>
+							<li><a target="_blank"
+								href="user/17898422"><img
+									src="res/17898422_dxj4hgmaygvu5esd.jpg!middle"
+									title="琅嬛 ♂ 枣庄学院"></a></li>
+							<li><a target="_blank"
+								href="user/17931502"><img
+									src="res/2303436157_1500259991.jpg!middle"
+									title="吉光片羽 ♂ 河南财经政法大学"></a></li>
+							<li><a target="_blank"
+								href="user/18631084"><img
+									src="res/18631084_8las37adrgyvwys7.jpg!middle"
+									title="争取5元10元出 ♂ 对外经济贸易大学"></a></li>
+							<li><a target="_blank"
+								href="user/19167800"><img
+									src="res/6630286866_1541560291.jpg!middle"
+									title="卖图书的女汉纸 ♂ 南京大学"></a></li>
+							<li><a target="_blank"
+								href="user/19175418"><img
+									src="res/19175418_qak54pv61lqmxrkn.jpg!middle"
+									title="心灵书屋 ♀ 上海外国语大学"></a></li>
+							<li><a target="_blank"
+								href="user/22333097"><img
+									src="res/22333097_6eygylayxuykgex4.jpg!middle"
+									title="sky78 ♂ 北京大学"></a></li>
+							<li><a target="_blank"
+								href="user/22466149"><img
+									src="res/3987045210_1544458241.jpg!middle" title="四眼猫 ♂ 成都学院"></a></li>
+							<li><a target="_blank"
+								href="user/22476232"><img
+									src="res/22476232_nn68l1csye5f9nwd.jpg!middle"
+									title="清水精品书屋 ♂ 延边大学"></a></li>
+							<li><a target="_blank"
+								href="user/22486582"><img
+									src="res/94822324_gul21wtmdp3phxag.jpg!middle"
+									title="王二丫 ♀ 宁夏医科大学"></a></li>
+						</ul>
+					</div>
+					<div class="clearfloat"></div>
+				</div>
+			`
+	}
+)
+
+
+
+
+
+
