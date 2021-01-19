@@ -96,5 +96,31 @@ Vue.component(
 						</ul>
 					</div>
 				</div>`
+
+Vue.component(
+	'ltusers',
+	{
+		data : function(){
+			return { users : [] };
+		},
+		created(){
+			axios.get("getlastTimeUsers.do").then(res=>{
+				this.users = res.data;
+			});
+		},
+		template : `<div class="side_block" id="lastLoginedUsers">
+						<div class="title">最近登录用户</div>
+						<div class="separate"></div>
+						<div class="side_user_list">
+							<ul v-for="u in users">
+								<li><a target="_blank"
+									:href="'user/' + u.id"><img
+										:src="u.headImg"
+										:title="u.account+' ♀ '+u.school"></a></li>
+							</ul>
+						</div>
+						<div class="clearfloat"></div>
+					</div>`
+
 	}
 )
