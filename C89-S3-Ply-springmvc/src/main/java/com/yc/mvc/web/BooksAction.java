@@ -75,6 +75,31 @@ public class BooksAction {
 		// 1. Page 是 ArrayList的子类 也就是 List 的子类
 		// 2. PageHelper 会讲查询的数据写入到 Page 中
 	}
+	
+	@RequestMapping(path = "queryNew.do")
+	public Map<String, Object> queryBew(@RequestParam(defaultValue = "1") int page,
+			@RequestParam(defaultValue = "10") int size) {
+		// 分页查询
+		// count 参数： 表示是否查询总行数
+		boolean count = true;
+		if (page<2) {
+			page = 1;
+		}
+		Page<JsjBook> p = PageHelper.startPage(page, size, count);
+		// Page 封装分页的页码相关的数值： 第几页，每页行数 。。。
+		bm.selectNew();
+		Map<String, Object> ret = new HashMap<>();
+		// 分页数据
+		ret.put("list", p);
+		// 总页数
+		ret.put("pages", p.getPages());
+		// 当前页
+		ret.put("page", p.getPageNum());
+		return ret;
+
+		// 1. Page 是 ArrayList的子类 也就是 List 的子类
+		// 2. PageHelper 会讲查询的数据写入到 Page 中
+	}
 
 	@RequestMapping("quertBookDetail.do")
 	public JsjBook quertBookDetail(int id) {

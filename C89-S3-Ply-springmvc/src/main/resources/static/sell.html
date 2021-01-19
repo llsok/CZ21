@@ -142,35 +142,33 @@
 							</ul>
 						</div>
 						<div class="items">
-							<div class="book_item dashed_border_bottom">
+							<div v-for="b in page.list" class="book_item dashed_border_bottom">
 								<div class="book_pic">
 									<a target="_blank"
 										href="sell.html/395277219"> <img
 										class="book_pic"
-										src="http://cdn.shujie.me/isbn/115/373/9787115373557_27.jpg!w600"
-										alt="数学之美 （第二版）" title="数学之美 （第二版）">
+										:src="b.pic"
+										:alt="b.name" :title="b.name">
 									</a>
 								</div>
 								<div class="info">
 									<div class="title">
-										<a target="_blank" href="/sell.html/395277219">数学之美 （第二版）</a>
+										<a target="_blank" href="/sell.html/395277219">{{b.name}}</a>
 									</div>
 									<div class="detail padding_10">
-									
 										<div class="buy_action"><a href="javascript:addCart(395428230);" class="button_link">购&nbsp;&nbsp;买</a></div>
-										
-										人民邮电出版社 / 吴军 <br> <br> ￥18.00 &nbsp;&nbsp;<span
-											class="line-through-price">￥49.00</span> &nbsp;&nbsp;(3.7折) <br>
+										{{b.press}} / {{b.author}} <br> <br> ￥{{b.price}} &nbsp;&nbsp;<span
+											class="line-through-price">￥{{b.markPrice}}</span> &nbsp;&nbsp;({{b.discount}}) <br>
 										<br> 全新
 									</div>
 									<div class="user_info_tiny">
 										<div style="float: left;">
 											<a href="/user/26477238" target="_blank"><img
 												class="user_pic_tiny"
-												src="http://cdn.shujie.me/user/2021/01/05/01/26477238_avk7rg0y8lqbl73a.jpg!tiny"
-												alt="gjzhou" title="gjzhou"></a><a href="/user/26477238"
-												target="_blank">gjzhou</a>&nbsp;&nbsp;&nbsp;&nbsp;<span
-												title="男生" class="male">♂</span>&nbsp;&nbsp;&nbsp;&nbsp;安徽科技学院
+												:src="b.user.headImg"
+												:alt="b.user.name" :title="b.user.name"></a><a href="/user/26477238"
+												target="_blank">{{b.user.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<span
+												title="男生" class="male">♂</span>&nbsp;&nbsp;&nbsp;&nbsp;{{b.school}}
 										</div>
 										<div class="comment_count"></div>
 									</div>
@@ -194,6 +192,18 @@
 							<span>395277219</span><span>395277215</span><span>395277204</span><span>395277195</span><span>395277178</span><span>395277175</span><span>395277171</span><span>395277167</span><span>395277166</span><span>395277164</span><span>395277163</span><span>395277161</span>
 						</div>
 					</div>
+					<script type="text/javascript">
+						new Vue({
+							el:"#yw0",
+							data:{ page : {} },
+							created(){
+								axios.get("queryNew.do").then(res=>{
+									this.page=res.data;
+								})
+							}
+						})
+					
+					</script>
 				</div>
 			</div>
 			<div class="clearfloat"></div>

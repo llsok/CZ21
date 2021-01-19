@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
@@ -30,8 +31,12 @@ public interface BooksMapper {
 	public List<JsjBook> SelectByCategory(int category);
 
 	@Select("select * from jsj_book where id=#{id}")
-	@Results(value = { @Result(column = "owner_id", property = "user", 
+	@Results(id="rmbook", value = { @Result(column = "owner_id", property = "user", 
 		one = @One(select = "com.yc.mvc.dao.UserMapper.selectById")) })
 	public JsjBook quertBookDetail(int id);
+
+	@Select("select * from jsj_book order by id desc")
+	@ResultMap("rmbook")
+	public List<JsjBook> selectNew();
 
 }
