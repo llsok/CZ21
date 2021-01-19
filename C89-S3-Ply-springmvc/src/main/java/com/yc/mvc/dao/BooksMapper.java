@@ -30,9 +30,8 @@ public interface BooksMapper {
 	public List<JsjBook> SelectByCategory(int category);
 
 	@Select("select * from jsj_book where id=#{id}")
-	@Results(value = { @Result(column = "mark_price", property = "markPrice"),
-			@Result(column = "owner_id", property = "ownerId"),
-			@Result(column = "owner_id", property = "user", one = @One(select = "com.yc.mvc.dao.UserMapper.selectById")) })
+	@Results(value = { @Result(column = "owner_id", property = "user", 
+		one = @One(select = "com.yc.mvc.dao.UserMapper.selectById")) })
 	public JsjBook quertBookDetail(int id);
 
 }
