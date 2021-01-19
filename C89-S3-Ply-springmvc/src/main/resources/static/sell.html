@@ -16,6 +16,7 @@
 <title>买卖二手书,就上旧书街</title>
 <script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
 <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+<script type="text/javascript" src="js/cateList.js"></script>
 </head>
 <body>
 	<div class="site_top_row">
@@ -62,13 +63,16 @@
 
 		<div id="main_content" class="center_980">
 			<div class="content_left">
-				<div class="side_block">
-					<div class="title">书籍分类</div>
-					<div class="separate"></div>
-					<div id="booktype_sidebar_div">
-						<a v-for="c in calist" :href="'category.html?'+c.id" category_key="1000">{{c.name}}</a> 
-					</div>
+				
+				<div id="cate">
+					<!-- 使用Vue的自定义组件 -->
+					<cate></cate>
 				</div>
+				<script type="text/javascript">
+					new Vue({
+						el:"#cate"
+					})
+				</script>
 				<div class="side_block">
 					<div class="title">热门书店</div>
 					<div class="separate"></div>
@@ -430,17 +434,7 @@
 				</div>
 			</div>
 			<script type="text/javascript">
-				var vue1 = new Vue({
-					el : ".content_left",
-					data : {
-						calist:{},
-					},
-					created(){
-						axios.get("selectAllCate.do").then(res=>{
-							this.calist=res.data;
-						});
-					}
-				});
+				
 				</script>
 			<div class="content_right">
 				<div class="border_white"
