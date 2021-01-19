@@ -96,7 +96,8 @@ Vue.component(
 						</ul>
 					</div>
 				</div>`
-
+	}
+)
 Vue.component(
 	'ltusers',
 	{
