@@ -67,25 +67,25 @@
 					<div class="user_photo">
 						<div>
 							<img class="user_profile"
-								:src="list.list.headImg"
-								:alt="list.list.name || list.list.account">
+								:src="list.headImg"
+								:alt="list.name || list.account">
 						</div>
 						<div class="user_nav_info">
 							<ul>
-								<li>{{list.list.name || list.list.account}}</li>
-								<li>{{list.list.gender}}</li>
-								<li>{{list.list.schoolObj.name}}</li>
-								<li>上次登录:&nbsp;{{list.list.lastLoginTime ? list.list.lastLoginTime : '今天'}}</li>
+								<li>{{list.name || list.list.account}}</li>
+								<li>{{list.gender}}</li>
+								<li>{{list.schoolObj.name}}</li>
+								<li>上次登录:&nbsp;{{list.lastLoginTime ? list.lastLoginTime : '今天'}}</li>
 								<li><a class="user_fan_faned_link"
-									href="user/26398619/follow">关注({{list.guanzhu}})</a>&nbsp;<a
+									href="user/26398619/follow">关注({{list.guanzhu.length}})</a>&nbsp;<a
 									class="user_fan_faned_link"
-									href="user/26398619/fan">粉丝({{list.fans}})</a></li>
+									href="user/26398619/fan">粉丝({{list.fans.length}})</a></li>
 							</ul>
 						</div>
 					</div>
 
 					<div class="self_introduction">
-						姓名: {{list.list.name}}<br>手机: {{list.list.phone}}(下单后可见)<br>地址: {{list.list.addrDesc}}
+						姓名: {{list.name}}<br>手机: {{list.phone}}(下单后可见)<br>地址: {{list.addrDesc}}
 					</div>
 					<input style="width: 300px;" class="button_user_action"
 						onclick="openLoginPageWithFrom();" name="yt0" type="button"
@@ -104,6 +104,7 @@
 						var uid = location.hash.substring(1);
 						axios.get("selectById?id="+uid).then(res=>{
 							this.list = res.data;
+							console.info(this.list.fans.length);
 						})
 					}
 				})

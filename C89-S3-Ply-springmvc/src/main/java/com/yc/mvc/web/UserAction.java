@@ -150,13 +150,8 @@ public class UserAction {
 
 	
 	@RequestMapping("selectById")
-	public Map<String, Object> selectById(int id) {
-		JsjUser user = um.selectById(id);
-		Map<String, Object> map = new HashMap<>();
-		map.put("list", user);
-		map.put("fans", user.getFans().size());
-		map.put("guanzhu", user.getGuanzhu().size());
-		return map;
+	public JsjUser selectById(int id) {
+		return  um.selectById(id);		
 	}
 
 	@PostMapping("sign.do")
