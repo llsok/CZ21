@@ -168,7 +168,11 @@
 							// 创建文件上传表单对象
 							var fd = new FormData(headImgForm);
 							axios.post("upload.do", fd).then(res=>{
-								this.lu.headImg = res.data.data;
+								if(res.data.code==1){
+									this.lu.headImg = res.data.data;
+								}else if(res.data.code==0){
+									alert(res.data.msg);
+								}
 							}) 
 						}
 					}

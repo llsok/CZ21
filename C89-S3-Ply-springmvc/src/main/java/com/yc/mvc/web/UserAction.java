@@ -113,18 +113,25 @@ public class UserAction {
 		String oldfile = headImgFile.getOriginalFilename();
 		// 获取原文件的后缀名
 		String suffix = oldfile.substring(oldfile.lastIndexOf("."));
-		newfile += suffix;
-		try {
-			headImgFile.transferTo(new File("e:/jsj/upload_head", newfile));
-		} catch (IllegalStateException | IOException e) {
-			e.printStackTrace();
-			return Result.success("文件上传失败！", null);
+		System.out.println(suffix);
+		if(suffix.equalsIgnoreCase(".png")||suffix.equalsIgnoreCase(".jpg")||suffix.equalsIgnoreCase(".gif")||suffix.equalsIgnoreCase(".jpeg")
+				||suffix.equalsIgnoreCase(".pdf")) {
+			newfile += suffix;
+			try {
+				headImgFile.transferTo(new File("e:/jsj/upload_head", newfile));
+			} catch (IllegalStateException | IOException e) {
+				e.printStackTrace();
+				return Result.failure(0,"文件上传失败！", null);
+			}
+			// 2. 返回图片的web路径 
+			String webpath = "upload_head/" + newfile;
+			loginedUser.setHeadImg(webpath);
+			ubiz.updateHeadImg(loginedUser);
+			return Result.success(1,"文件上传成功！", webpath);
+		}else {
+			return Result.failure(0,"文件上传失败，文件不是图片！", suffix);
 		}
-		// 2. 返回图片的web路径 
-		String webpath = "upload_head/" + newfile;
-		loginedUser.setHeadImg(webpath);
-		ubiz.updateHeadImg(loginedUser);
-		return Result.success("文件上传成功！", webpath);
+		
 	}
 
 	@RequestMapping("getlastTimeUsers.do")

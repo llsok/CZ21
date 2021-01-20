@@ -98,6 +98,7 @@ Vue.component(
 				</div>`
 	}
 )
+
 Vue.component(
 	'ltusers',
 	{
@@ -146,8 +147,9 @@ Vue.component(
 				</div>`
 	}
 )
+
 Vue.component(
-		"yetou",
+		'yetou',
 		{
 			data : function(){
 				return { 
@@ -178,7 +180,8 @@ Vue.component(
 						</div>`
 		}
 	)
-	Vue.component(
+	
+Vue.component(
 	'hbs',
 	{
 		template : `<div class="side_block">
