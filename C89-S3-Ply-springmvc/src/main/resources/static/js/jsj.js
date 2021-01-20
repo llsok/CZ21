@@ -17,7 +17,7 @@ Vue.component(
 						<div class="side_user_list">
 							<ul>
 								<li v-for="n in list">
-								<a target="_blank" href="user-.html">
+								<a target="_blank" :href="'user.html#'+n.id">
 								<img :src="n.headImg" :title="n.school">
 								</a>
 								</li>							
@@ -116,7 +116,7 @@ Vue.component(
 						<div class="side_user_list">
 							<ul v-for="u in users">
 								<li><a target="_blank"
-									:href="'user/' + u.id"><img
+									:href="'user.html#'+u.id"><img
 										:src="u.headImg"
 										:title="u.account+' ♀ '+u.school"></a></li>
 							</ul>

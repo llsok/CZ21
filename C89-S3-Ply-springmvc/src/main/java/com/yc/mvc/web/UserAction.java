@@ -2,7 +2,9 @@ package com.yc.mvc.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -146,5 +148,13 @@ public class UserAction {
 		return newReg;
 	}
 	
-	
+	@RequestMapping("selectById")
+	public Map<String, Object> selectById(int id) {
+		JsjUser user = um.selectById(id);
+		Map<String, Object> map = new HashMap<>();
+		map.put("list", user);
+		map.put("fans", user.getFans().size());
+		map.put("guanzhu", um.selectGuanzhu(id));
+		return map;
+	}
 }
