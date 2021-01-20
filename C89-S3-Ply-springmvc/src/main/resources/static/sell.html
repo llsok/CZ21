@@ -156,7 +156,9 @@
 										<a target="_blank" href="/sell.html/395277219">{{b.name}}</a>
 									</div>
 									<div class="detail padding_10">
-										<div class="buy_action"><a href="javascript:addCart(395428230);" class="button_link">购&nbsp;&nbsp;买</a></div>
+										<div class="buy_action">
+											<a href="#" @click.prevent="addCart(b.id)" class="button_link">购&nbsp;&nbsp;买</a>
+										</div>
 										{{b.press}} / {{b.author}} <br> <br> ￥{{b.price}} &nbsp;&nbsp;<span
 											class="line-through-price">￥{{b.markPrice}}</span> &nbsp;&nbsp;({{b.discount}}) <br>
 										<br> 全新
@@ -200,6 +202,18 @@
 								axios.get("queryNew.do").then(res=>{
 									this.page=res.data;
 								})
+							},
+							methods:{
+								addCart(id){
+									axios.post("addCart.do?count=1&bid=" + id).then(res=>{
+										alert(res.data.msg);
+										
+										
+										
+										
+										141 c
+									})
+								}
 							}
 						})
 					

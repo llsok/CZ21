@@ -1,5 +1,7 @@
 package com.yc.mvc.biz;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,6 +12,7 @@ import com.yc.mvc.po.JsjCart;
 @Transactional
 public class CartBiz {
 	
+	@Resource
 	private CartMapper cm;
 	
 	public void addCart(JsjCart cart) {
