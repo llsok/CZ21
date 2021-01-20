@@ -3,9 +3,11 @@ package com.yc.mvc.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -38,11 +40,29 @@ public interface UserMapper {
 
 	@Select("select * from jsj_user where id=#{id}")
 	@Results(id="rmuser", value = { @Result(column = "school", property = "schoolObj", 
-	one = @One(select = "com.yc.mvc.dao.SchoolMapper.selectById")) })
+	one = @One(select = "com.yc.mvc.dao.SchoolMapper.selectById")),
+			@Result(column = "id",property = "fans",
+			many = @Many(select = "selectFans")),
+			@Result(column = "id",property = "guanzhu",
+			many = @Many(select = "selectGuanzhu"))})
 	public JsjUser selectById(int id);
 	
+
 	@Update("update jsj_user set collect_type=#{collectType},"
 			+ "collect_account=#{collectAccount},collect_name=#{collectName} "
 			+ "where id=#{id}")
 	void addcollect(JsjUser user);
+
+
+	@Select("select * from jsj_fans where uid = #{uid}")
+	public List<JsjUser> selectFans(int uid);
+	
+	@Select("select * from jsj_fans where fid = #{fid}")
+	public List<JsjUser> selectGuanzhu(int fid);
+
+	@Update("update jsj_user set sign=#{sign} where id=#{id}")
+	void updateJsjUserSign(String sign,int id) ;
+
+	
+
 }

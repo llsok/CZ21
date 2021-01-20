@@ -68,6 +68,7 @@
 					<!-- 使用Vue的自定义组件 -->
 					<cate></cate>
 					<!-- 最热门店 -->
+					<cate></cate>
 					<hbs></hbs>
 					<!-- 最热个人 -->
 					<hotperson></hotperson>
@@ -131,15 +132,16 @@
 					<div id="yw0" class="list-view">
 						<div class="pager">
 							<ul id="yw1" class="yiiPager">
-								<li class="first hidden"><a href="/sell.html">&lt;&lt; 首页</a></li>
-								<li class="previous hidden"><a href="/sell.html">&lt; 前页</a></li>
-								<li class="page selected"><a href="/sell.html">1</a></li>
-								<li class="page"><a href="/sell.html?page=2">2</a></li>
-								<li class="page"><a href="/sell.html?page=3">3</a></li>
-								<li class="page"><a href="/sell.html?page=4">4</a></li>
-								<li class="page"><a href="/sell.html?page=5">5</a></li>
-								<li class="next"><a href="/sell.html?page=2">后页 &gt;</a></li>
-								<li class="last"><a href="/sell.html?page=99">末页 &gt;&gt;</a></li>
+								<li class="first hidden"><a href="/sell/category/id/3000">&lt;&lt;
+										首页</a></li>
+								<li class="previous"><a :href="'sell.html?page='+(page.page-1)">&lt; 前页</a></li>
+								
+								<li :class="active==num?'selected':''" v-for=" num in plist ">
+									<a :href="'sell.html?page='+num">{{num}}</a>
+								</li>
+								
+								<li class="previous"><a :href="'sell.html?page='+(page.page+1)">后页 &gt;</a></li>
+								<li class="last"><a :href="'sell.html?page='+page.pages">末页 &gt;&gt;</a></li>
 							</ul>
 						</div>
 						<div class="items">
@@ -170,8 +172,8 @@
 												class="user_pic_tiny"
 												:src="b.user.headImg"
 												:alt="b.user.name" :title="b.user.name"></a><a href="/user/26477238"
-												target="_blank">{{b.user.name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<span
-												title="男生" class="male">♂</span>&nbsp;&nbsp;&nbsp;&nbsp;{{b.school}}
+												target="_blank">{{b.user.account}}</a>&nbsp;&nbsp;&nbsp;&nbsp;<span
+												title="男生" class="male">♂</span>&nbsp;&nbsp;&nbsp;&nbsp;{{b.user.schoolObj.name}}
 										</div>
 										<div class="comment_count"></div>
 									</div>
@@ -180,15 +182,16 @@
 						</div>
 						<div class="pager">
 							<ul id="yw2" class="yiiPager">
-								<li class="first hidden"><a href="/sell.html">&lt;&lt; 首页</a></li>
-								<li class="previous hidden"><a href="/sell.html">&lt; 前页</a></li>
-								<li class="page selected"><a href="/sell.html">1</a></li>
-								<li class="page"><a href="/sell.html?page=2">2</a></li>
-								<li class="page"><a href="/sell.html?page=3">3</a></li>
-								<li class="page"><a href="/sell.html?page=4">4</a></li>
-								<li class="page"><a href="/sell.html?page=5">5</a></li>
-								<li class="next"><a href="/sell.html?page=2">后页 &gt;</a></li>
-								<li class="last"><a href="/sell.html?page=99">末页 &gt;&gt;</a></li>
+								<li class="first hidden"><a href="/sell/category/id/3000">&lt;&lt;
+										首页</a></li>
+								<li class="previous"><a :href="'sell.html?page='+(page.page-1)">&lt; 前页</a></li>
+								
+								<li :class="active==num?'selected':''" v-for=" num in plist ">
+									<a :href="'sell.html?page='+num">{{num}}</a>
+								</li>
+								
+								<li class="previous"><a :href="'sell.html?page='+(page.page+1)">后页 &gt;</a></li>
+								<li class="last"><a :href="'sell.html?page='+page.pages">末页 &gt;&gt;</a></li>
 							</ul>
 						</div>
 						<div class="keys" style="display: none" title="/sell.html">
@@ -198,16 +201,43 @@
 					<script type="text/javascript">
 						new Vue({
 							el:"#yw0",
-							data:{ page : {} },
+							data:{ 
+								page : {},
+								plist:1,
+								active:1,
+								cate : [],
+						},
 							created(){
-								axios.get("queryNew.do").then(res=>{
-									this.page=res.data;
+								var pa = location.search.substring(1);
+								axios.get("queryNew.do?"+pa).then(res=>{
+									this.page = res.data;
+									var p = this.page.page;
+									var ps = this.page.pages;
+									this.active = p;
+									this.plist=ps;
+									
+									if(p>3){
+										this.plist = [];
+										if(ps-p-2<0){
+											for(var i = 0;i<5;i++){
+												this.plist.unshift(ps-i);
+											}
+										}else{
+											for(var i = 0;i<5;i++){
+												this.plist.push(p-2+i);
+											}	
+										}														
+									}else{
+										this.plist = [1,2,3,4,5];
+									}												
+									  
 								})
 							},
 							methods:{
 								addCart(id){
 									axios.post("addCart.do?count=1&bid=" + id).then(res=>{
 										alert(res.data.msg);
+
 									})
 								}
 							}

@@ -2,7 +2,9 @@ package com.yc.mvc.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -146,7 +148,9 @@ public class UserAction {
 		newReg =um.selectNewRegUser();
 		return newReg;
 	}
+
 	
+
 	@PostMapping("addCollect.do")
 	public Result addCollect(@Valid JsjUser user,Errors errors,@SessionAttribute JsjUser loginedUser) {
 		if(errors.hasFieldErrors("collectType")||errors.hasFieldErrors("collectAccount")||errors.hasFieldErrors("collectName")) {
@@ -157,4 +161,18 @@ public class UserAction {
 		System.out.println(user.getCollectAccount());
 		return Result.success("提交收款账号成功",null);
 	}
+
+	@RequestMapping("selectById")
+	public JsjUser selectById(int id) {
+		return  um.selectById(id);		
+	}
+
+	@PostMapping("sign.do")
+	public Result updateSign(String sign,int id) {
+		um.updateJsjUserSign(sign,id);
+		return Result.success("修改成功", null);
+	}
+
+
+
 }

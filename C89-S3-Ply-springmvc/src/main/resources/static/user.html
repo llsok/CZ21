@@ -14,6 +14,9 @@
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
 
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+<script type="text/javascript" src="js/jsj.js"></script>
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
@@ -64,25 +67,25 @@
 					<div class="user_photo">
 						<div>
 							<img class="user_profile"
-								src="http://cdn.shujie.me/user/2020/12/11/11/26398619_u8qh0icocnbarbes.jpg!big"
-								alt="启航ing">
+								:src="list.headImg"
+								:alt="list.name || list.account">
 						</div>
 						<div class="user_nav_info">
 							<ul>
-								<li>启航ing</li>
-								<li>男生</li>
-								<li>北京交通大学</li>
-								<li>上次登录:&nbsp;今天</li>
+								<li>{{list.name || list.list.account}}</li>
+								<li>{{list.gender}}</li>
+								<li>{{list.schoolObj.name}}</li>
+								<li>上次登录:&nbsp;{{list.lastLoginTime ? list.lastLoginTime : '今天'}}</li>
 								<li><a class="user_fan_faned_link"
-									href="user/26398619/follow">关注(2)</a>&nbsp;<a
+									href="user/26398619/follow">关注({{list.guanzhu.length}})</a>&nbsp;<a
 									class="user_fan_faned_link"
-									href="user/26398619/fan">粉丝(30)</a></li>
+									href="user/26398619/fan">粉丝({{list.fans.length}})</a></li>
 							</ul>
 						</div>
 					</div>
 
 					<div class="self_introduction">
-						姓名: 徐先生<br>手机: 1597119****(下单后可见)<br>地址: 湖北省孝感市孝昌县
+						姓名: {{list.name}}<br>手机: {{list.phone}}(下单后可见)<br>地址: {{list.addrDesc}}
 					</div>
 					<input style="width: 300px;" class="button_user_action"
 						onclick="openLoginPageWithFrom();" name="yt0" type="button"
@@ -92,6 +95,20 @@
 
 
 			</div>
+			<script type="text/javascript">
+				var v = new Vue({
+					el:".content_left",
+					data:{
+						list:{},
+					},created(){
+						var uid = location.hash.substring(1);
+						axios.get("selectById?id="+uid).then(res=>{
+							this.list = res.data;
+							console.info(this.list.fans.length);
+						})
+					}
+				})
+			</script>
 			<div class="content_right">
 				<div class="border_white padding_10">
 					<div style="float: left; margin: -6px 0 -2px 10px; width: 100%;">
