@@ -3,18 +3,6 @@ package com.yc.mvc.po;
 import java.util.Date;
 
 public class JsjFans {
-	
-	private JsjUser user;
-	
-  
-	
-	public JsjUser getUser() {
-		return user;
-	}
-
-	public void setUser(JsjUser user) {
-		this.user = user;
-	}
 
 	private Integer id;
 
