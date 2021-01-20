@@ -55,9 +55,12 @@ public interface UserMapper {
 
 
 	@Select("select * from jsj_fans a left JOIN jsj_user b on a.fid = b.id where uid = #{uid}")
+	@Results(id = "rmschool",value = { @Result(column = "school", property = "schoolObj", 
+	one = @One(select = "com.yc.mvc.dao.SchoolMapper.selectById"))})
 	public List<JsjUser> selectFans(int uid);
 	
 	@Select("select * from jsj_fans a left JOIN jsj_user b on a.uid = b.id where fid = #{fid}")
+	@ResultMap("rmschool")
 	public List<JsjUser> selectGuanzhu(int fid);
 
 	@Update("update jsj_user set sign=#{sign} where id=#{id}")
