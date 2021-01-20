@@ -40,4 +40,9 @@ public interface UserMapper {
 	@Results(id="rmuser", value = { @Result(column = "school", property = "schoolObj", 
 	one = @One(select = "com.yc.mvc.dao.SchoolMapper.selectById")) })
 	public JsjUser selectById(int id);
+	
+	@Update("update jsj_user set sign=#{sign} where id=#{id}")
+	void updateJsjUserSign(String sign,int id) ;
+
+	
 }

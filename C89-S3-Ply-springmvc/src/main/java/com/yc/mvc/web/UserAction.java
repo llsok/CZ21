@@ -145,6 +145,10 @@ public class UserAction {
 		newReg =um.selectNewRegUser();
 		return newReg;
 	}
+	@PostMapping("sign.do")
+	public Result updateSign(String sign,int id) {
+		um.updateJsjUserSign(sign,id);
+		return Result.success("修改成功", null);
+	}
 
-	
 }
