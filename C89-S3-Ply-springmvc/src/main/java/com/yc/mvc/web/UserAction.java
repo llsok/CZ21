@@ -174,5 +174,9 @@ public class UserAction {
 	}
 
 
+	@RequestMapping("selectMostGuanZhu")
+	public List<JsjUser> selectMostGuanZhu(){
+		return um.selectMostGuanZhu();
+	}
 
 }

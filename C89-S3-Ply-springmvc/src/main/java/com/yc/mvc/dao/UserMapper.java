@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.yc.mvc.po.JsjFans;
 import com.yc.mvc.po.JsjUser;
 
 public interface UserMapper {
@@ -67,5 +68,12 @@ public interface UserMapper {
 	void updateJsjUserSign(String sign,int id) ;
 
 	
-
+	
+//	@Select("select * from jsj_fans GROUP BY uid ORDER BY count(*) desc LIMIT 0,24")
+//	@Results(value = { @Result(column = "uid", property = "user", 
+//	one = @One(select = "selectById"))})
+	@Select("select * from jsj_user b right JOIN jsj_fans a on a.uid = b.id "
+			+ " GROUP BY a.uid ORDER BY count(*) desc LIMIT 0,24 ")
+	@ResultMap("rmschool")
+	public List<JsjUser> selectMostGuanZhu();
 }
