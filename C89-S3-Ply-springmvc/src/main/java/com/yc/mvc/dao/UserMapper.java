@@ -48,10 +48,19 @@ public interface UserMapper {
 	public JsjUser selectById(int id);
 	
 
-	@Select("select * from jsj_fans where uid = #{uid}")
+	@Update("update jsj_user set collect_type=#{collectType},"
+			+ "collect_account=#{collectAccount},collect_name=#{collectName} "
+			+ "where id=#{id}")
+	void addcollect(JsjUser user);
+
+
+	@Select("select * from jsj_fans a left JOIN jsj_user b on a.fid = b.id where uid = #{uid}")
+	@Results(id = "rmschool",value = { @Result(column = "school", property = "schoolObj", 
+	one = @One(select = "com.yc.mvc.dao.SchoolMapper.selectById"))})
 	public List<JsjUser> selectFans(int uid);
 	
-	@Select("select * from jsj_fans where fid = #{fid}")
+	@Select("select * from jsj_fans a left JOIN jsj_user b on a.uid = b.id where fid = #{fid}")
+	@ResultMap("rmschool")
 	public List<JsjUser> selectGuanzhu(int fid);
 
 	@Update("update jsj_user set sign=#{sign} where id=#{id}")
