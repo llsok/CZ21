@@ -47,6 +47,14 @@ public class Result implements java.io.Serializable {
 	public static Result failure(String msg, Object data) {
 		return new Result(0, msg, data);
 	}
+	
+	public static Result success(int code,String msg, Object data) {
+		return new Result(1, msg, data);
+	}
+
+	public static Result failure(int code,String msg, Object data) {
+		return new Result(0, msg, data);
+	}
 
 	public Result(int code, String msg, Object data) {
 		super();
