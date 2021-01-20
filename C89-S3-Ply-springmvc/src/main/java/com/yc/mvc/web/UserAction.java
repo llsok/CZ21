@@ -145,6 +145,6 @@ public class UserAction {
 		newReg =um.selectNewRegUser();
 		return newReg;
 	}
-	
+
 	
 }
