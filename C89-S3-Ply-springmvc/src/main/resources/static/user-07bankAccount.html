@@ -14,6 +14,10 @@
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
 
 <title>买卖二手书,就上旧书街</title>
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+<script type="text/javascript"
+	src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 </head>
 <body>
 	<div class="site_top_row">
@@ -140,7 +144,7 @@
 												<span class="required">*</span>
 										</label></td>
 										<td><select class="ubm_textinput"
-											name="BankAccount[type]" id="BankAccount_type">
+											name="collect_type" id="BankAccount_type">
 												<option value="" selected="selected"></option>
 												<option value="支付宝">支付宝</option>
 												<option value="中国银行">中国银行</option>
@@ -149,30 +153,84 @@
 												<option value="中国农业银行">中国农业银行</option>
 												<option value="招商银行">招商银行</option>
 										</select></td>
+										<td><div>{{errors.collectType}}</div></td>
 									</tr>
 									<tr>
 										<td><label for="BankAccount_realname" class="required">开户名
 												<span class="required">*</span>
 										</label></td>
-										<td><input maxlength="45" class="ubm_textinput"
-											name="BankAccount[realname]" id="BankAccount_realname"
+										<td><input v-model="user.collect_name" maxlength="45" class="ubm_textinput"
+											name="collect_name" id="BankAccount_realname"
 											type="text"></td>
+										<td><div>{{errors.collectName}}</div></td>
 									</tr>
 									<tr>
 										<td><label for="BankAccount_account" class="required">账号
 												<span class="required">*</span>
 										</label></td>
-										<td><input maxlength="45" class="ubm_textinput"
-											name="BankAccount[account]" id="BankAccount_account"
+										<td><input v-model="user.collect_account" maxlength="45" class="ubm_textinput"
+											name="collect_account" id="BankAccount_account"
 											type="text"></td>
+										<td><div>{{errors.collectAccount}}</div></td>
 									</tr>
 								</tbody>
 							</table>
+							
 							<div class="margin_left_134">
-								<input id="submit_button" class="button" type="submit"
-									name="yt0" value="提交">
+								<input id="submit_button" class="button" type="button"
+							 		@click="sub"	name="yt0" value="提交">
 							</div>
 						</form>
+						<script type="text/javascript">
+						var v = new Vue({
+							el : "#user-introduction-form",
+							data : {
+								user : {
+									collect_type : "",
+									collect_account : "",
+									collect_name : "",
+								},
+								errors : {
+									collectType : "",
+									collectAccount : "",
+									collectName : "",
+								},
+							},
+							methods : {
+								sub(){
+									var type=document.getElementById("BankAccount_type");
+									var index1=type.selectedIndex;
+									this.user.collect_type=type.options[index1].value;
+									var param = new URLSearchParams();
+									param.append('collectType',this.user.collect_type);
+									param.append('collectAccount',this.user.collect_account);
+									param.append('collectName',this.user.collect_name);
+									axios.post("addCollect.do",param).then(res=>{
+										if(res.data.code==1){
+											alert(res.data.msg);
+										}
+										// 清除之前的错误提示
+										for( let e in this.errors){  // let 定义的局部变量  ~=  var
+											var na = document.getElementsByName(e);
+											$(na).css('boxShadow','');
+											this.errors[e] = '';
+										}
+										// 如果code不等于1，表示失败，要将错误提示展示在页面
+										if(res.data.code != 1){
+											// 将报错信息展示到对应的字段下面
+											var es = res.data.data;
+											for( let e of es){  // == java for( e : es)
+												var na = document.getElementsByName(e.field);
+												$(na).css("boxShadow","0px 0px 5px 3px red");	
+												this.errors[e.field] = e.defaultMessage;  // [ ] 对对象的数字哪个复制
+											}
+										}
+										
+									});
+								}
+							}
+						})
+					</script>
 					</div>
 				</div>
 			</div>

@@ -40,6 +40,16 @@ public class JsjUser {
 		this.fans = fans;
 	}
 
+	private List<JsjUser> guanzhu;
+	
+	public List<JsjUser> getGuanzhu() {
+		return guanzhu;
+	}
+
+	public void setGuanzhu(List<JsjUser> guanzhu) {
+		this.guanzhu = guanzhu;
+	}
+
 	/**
 	 * 	用户所属学校
 	 */
@@ -83,15 +93,22 @@ public class JsjUser {
 
     private String school;
 
-    @NotEmpty(message = "性别不能位空")
+    @NotEmpty(message = "性别不能为空")
     private String gender;
 
     private String sign;
 
+    @NotEmpty(message = "账号类型不能为空")
     private String collectType;
-
+    
+    @NotEmpty(message = "账号不能为空")
+    @Pattern(regexp = "[0-9]*",
+	message ="请填写正确的账号" )
     private String collectAccount;
+    
 
+    @Pattern(regexp = "[\\u4e00-\\u9fa5]+",
+	message ="开户名只能为汉字" )
     private String collectName;
 
     private String addrName;
