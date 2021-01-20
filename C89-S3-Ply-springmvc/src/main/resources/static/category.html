@@ -428,7 +428,7 @@
 								<li class="previous"><a :href="'category.html?1000&page='+(page.page-1)">&lt; 前页</a></li>
 								
 								<li :class="active==num?'selected':''" v-for=" num in plist ">
-									<a :href="'category.html?1000&page='+num">{{num}}</a>
+									<a :href="'category.html?'+cate.id+'&page='+num">{{num}}</a>
 								</li>
 								
 								<li class="previous"><a :href="'category.html?1000&page='+(page.page+1)">后页 &gt;</a></li>
@@ -478,8 +478,9 @@
 								<li class="previous"><a :href="'category.html?1000&page='+(page.page-1)">&lt; 前页</a></li>
 								
 								<li :class="active==num?'selected':''" v-for=" num in plist ">
-									<a :href="'category.html?1000&page='+num">{{num}}</a>
+									<a :href="'category.html?category=&page='+category+num">{{num}}</a>
 								</li>
+								
 								
 								<li class="previous"><a :href="'category.html?1000&page='+(page.page+1)">后页 &gt;</a></li>
 								<li class="last"><a href="/sell.html/category/id/3000/page/99">末页
@@ -498,9 +499,10 @@
 					el:".content_right",
 					data:{
 						page : {},
-						plist:[1,2,3,4,5],
+						plist:1,
 						active:1,
 						cate : [],
+						
 					},
 					created(){
 						// 127.0.0.1/category.html?1000
@@ -510,6 +512,8 @@
 							var p = this.page.page;
 							var ps = this.page.pages;
 							this.active = p;
+							this.plist=ps;
+							this.category=category;
 							if(p>3){
 								this.plist = [];
 								if(ps-p-2<0){
@@ -521,7 +525,10 @@
 										this.plist.push(p-2+i);
 									}	
 								}														
-							}
+							}else{
+								this.plist = [1,2,3,4,5];
+							}													
+							  
 						}),
 						axios.get("selectByCateId.do?category="+category).then(res=>{
 							this.cate = res.data;
