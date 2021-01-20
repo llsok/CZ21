@@ -13,26 +13,22 @@
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
 
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+<script type="text/javascript"
+	src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jsj.js"></script>
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
-	<div class="site_top_row">
-		<div class="center_980">
-			<div class="school_location" style="float: left;">
-				[<a href="javascript:void(0)"
-					onclick="showSchoolList();return false;">所有学校</a>]
-			</div>
-			<div id="top_user_info" style="float: right;">
-				<a href="login.html">登录</a>|<a
-					href="sell.html/create">出售</a>|<a
-					style="color: rgb(254, 137, 0);"
-					href="register.html">立即注册</a>|<a
-					class="app_mobile" target="_blank"
-					href="site/app">下载APP</a>
-			</div>
-			<div class="clearfloat"></div>
-		</div>
+	<div id="yetou">
+		<yetou></yetou>
 	</div>
+	<script type="text/javascript">
+		var v119 = new Vue({
+			el:"#yetou"
+		})
+	</script>
 	<div id="top">
 		<div class="center_980">
 			<div id="logo">
@@ -127,15 +123,112 @@
 			<div class="content_right">
 				<div class="border_white padding_10">
 					<div class="page_title">我的收货信息</div>
-					<div class="padding_10">
-						<div class="user_address" style="float: left;">未设置</div>
-						<div style="float: right;">
-							<a href="javascript:showDlgById('edit_address_dlg');">立即设置</a>
+					<form action="">
+					<table class="ubm_input">
+								<tbody>
+									<tr>
+										<td><label>收获人姓名:
+										</label></td>
+										<td><input maxlength="45" class="ubm_textinput"
+											type="text" v-model="hlist.addrName"></td>
+											<td><div>{{errors.addrName}}</div></td>
+									</tr>
+									<tr>
+										<td><label>收获电话:
+										</label></td>
+										<td><input maxlength="45" class="ubm_textinput"
+											type="text" v-model="hlist.addrPhone"></td>
+											<td><div>{{errors.addrPhone}}</div></td>
+									</tr>
+									<tr>
+										<td><label>邮政编码:
+										</label></td>
+										<td><input maxlength="45" class="ubm_textinput"
+											type="text" v-model="hlist.addrPost"></td>
+											<td><div>{{errors.addrPost}}</div></td>
+									</tr>
+									<tr>
+										<td><label>省份:</label></td>
+													<td><select class="ubm_textinput" v-model="hlist.addrProvince">
+														<option v-for=" d in dlist">{{d.name}}</option>
+													</select>
+													</td>
+									</tr>
+									<tr>
+										<td><label>详细地址:
+										</label></td>
+										<td><input maxlength="45" class="ubm_textinput"
+											type="text" v-model="hlist.addrDesc"></td>
+									</tr>
+									</tbody>
+							</table>
+						<div class="margin_left_134">
+							<input id="submit_button" class="button" type="button" name="yt1"
+								@click="addr" value="修改收获地址">
 						</div>
-						<div class="clearfloat"></div>
-					</div>
+						</form>
 				</div>
 			</div>
+			<script type="text/javascript">
+				var v1 = new Vue({
+					el : ".content_right",
+					data : {
+						hlist : {
+							addrName:"",
+							addrPhone:"",
+							addrPost:"",
+							addrProvince:"",
+							addrDesc:""
+						},
+						dlist : {},
+						errors : {
+							addrName : "",
+							addrPhone : "",
+							addrPost : ""
+						}
+					},
+					created(){
+							axios.get("getaddr.do").then(res=>{
+								this.hlist = res.data;
+								//alert(res.data);
+						}),
+						axios.get("getAllProvince.do").then(res=>{
+							this.dlist = res.data;
+						})
+					},
+					methods:{
+						addr(){
+							var p = new URLSearchParams();
+							p.append("addrName",this.hlist.addrName);
+							p.append("addrPhone",this.hlist.addrPhone);
+							p.append("addrPost",this.hlist.addrPost);
+							p.append("addrProvince",this.hlist.addrProvince);
+							p.append("addrDesc",this.hlist.addrDesc);
+							axios.post("updateaddr.do",p).then(res=>{
+								if(res.data.code == 1){
+									alert(res.data.msg);
+								} 
+								for( let e in this.errors){  
+									var na = document.getElementsByName(e);
+									$(na).css('boxShadow','');
+									this.errors[e] = '';
+								}
+								
+									if(res.data.code != 1){
+										var es = res.data.data;
+									for( let e of es){  // == java for( e : es)
+										var na = document.getElementsByName(e.field);
+										$(na).css("boxShadow","0px 0px 5px 3px red");	
+										this.errors[e.field] = e.defaultMessage;  // [ ] 对对象的数字哪个复制
+									}
+									}
+								
+							})
+						}
+					}
+				})
+			
+			</script>
 			<div class="clearfloat"></div>
 		</div>
 	</div>
