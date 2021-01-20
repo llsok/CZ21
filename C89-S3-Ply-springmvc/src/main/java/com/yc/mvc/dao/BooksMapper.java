@@ -28,6 +28,7 @@ public interface BooksMapper {
 	public List<JsjBook> queryBookByname(String name);
 
 	@Select("select * from jsj_book where category=#{cgy}")
+	@ResultMap("rmbook")
 	public List<JsjBook> SelectByCategory(int category);
 
 	@Select("select * from jsj_book where id=#{id}")
