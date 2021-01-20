@@ -31,7 +31,8 @@ public class MvcApp implements WebMvcConfigurer{
 		registry.addInterceptor(new LoginInterceptor()).addPathPatterns(
 				// 配置要拦截的资源
 				"/user-*.html",
-				"/getLoginedUser.do");
+				"/getLoginedUser.do",
+				"/addCart.do");
 	}
 
 	/**
