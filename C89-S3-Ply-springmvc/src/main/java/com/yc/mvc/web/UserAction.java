@@ -147,6 +147,7 @@ public class UserAction {
 		newReg =um.selectNewRegUser();
 		return newReg;
 	}
+
 	
 	@RequestMapping("selectById")
 	public Map<String, Object> selectById(int id) {
@@ -157,4 +158,12 @@ public class UserAction {
 		map.put("guanzhu", um.selectGuanzhu(id));
 		return map;
 	}
+
+	@PostMapping("sign.do")
+	public Result updateSign(String sign,int id) {
+		um.updateJsjUserSign(sign,id);
+		return Result.success("修改成功", null);
+	}
+
+
 }

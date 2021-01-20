@@ -45,9 +45,16 @@ public interface UserMapper {
 			many = @Many(select = "selectFans"))})
 	public JsjUser selectById(int id);
 	
+
 	@Select("select * from jsj_fans where uid = #{uid}")
 	public List<JsjUser> selectFans(int uid);
 	
 	@Select("select count(*) from jsj_fans where fid = #{fid}")
 	public int selectGuanzhu(int uid);
+
+	@Update("update jsj_user set sign=#{sign} where id=#{id}")
+	void updateJsjUserSign(String sign,int id) ;
+
+	
+
 }
