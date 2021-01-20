@@ -164,6 +164,17 @@ public class UserAction {
 		um.updateJsjUserSign(sign,id);
 		return Result.success("修改成功", null);
 	}
+	
+	@PostMapping("updatePwd.do")
+	public Result updatePwd(String Npwd,String repwd,@SessionAttribute JsjUser loginedUser) {
+		if(Npwd.equals(repwd)) {
+		um.updatePwd(Npwd,loginedUser.getId());
+		return Result.success("修改成功", null);
+		}
+		else {
+		return Result.success("重复密码不一致", null);	
+		}
+	}
 
 
 }

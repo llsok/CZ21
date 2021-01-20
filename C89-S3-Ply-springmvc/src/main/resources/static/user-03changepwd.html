@@ -12,6 +12,8 @@
 <link rel="stylesheet" type="text/css" href="res/ubm_basic.css">
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
 
 <title>买卖二手书,就上旧书街</title>
 </head>
@@ -136,7 +138,7 @@
 										<td><label for="User_password_old">原密码</label></td>
 										<td><input maxlength="32" class="input_public"
 											name="User[password_old]" id="User_password_old"
-											type="password"></td>
+											type="password" :value="lu.pwd"></td>
 										<td><div id="User_password_oldTip" class="onShow"
 												style="margin: 0px; padding: 0px; background: transparent;"></div></td>
 									</tr>
@@ -144,7 +146,7 @@
 										<td><label for="User_password">新密码</label></td>
 										<td><input maxlength="32" class="input_public"
 											name="User[password]" id="User_password" type="password"
-											value=""></td>
+											value="" v-model="Npwd"></td>
 										<td><div id="User_passwordTip" class="onShow"
 												style="margin: 0px; padding: 0px; background: transparent;"></div></td>
 									</tr>
@@ -152,7 +154,7 @@
 										<td><label for="User_password_repeat">重复密码</label></td>
 										<td><input maxlength="32" class="input_public"
 											name="User[password_repeat]" id="User_password_repeat"
-											type="password"></td>
+											type="password" v-model="repwd"></td>
 										<td><div id="User_password_repeatTip" class="onShow"
 												style="margin: 0px; padding: 0px; background: transparent;"></div></td>
 									</tr>
@@ -162,13 +164,41 @@
 
 							<div class="margin_left_134">
 								<input id="submit_button" class="button" name="yt0"
-									type="button" value="提交修改">
+									type="button" value="提交修改" @click="modif()">
 							</div>
 
 						</form>
 					</div>
 				</div>
 			</div>
+			<script type="text/javascript">
+				var v = new Vue({
+					el : ".content_right",
+					data : {
+						lu : {},
+						Npwd:"",
+						repwd:"",
+					},
+					created(){
+						axios.get("getLoginedUser.do").then(res=>{
+							this.lu = res.data.data;
+						})
+					},
+					methods:{
+						modif(){
+							var param = new URLSearchParams();
+							param.append('Npwd',this.Npwd);
+							param.append('repwd',this.repwd);
+							axios.post("updatePwd.do",param).then(res=>{
+								   alert(res.data.msg);
+							 
+						});
+						}
+					}
+					
+				})
+			</script>
+			
 			<div class="clearfloat"></div>
 		</div>
 	</div>
