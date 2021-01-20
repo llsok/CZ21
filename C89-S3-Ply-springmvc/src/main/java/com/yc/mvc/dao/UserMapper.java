@@ -40,4 +40,5 @@ public interface UserMapper {
 	@Results(id="rmuser", value = { @Result(column = "school", property = "schoolObj", 
 	one = @One(select = "com.yc.mvc.dao.SchoolMapper.selectById")) })
 	public JsjUser selectById(int id);
+	
 }
