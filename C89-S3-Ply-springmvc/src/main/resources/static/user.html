@@ -72,9 +72,9 @@
 						</div>
 						<div class="user_nav_info">
 							<ul>
-								<li>{{list.name || list.list.account}}</li>
+								<li>{{list.name || list.account}}</li>
 								<li>{{list.gender}}</li>
-								<li>{{list.schoolObj.name}}</li>
+								<li>{{list.schoolObj ? list.schoolObj.name:null}}</li>
 								<li>上次登录:&nbsp;{{list.lastLoginTime ? list.lastLoginTime : '今天'}}</li>
 								<li><a class="user_fan_faned_link"
 									href="user/26398619/follow">关注({{list.guanzhu.length}})</a>&nbsp;<a
