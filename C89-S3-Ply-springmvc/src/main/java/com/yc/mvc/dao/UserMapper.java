@@ -48,6 +48,12 @@ public interface UserMapper {
 	public JsjUser selectById(int id);
 	
 
+	@Update("update jsj_user set collect_type=#{collectType},"
+			+ "collect_account=#{collectAccount},collect_name=#{collectName} "
+			+ "where id=#{id}")
+	void addcollect(JsjUser user);
+
+
 	@Select("select * from jsj_fans a left JOIN jsj_user b on a.fid = b.id where uid = #{uid}")
 	public List<JsjUser> selectFans(int uid);
 	
@@ -58,4 +64,5 @@ public interface UserMapper {
 	void updateJsjUserSign(String sign,int id) ;
 
 	
+
 }

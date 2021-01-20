@@ -77,7 +77,8 @@ public class UserAction {
 	@RequestMapping("regist.do")
 	public Result regist(@Valid JsjUser user, Errors errors) {
 		// 判断是否出现验证错误
-		if(errors.hasErrors()) {
+		if(errors.hasFieldErrors("phone")||errors.hasFieldErrors("name")||errors.hasFieldErrors("account")
+				||errors.hasFieldErrors("pwd")||errors.hasFieldErrors("email")||errors.hasFieldErrors("gender")) {
 			return Result.failure("字段验证错误！", errors.getAllErrors());
 		}
 		// TODO 业务层代码， 未完待续
@@ -120,7 +121,7 @@ public class UserAction {
 				||suffix.equalsIgnoreCase(".pdf")) {
 			newfile += suffix;
 			try {
-				headImgFile.transferTo(new File("e:/jsj/upload_head", newfile));
+				headImgFile.transferTo(new File("d:/bean/upload_head", newfile));
 			} catch (IllegalStateException | IOException e) {
 				e.printStackTrace();
 				return Result.failure(0,"文件上传失败！", null);
@@ -149,6 +150,18 @@ public class UserAction {
 	}
 
 	
+
+	@PostMapping("addCollect.do")
+	public Result addCollect(@Valid JsjUser user,Errors errors,@SessionAttribute JsjUser loginedUser) {
+		if(errors.hasFieldErrors("collectType")||errors.hasFieldErrors("collectAccount")||errors.hasFieldErrors("collectName")) {
+			return Result.failure("字段验证错误！", errors.getAllErrors());
+		}
+		user.setId(loginedUser.getId());
+		um.addcollect(user);
+		System.out.println(user.getCollectAccount());
+		return Result.success("提交收款账号成功",null);
+	}
+
 	@RequestMapping("selectById")
 	public JsjUser selectById(int id) {
 		return  um.selectById(id);		
@@ -159,6 +172,7 @@ public class UserAction {
 		um.updateJsjUserSign(sign,id);
 		return Result.success("修改成功", null);
 	}
+
 
 
 }
