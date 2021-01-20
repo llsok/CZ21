@@ -12,7 +12,8 @@
 <link rel="stylesheet" type="text/css" href="res/ubm_basic.css">
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
-
+	     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
@@ -125,7 +126,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="content_right">
+			<div class="content_right" id="E05">
 				<div class="border_white padding_10">
 					<div class="form">
 						<div class="page_title">签名档</div>
@@ -139,18 +140,45 @@
 										<td><label for="User_self_introduction">签名档</label></td>
 										<td><textarea class="ubm_textinput" maxlength="255"
 												style="width: 400px; height: 200px;"
-												name="User[self_introduction]" id="User_self_introduction">这个人很懒，啥也没写</textarea></td>
+												name="User[self_introduction]" placeholder="这个用户很懒什么都没留"
+												id="User_self_introduction"
+												 v-model="lu.sign"></textarea></td>
 									</tr>
 								</tbody>
 							</table>
 							<div class="margin_left_134">
-								<input id="submit_button" class="button" type="submit"
+								<input id="submit_button" class="button" type="submit" @click.prevent="upSign()"
 									name="yt0" value="提交">
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
+			<script type="text/javascript">
+				var v = new Vue({
+					el : "#E05",
+					data : {
+						lu : {},
+						sign:[]
+					},
+					created(){
+						axios.get("getLoginedUser.do").then(res=>{
+							this.lu = res.data.data;
+						})
+					},
+					methods:{
+						upSign(){
+							// 创建文件上传表单对象
+							var param = new URLSearchParams();
+							param.append('id',this.lu.id);
+							param.append('sign',this.lu.sign);
+							axios.post("sign.do", param).then(res=>{
+								alert("签名修改成功");
+							});
+						}
+					}
+				})
+			</script>
 			<div class="clearfloat"></div>
 		</div>
 	</div>
