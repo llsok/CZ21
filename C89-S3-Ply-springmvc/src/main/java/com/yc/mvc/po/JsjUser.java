@@ -40,6 +40,16 @@ public class JsjUser {
 		this.fans = fans;
 	}
 
+	private List<JsjUser> guanzhu;
+	
+	public List<JsjUser> getGuanzhu() {
+		return guanzhu;
+	}
+
+	public void setGuanzhu(List<JsjUser> guanzhu) {
+		this.guanzhu = guanzhu;
+	}
+
 	/**
 	 * 	用户所属学校
 	 */
