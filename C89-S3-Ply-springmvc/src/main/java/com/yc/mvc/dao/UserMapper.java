@@ -3,7 +3,10 @@ package com.yc.mvc.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -34,5 +37,7 @@ public interface UserMapper {
 	List<JsjUser> selectNewRegUser();
 
 	@Select("select * from jsj_user where id=#{id}")
+	@Results(id="rmuser", value = { @Result(column = "school", property = "schoolObj", 
+	one = @One(select = "com.yc.mvc.dao.SchoolMapper.selectById")) })
 	public JsjUser selectById(int id);
 }

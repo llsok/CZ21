@@ -28,14 +28,16 @@ public interface BooksMapper {
 	public List<JsjBook> queryBookByname(String name);
 
 	@Select("select * from jsj_book where category=#{cgy}")
+	@ResultMap("rmbook")
 	public List<JsjBook> SelectByCategory(int category);
 
 	@Select("select * from jsj_book where id=#{id}")
-	@Results(id = "rmbook", value = { @Result(column = "owner_id", property = "user", 
+	@Results(id="rmbook", value = { @Result(column = "owner_id", property = "user", 
 		one = @One(select = "com.yc.mvc.dao.UserMapper.selectById")) })
 	public JsjBook quertBookDetail(int id);
-	
+
 	@Select("select * from jsj_book order by id desc")
 	@ResultMap("rmbook")
 	public List<JsjBook> selectNew();
+
 }
