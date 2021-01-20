@@ -155,7 +155,7 @@ public class UserAction {
 		Map<String, Object> map = new HashMap<>();
 		map.put("list", user);
 		map.put("fans", user.getFans().size());
-		map.put("guanzhu", um.selectGuanzhu(id));
+		map.put("guanzhu", user.getGuanzhu().size());
 		return map;
 	}
 

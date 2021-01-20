@@ -42,15 +42,17 @@ public interface UserMapper {
 	@Results(id="rmuser", value = { @Result(column = "school", property = "schoolObj", 
 	one = @One(select = "com.yc.mvc.dao.SchoolMapper.selectById")),
 			@Result(column = "id",property = "fans",
-			many = @Many(select = "selectFans"))})
+			many = @Many(select = "selectFans")),
+			@Result(column = "id",property = "guanzhu",
+			many = @Many(select = "selectGuanzhu"))})
 	public JsjUser selectById(int id);
 	
 
 	@Select("select * from jsj_fans where uid = #{uid}")
 	public List<JsjUser> selectFans(int uid);
 	
-	@Select("select count(*) from jsj_fans where fid = #{fid}")
-	public int selectGuanzhu(int uid);
+	@Select("select * from jsj_fans where fid = #{fid}")
+	public List<JsjUser> selectGuanzhu(int fid);
 
 	@Update("update jsj_user set sign=#{sign} where id=#{id}")
 	void updateJsjUserSign(String sign,int id) ;
