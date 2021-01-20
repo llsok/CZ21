@@ -104,7 +104,7 @@
 						var uid = location.hash.substring(1);
 						axios.get("selectById?id="+uid).then(res=>{
 							this.list = res.data;
-							console.info(this.list.fans.length);
+							console.info(this.list);
 						})
 					}
 				})

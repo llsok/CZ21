@@ -48,10 +48,10 @@ public interface UserMapper {
 	public JsjUser selectById(int id);
 	
 
-	@Select("select * from jsj_fans where uid = #{uid}")
+	@Select("select * from jsj_fans a left JOIN jsj_user b on a.fid = b.id where uid = #{uid}")
 	public List<JsjUser> selectFans(int uid);
 	
-	@Select("select * from jsj_fans where fid = #{fid}")
+	@Select("select * from jsj_fans a left JOIN jsj_user b on a.uid = b.id where fid = #{fid}")
 	public List<JsjUser> selectGuanzhu(int fid);
 
 	@Update("update jsj_user set sign=#{sign} where id=#{id}")
