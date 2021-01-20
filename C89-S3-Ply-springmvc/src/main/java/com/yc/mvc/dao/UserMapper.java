@@ -66,6 +66,9 @@ public interface UserMapper {
 
 	@Update("update jsj_user set sign=#{sign} where id=#{id}")
 	void updateJsjUserSign(String sign,int id) ;
+	
+	@Update("update jsj_user set pwd=#{pwd} where id=#{id}")
+	void updatePwd(String pwd, Integer id);
 
 	
 	
