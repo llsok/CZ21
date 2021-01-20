@@ -58,5 +58,4 @@ public interface UserMapper {
 	void updateJsjUserSign(String sign,int id) ;
 
 	
-
 }

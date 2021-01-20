@@ -1,6 +1,7 @@
 package com.yc.mvc.po;
 
 import java.util.Date;
+import java.util.List;
 
 public class JsjFans {
     private Integer id;
@@ -11,7 +12,7 @@ public class JsjFans {
 
     private Date addTime;
 
-    public Integer getId() {
+	public Integer getId() {
         return id;
     }
 
