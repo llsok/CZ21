@@ -20,8 +20,8 @@ public interface CartMapper {
 	public int updateCount(JsjCart cart);
 
 	@Select("select * from jsj_cart where uid=#{uid}")
-	@Results(id="mbook", value = { @Result(column = "bid", property = "book", 
+	@Results(id="rmcart", value = { @Result(column = "bid", property = "book", 
 		one = @One(select = "com.yc.mvc.dao.BooksMapper.quertBookDetail")) })
-	public List<JsjCart> quertBookDetail(int uid);
+	public List<JsjCart> queryCartByUid(int uid);
 
 }

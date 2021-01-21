@@ -99,8 +99,8 @@
 								<th style="width: 70px;" id="gridview-list-grid_c10">操作</th>
 							</tr>
 						</thead>
-						<tbody v-for=" c in cart " align="center">
-							<tr class="odd" style="background-color: rgb(255, 255, 255);">
+						<tbody  align="center">
+							<tr v-for=" c in cart " class="odd" style="background-color: rgb(255, 255, 255);">
 								<td>&nbsp;</td>
 								<td class="book_id_checkbox">
 									<input value="395428212" id="gridview-list-grid_c1_0" checked="checked" 
@@ -125,7 +125,7 @@
 									<input single_price="15.80" id="cart_count_395428212" class="cart_count" book_id="395428212" v-model="c.count" type="text" value="1">
 									<a class="cart_action" direction="inc" book_id="395428212" href="javascript:void(0);">+</a>
 								</td>
-								<td><span id="single_total_395428212">￥</span></td>
+								<td><span id="single_total_395428212">￥{{c.book.price * c.count}}</span></td>
 								<td>
 									<a class="delete_cart_item" id="delete_link_395428212" href="javascript:deleteBooks('395428212');">删除</a>
 								</td>
@@ -147,7 +147,7 @@
 					},
 					created(){
 						axios.get("queryCart.do").then(res=>{
-							this.cart = this.data;
+							this.cart = res.data;
 						});
 					}
 				});
