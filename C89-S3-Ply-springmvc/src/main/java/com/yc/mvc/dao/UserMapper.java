@@ -50,6 +50,14 @@ public interface UserMapper {
 			@Result(column = "id",property = "guanzhu",
 			many = @Many(select = "selectGuanzhu"))})
 	public JsjUser selectById(int id);
+	
+
+	@Select("select a.* from jsj_user a"
+			+" join jsj_fans b on a.id = b.uid"
+			+" where b.fid=#{fid}")
+	@Results(value = { @Result(column = "school", property = "schoolObj", 
+	one = @One(select = "com.yc.mvc.dao.SchoolMapper.selectById")) })
+	List<JsjUser> selectByFid(int fid);
 
 	@Update("update jsj_user set collect_type=#{collectType},"
 			+ "collect_account=#{collectAccount},collect_name=#{collectName} " + "where id=#{id}")

@@ -32,6 +32,6 @@ public class CartAction {
 
 	@RequestMapping("queryCart.do")
 	public List<JsjCart> queryCartByUid(@SessionAttribute JsjUser loginedUser) {
-		return cm.quertBookDetail(loginedUser.getId());
+		return cm.queryCartByUid(loginedUser.getId());
 	}
 }
