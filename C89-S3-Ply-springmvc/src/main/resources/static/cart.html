@@ -103,7 +103,9 @@
 							<tr v-for=" c in cart " class="odd" style="background-color: rgb(255, 255, 255);">
 								<td>&nbsp;</td>
 								<td class="book_id_checkbox">
-									<input :value="c.id" v-model="selected" id="gridview-list-grid_c1_0" checked="checked" 
+
+
+									<input :value="c.id" v-model="selected" id="gridview-list-grid_c1_0" 
 										type="checkbox" name="gridview-list-grid_c1[]">
 								</td>
 								<td>
@@ -122,10 +124,14 @@
 								<td>￥{{c.book.price}}</td>
 								<td>
 									<a class="cart_action" direction="dec" book_id="395428212" href="javascript:void(0);" 
-									@click="c.count > 1 ? c.count--:0">-</a>
+
+										@click="c.count > 1 ? c.count-- : 0">-</a>
+
 									<input single_price="15.80" id="cart_count_395428212" class="cart_count" book_id="395428212" v-model="c.count" type="text" value="1">
 									<a class="cart_action" direction="inc" book_id="395428212" href="javascript:void(0);"
-									@click="c.count<c.book.state ? c.count++ : 0">+</a>
+
+										@click="c.count < c.book.state ? c.count++ : 0">+</a>
+
 								</td>
 								<td><span id="single_total_395428212">￥{{c.book.price * c.count}}</span></td>
 								<td>
@@ -141,7 +147,7 @@
 					</table>
 					<div class="keys" style="display: none" title="/cart/index"></div>
 				</div>
-				
+
 				<form id="create_order_form" action="/order/index" method="post">
 					<input type="hidden"
 						value="X0J2bzJPTlJDNnVKR1VlM2MyZGxSM3kwdk5RdnlQZVBZ3-XQ36kulkbowelmV8XT2E7ueyPvc9Wu5p6UlRqdvA=="
@@ -179,7 +185,9 @@
 								class="selected_price">￥40.80</span>
 							</span> <input type="hidden" value="" name="book_ids" id="book_ids">
 							<!--            <a href="/site/app" class="button_link">使用旧书街APP进行结算</a>-->
-							<input id="submit_button" class="button" @click="createOrder"
+
+							<input id="submit_button" class="button" @click="createOrder();"
+
 								type="button" value="去结算>">
 						</div>
 						<div class="clearfloat"></div>
@@ -188,43 +196,53 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-				var vue1 = new Vue({
-					el : "#main_content",
-					data : {
-						cart : [],
-						selected:[],
-					},
-					created(){
-						axios.get("queryCart.do").then(res=>{
-							this.cart = res.data;
-							//默认全选
-							//js in 循环符 是取出下标值
-							//js of == vue in == java for(c : list)
-							for(c of this.cart){
-								this.selected.push(c.id);
-							}
-						});
-					},methods:{
-						createOrder(){
-							var params = new URLSearchParams();
-							var i = 0;
-							for(c of this.cart){
-								for(s of this.selected){
-									if(c.id == s){
-										params.append("details["+i+"].bid",c.book.id);
-										params.append("details["+i+"].count",c.count);
-										i++;
-										break;
-									}
+
+			var vue1 = new Vue({
+				el : "#main_content",
+				data : {
+					cart : [],
+					selected : []
+				},
+				created(){
+					axios.get("queryCart.do").then(res=>{
+						this.cart = res.data;
+						// js in 循环符 是取出数组的下标值，  0，1，2
+						// js of 相当于  java  :    for (c : list)
+						// vue 的 in == java 的  :
+						for(c of this.cart){
+							this.selected.push(c.id);
+						}
+					});
+				},
+				methods:{
+					createOrder(){
+						var params = new URLSearchParams();
+						// springmvc 控制器的写法
+						// public Result addOrder( JsjOrder order, User loginedUser  ){...}
+						// params.append("addrName", "?????")
+						// 订单明细提交  
+						// details[0].bid ==?; detials[0].count=?
+						// details[1].bid ==?; detials[1].count=?
+						var i = 0
+						for( c of this.cart){
+							for( s of this.selected){
+								if(c.id == s){
+									params.append("details["+i+"].bid", c.book.id);
+									params.append("details["+i+"].count", c.count);
+									params.append("details["+i+"].book.price", c.book.price);
+									i++;
+									break;
 								}
 							}
-							axios.post("addOrder",params).then(res=>{
-								alert(res.data.msg);
-							})
 						}
+						axios.post("addOrder", params).then(res=>{
+							location.href="cart.html?" + new Date();
+						});
 					}
-				});
-				</script>
+				}
+			});
+		</script>
+
 	</div>
 
 	<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
