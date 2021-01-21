@@ -146,5 +146,10 @@ public class UserAction {
 		return newReg;
 	}
 	
+	@GetMapping("guanzhu")
+	public List<JsjUser> selectByFidd(int fid){
+		return um.selectByFid(fid);
+	}
+	
 	
 }

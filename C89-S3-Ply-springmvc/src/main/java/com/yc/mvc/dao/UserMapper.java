@@ -40,4 +40,12 @@ public interface UserMapper {
 	@Results(id="rmuser", value = { @Result(column = "school", property = "schoolObj", 
 	one = @One(select = "com.yc.mvc.dao.SchoolMapper.selectById")) })
 	public JsjUser selectById(int id);
+	
+
+	@Select("select a.* from jsj_user a"
+			+" join jsj_fans b on a.id = b.uid"
+			+" where b.fid=#{fid}")
+	@Results(value = { @Result(column = "school", property = "schoolObj", 
+	one = @One(select = "com.yc.mvc.dao.SchoolMapper.selectById")) })
+	List<JsjUser> selectByFid(int fid);
 }
