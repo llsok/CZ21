@@ -79,13 +79,6 @@ public interface UserMapper {
 	one = @One(select = "selectById"))})
 	public List<JsjFans> selectMostFans();
 
-//	@Select("select * from jsj_fans GROUP BY uid ORDER BY count(*) desc LIMIT 0,24")
-//	@Results(value = { @Result(column = "uid", property = "user", 
-//	one = @One(select = "selectById"))})
-	@Select("select * from jsj_user b right JOIN jsj_fans a on a.uid = b.id "
-			+ " GROUP BY a.uid ORDER BY count(*) desc LIMIT 0,24 ")
-	@ResultMap("rmschool")
-	public List<JsjUser> selectMostGuanZhu();
 
 	@Update("update jsj_user set addr_name=#{addrName},addr_phone=#{addrPhone},addr_post=#{addrPost},addr_province=#{addrProvince},addr_desc=#{addrDesc} where account=#{account}")
 	void updateaddr(JsjUser user);
