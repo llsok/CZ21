@@ -13,6 +13,10 @@
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
 
+
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
@@ -76,27 +80,57 @@
 				<div class="clearfloat"></div>
 			</div>
 			<div class="border_white">
-				<div id="gridview-list-grid" class="grid-view">
+				<div id="listgrid" class="grid-view">
 					<table class="items">
 						<thead>
 							<tr style="background-color: rgb(255, 255, 255);">
-								<th id="gridview-list-grid_c0">&nbsp;</th>
-								<th class="checkbox-column" id="gridview-list-grid_c1"><input
-									type="checkbox" value="1" name="gridview-list-grid_c1_all"
-									id="gridview-list-grid_c1_all"></th>
-								<th id="gridview-list-grid_c2">&nbsp;</th>
-								<th id="gridview-list-grid_c3">书名</th>
-								<th id="gridview-list-grid_c4">卖家</th>
-								<th id="gridview-list-grid_c5">原价</th>
-								<th id="gridview-list-grid_c6">库存量</th>
-								<th id="gridview-list-grid_c7">售价</th>
-								<th id="gridview-list-grid_c8">购买数量</th>
-								<th id="gridview-list-grid_c9">小计</th>
-								<th id="gridview-list-grid_c10">操作</th>
+								<th style="width: 10px;" id="gridview-list-grid_c0">&nbsp;</th>
+								<th style="width: 30px;" class="checkbox-column" id="gridview-list-grid_c1">
+									<input type="checkbox" value="1" name="gridview-list-grid_c1_all" id="gridview-list-grid_c1_all">
+								</th>
+								<th style="width: 40px;" id="gridview-list-grid_c2">&nbsp;图片</th>
+								<th style="width: 70px;" id="gridview-list-grid_c3">书名</th>
+								<th style="width: 70px;" id="gridview-list-grid_c4">卖家</th>
+								<th style="width: 70px;" id="gridview-list-grid_c5">原价</th>
+								<th style="width: 70px;" id="gridview-list-grid_c6">库存量</th>
+								<th style="width: 70px;" id="gridview-list-grid_c7">售价</th>
+								<th style="width: 120px;" id="gridview-list-grid_c8">购买数量</th>
+								<th style="width: 70px;" id="gridview-list-grid_c9">小计</th>
+								<th style="width: 70px;" id="gridview-list-grid_c10">操作</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr style="background-color: rgb(255, 255, 255);">
+						<tbody v-for=" c in cart " align="center">
+							<tr class="odd" style="background-color: rgb(255, 255, 255);">
+								<td>&nbsp;</td>
+								<td class="book_id_checkbox">
+									<input value="395428212" id="gridview-list-grid_c1_0" checked="checked" 
+										type="checkbox" name="gridview-list-grid_c1[]">
+								</td>
+								<td>
+									<a target="_blank" :title="c.book.name" :href="'sell/' + c.book.id">
+										<img class="cart_pic" :src="c.book.pic">
+									</a>
+								</td>
+								<td>
+									<a :title="c.book.name" target="_blank" :href="'sell/' + c.book.id">{{c.book.name}}</a>
+								</td>
+								<td>
+									<a :title="c.book.user.account" target="_blank" :href="'user/' + c.book.user.id">{{c.book.user.account}}</a>
+								</td>
+								<td>￥{{c.book.markPrice}}</td>
+								<td class="kucun_count">{{c.count * 10}}</td>
+								<td>￥{{c.book.price}}</td>
+								<td>
+									<a class="cart_action" direction="dec" book_id="395428212" href="javascript:void(0);">-</a>
+									<input single_price="15.80" id="cart_count_395428212" class="cart_count" book_id="395428212" v-model="c.count" type="text" value="1">
+									<a class="cart_action" direction="inc" book_id="395428212" href="javascript:void(0);">+</a>
+								</td>
+								<td><span id="single_total_395428212">￥</span></td>
+								<td>
+									<a class="delete_cart_item" id="delete_link_395428212" href="javascript:deleteBooks('395428212');">删除</a>
+								</td>
+							</tr>
+							<tr v-if="cart != null" style="background-color: rgb(255, 255, 255);">
 								<td colspan="11" class="empty"><span class="empty">购物车内暂时没有书籍,去<a
 										href="/home">首页</a>购买
 								</span></td>
@@ -105,6 +139,19 @@
 					</table>
 					<div class="keys" style="display: none" title="/cart/index"></div>
 				</div>
+				<script type="text/javascript">
+				var vue1 = new Vue({
+					el : "#listgrid",
+					data : {
+						cart : []
+					},
+					created(){
+						axios.get("queryCart.do").then(res=>{
+							this.cart = this.data;
+						});
+					}
+				});
+				</script>
 				<form id="create_order_form" action="/order/index" method="post">
 					<input type="hidden"
 						value="X0J2bzJPTlJDNnVKR1VlM2MyZGxSM3kwdk5RdnlQZVBZ3-XQ36kulkbowelmV8XT2E7ueyPvc9Wu5p6UlRqdvA=="
@@ -117,8 +164,8 @@
 						</div>
 						<div style="float: right;">
 							<span class="total_span" style="display: inline;"> <span
-								class="selected_count">0</span>本图书&nbsp;&nbsp;总计(不含运费) : <span
-								class="selected_price">￥0.00</span>
+								class="selected_count">2</span>本图书&nbsp;&nbsp;总计(不含运费) : <span
+								class="selected_price">￥40.80</span>
 							</span> <input type="hidden" value="" name="book_ids" id="book_ids">
 							<!--            <a href="/site/app" class="button_link">使用旧书街APP进行结算</a>-->
 							<input id="submit_button" class="button" onclick="createOrder();"

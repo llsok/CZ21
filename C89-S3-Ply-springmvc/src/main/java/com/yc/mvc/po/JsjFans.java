@@ -3,7 +3,18 @@ package com.yc.mvc.po;
 import java.util.Date;
 
 public class JsjFans {
-    private Integer id;
+
+	private JsjUser user;
+	
+	public JsjUser getUser() {
+		return user;
+	}
+
+	public void setUser(JsjUser user) {
+		this.user = user;
+	}
+
+	private Integer id;
 
     private Integer uid;
 
@@ -11,7 +22,7 @@ public class JsjFans {
 
     private Date addTime;
 
-    public Integer getId() {
+	public Integer getId() {
         return id;
     }
 
