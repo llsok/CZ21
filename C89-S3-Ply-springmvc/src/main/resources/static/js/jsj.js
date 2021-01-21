@@ -285,8 +285,53 @@ Vue.component(
 	}
 )
 
+Vue.component(
+	'foot',
+	{
+		template : `<div class="bottom">
+		<div class="center_980">
+			<div class="bottom_left">
+				<ul>
+					<li><a href="site/about">关于我们</a></li>
+					<li><a href="site/joinus">申请合作</a></li>
+					<li><a href="site/privacy">隐私政策</a></li>
+					<li><a href="site/term">服务条款</a></li>
+					<li><a href="site/help">帮助</a></li>
+					<li><a href="site/link">友情链接</a></li>
+				</ul>
+			</div>
+			<div id="copyright">
+				© 2020 by 旧书街 <a href="http://beian.miit.gov.cn/">蜀ICP备16007902号-2</a>
+			</div>
+		</div>
+	</div>`
+	}
+)
 
-
-
-
-
+Vue.component(
+	'top',
+	{
+		template : `<div id="top">
+		<div class="center_980">
+			<div id="logo">
+				<a href=""> <img
+					src="res/jiushujie-logo.png" alt="买卖二手书,就上旧书街" title="买卖二手书,就上旧书街">
+				</a>
+			</div>
+			<div style="float: left;">
+				<img src="res/slogan1124.png">
+			</div>
+			<div id="top-nav">
+				<ul class="top_menu">
+					<li><a id="home_tab" href="/"
+						class="selectedtab">首页</a></li>
+					<li><a id="sell_tab" href="sell.html">出售</a>
+					</li>
+					<li><a id="buy_tab" href="buy">求购</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>`
+	}
+)

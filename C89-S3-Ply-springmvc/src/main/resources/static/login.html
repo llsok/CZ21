@@ -15,49 +15,26 @@
 	
 <script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
 <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
-
+<script type="text/javascript" src="js/jsj.js"></script>
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
-	<div class="site_top_row">
-		<div class="center_980">
-			<div class="school_location" style="float: left;">
-				[<a href="javascript:void(0)"
-					onclick="showSchoolList();return false;">所有学校</a>]
-			</div>
-			<div id="top_user_info" style="float: right;">
-				<a href="login.html">登录</a>|<a
-					href="sell.html/create">出售</a>|<a
-					style="color: rgb(254, 137, 0);"
-					href="register.html">立即注册</a>|<a
-					class="app_mobile" target="_blank"
-					href="site/app">下载APP</a>
-			</div>
-			<div class="clearfloat"></div>
-		</div>
+	<div id="yetou">
+		<yetou></yetou>
 	</div>
+	<script type="text/javascript">
+		var v119 = new Vue({
+			el:"#yetou"
+		})
+	</script>
 	<div id="top">
-		<div class="center_980">
-			<div id="logo">
-				<a href=""> <img
-					src="res/jiushujie-logo.png" alt="买卖二手书,就上旧书街" title="买卖二手书,就上旧书街">
-				</a>
-			</div>
-			<div style="float: left;">
-				<img src="res/slogan1124.png">
-			</div>
-			<div id="top-nav">
-				<ul class="top_menu">
-					<li><a id="home_tab" href="/"
-						class="selectedtab">首页</a></li>
-					<li><a id="sell_tab" href="sell.html">出售</a>
-					</li>
-					<li><a id="buy_tab" href="buy">求购</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+		<top></top>
 	</div>
+	<script type="text/javascript">
+		new Vue({
+			el : "#top"
+		})
+	</script>
 
 	<div class="main_middle">
 		<div id="main_content" class="center_980">
@@ -69,63 +46,14 @@
 						class="button" name="yt0" type="button" value="立即注册">
 				</div>
 				<div style="margin-top: 20px;">
-					<div class="side_block">
-						<div class="title">新注册用户</div>
-						<div class="separate"></div>
-						<div class="side_user_list">
-							<ul>
-								<li><a target="_blank" href="/user/26229871"><img
-										src="http://cdn.shujie.me/user/2020/05/01/11/39619183_387ozazg3h8pzxrr.jpg!middle"
-										title="雪沐 ♀ 北京中医药大学"></a></li>
-								<li><a target="_blank" href="/user/26203178"><img
-										src="http://cdn.shujie.me/user/2020/04/13/04/17938884_l8zr9xsiyt74tvgy.jpg!middle"
-										title="mengyi ♀ 北京中医药大学"></a></li>
-								<li><a target="_blank" href="/user/26206507"><img
-										src="http://cdn.shujie.me/user/2020/04/15/06/90913389_w7l1c92lhbv0td2r.jpg!middle"
-										title="赢勾 ♂ 北京中医药大学"></a></li>
-								<li><a target="_blank" href="/user/26232801"><img
-										src="http://cdn.shujie.me/user/2020/05/04/10/36097344_sh9ndxljmanu7bz8.jpg!middle"
-										title="一剑飘香 ♂ 北京中医药大学"></a></li>
-								<li><a target="_blank" href="/user/26188874"><img
-										src="http://cdn.shujie.me/user/2020/04/02/11/70439633_nzx132qohdyl0gd6.jpg!middle"
-										title="yk123 ♂ 北京中医药大学"></a></li>
-								<li><a target="_blank" href="/user/26212964"><img
-										src="http://cdn.shujie.me/user/2020/04/19/22/37395433_wpf9s8dbf4p3wvt7.jpg!middle"
-										title="娘娘 ♀ 北京中医药大学"></a></li>
-								<li><a target="_blank" href="/user/26223609"><img
-										src="http://cdn.shujie.me/user/2020/04/27/01/06025727_dpngziatt6m06esq.jpg!middle"
-										title="Coco32 ♂ 北京中医药大学"></a></li>
-								<li><a target="_blank" href="/user/26220415"><img
-										src="http://cdn.shujie.me/user/2020/04/24/13/90472014_pgty5mjneujbh1s5.jpg!middle"
-										title="于晓东1 ♂ 北京中医药大学"></a></li>
-								<li><a target="_blank" href="/user/26215218"><img
-										src="http://cdn.shujie.me/user/2020/04/21/08/69159358_1tovzzv15k5tpdku.jpg!middle"
-										title="乞许 ♀ 北京中医药大学"></a></li>
-								<li><a target="_blank" href="/user/26228899"><img
-										src="http://cdn.shujie.me/user/2020/04/30/13/78791990_is0lbdak8q1jhfd0.jpg!middle"
-										title="一世长安99 ♀ 北京中医药大学"></a></li>
-								<li><a target="_blank" href="/user/26215478"><img
-										src="http://cdn.shujie.me/user/2020/04/21/12/26215478_r34xk6m28vf6abcr.jpg!middle"
-										title="403587550 ♂ 北京中医药大学"></a></li>
-								<li><a target="_blank" href="/user/26215101"><img
-										src="http://cdn.shujie.me/user/2020/04/21/08/44311729_0r99qeypyb2ibyvx.jpg!middle"
-										title="医学参考书 ♂ 北京中医药大学"></a></li>
-								<li><a target="_blank" href="/user/26136978"><img
-										src="http://cdn.shujie.me/user/2020/03/13/16/66395954_5m72tyjoq2tty3iw.jpg!middle"
-										title="弘扬国学正能量 ♀ 北京中医药大学"></a></li>
-								<li><a target="_blank" href="/user/26232420"><img
-										src="http://cdn.shujie.me/user/2020/05/04/04/57116379_pfi795po5k0u1tgg.jpg!middle"
-										title="黄氏中医 ♂ 北京中医药大学"></a></li>
-								<li><a target="_blank" href="/user/26373235"><img
-										src="http://cdn.shujie.me/user/2020/09/22/07/82955300_wrifrzd4b34ra69r.jpg!middle"
-										title="DRDdzhf18108841312 ♂ 北京中医药大学"></a></li>
-								<li><a target="_blank" href="/user/26223107"><img
-										src="http://cdn.shujie.me/user/2020/04/26/13/37698783_1p1p0wyht1ar401u.jpg!middle"
-										title="不迎 ♀ 北京中医药大学"></a></li>
-							</ul>
-						</div>
-						<div class="clearfloat"></div>
+					<div id="luc">
+						<luc></luc>
 					</div>
+					<script type="text/javascript">
+						new Vue({
+							el : "#luc"
+						})
+					</script>
 				</div>
 			</div>
 			<div class="content_right">
@@ -221,23 +149,14 @@
 			src="res/android_download.jpg">
 	</div>
 	<div class="clearfloat"></div>
-	<div class="bottom">
-		<div class="center_980">
-			<div class="bottom_left">
-				<ul>
-					<li><a href="site/about">关于我们</a></li>
-					<li><a href="site/joinus">申请合作</a></li>
-					<li><a href="site/privacy">隐私政策</a></li>
-					<li><a href="site/term">服务条款</a></li>
-					<li><a href="site/help">帮助</a></li>
-					<li><a href="site/link">友情链接</a></li>
-				</ul>
-			</div>
-			<div id="copyright">
-				© 2020 by 旧书街 <a href="http://beian.miit.gov.cn/">蜀ICP备16007902号-2</a>
-			</div>
-		</div>
+	<div id="foot">
+	<foot></foot>	
 	</div>
+	<script type="text/javascript">
+		new Vue({
+			el:"#foot"
+		})
+	</script>
 	<h1 class="jiushujie_slogan">买卖二手书，就上旧书街。旧书街二手书交易网-您身边的旧书网站</h1>
 </body>
 </html>

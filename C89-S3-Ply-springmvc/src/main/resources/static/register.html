@@ -17,49 +17,26 @@
 <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
 <script type="text/javascript"
 	src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/jsj.js"></script>
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
-	<div class="site_top_row">
-		<div class="center_980">
-			<div class="school_location" style="float: left;">
-				[<a href="javascript:void(0)"
-					onclick="showSchoolList();return false;">所有学校</a>]
-			</div>
-			<div id="top_user_info" style="float: right;">
-				<a href="login.html">登录</a>|<a
-					href="sell.html/create">出售</a>|<a
-					style="color: rgb(254, 137, 0);"
-					href="register.html">立即注册</a>|<a
-					class="app_mobile" target="_blank"
-					href="site/app">下载APP</a>
-			</div>
-			<div class="clearfloat"></div>
-		</div>
+	<div id="yetou">
+		<yetou></yetou>
 	</div>
+	<script type="text/javascript">
+		var v119 = new Vue({
+			el:"#yetou"
+		})
+	</script>
 	<div id="top">
-		<div class="center_980">
-			<div id="logo">
-				<a href=""> <img
-					src="res/jiushujie-logo.png" alt="买卖二手书,就上旧书街" title="买卖二手书,就上旧书街">
-				</a>
-			</div>
-			<div style="float: left;">
-				<img src="res/slogan1124.png">
-			</div>
-			<div id="top-nav">
-				<ul class="top_menu">
-					<li><a id="home_tab" href="/"
-						class="selectedtab">首页</a></li>
-					<li><a id="sell_tab" href="sell.html">出售</a>
-					</li>
-					<li><a id="buy_tab" href="buy">求购</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+		<top></top>
 	</div>
-
+	<script type="text/javascript">
+		new Vue({
+			el : "#top"
+		})
+	</script>
 	<div class="main_middle">
 		<div id="main_content" class="center_980">
 			<div class="content_left">
@@ -70,51 +47,14 @@
 						value="立即登录">
 				</div>
 				<div style="margin-top: 20px;">
-					<div class="side_block">
-						<div class="title">最多人关注</div>
-						<div class="separate"></div>
-						<div class="side_user_list">
-							<ul>
-								<li><a target="_blank" href="/user/540305"><img
-										src="http://cdn.shujie.me/user/2020/08/10/23/540305_n1dab5l6dee972hc.jpg!middle"
-										title="旧书街客服 ♂ 北京交通大学"></a></li>
-								<li><a target="_blank" href="/user/1730678"><img
-										src="http://cdn.shujie.me/user/2014/03/21/4949898217_1395410353.jpg!middle"
-										title="旧书街官方活动 ♂ 北京邮电大学"></a></li>
-								<li><a target="_blank" href="/user/15624945"><img
-										src="http://cdn.shujie.me/user/2016/07/19/9819130012_1468891330.jpg!middle"
-										title="小豆腐啊 ♀ 山东师范大学"></a></li>
-								<li><a target="_blank" href="/user/15768037"><img
-										src="http://cdn.shujie.me/user/2017/03/18/8701011384_1489841601.jpg!middle"
-										title="醉三年 ♂ 河北交通职业技术学院"></a></li>
-								<li><a target="_blank" href="/user/15853618"><img
-										src="http://cdn.shujie.me/user/2016/08/11/8767971901_1470919411.jpg!middle"
-										title="怪盗 ♀ 清华大学"></a></li>
-								<li><a target="_blank" href="/user/16605959"><img
-										src="http://cdn.shujie.me/user/2016/11/24/0091191133_1479986351.jpg!middle"
-										title="西施书屋 ♀ 宁波工程学院"></a></li>
-								<li><a target="_blank" href="/user/16638354"><img
-										src="http://cdn.shujie.me/user/2016/12/01/7468920359_1480572497.jpg!middle"
-										title="蒲公英TM ♂ 河北师范大学"></a></li>
-								<li><a target="_blank" href="/user/16982378"><img
-										src="http://cdn.shujie.me/user/2017/08/31/8692929230_1504180972.jpg!middle"
-										title="上游 ♂ 哈尔滨工程技术职业学院"></a></li>
-								<li><a target="_blank" href="/user/17931502"><img
-										src="http://cdn.shujie.me/user/2017/07/17/2303436157_1500259991.jpg!middle"
-										title="吉光片羽 ♂ 河南财经政法大学"></a></li>
-								<li><a target="_blank" href="/user/19167800"><img
-										src="http://cdn.shujie.me/user/2018/11/07/6630286866_1541560291.jpg!middle"
-										title="卖图书的女汉纸 ♂ 南京大学"></a></li>
-								<li><a target="_blank" href="/user/22333097"><img
-										src="http://cdn.shujie.me/user/2019/09/15/13/22333097_6eygylayxuykgex4.jpg!middle"
-										title="sky78 ♂ 北京大学"></a></li>
-								<li><a target="_blank" href="/user/22476232"><img
-										src="http://cdn.shujie.me/user/2019/07/04/05/22476232_nn68l1csye5f9nwd.jpg!middle"
-										title="清水精品书屋 ♂ 延边大学"></a></li>
-							</ul>
-						</div>
-						<div class="clearfloat"></div>
+					<div id="mul">
+						<mul></mul>
 					</div>
+					<script type="text/javascript">
+						new Vue({
+							el : "#mul"
+						})
+					</script>
 				</div>
 			</div>
 			<div class="content_right">
@@ -277,23 +217,14 @@ div#img_verify table.ubm_input td {
 			src="res/android_download.jpg">
 	</div>
 	<div class="clearfloat"></div>
-	<div class="bottom">
-		<div class="center_980">
-			<div class="bottom_left">
-				<ul>
-					<li><a href="site/about">关于我们</a></li>
-					<li><a href="site/joinus">申请合作</a></li>
-					<li><a href="site/privacy">隐私政策</a></li>
-					<li><a href="site/term">服务条款</a></li>
-					<li><a href="site/help">帮助</a></li>
-					<li><a href="site/link">友情链接</a></li>
-				</ul>
-			</div>
-			<div id="copyright">
-				© 2020 by 旧书街 <a href="http://beian.miit.gov.cn/">蜀ICP备16007902号-2</a>
-			</div>
-		</div>
+	<div id="foot">
+	<foot></foot>	
 	</div>
+	<script type="text/javascript">
+		new Vue({
+			el:"#foot"
+		})
+	</script>
 	<h1 class="jiushujie_slogan">买卖二手书，就上旧书街。旧书街二手书交易网-您身边的旧书网站</h1>
 </body>
 </html>
