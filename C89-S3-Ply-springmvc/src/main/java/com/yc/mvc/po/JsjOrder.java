@@ -1,6 +1,7 @@
 package com.yc.mvc.po;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.Data;
 
@@ -17,5 +18,8 @@ public class JsjOrder implements java.io.Serializable {
 	private Timestamp createTime;
 	private Integer state;
 	private String remark;
+	
+	private List<JsjOrderDetail> details;
+	
 
 }
