@@ -157,7 +157,10 @@ public class UserAction {
 	}
 
 	@RequestMapping("selectById")
-	public JsjUser selectById(int id) {
+	public JsjUser selectById(Integer id,@SessionAttribute JsjUser loginedUser) {
+		if (id==null) {
+			id = loginedUser.getId();
+		}
 		return um.selectById(id);
 	}
 
