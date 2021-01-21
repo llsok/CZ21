@@ -147,7 +147,7 @@
 					},
 					created(){
 						axios.get("queryCart.do").then(res=>{
-							this.cart = this.data;
+							this.cart = res.data;
 						});
 					}
 				});
