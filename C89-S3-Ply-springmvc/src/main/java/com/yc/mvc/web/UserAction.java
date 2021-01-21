@@ -136,6 +136,13 @@ public class UserAction {
 		newReg = um.selectNewRegUser();
 		return newReg;
 	}
+	
+	@GetMapping("guanzhu")
+	public List<JsjUser> selectByFidd(int fid){
+		return um.selectByFid(fid);
+	}
+	
+	
 
 	@PostMapping("addCollect.do")
 	public Result addCollect(@Valid JsjUser user, Errors errors, @SessionAttribute JsjUser loginedUser) {
@@ -150,7 +157,10 @@ public class UserAction {
 	}
 
 	@RequestMapping("selectById")
-	public JsjUser selectById(int id) {
+	public JsjUser selectById(Integer id,@SessionAttribute JsjUser loginedUser) {
+		if (id==null) {
+			id = loginedUser.getId();
+		}
 		return um.selectById(id);
 	}
 
