@@ -11,5 +11,7 @@ public class JsjOrderDetail implements java.io.Serializable {
 	private Long bid;
 	private Integer count;
 	private Double price;
+	
+	private JsjBook book;
  
 }

@@ -198,13 +198,14 @@
 								if(c.id == s){
 									params.append("details["+i+"].bid", c.book.id);
 									params.append("details["+i+"].count", c.count);
+									params.append("details["+i+"].book.price", c.book.price);
 									i++;
 									break;
 								}
 							}
 						}
 						axios.post("addOrder", params).then(res=>{
-							alert(res.data.msg);
+							location.href="cart.html?" + new Date();
 						});
 					}
 				}
