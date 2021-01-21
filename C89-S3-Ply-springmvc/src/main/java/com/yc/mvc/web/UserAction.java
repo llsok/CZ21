@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.yc.mvc.biz.BizException;
 import com.yc.mvc.biz.UserBiz;
 import com.yc.mvc.dao.UserMapper;
+import com.yc.mvc.po.JsjFans;
 import com.yc.mvc.po.JsjUser;
 import com.yc.mvc.web.po.Result;
 
@@ -185,9 +186,9 @@ public class UserAction {
 	}
 
 
-	@RequestMapping("selectMostGuanZhu")
-	public List<JsjUser> selectMostGuanZhu(){
-		return um.selectMostGuanZhu();
+	@RequestMapping("selectMostFans")
+	public List<JsjFans> selectMostFans(){
+		return um.selectMostFans();
 	}
 
 }

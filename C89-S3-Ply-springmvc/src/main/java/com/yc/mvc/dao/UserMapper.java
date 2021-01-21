@@ -40,7 +40,8 @@ public interface UserMapper {
 	List<JsjUser> selectNewRegUser();
 
 	@Select("select * from jsj_user where id=#{id}")
-	@Results(id="rmuser", value = { @Result(column = "school", property = "schoolObj", 
+	@Results(id="rmuser", value = { @Result(column = "id",property = "id"),
+			@Result(column = "school", property = "schoolObj", 
 	one = @One(select = "com.yc.mvc.dao.SchoolMapper.selectById")),
 			@Result(column = "id",property = "fans",
 			many = @Many(select = "selectFans")),
@@ -72,11 +73,9 @@ public interface UserMapper {
 
 	
 	
-//	@Select("select * from jsj_fans GROUP BY uid ORDER BY count(*) desc LIMIT 0,24")
-//	@Results(value = { @Result(column = "uid", property = "user", 
-//	one = @One(select = "selectById"))})
-	@Select("select * from jsj_user b right JOIN jsj_fans a on a.uid = b.id "
-			+ " GROUP BY a.uid ORDER BY count(*) desc LIMIT 0,24 ")
-	@ResultMap("rmschool")
-	public List<JsjUser> selectMostGuanZhu();
+	@Select("select * from jsj_fans GROUP BY uid ORDER BY count(*) desc LIMIT 0,24")
+	@Results(value = { @Result(column = "uid",property = "uid"),
+			@Result(column = "uid", property = "user",
+	one = @One(select = "selectById"))})
+	public List<JsjFans> selectMostFans();
 }

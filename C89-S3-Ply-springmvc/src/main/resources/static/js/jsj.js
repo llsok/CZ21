@@ -262,7 +262,7 @@ Vue.component(
 			return { list : [] };
 		},
 		created(){
-			axios.get("selectMostGuanZhu").then(res=>{
+			axios.get("selectMostFans").then(res=>{
 				this.list = res.data;
 			});
 		},
@@ -273,9 +273,9 @@ Vue.component(
 					<div class="side_user_list">
 						<ul>
 							<li v-for="u in list"><a target="_blank"
-								:href="'user.html#'+u.id"><img
-									:src="u.headImg"
-									:title="u.account+' ♀ '+u.schoolObj.name"></a></li>
+								:href="'user.html#'+u.user.id"><img
+									:src="u.user.headImg"
+									:title="u.user.account+' ♀ '+u.user.schoolObj.name"></a></li>
 							
 						</ul>
 					</div>
