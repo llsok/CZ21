@@ -30,3 +30,4 @@ public interface CartMapper {
 	public void delete(@Param("bid")Long bid, @Param("uid")Long uid);
 
 }
+
