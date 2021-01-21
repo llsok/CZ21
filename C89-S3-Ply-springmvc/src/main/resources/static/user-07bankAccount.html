@@ -77,7 +77,7 @@
 						<ul>
 							<li><a id="sell_order_list" href="/my/sellOrderList">收到的订单</a></li>
 							<li><a id="mail_fee_set" href="/mailFee">运费设置</a></li>
-							<li><a id="bank_account" href="/set/bankAccount"
+							<li><a id="bank_account" href="user-07bankAccount.html"
 								class="active_link">收款账号设置</a></li>
 						</ul>
 					</div>
@@ -132,7 +132,7 @@
 				<div class="border_white padding_10">
 					<div class="form">
 						<div class="page_title">收款账号设置</div>
-						<form id="user-introduction-form" action="/set/bankAccount"
+						<form id="user-introduction-form" action="login.html"
 							method="post">
 							<input type="hidden"
 								value="aldwNTRsWTk3QTdqbnFsb0w3eUdkWE41NEZrNHdxfnBVszCUZnhj1OTN9RXoDkEBa_S8ZcvJbtfVa7Wuuai2Hw=="
@@ -143,8 +143,8 @@
 										<td><label for="BankAccount_type" class="required">账号类型
 												<span class="required">*</span>
 										</label></td>
-										<td><select class="ubm_textinput"
-											name="collect_type" id="BankAccount_type">
+										<td><select class="ubm_textinput" v-model="user.collectType"
+											name="collectType" id="BankAccount_type">
 												<option value="" selected="selected"></option>
 												<option value="支付宝">支付宝</option>
 												<option value="中国银行">中国银行</option>
@@ -159,8 +159,8 @@
 										<td><label for="BankAccount_realname" class="required">开户名
 												<span class="required">*</span>
 										</label></td>
-										<td><input v-model="user.collect_name" maxlength="45" class="ubm_textinput"
-											name="collect_name" id="BankAccount_realname"
+										<td><input v-model="user.collectName" maxlength="45" class="ubm_textinput"
+											name="collectName" id="BankAccount_realname"
 											type="text"></td>
 										<td><div>{{errors.collectName}}</div></td>
 									</tr>
@@ -168,8 +168,8 @@
 										<td><label for="BankAccount_account" class="required">账号
 												<span class="required">*</span>
 										</label></td>
-										<td><input v-model="user.collect_account" maxlength="45" class="ubm_textinput"
-											name="collect_account" id="BankAccount_account"
+										<td><input v-model="user.collectAccount" maxlength="45" class="ubm_textinput"
+											name="collectType" id="BankAccount_account"
 											type="text"></td>
 										<td><div>{{errors.collectAccount}}</div></td>
 									</tr>
@@ -186,25 +186,29 @@
 							el : "#user-introduction-form",
 							data : {
 								user : {
-									collect_type : "",
-									collect_account : "",
-									collect_name : "",
+									collectType : "",
+									collectType : "",
+									collectName : "",
 								},
 								errors : {
 									collectType : "",
-									collectAccount : "",
+									collectType : "",
 									collectName : "",
 								},
+							},created(){
+								axios.get("getLoginedUser.do").then(res=>{
+	                    			  this.user=res.data.data;
+	                    		  });
 							},
 							methods : {
 								sub(){
 									var type=document.getElementById("BankAccount_type");
 									var index1=type.selectedIndex;
-									this.user.collect_type=type.options[index1].value;
+									this.user.collectType=type.options[index1].value;
 									var param = new URLSearchParams();
-									param.append('collectType',this.user.collect_type);
-									param.append('collectAccount',this.user.collect_account);
-									param.append('collectName',this.user.collect_name);
+									param.append('collectType',this.user.collectType);
+									param.append('collectAccount',this.user.collectAccount);
+									param.append('collectName',this.user.collectName);
 									axios.post("addCollect.do",param).then(res=>{
 										if(res.data.code==1){
 											alert(res.data.msg);
