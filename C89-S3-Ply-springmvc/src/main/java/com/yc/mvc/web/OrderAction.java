@@ -2,7 +2,9 @@
 package com.yc.mvc.web;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -19,7 +21,10 @@ public class OrderAction {
 	private OrderBiz ob;
 
 	@PostMapping("addOrder")
-	public Result addOrder(JsjOrder order, @SessionAttribute JsjUser loginedUser) {
+	public Result addOrder(@Valid JsjOrder order,Errors errors, @SessionAttribute JsjUser loginedUser) {
+		if (errors.hasErrors()) {
+			return Result.failure("字段验证错误！", errors.getAllErrors());
+		}
 		try {
 			order.setUid((long) loginedUser.getId());
 			ob.addOrder(order);
