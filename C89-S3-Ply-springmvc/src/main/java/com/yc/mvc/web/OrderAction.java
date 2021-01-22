@@ -49,5 +49,10 @@ public class OrderAction {
 	public List<JsjOrderDetail> queryCartByUid(@SessionAttribute JsjUser loginedUser) {
 		return odm.queryOrderByOwnId(loginedUser.getId());
 	} 
+	
+	@RequestMapping("queryOrderList")
+	public List<JsjOrder> queryOrderListByUid(@SessionAttribute JsjUser loginedUser) {
+		return om.queryOrderListByUid(loginedUser.getId());
+	}
 
 }
