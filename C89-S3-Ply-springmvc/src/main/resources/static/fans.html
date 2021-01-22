@@ -14,6 +14,11 @@
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
 
+<script type="text/javascript"
+	src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
@@ -24,21 +29,30 @@
 					onclick="showSchoolList();return false;">所有学校</a>]
 			</div>
 			<div id="top_user_info" style="float: right;">
-				<a href="login.html">登录</a>|<a
-					href="sell/create">出售</a>|<a
-					style="color: rgb(254, 137, 0);"
-					href="register.html">立即注册</a>|<a
-					class="app_mobile" target="_blank"
-					href="site/app">下载APP</a>
+				<a v-if="lu.account" href="user-01set.html">{{lu.account}}</a> <a
+					v-else href="login.html">登录</a> | <a href="sell/create">出售</a>| <a
+					style="color: rgb(254, 137, 0);" href="register.html">立即注册</a>| <a
+					class="app_mobile" target="_blank" href="site/app">下载APP</a>
 			</div>
 			<div class="clearfloat"></div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		var v = new Vue({
+			el : ".site_top_row",
+			data : { lu : {} }, // lu ==> loginedUser
+			created(){
+				axios.get("getLoginedUser.do").then(res=>{
+					this.lu = res.data.data;
+				})
+			}
+		})
+	</script>
 	<div id="top">
 		<div class="center_980">
 			<div id="logo">
-				<a href=""> <img
-					src="res/jiushujie-logo.png" alt="买卖二手书,就上旧书街" title="买卖二手书,就上旧书街">
+				<a href=""> <img src="res/jiushujie-logo.png" alt="买卖二手书,就上旧书街"
+					title="买卖二手书,就上旧书街">
 				</a>
 			</div>
 			<div style="float: left;">
@@ -46,12 +60,9 @@
 			</div>
 			<div id="top-nav">
 				<ul class="top_menu">
-					<li><a id="home_tab" href="/"
-						class="selectedtab">首页</a></li>
-					<li><a id="sell_tab" href="sell">出售</a>
-					</li>
-					<li><a id="buy_tab" href="buy">求购</a>
-					</li>
+					<li><a id="home_tab" href="/" class="selectedtab">首页</a></li>
+					<li><a id="sell_tab" href="sell">出售</a></li>
+					<li><a id="buy_tab" href="buy">求购</a></li>
 				</ul>
 			</div>
 		</div>
@@ -75,8 +86,7 @@
 								<li>上次登录:&nbsp;今天</li>
 								<li><a class="user_fan_faned_link"
 									href="user/26398619/follow">关注(2)</a>&nbsp;<a
-									class="user_fan_faned_link"
-									href="user/26398619/fan">粉丝(30)</a></li>
+									class="user_fan_faned_link" href="user/26398619/fan">粉丝(30)</a></li>
 							</ul>
 						</div>
 					</div>
@@ -129,8 +139,8 @@
 										<td style="width: 30px;"><img class="user_pic_tiny"
 											src="http://cdn.shujie.me/user/default.jpg!tiny"
 											alt="ywy4810" title="ywy4810"></td>
-										<td style="width: 200px;"><a
-											href="user/26478812" target="_blank">ywy4810</a></td>
+										<td style="width: 200px;"><a href="user/26478812"
+											target="_blank">ywy4810</a></td>
 										<td style="width: 200px;">男生</td>
 										<td style="width: 200px;">学校未设置</td>
 										<td style="width: 100px;"><input
@@ -142,8 +152,8 @@
 										<td style="width: 30px;"><img class="user_pic_tiny"
 											src="http://cdn.shujie.me/user/2021/01/04/02/26478181_xmczeace9asu8uhn.jpg!tiny"
 											alt="有书社" title="有书社"></td>
-										<td style="width: 200px;"><a
-											href="user/26478181" target="_blank">有书社</a></td>
+										<td style="width: 200px;"><a href="user/26478181"
+											target="_blank">有书社</a></td>
 										<td style="width: 200px;">男生</td>
 										<td style="width: 200px;">北京科技大学</td>
 										<td style="width: 100px;"><input
@@ -155,8 +165,8 @@
 										<td style="width: 30px;"><img class="user_pic_tiny"
 											src="http://cdn.shujie.me/user/default.jpg!tiny"
 											alt="nwj222hh" title="nwj222hh"></td>
-										<td style="width: 200px;"><a
-											href="user/26474491" target="_blank">nwj222hh</a></td>
+										<td style="width: 200px;"><a href="user/26474491"
+											target="_blank">nwj222hh</a></td>
 										<td style="width: 200px;">女生</td>
 										<td style="width: 200px;">学校未设置</td>
 										<td style="width: 100px;"><input
@@ -168,8 +178,8 @@
 										<td style="width: 30px;"><img class="user_pic_tiny"
 											src="http://cdn.shujie.me/user/2021/01/03/02/26476613_10mtqw17v6kzzl90.jpg!tiny"
 											alt="乖乖啦" title="乖乖啦"></td>
-										<td style="width: 200px;"><a
-											href="user/26476613" target="_blank">乖乖啦</a></td>
+										<td style="width: 200px;"><a href="user/26476613"
+											target="_blank">乖乖啦</a></td>
 										<td style="width: 200px;">女生</td>
 										<td style="width: 200px;">学校未设置</td>
 										<td style="width: 100px;"><input
@@ -181,8 +191,8 @@
 										<td style="width: 30px;"><img class="user_pic_tiny"
 											src="http://cdn.shujie.me/user/default.jpg!tiny" alt="飞鱼飞"
 											title="飞鱼飞"></td>
-										<td style="width: 200px;"><a
-											href="user/26477505" target="_blank">飞鱼飞</a></td>
+										<td style="width: 200px;"><a href="user/26477505"
+											target="_blank">飞鱼飞</a></td>
 										<td style="width: 200px;">女生</td>
 										<td style="width: 200px;">学校未设置</td>
 										<td style="width: 100px;"><input
@@ -194,8 +204,8 @@
 										<td style="width: 30px;"><img class="user_pic_tiny"
 											src="http://cdn.shujie.me/user/2021/01/03/02/26475044_yhbhr70h9koq8ako.jpg!tiny"
 											alt="夕颜hn" title="夕颜hn"></td>
-										<td style="width: 200px;"><a
-											href="user/26475044" target="_blank">夕颜hn</a></td>
+										<td style="width: 200px;"><a href="user/26475044"
+											target="_blank">夕颜hn</a></td>
 										<td style="width: 200px;">男生</td>
 										<td style="width: 200px;">吉林大学</td>
 										<td style="width: 100px;"><input
@@ -207,8 +217,8 @@
 										<td style="width: 30px;"><img class="user_pic_tiny"
 											src="http://cdn.shujie.me/user/default.jpg!tiny"
 											alt="草原牧歌611" title="草原牧歌611"></td>
-										<td style="width: 200px;"><a
-											href="user/26474746" target="_blank">草原牧歌611</a></td>
+										<td style="width: 200px;"><a href="user/26474746"
+											target="_blank">草原牧歌611</a></td>
 										<td style="width: 200px;">男生</td>
 										<td style="width: 200px;">学校未设置</td>
 										<td style="width: 100px;"><input
@@ -220,8 +230,8 @@
 										<td style="width: 30px;"><img class="user_pic_tiny"
 											src="http://cdn.shujie.me/user/default.jpg!tiny"
 											alt="Nicole123" title="Nicole123"></td>
-										<td style="width: 200px;"><a
-											href="user/26473003" target="_blank">Nicole123</a></td>
+										<td style="width: 200px;"><a href="user/26473003"
+											target="_blank">Nicole123</a></td>
 										<td style="width: 200px;">女生</td>
 										<td style="width: 200px;">华东理工大学</td>
 										<td style="width: 100px;"><input
@@ -233,8 +243,8 @@
 										<td style="width: 30px;"><img class="user_pic_tiny"
 											src="http://cdn.shujie.me/user/default.jpg!tiny" alt="xxxxo"
 											title="xxxxo"></td>
-										<td style="width: 200px;"><a
-											href="user/26470354" target="_blank">xxxxo</a></td>
+										<td style="width: 200px;"><a href="user/26470354"
+											target="_blank">xxxxo</a></td>
 										<td style="width: 200px;">女生</td>
 										<td style="width: 200px;">学校未设置</td>
 										<td style="width: 100px;"><input
@@ -246,8 +256,8 @@
 										<td style="width: 30px;"><img class="user_pic_tiny"
 											src="http://cdn.shujie.me/user/default.jpg!tiny" alt="庄家"
 											title="庄家"></td>
-										<td style="width: 200px;"><a
-											href="user/26470293" target="_blank">庄家</a></td>
+										<td style="width: 200px;"><a href="user/26470293"
+											target="_blank">庄家</a></td>
 										<td style="width: 200px;">男生</td>
 										<td style="width: 200px;">中南大学</td>
 										<td style="width: 100px;"><input
