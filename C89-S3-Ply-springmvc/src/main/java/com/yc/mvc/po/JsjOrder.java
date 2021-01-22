@@ -1,4 +1,3 @@
-
 package com.yc.mvc.po;
 
 import java.sql.Timestamp;

@@ -39,73 +39,14 @@
 	</script>
 	<div class="main_middle">
 		<div id="main_content" class="center_980">
-			<div class="content_left">
-				<div class="padding_10 border_white">
-					<div class="user_setting_block">
-						<div class="title">个人设置</div>
-						<ul>
-							<li><a id="user_basic" href="/set">头像&amp;基本信息</a></li>
-							<li><a id="self_introduction" href="/intro">签名档</a></li>
-							<li><a id="user_pwd" href="/changepwd">修改密码</a></li>
-							<li><a id="invite_link" href="/my/inviteLink">我的邀请链接</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">我是卖家</div>
-						<ul>
-							<li><a id="sell_order_list" href="/my/sellOrderList">收到的订单</a></li>
-							<li><a id="mail_fee_set" href="/mailFee">运费设置</a></li>
-							<li><a id="bank_account" href="/set/bankAccount">收款账号设置</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">我是买家</div>
-						<ul>
-							<li><a id="my_order_list" href="/my/orderList">我下的订单</a></li>
-							<li><a id="address_info_set" href="/address/index"
-								class="active_link">收货信息</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">动态</div>
-						<ul>
-							<li><a id="news_list" href="/my/newsList">我的动态</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">书籍</div>
-						<ul>
-							<li><a id="sell_list" href="/mysell">我的出售</a></li>
-							<li><a id="soldout_list" href="/mysell?soldout=1">我的售罄</a></li>
-							<li><a id="buy_list" href="/mybuy">我的求购</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">留言</div>
-						<ul>
-							<li><a id="sell_comment_tab"
-								href="/my/commentList/type/sell.html">留言-出售</a></li>
-							<li><a id="buy_comment_tab" href="/my/commentList/type/buy">留言-求购</a></li>
-							<li><a id="news_comment_tab"
-								href="/my/commentList/type/news">留言-动态</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">消息</div>
-						<ul>
-							<li><a id="inbox_tab" href="/inbox">收件箱</a></li>
-							<li><a id="outbox_tab" href="/outbox">发件箱</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">用户</div>
-						<ul>
-							<li><a id="fan_by_me_tab" href="/follow">我的关注</a></li>
-							<li><a id="fan_of_me_tab" href="/fan">我的粉丝</a></li>
-						</ul>
-					</div>
-				</div>
+			<div id="pc">
+				<pc uid = "9"></pc>
 			</div>
+			<script type="text/javascript">
+				new Vue({
+					el : "#pc"
+				})
+			</script>
 			<div class="content_right">
 				<div class="border_white padding_10">
 					<div class="page_title">我的收货信息</div>
