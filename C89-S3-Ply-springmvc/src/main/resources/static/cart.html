@@ -300,13 +300,16 @@
 							}
 							if(res.data.code != 1){
 								var es = res.data.data;
-								for( let e of es){  // == java for( e : es)
-									var na = document.getElementsByName(e.field);
-									$(na).css("boxShadow","0px 0px 5px 3px red");
-									if(this.errors[e.field].search("空")==-1){
-										this.errors[e.field] = e.defaultMessage;
+								if(es!=null){
+									for( let e of es){  // == java for( e : es)
+										var na = document.getElementsByName(e.field);
+										$(na).css("boxShadow","0px 0px 5px 3px red");
+										if(this.errors[e.field].search("空")==-1){
+											this.errors[e.field] = e.defaultMessage;
+										}
 									}
 								}
+								
 							}
 
 						});
