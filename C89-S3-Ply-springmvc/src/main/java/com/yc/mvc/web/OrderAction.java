@@ -3,6 +3,7 @@ package com.yc.mvc.web;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.validation.Errors;
@@ -53,6 +54,13 @@ public class OrderAction {
 	@RequestMapping("queryOrderList")
 	public List<JsjOrder> queryOrderListByUid(@SessionAttribute JsjUser loginedUser) {
 		return om.queryOrderListByUid(loginedUser.getId());
+	}
+	
+	@RequestMapping(path="SendOrder")
+	public Result sendOrder(int id) {
+		om.sendOrder(id);
+		return Result.success("发货成功!",null);
+		
 	}
 
 }
