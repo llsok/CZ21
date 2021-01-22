@@ -13,48 +13,31 @@
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
 
+
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+<script type="text/javascript"
+	src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/jsj.js"></script>
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
-	<div class="site_top_row">
-		<div class="center_980">
-			<div class="school_location" style="float: left;">
-				[<a href="javascript:void(0)"
-					onclick="showSchoolList();return false;">所有学校</a>]
-			</div>
-			<div id="top_user_info" style="float: right;">
-				<a href="login.html">登录</a>|<a
-					href="sell/create">出售</a>|<a
-					style="color: rgb(254, 137, 0);"
-					href="register.html">立即注册</a>|<a
-					class="app_mobile" target="_blank"
-					href="site/app">下载APP</a>
-			</div>
-			<div class="clearfloat"></div>
-		</div>
+	<div id="yetou">
+		<yetou></yetou>
 	</div>
+	<script type="text/javascript">
+		var v119 = new Vue({
+			el:"#yetou"
+		})
+	</script>
 	<div id="top">
-		<div class="center_980">
-			<div id="logo">
-				<a href=""> <img
-					src="res/jiushujie-logo.png" alt="买卖二手书,就上旧书街" title="买卖二手书,就上旧书街">
-				</a>
-			</div>
-			<div style="float: left;">
-				<img src="res/slogan1124.png">
-			</div>
-			<div id="top-nav">
-				<ul class="top_menu">
-					<li><a id="home_tab" href="/"
-						class="selectedtab">首页</a></li>
-					<li><a id="sell_tab" href="sell">出售</a>
-					</li>
-					<li><a id="buy_tab" href="buy">求购</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+		<top></top>
 	</div>
+	<script type="text/javascript">
+		new Vue({
+			el : "#top"
+		})
+	</script>
 
 	<div class="main_middle">
 		<div id="main_content" class="center_980">
@@ -76,27 +59,63 @@
 				<div class="clearfloat"></div>
 			</div>
 			<div class="border_white">
-				<div id="gridview-list-grid" class="grid-view">
+				<div id="listgrid" class="grid-view">
 					<table class="items">
 						<thead>
 							<tr style="background-color: rgb(255, 255, 255);">
-								<th id="gridview-list-grid_c0">&nbsp;</th>
-								<th class="checkbox-column" id="gridview-list-grid_c1"><input
-									type="checkbox" value="1" name="gridview-list-grid_c1_all"
-									id="gridview-list-grid_c1_all"></th>
-								<th id="gridview-list-grid_c2">&nbsp;</th>
-								<th id="gridview-list-grid_c3">书名</th>
-								<th id="gridview-list-grid_c4">卖家</th>
-								<th id="gridview-list-grid_c5">原价</th>
-								<th id="gridview-list-grid_c6">库存量</th>
-								<th id="gridview-list-grid_c7">售价</th>
-								<th id="gridview-list-grid_c8">购买数量</th>
-								<th id="gridview-list-grid_c9">小计</th>
-								<th id="gridview-list-grid_c10">操作</th>
+								<th style="width: 10px;" id="gridview-list-grid_c0">&nbsp;</th>
+								<th style="width: 30px;" class="checkbox-column" id="gridview-list-grid_c1">
+									<input type="checkbox" value="1" name="gridview-list-grid_c1_all" id="gridview-list-grid_c1_all">
+								</th>
+								<th style="width: 40px;" id="gridview-list-grid_c2">&nbsp;图片</th>
+								<th style="width: 70px;" id="gridview-list-grid_c3">书名</th>
+								<th style="width: 70px;" id="gridview-list-grid_c4">卖家</th>
+								<th style="width: 70px;" id="gridview-list-grid_c5">原价</th>
+								<th style="width: 70px;" id="gridview-list-grid_c6">库存量</th>
+								<th style="width: 70px;" id="gridview-list-grid_c7">售价</th>
+								<th style="width: 120px;" id="gridview-list-grid_c8">购买数量</th>
+								<th style="width: 70px;" id="gridview-list-grid_c9">小计</th>
+								<th style="width: 70px;" id="gridview-list-grid_c10">操作</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr style="background-color: rgb(255, 255, 255);">
+						<tbody  align="center">
+							<tr v-for=" c in cart " class="odd" style="background-color: rgb(255, 255, 255);">
+								<td>&nbsp;</td>
+								<td class="book_id_checkbox">
+									<input :value="c.id" v-model="selected" id="gridview-list-grid_c1_0" 
+										type="checkbox" name="gridview-list-grid_c1[]">
+								</td>
+								<td>
+									<a target="_blank" :title="c.book.name" :href="'sell/' + c.book.id">
+										<img class="cart_pic" :src="c.book.pic">
+									</a>
+								</td>
+								<td>
+									<a :title="c.book.name" target="_blank" :href="'sell/' + c.book.id">{{c.book.name}}</a>
+								</td>
+								<td>
+									<a :title="c.book.user.account" target="_blank" :href="'user/' + c.book.user.id">{{c.book.user.account}}</a>
+								</td>
+								<td>￥{{c.book.markPrice}}</td>
+								<td class="kucun_count">{{c.book.state}}</td>
+								<td>￥{{c.book.price}}</td>
+								<td>
+									<a class="cart_action" direction="dec" book_id="395428212" href="javascript:void(0);" 
+
+										@click="c.count > 1 ? c.count-- : 0">-</a>
+
+									<input single_price="15.80" id="cart_count_395428212" class="cart_count" book_id="395428212" v-model="c.count" type="text" value="1">
+									<a class="cart_action" direction="inc" book_id="395428212" href="javascript:void(0);"
+
+										@click="c.count < c.book.state ? c.count++ : 0">+</a>
+
+								</td>
+								<td><span id="single_total_395428212">￥{{c.book.price * c.count}}</span></td>
+								<td>
+									<a class="delete_cart_item" id="delete_link_395428212" href="javascript:deleteBooks('395428212');">删除</a>
+								</td>
+							</tr>
+							<tr v-if="cart == null" style="background-color: rgb(255, 255, 255);">
 								<td colspan="11" class="empty"><span class="empty">购物车内暂时没有书籍,去<a
 										href="/home">首页</a>购买
 								</span></td>
@@ -114,23 +133,166 @@
 							<input class="button_user_action" style="padding: 1px 3px;"
 								onclick="deleteBooks(getSelectedIdStr());" type="button"
 								value="删除选中">
+						</div><br>
+						<div style="float: right;display: inline-block;">
+							<span style="float: left;">备注:</span><textarea v-model="order.remark" rows="5" cols="30"></textarea>
 						</div>
+
+						<div class="clearfloat" style="display:inline-block ;margin: 15px 0px;position:relative; right: 60px">
+							<h3 class="common_title">确认收货地址</h3>
+							<div id="add">
+							    <input type="hidden" id="default_addr"/>
+							    <input type="hidden" id="current_addr"/>
+							    <dl id="addr_list">
+							        <dt>寄送到：</dt>
+									<dd class="default_location">  
+										<input v-model="order.addrName" 
+										style="font-weight: bold;"placeholder="请输入省市">
+										<input v-model="order.addrDesc" name="addrDesc"
+										style="font-weight: bold;"placeholder="请输入详细地址">
+										<input maxlength="11" v-model="order.addrPhone" name="addrPhone"
+										style="font-weight: bold;"placeholder="请输入收货人手机号">
+
+									</dd>
+								</dl>
+							</div>
+						</div>
+						<span style="display:inline-block;width: 108px;position: relative; left: 190px;bottom: 10px;" >{{errors.addrDesc}}</span>
+						<span style="display:inline-block;position: relative;left: 250px;bottom: 10px">{{errors.addrPhone}}</span>							
 						<div style="float: right;">
-							<span class="total_span" style="display: inline;"> <span
-								class="selected_count">0</span>本图书&nbsp;&nbsp;总计(不含运费) : <span
-								class="selected_price">￥0.00</span>
-							</span> <input type="hidden" value="" name="book_ids" id="book_ids">
+							<span class="total_span" style="display: inline;"> 
+								<span class="selected_count">{{number}}</span>本图书&nbsp;&nbsp;总计(不含运费) : 
+								<span class="selected_price">￥{{total}}</span>
+							</span> 
+							<input type="hidden" value="" name="book_ids" id="book_ids">
 							<!--            <a href="/site/app" class="button_link">使用旧书街APP进行结算</a>-->
-							<input id="submit_button" class="button" onclick="createOrder();"
+
+							<input id="submit_button" class="button" @click="createOrder();"
+
 								type="button" value="去结算>">
 						</div>
 						<div class="clearfloat"></div>
 					</div>
 				</form>
 			</div>
-
-
 		</div>
+		<script type="text/javascript">
+
+			var vue1 = new Vue({
+				el : "#main_content",
+				data : {
+					cart : [],
+                    selected : [],
+					addr:[],
+					order:{
+						addrName:"",
+						addrDesc:"",
+						addrPhone:"",
+						remark:"",	
+					},
+					errors:{
+						addrDesc:"",
+						addrPhone:"",
+					}
+				},
+				created(){
+					axios.get("queryCart.do").then(res=>{
+						this.cart = res.data;
+						// js in 循环符 是取出数组的下标值，  0，1，2
+						// js of 相当于  java  :    for (c : list)
+						// vue 的 in == java 的  :
+						for(c of this.cart){
+							this.selected.push(c.id);
+						}
+					});
+					axios.get("getaddr.do").then(res=>{
+						//this.addr = res.data;
+						if(res.data.addrName != null){
+							this.order.addrName = res.data.addrName;
+						}
+						if(res.data.addrDesc != null){
+							this.order.addrDesc = res.data.addrDesc;
+						}
+						if(res.data.addrPhone != null){
+							this.order.addrPhone = res.data.addrPhone;
+						}					
+					})
+				},
+				computed:{
+					number(){
+						var number = 0;
+						for( c of this.cart){
+							for( s of this.selected){
+								if(c.id == s){
+									number+=c.count;
+								}
+							}
+					    }
+						return number;
+					},
+					total(){
+						var total = 0;
+						for( c of this.cart){
+							for( s of this.selected){
+								if(c.id == s){
+									total+=c.book.price * c.count;
+								}
+							}
+					    }
+						return total;
+					}
+				},
+				methods:{
+					createOrder(){
+						var params = new URLSearchParams();
+						// springmvc 控制器的写法
+						// public Result addOrder( JsjOrder order, User loginedUser  ){...}
+						 params.append("addrName", this.order.addrName);
+						 params.append("addrDesc", this.order.addrDesc);
+						 params.append("addrPhone", this.order.addrPhone);
+						 params.append("remark", this.order.remark);
+						// 订单明细提交  
+						// details[0].bid ==?; detials[0].count=?
+						// details[1].bid ==?; detials[1].count=?
+						var i = 0
+						for( c of this.cart){
+							for( s of this.selected){
+								if(c.id == s){
+									params.append("details["+i+"].bid", c.book.id);
+									params.append("details["+i+"].count", c.count);
+									params.append("details["+i+"].book.price", c.book.price);
+									i++;
+									break;
+								}
+							}
+						}
+						axios.post("addOrder", params).then(res=>{
+							if(res.data.code==1){
+								location.href="cart.html?" + new Date();
+							}
+							// 清除之前的错误提示
+							for( let e in this.errors){  // let 定义的局部变量  ~=  var
+								var na = document.getElementsByName(e);
+								$(na).css('boxShadow','');
+								this.errors[e] = '';
+							}
+							if(res.data.code != 1){
+								var es = res.data.data;
+								for( let e of es){  // == java for( e : es)
+									var na = document.getElementsByName(e.field);
+									$(na).css("boxShadow","0px 0px 5px 3px red");
+									if(this.errors[e.field].search("空")==-1){
+										this.errors[e.field] = e.defaultMessage;
+									}
+								}
+							}
+
+						});
+					}
+				}
+			});
+		</script>
+
 	</div>
 
 	<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
@@ -141,23 +303,14 @@
 			src="res/android_download.jpg">
 	</div>
 	<div class="clearfloat"></div>
-	<div class="bottom">
-		<div class="center_980">
-			<div class="bottom_left">
-				<ul>
-					<li><a href="site/about">关于我们</a></li>
-					<li><a href="site/joinus">申请合作</a></li>
-					<li><a href="site/privacy">隐私政策</a></li>
-					<li><a href="site/term">服务条款</a></li>
-					<li><a href="site/help">帮助</a></li>
-					<li><a href="site/link">友情链接</a></li>
-				</ul>
-			</div>
-			<div id="copyright">
-				© 2020 by 旧书街 <a href="http://beian.miit.gov.cn/">蜀ICP备16007902号-2</a>
-			</div>
-		</div>
+	<div id="foot">
+	<foot></foot>	
 	</div>
+	<script type="text/javascript">
+		new Vue({
+			el:"#foot"
+		})
+	</script>
 	<h1 class="jiushujie_slogan">买卖二手书，就上旧书街。旧书街二手书交易网-您身边的旧书网站</h1>
 </body>
 </html>

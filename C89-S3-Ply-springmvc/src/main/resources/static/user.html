@@ -14,48 +14,28 @@
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
 
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+<script type="text/javascript" src="js/jsj.js"></script>
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
-	<div class="site_top_row">
-		<div class="center_980">
-			<div class="school_location" style="float: left;">
-				[<a href="javascript:void(0)"
-					onclick="showSchoolList();return false;">所有学校</a>]
-			</div>
-			<div id="top_user_info" style="float: right;">
-				<a href="login.html">登录</a>|<a
-					href="sell/create">出售</a>|<a
-					style="color: rgb(254, 137, 0);"
-					href="register.html">立即注册</a>|<a
-					class="app_mobile" target="_blank"
-					href="site/app">下载APP</a>
-			</div>
-			<div class="clearfloat"></div>
-		</div>
+	<div id="yetou">
+		<yetou></yetou>
 	</div>
+	<script type="text/javascript">
+		var v119 = new Vue({
+			el:"#yetou"
+		})
+	</script>
 	<div id="top">
-		<div class="center_980">
-			<div id="logo">
-				<a href=""> <img
-					src="res/jiushujie-logo.png" alt="买卖二手书,就上旧书街" title="买卖二手书,就上旧书街">
-				</a>
-			</div>
-			<div style="float: left;">
-				<img src="res/slogan1124.png">
-			</div>
-			<div id="top-nav">
-				<ul class="top_menu">
-					<li><a id="home_tab" href="/"
-						class="selectedtab">首页</a></li>
-					<li><a id="sell_tab" href="sell">出售</a>
-					</li>
-					<li><a id="buy_tab" href="buy">求购</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+		<top></top>
 	</div>
+	<script type="text/javascript">
+		new Vue({
+			el : "#top"
+		})
+	</script>
 
 	<div class="main_middle">
 		<div id="main_content" class="center_980">
@@ -64,25 +44,25 @@
 					<div class="user_photo">
 						<div>
 							<img class="user_profile"
-								src="http://cdn.shujie.me/user/2020/12/11/11/26398619_u8qh0icocnbarbes.jpg!big"
-								alt="启航ing">
+								:src="list.headImg"
+								:alt="list.name || list.account">
 						</div>
 						<div class="user_nav_info">
 							<ul>
-								<li>启航ing</li>
-								<li>男生</li>
-								<li>北京交通大学</li>
-								<li>上次登录:&nbsp;今天</li>
+								<li>{{list.name || list.account}}</li>
+								<li>{{list.gender}}</li>
+								<li>{{list.schoolObj ? list.schoolObj.name:null}}</li>
+								<li>上次登录:&nbsp;{{list.lastLoginTime ? list.lastLoginTime : '今天'}}</li>
 								<li><a class="user_fan_faned_link"
-									href="user/26398619/follow">关注(2)</a>&nbsp;<a
+									href="user/26398619/follow">关注({{list.guanzhu.length}})</a>&nbsp;<a
 									class="user_fan_faned_link"
-									href="user/26398619/fan">粉丝(30)</a></li>
+									href="user/26398619/fan">粉丝({{list.fans.length}})</a></li>
 							</ul>
 						</div>
 					</div>
 
 					<div class="self_introduction">
-						姓名: 徐先生<br>手机: 1597119****(下单后可见)<br>地址: 湖北省孝感市孝昌县
+						姓名: {{list.name}}<br>手机: {{list.phone}}(下单后可见)<br>地址: {{list.addrDesc}}
 					</div>
 					<input style="width: 300px;" class="button_user_action"
 						onclick="openLoginPageWithFrom();" name="yt0" type="button"
@@ -92,6 +72,20 @@
 
 
 			</div>
+			<script type="text/javascript">
+				var v = new Vue({
+					el:".content_left",
+					data:{
+						list:{},
+					},created(){
+						var uid = location.hash.substring(1);
+						axios.get("selectById?id="+uid).then(res=>{
+							this.list = res.data;
+							console.info(this.list);
+						})
+					}
+				})
+			</script>
 			<div class="content_right">
 				<div class="border_white padding_10">
 					<div style="float: left; margin: -6px 0 -2px 10px; width: 100%;">
@@ -99,7 +93,7 @@
 							<!--        <li>
             <a id="news_list_tab" href="/user/26398619/news">动态</a>
         </li>-->
-							<li><a id="sell_list_tab" href="/user/26398619/sell"
+							<li><a id="sell_list_tab" href="/user/26398619/sell.html"
 								class="selectedtab">出售</a></li>
 							<!--        <li>
             <a id="buy_list_tab" href="/user/26398619/buy" >求购</a>
@@ -112,7 +106,7 @@
 					<div class="clearfloat"
 						style="border-top: 2px solid rgb(222, 222, 222); margin-bottom: 16px;"></div>
 					<div style="margin-bottom: 10px; text-align: center;">
-						<form id="search_title_form" action="/user/26398619/sell"
+						<form id="search_title_form" action="/user/26398619/sell.html"
 							method="get">
 							<input placeholder="请输入关键字搜索"
 								class="queryinput user_book_search_query" type="text" value=""
@@ -128,7 +122,7 @@
 								排序:
 								<ul>
 									<li>更新时间</li>
-									<li><a href="/user/26398619/sell?sort=created_at.desc">上架时间</a></li>
+									<li><a href="/user/26398619/sell.html?sort=created_at.desc">上架时间</a></li>
 									<li>留言数</li>
 									<li>售价</li>
 									<li>折扣</li>
@@ -136,18 +130,18 @@
 							</div>
 							<div class="pager">
 								<ul id="yw1" class="yiiPager">
-									<li class="first hidden"><a href="/user/26398619/sell">&lt;&lt;
+									<li class="first hidden"><a href="/user/26398619/sell.html">&lt;&lt;
 											首页</a></li>
-									<li class="previous hidden"><a href="/user/26398619/sell">&lt;
+									<li class="previous hidden"><a href="/user/26398619/sell.html">&lt;
 											前页</a></li>
-									<li class="page selected"><a href="/user/26398619/sell">1</a></li>
-									<li class="page"><a href="/user/26398619/sell?page=2">2</a></li>
-									<li class="page"><a href="/user/26398619/sell?page=3">3</a></li>
-									<li class="page"><a href="/user/26398619/sell?page=4">4</a></li>
-									<li class="page"><a href="/user/26398619/sell?page=5">5</a></li>
-									<li class="next"><a href="/user/26398619/sell?page=2">后页
+									<li class="page selected"><a href="/user/26398619/sell.html">1</a></li>
+									<li class="page"><a href="/user/26398619/sell.html?page=2">2</a></li>
+									<li class="page"><a href="/user/26398619/sell.html?page=3">3</a></li>
+									<li class="page"><a href="/user/26398619/sell.html?page=4">4</a></li>
+									<li class="page"><a href="/user/26398619/sell.html?page=5">5</a></li>
+									<li class="next"><a href="/user/26398619/sell.html?page=2">后页
 											&gt;</a></li>
-									<li class="last"><a href="/user/26398619/sell?page=10">末页
+									<li class="last"><a href="/user/26398619/sell.html?page=10">末页
 											&gt;&gt;</a></li>
 								</ul>
 							</div>
@@ -155,7 +149,7 @@
 								<div class="book_item dashed_border_bottom">
 									<div class="book_pic">
 										<a target="_blank"
-											href="sell/390899617"> <img
+											href="sell.html/390899617"> <img
 											class="book_pic"
 											src="http://cdn.shujie.me/isbn/208/040/9787208040434_16.jpg!w600"
 											alt="上下五千年（上中下）" title="上下五千年（上中下）">
@@ -163,7 +157,7 @@
 									</div>
 									<div class="info">
 										<div class="title">
-											<a target="_blank" href="/sell/390899617">上下五千年（上中下）</a>
+											<a target="_blank" href="/sell.html/390899617">上下五千年（上中下）</a>
 										</div>
 										<div class="detail padding_10">
 											<div class="buy_action">
@@ -183,7 +177,7 @@
 								<div class="book_item dashed_border_bottom">
 									<div class="book_pic">
 										<a target="_blank"
-											href="sell/390968964"> <img
+											href="sell.html/390968964"> <img
 											class="book_pic"
 											src="http://cdn.shujie.me/isbn/534/253/9787534253973_98.jpg!w600"
 											alt="世界少年文学经典文库" title="世界少年文学经典文库">
@@ -191,7 +185,7 @@
 									</div>
 									<div class="info">
 										<div class="title">
-											<a target="_blank" href="/sell/390968964">世界少年文学经典文库</a>
+											<a target="_blank" href="/sell.html/390968964">世界少年文学经典文库</a>
 										</div>
 										<div class="detail padding_10">
 											<div class="buy_action">
@@ -211,7 +205,7 @@
 								<div class="book_item dashed_border_bottom">
 									<div class="book_pic">
 										<a target="_blank"
-											href="sell/391741879"> <img
+											href="sell.html/391741879"> <img
 											class="book_pic"
 											src="http://cdn.shujie.me/isbn/540/457/9787540457570_29.jpg!w600"
 											alt="遇见未知的自己" title="遇见未知的自己">
@@ -219,7 +213,7 @@
 									</div>
 									<div class="info">
 										<div class="title">
-											<a target="_blank" href="/sell/391741879">遇见未知的自己</a>
+											<a target="_blank" href="/sell.html/391741879">遇见未知的自己</a>
 										</div>
 										<div class="detail padding_10">
 											<div class="buy_action">
@@ -239,7 +233,7 @@
 								<div class="book_item dashed_border_bottom">
 									<div class="book_pic">
 										<a target="_blank"
-											href="sell/391741888"> <img
+											href="sell.html/391741888"> <img
 											class="book_pic"
 											src="http://cdn.shujie.me/isbn/806/983/9787806983126_94.jpg!w600"
 											alt="初中生必背优秀诗文" title="初中生必背优秀诗文">
@@ -247,7 +241,7 @@
 									</div>
 									<div class="info">
 										<div class="title">
-											<a target="_blank" href="/sell/391741888">初中生必背优秀诗文</a>
+											<a target="_blank" href="/sell.html/391741888">初中生必背优秀诗文</a>
 										</div>
 										<div class="detail padding_10">
 											<div class="buy_action">
@@ -267,7 +261,7 @@
 								<div class="book_item dashed_border_bottom">
 									<div class="book_pic">
 										<a target="_blank"
-											href="sell/391742542"> <img
+											href="sell.html/391742542"> <img
 											class="book_pic"
 											src="http://www.kfzimg.com/sw/kfzimg/2479/020092610e81ced665_s.jpg"
 											alt="小学生黄冈作文 作文大全" title="小学生黄冈作文 作文大全">
@@ -275,7 +269,7 @@
 									</div>
 									<div class="info">
 										<div class="title">
-											<a target="_blank" href="/sell/391742542">小学生黄冈作文 作文大全</a>
+											<a target="_blank" href="/sell.html/391742542">小学生黄冈作文 作文大全</a>
 										</div>
 										<div class="detail padding_10">
 											<div class="buy_action">
@@ -295,7 +289,7 @@
 								<div class="book_item dashed_border_bottom">
 									<div class="book_pic">
 										<a target="_blank"
-											href="sell/391742545"> <img
+											href="sell.html/391742545"> <img
 											class="book_pic"
 											src="http://www.kfzimg.com/sw/kfzimg/2479/0200924be2650c3a99_s.jpg"
 											alt="小学生黄冈作文 获奖作文" title="小学生黄冈作文 获奖作文">
@@ -303,7 +297,7 @@
 									</div>
 									<div class="info">
 										<div class="title">
-											<a target="_blank" href="/sell/391742545">小学生黄冈作文 获奖作文</a>
+											<a target="_blank" href="/sell.html/391742545">小学生黄冈作文 获奖作文</a>
 										</div>
 										<div class="detail padding_10">
 											<div class="buy_action">
@@ -323,7 +317,7 @@
 								<div class="book_item dashed_border_bottom">
 									<div class="book_pic">
 										<a target="_blank"
-											href="sell/391742558"> <img
+											href="sell.html/391742558"> <img
 											class="book_pic"
 											src="http://www.kfzimg.com/sw/kfzimg/2477/02009235dae49ae0f2_s.jpg"
 											alt="小学生黄冈作文 想象作文" title="小学生黄冈作文 想象作文">
@@ -331,7 +325,7 @@
 									</div>
 									<div class="info">
 										<div class="title">
-											<a target="_blank" href="/sell/391742558">小学生黄冈作文 想象作文</a>
+											<a target="_blank" href="/sell.html/391742558">小学生黄冈作文 想象作文</a>
 										</div>
 										<div class="detail padding_10">
 											<div class="buy_action">
@@ -351,7 +345,7 @@
 								<div class="book_item dashed_border_bottom">
 									<div class="book_pic">
 										<a target="_blank"
-											href="sell/391742566"> <img
+											href="sell.html/391742566"> <img
 											class="book_pic"
 											src="http://cdn.shujie.me/isbn/547/230/9787547230053_72.jpg!w600"
 											alt="做最好的自己(第1辑共4册)" title="做最好的自己(第1辑共4册)">
@@ -359,7 +353,7 @@
 									</div>
 									<div class="info">
 										<div class="title">
-											<a target="_blank" href="/sell/391742566">做最好的自己(第1辑共4册)</a>
+											<a target="_blank" href="/sell.html/391742566">做最好的自己(第1辑共4册)</a>
 										</div>
 										<div class="detail padding_10">
 											<div class="buy_action">
@@ -379,7 +373,7 @@
 								<div class="book_item dashed_border_bottom">
 									<div class="book_pic">
 										<a target="_blank"
-											href="sell/391742576"> <img
+											href="sell.html/391742576"> <img
 											class="book_pic"
 											src="http://cdn.shujie.me/isbn/532/767/9787532767373_42.jpg!w600"
 											alt="夏洛的网" title="夏洛的网">
@@ -387,7 +381,7 @@
 									</div>
 									<div class="info">
 										<div class="title">
-											<a target="_blank" href="/sell/391742576">夏洛的网</a>
+											<a target="_blank" href="/sell.html/391742576">夏洛的网</a>
 										</div>
 										<div class="detail padding_10">
 											<div class="buy_action">
@@ -407,7 +401,7 @@
 								<div class="book_item dashed_border_bottom">
 									<div class="book_pic">
 										<a target="_blank"
-											href="sell/391742593"> <img
+											href="sell.html/391742593"> <img
 											class="book_pic"
 											src="http://cdn.shujie.me/isbn/534/233/9787534233371_38.jpg!w600"
 											alt="格林童话精选" title="格林童话精选">
@@ -415,7 +409,7 @@
 									</div>
 									<div class="info">
 										<div class="title">
-											<a target="_blank" href="/sell/391742593">格林童话精选</a>
+											<a target="_blank" href="/sell.html/391742593">格林童话精选</a>
 										</div>
 										<div class="detail padding_10">
 											<div class="buy_action">
@@ -435,23 +429,23 @@
 							</div>
 							<div class="pager">
 								<ul id="yw2" class="yiiPager">
-									<li class="first hidden"><a href="/user/26398619/sell">&lt;&lt;
+									<li class="first hidden"><a href="/user/26398619/sell.html">&lt;&lt;
 											首页</a></li>
-									<li class="previous hidden"><a href="/user/26398619/sell">&lt;
+									<li class="previous hidden"><a href="/user/26398619/sell.html">&lt;
 											前页</a></li>
-									<li class="page selected"><a href="/user/26398619/sell">1</a></li>
-									<li class="page"><a href="/user/26398619/sell?page=2">2</a></li>
-									<li class="page"><a href="/user/26398619/sell?page=3">3</a></li>
-									<li class="page"><a href="/user/26398619/sell?page=4">4</a></li>
-									<li class="page"><a href="/user/26398619/sell?page=5">5</a></li>
-									<li class="next"><a href="/user/26398619/sell?page=2">后页
+									<li class="page selected"><a href="/user/26398619/sell.html">1</a></li>
+									<li class="page"><a href="/user/26398619/sell.html?page=2">2</a></li>
+									<li class="page"><a href="/user/26398619/sell.html?page=3">3</a></li>
+									<li class="page"><a href="/user/26398619/sell.html?page=4">4</a></li>
+									<li class="page"><a href="/user/26398619/sell.html?page=5">5</a></li>
+									<li class="next"><a href="/user/26398619/sell.html?page=2">后页
 											&gt;</a></li>
-									<li class="last"><a href="/user/26398619/sell?page=10">末页
+									<li class="last"><a href="/user/26398619/sell.html?page=10">末页
 											&gt;&gt;</a></li>
 								</ul>
 							</div>
 							<div class="keys" style="display: none"
-								title="/user/26398619/sell">
+								title="/user/26398619/sell.html">
 								<span>390899617</span><span>390968964</span><span>391741879</span><span>391741888</span><span>391742542</span><span>391742545</span><span>391742558</span><span>391742566</span><span>391742576</span><span>391742593</span>
 							</div>
 						</div>
@@ -470,23 +464,14 @@
 			src="res/android_download.jpg">
 	</div>
 	<div class="clearfloat"></div>
-	<div class="bottom">
-		<div class="center_980">
-			<div class="bottom_left">
-				<ul>
-					<li><a href="site/about">关于我们</a></li>
-					<li><a href="site/joinus">申请合作</a></li>
-					<li><a href="site/privacy">隐私政策</a></li>
-					<li><a href="site/term">服务条款</a></li>
-					<li><a href="site/help">帮助</a></li>
-					<li><a href="site/link">友情链接</a></li>
-				</ul>
-			</div>
-			<div id="copyright">
-				© 2020 by 旧书街 <a href="http://beian.miit.gov.cn/">蜀ICP备16007902号-2</a>
-			</div>
-		</div>
+	<div id="foot">
+	<foot></foot>	
 	</div>
+	<script type="text/javascript">
+		new Vue({
+			el:"#foot"
+		})
+	</script>
 	<h1 class="jiushujie_slogan">买卖二手书，就上旧书街。旧书街二手书交易网-您身边的旧书网站</h1>
 </body>
 </html>

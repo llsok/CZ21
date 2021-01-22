@@ -13,117 +13,39 @@
 <link rel="stylesheet" type="text/css" href="res/styles.css">
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+<script type="text/javascript" src="js/jsj.js"></script>
 
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
-	<div class="site_top_row">
-		<div class="center_980">
-			<div class="school_location" style="float: left;">
-				[<a href="javascript:void(0)"
-					onclick="showSchoolList();return false;">所有学校</a>]
-			</div>
-			<div id="top_user_info" style="float: right;">
-				<a href="login.html">登录</a>|<a
-					href="sell/create">出售</a>|<a
-					style="color: rgb(254, 137, 0);"
-					href="register.html">立即注册</a>|<a
-					class="app_mobile" target="_blank"
-					href="site/app">下载APP</a>
-			</div>
-			<div class="clearfloat"></div>
-		</div>
+	<div id="yetou">
+		<yetou></yetou>
 	</div>
+	<script type="text/javascript">
+		var v119 = new Vue({
+			el:"#yetou"
+		})
+	</script>
 	<div id="top">
-		<div class="center_980">
-			<div id="logo">
-				<a href=""> <img
-					src="res/jiushujie-logo.png" alt="买卖二手书,就上旧书街" title="买卖二手书,就上旧书街">
-				</a>
-			</div>
-			<div style="float: left;">
-				<img src="res/slogan1124.png">
-			</div>
-			<div id="top-nav">
-				<ul class="top_menu">
-					<li><a id="home_tab" href="/"
-						class="selectedtab">首页</a></li>
-					<li><a id="sell_tab" href="sell">出售</a>
-					</li>
-					<li><a id="buy_tab" href="buy">求购</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+		<top></top>
 	</div>
+	<script type="text/javascript">
+		new Vue({
+			el : "#top"
+		})
+	</script>
 	<div class="main_middle">
 		<div id="main_content" class="center_980">
-			<div class="content_left">
-				<div class="padding_10 border_white">
-					<div class="user_setting_block">
-						<div class="title">个人设置</div>
-						<ul>
-							<li><a id="user_basic" href="/set">头像&amp;基本信息</a></li>
-							<li><a id="self_introduction" href="/intro">签名档</a></li>
-							<li><a id="user_pwd" href="/changepwd">修改密码</a></li>
-							<li><a id="invite_link" href="/my/inviteLink">我的邀请链接</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">我是卖家</div>
-						<ul>
-							<li><a id="sell_order_list" href="/my/sellOrderList">收到的订单</a></li>
-							<li><a id="mail_fee_set" href="/mailFee">运费设置</a></li>
-							<li><a id="bank_account" href="/set/bankAccount">收款账号设置</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">我是买家</div>
-						<ul>
-							<li><a id="my_order_list" href="/my/orderList">我下的订单</a></li>
-							<li><a id="address_info_set" href="/address/index">收货信息</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">动态</div>
-						<ul>
-							<li><a id="news_list" href="/my/newsList">我的动态</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">书籍</div>
-						<ul>
-							<li><a id="sell_list" href="/mysell">我的出售</a></li>
-							<li><a id="soldout_list" href="/mysell?soldout=1">我的售罄</a></li>
-							<li><a id="buy_list" href="/mybuy">我的求购</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">留言</div>
-						<ul>
-							<li><a id="sell_comment_tab"
-								href="/my/commentList/type/sell">留言-出售</a></li>
-							<li><a id="buy_comment_tab" href="/my/commentList/type/buy">留言-求购</a></li>
-							<li><a id="news_comment_tab"
-								href="/my/commentList/type/news">留言-动态</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">消息</div>
-						<ul>
-							<li><a id="inbox_tab" href="/inbox">收件箱</a></li>
-							<li><a id="outbox_tab" href="/outbox" class="active_link">发件箱</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">用户</div>
-						<ul>
-							<li><a id="fan_by_me_tab" href="/follow">我的关注</a></li>
-							<li><a id="fan_of_me_tab" href="/fan">我的粉丝</a></li>
-						</ul>
-					</div>
-				</div>
+			<div id="pc">
+				<pc uid = "18"></pc>
 			</div>
+			<script type="text/javascript">
+				new Vue({
+					el : "#pc"
+				})
+			</script>
 			<div class="content_right">
 				<div class="border_white padding_10">
 					<div id="gridview-list-grid" class="grid-view">
@@ -165,23 +87,14 @@
 			src="res/android_download.jpg">
 	</div>
 	<div class="clearfloat"></div>
-	<div class="bottom">
-		<div class="center_980">
-			<div class="bottom_left">
-				<ul>
-					<li><a href="site/about">关于我们</a></li>
-					<li><a href="site/joinus">申请合作</a></li>
-					<li><a href="site/privacy">隐私政策</a></li>
-					<li><a href="site/term">服务条款</a></li>
-					<li><a href="site/help">帮助</a></li>
-					<li><a href="site/link">友情链接</a></li>
-				</ul>
-			</div>
-			<div id="copyright">
-				© 2020 by 旧书街 <a href="http://beian.miit.gov.cn/">蜀ICP备16007902号-2</a>
-			</div>
-		</div>
+	<div id="foot">
+	<foot></foot>	
 	</div>
+	<script type="text/javascript">
+		new Vue({
+			el:"#foot"
+		})
+	</script>
 	<h1 class="jiushujie_slogan">买卖二手书，就上旧书街。旧书街二手书交易网-您身边的旧书网站</h1>
 </body>
 </html>

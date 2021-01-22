@@ -38,7 +38,6 @@ public class UserBiz {
 		}
 		JsjUser user2 = um.selectByAccountAndPwd(user.getAccount(),user.getPwd());
 		if(user2 !=null) {
-			
 			Date date=new Date();
 			String time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
 			Timestamp timestamp=Timestamp.valueOf(time);
