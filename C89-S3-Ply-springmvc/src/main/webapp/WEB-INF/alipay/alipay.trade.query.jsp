@@ -5,7 +5,7 @@
 <title>交易查询</title>
 </head>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="com.yc.*"%>
+<%@ page import="com.yc.mvc.*"%>
 <%@ page import="com.alipay.api.*"%>
 <%@ page import="com.alipay.api.request.*"%>
 <%

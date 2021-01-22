@@ -7,7 +7,7 @@
 </head>
 <%@ page import="java.util.*"%>
 <%@ page import="java.util.Map"%>
-<%@ page import="com.yc.*"%>
+<%@ page import="com.yc.mvc.*"%>
 <%@ page import="com.alipay.api.*"%>
 <%@ page import="com.alipay.api.internal.util.*"%>
 <%

@@ -1,6 +1,7 @@
 package com.yc.mvc.web;
 
 import java.util.List;
+import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -51,11 +52,30 @@ public class OrderAction {
 		return odm.queryOrderByOwnId(loginedUser.getId());
 	} 
 	
+	@RequestMapping("queryOrderList")
+	public List<JsjOrder> queryOrderListByUid(@SessionAttribute JsjUser loginedUser) {
+		return om.queryOrderListByUid(loginedUser.getId());
+	}
+	
 	@RequestMapping(path="SendOrder")
 	public Result sendOrder(int id) {
 		om.sendOrder(id);
 		return Result.success("发货成功!",null);
 		
 	}
+	
+	@RequestMapping("queryorderById.do")
+	public JsjOrder queryorderById(Integer id,HttpSession session) {
+		TreeMap<Integer,Object> a=new TreeMap<Integer, Object>();
+		a.put(1,id);
+		a.put(2,om.queryOrderById(id).getMoney());
+		a.put(3,om.queryOrderById(id).getAddrName());
+		session.setAttribute("ppp",a);
+		return om.queryOrderById(id);
+	}
 
+	@RequestMapping("queryNewOrder.do")
+	public Long queryNewOrder() {
+			return om.queryNewOrder().getId();	
+	}
 }

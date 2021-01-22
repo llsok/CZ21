@@ -251,16 +251,16 @@ h2 {
 		 	return "";
 		 }
 		 $(function(){			 
-			 var name= decodeURI(GetQueryString("ono"));
+			 var name= decodeURI(GetQueryString("id"));
 			 console.info(name);
-			 $.post("queryorderById",
+			 $.post("queryorderById.do",
 					  {
-					    ono:name,
+					    id:name,
 					  },
 					  function(data){
-					    $("#WIDout_trade_no").val(data.ono);
-					    $("WIDsubject").val(data.odate);
-					    $("#WIDtotal_amount").val(data.price);
+					    $("#WIDout_trade_no").val(data.id);
+					    $("WIDsubject").val(data.uid);
+					    $("#WIDtotal_amount").val(data.money);
 					  });
 		 })
 		$(document).ready(function(){
