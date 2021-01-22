@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="shortcut icon" href="../../images/yc.png" type="image/x-icon" />
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/main.css">
+
+
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
+	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script type="text/javascript"
+	src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+<body>
+<div class="mt10" id="search">
+	<div class="box">
+		<div class="box_border">
+			<div class="box_center" style="float: left;">
+				<form id="myform" style="display: inline-block;">
+					今日销售总金额：<input v-model="money" readonly="readonly" type="text" id="gname" class="input-text lh30" size="40" />&nbsp;&nbsp;
+				</form>
+			</div>
+			<div class="box_center" style="float: right;">
+				<form id="myform" style="display: inline-block;">
+					客户名：<input v-model="mname" type="text" id="gname" class="input-text lh30" size="40" />&nbsp;&nbsp;
+					<input @click="ByName" type="button" name="button" class="btn btn82 btn_search"
+						 value="查询" />&nbsp;&nbsp;
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+	<script type="text/javascript">
+		var vsearch = new Vue({
+			el:"#search",
+			data:{
+				money:"",
+				mname:"",
+				price:0,
+			},methods:{
+				ByName(){
+					axios.get("../../ByName?mname="+this.mname).then(res=>{
+						vorder.list = res.data;
+					})
+				}				
+			}
+		})
+	</script>
+	
+	
+	
+<div id="table" class="mt10">
+	<div class="box span10 oh">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0"
+			class="list_table">
+			<thead>
+				<tr>
+					<th width="30%">订单号</th>
+					<th width="30%">订单生成时间</th>
+					<th width="20%">支付者名</th>
+					<th width="20%">总额</th>
+				</tr>
+			</thead>
+			<tbody id="goods_info" align="center">
+				<tr v-for="(o,index) in list">
+					<td>{{o.ono}}</td>
+					<td>{{o.odate}}</td>
+					<td>{{o.realName}}</td>
+					<td>{{o.price}}</td>		
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+	<script type="text/javascript">
+		var vorder = new Vue({
+			el:"#table",
+			data:{
+				list:[],
+			},created(){
+				axios.get("../../queryAll").then(res=>{
+					this.list = res.data;
+					for(var i in this.list){
+						vsearch.price += this.list[i].price;
+						vsearch.money = vsearch.price+"元";
+					}
+				})
+			}			
+		})
+	</script>
+</body>
+</html>
