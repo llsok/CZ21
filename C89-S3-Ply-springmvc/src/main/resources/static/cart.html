@@ -137,6 +137,29 @@
 								onclick="deleteBooks(getSelectedIdStr());" type="button"
 								value="删除选中">
 						</div><br>
+<<<<<<< HEAD
+						
+<h3 class="common_title">确认收货地址</h3>
+
+<div id="add" class="common_list_con clearfix">
+    <input type="hidden" id="default_addr"/>
+    <input type="hidden" id="current_addr"/>
+   
+   
+    <dl id="addr_list">
+        <dt>寄送到：</dt>
+         <dd class="current_location">北京市 海淀区 东北旺西路8号中关村软件园 （李思 收） 159****0775 
+			<a href="javascript:void(0)">设为默认</a></dd>
+		<dd class="default_location">北京市 海淀区 东北旺西路8号中关村软件园 （李思 收） 159****0775 
+			<a href="javascript:void(0)">设为默认</a>
+			<a href="javascript:void(0)">设为当前收货地址</a>
+		</dd>
+	</dl>
+    <a href="javascript:showAddrDiv()" class="edit_site">编辑收货地址</a>
+</div>
+						
+						
+=======
 						<div style="float: right;display: inline-block;">
 							<span style="float: left;">备注:</span><textarea v-model="order.remark" rows="5" cols="30"></textarea>
 						</div>
@@ -162,6 +185,7 @@
 						</div>
 						<span style="display:inline-block;width: 108px;position: relative; left: 190px;bottom: 10px;" >{{errors.addrDesc}}</span>
 						<span style="display:inline-block;position: relative;left: 250px;bottom: 10px">{{errors.addrPhone}}</span>							
+>>>>>>> branch 'main' of https://github.com/llsok/CZ21.git
 						<div style="float: right;">
 							<span class="total_span" style="display: inline;"> 
 								<span class="selected_count">{{number}}</span>本图书&nbsp;&nbsp;总计(不含运费) : 
@@ -185,7 +209,7 @@
 				el : "#main_content",
 				data : {
 					cart : [],
-					selected : [],
+                    selected : [],
 					addr:[],
 					order:{
 						addrName:"",
@@ -289,6 +313,7 @@
 									}
 								}
 							}
+
 						});
 					}
 				}

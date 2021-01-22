@@ -1,4 +1,9 @@
+
 package com.yc.mvc.biz;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.annotation.Resource;
 
@@ -37,13 +42,16 @@ public class OrderBiz {
 			od.setPrice(price);
 		}
 		order.setMoney(sum);
-
+		Date date=new Date();
+		String time=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+		Timestamp timestamp=Timestamp.valueOf(time);
+        order.setCreateTime(timestamp);
 		// 写入 order 表
 		om.insert(order);
 
 		for (JsjOrderDetail od : order.getDetails()) {
 			od.setOid(order.getId()); // useGeneratedKeys = true  order.getId() 成立
-			odm.insert(od);
+	        odm.insert(od);
 			cm.delete(od.getBid(), order.getUid());
 		}
 
