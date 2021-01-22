@@ -17,6 +17,14 @@ public class JsjOrderDetail implements java.io.Serializable{
     private Integer state;
     private JsjBook book;
     private JsjOrder sellOrders;
+    
+    
+	public Integer getState() {
+		return state;
+	}
+	public void setState(Integer state) {
+		this.state = state;
+	}
 	public Long getId() {
 		return id;
 	}
