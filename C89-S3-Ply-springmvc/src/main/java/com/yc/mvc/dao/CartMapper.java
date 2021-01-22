@@ -2,8 +2,10 @@ package com.yc.mvc.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.One;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -20,8 +22,12 @@ public interface CartMapper {
 	public int updateCount(JsjCart cart);
 
 	@Select("select * from jsj_cart where uid=#{uid}")
-	@Results(id="mbook", value = { @Result(column = "bid", property = "book", 
+	@Results(id="rmcart", value = { @Result(column = "bid", property = "book", 
 		one = @One(select = "com.yc.mvc.dao.BooksMapper.quertBookDetail")) })
-	public List<JsjCart> quertBookDetail(int uid);
+	public List<JsjCart> queryCartByUid(int uid);
+
+	@Delete("delete from jsj_cart where bid = #{bid} and uid = #{uid}")
+	public void delete(@Param("bid")Long bid, @Param("uid")Long uid);
 
 }
+
