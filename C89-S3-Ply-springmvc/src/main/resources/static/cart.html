@@ -78,11 +78,18 @@
 								<th style="width: 70px;" id="gridview-list-grid_c10">操作</th>
 							</tr>
 						</thead>
+
+
 						<tbody  align="center">
 							<tr v-for=" c in cart " class="odd" style="background-color: rgb(255, 255, 255);">
+
 								<td>&nbsp;</td>
 								<td class="book_id_checkbox">
+
+
 									<input :value="c.id" v-model="selected" id="gridview-list-grid_c1_0" 
+
+
 										type="checkbox" name="gridview-list-grid_c1[]">
 								</td>
 								<td>
@@ -100,14 +107,19 @@
 								<td class="kucun_count">{{c.book.state}}</td>
 								<td>￥{{c.book.price}}</td>
 								<td>
+
+
 									<a class="cart_action" direction="dec" book_id="395428212" href="javascript:void(0);" 
 
 										@click="c.count > 1 ? c.count-- : 0">-</a>
+
+
 
 									<input single_price="15.80" id="cart_count_395428212" class="cart_count" book_id="395428212" v-model="c.count" type="text" value="1">
 									<a class="cart_action" direction="inc" book_id="395428212" href="javascript:void(0);"
 
 										@click="c.count < c.book.state ? c.count++ : 0">+</a>
+
 
 								</td>
 								<td><span id="single_total_395428212">￥{{c.book.price * c.count}}</span></td>
@@ -124,6 +136,8 @@
 					</table>
 					<div class="keys" style="display: none" title="/cart/index"></div>
 				</div>
+
+
 				<form id="create_order_form" action="/order/index" method="post">
 					<input type="hidden"
 						value="X0J2bzJPTlJDNnVKR1VlM2MyZGxSM3kwdk5RdnlQZVBZ3-XQ36kulkbowelmV8XT2E7ueyPvc9Wu5p6UlRqdvA=="
@@ -134,6 +148,7 @@
 								onclick="deleteBooks(getSelectedIdStr());" type="button"
 								value="删除选中">
 						</div><br>
+
 						<div style="float: right;display: inline-block;">
 							<span style="float: left;">备注:</span><textarea v-model="order.remark" rows="5" cols="30"></textarea>
 						</div>
@@ -158,6 +173,7 @@
 							</div>
 						</div>
 						<span style="display:inline-block;width: 108px;position: relative; left: 190px;bottom: 10px;" >{{errors.addrDesc}}</span>
+
 						<span style="display:inline-block;position: relative;left: 250px;bottom: 10px">{{errors.addrPhone}}</span>							
 						<div style="float: right;">
 							<span class="total_span" style="display: inline;"> 
@@ -169,6 +185,7 @@
 
 							<input id="submit_button" class="button" @click="createOrder();"
 
+
 								type="button" value="去结算>">
 						</div>
 						<div class="clearfloat"></div>
@@ -177,6 +194,7 @@
 			</div>
 		</div>
 		<script type="text/javascript">
+
 
 			var vue1 = new Vue({
 				el : "#main_content",
@@ -268,7 +286,11 @@
 						}
 						axios.post("addOrder", params).then(res=>{
 							if(res.data.code==1){
-								location.href="cart.html?" + new Date();
+								axios.post("queryNewOrder.do").then(res1=>{	
+									setTimeout(function(){
+										location.href="payin?id="+res1.data;
+									},700)
+								});
 							}
 							// 清除之前的错误提示
 							for( let e in this.errors){  // let 定义的局部变量  ~=  var
@@ -292,6 +314,7 @@
 				}
 			});
 		</script>
+
 
 	</div>
 

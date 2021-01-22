@@ -186,6 +186,11 @@ public class UserAction {
 		return um.selectMostFans();
 	}
 
+	@GetMapping("getaddr.do")
+	public JsjUser getaddr(@SessionAttribute JsjUser loginedUser) {
+
+		return um.selectByAccount(loginedUser.getAccount());
+	}
 
 	@PostMapping("updateaddr.do")
 	public Result updateaddr(@Valid JsjUser user, Errors errors, @SessionAttribute JsjUser loginedUser) {
@@ -208,6 +213,15 @@ public class UserAction {
 	public List<JsjDict> getAllProvince() {
 		return um.getAllProvince();
 	}
-	
-	
+
+	@RequestMapping("logout.do")
+	public Result logout(HttpSession session) {
+		Object loginedUser = session.getAttribute("loginedUser");
+		if(loginedUser == null) {
+			return Result.failure("你还未登录", null);
+		}
+		session.removeAttribute("loginedUser");
+		return Result.success("成功退出", null);
+	}
+
 }

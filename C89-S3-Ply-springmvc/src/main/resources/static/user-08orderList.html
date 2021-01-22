@@ -15,6 +15,29 @@
 <script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
 <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
 <script type="text/javascript" src="js/jsj.js"></script>
+<style type="text/css">
+/* table{
+
+    width:30em;
+
+    table-layout:fixed;
+
+}
+
+th{
+
+    width:100%;
+
+    word-break:keep-all;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+}  */
+</style>
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
@@ -53,27 +76,64 @@
 					<table class="items">
 						<thead>
 							<tr>
-								<th id="gridview-list-grid_c0">&nbsp;</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
 								<th id="gridview-list-grid_c1">订单编号</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
 								<th id="gridview-list-grid_c2">卖家</th>
-								<th id="gridview-list-grid_c3">书籍详情</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
+								<th id="gridview-list-grid_c3">书名</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
 								<th id="gridview-list-grid_c4">下单时间</th>
-								<th id="gridview-list-grid_c5">收货人</th>
-								<th id="gridview-list-grid_c6">订单金额</th>
-								<th id="gridview-list-grid_c7">卖家确认金额</th>
-								<th id="gridview-list-grid_c8">送货方式</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
+								<th id="gridview-list-grid_c5">收货人电话</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
+								<th id="gridview-list-grid_c6">收获人地址</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
+								<th id="gridview-list-grid_c7">订单金额</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
+								<th id="gridview-list-grid_c8">书籍数量</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
 								<th id="gridview-list-grid_c9">订单状态</th>
-								<th id="gridview-list-grid_c10">&nbsp;</th>
+								<th id="gridview-list-grid_c10">&nbsp;&nbsp;</th>
+							</tr>
+							<tr v-for="l in lists">
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
+								<th id="gridview-list-grid_c1">{{l.id}}</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
+								<th id="gridview-list-grid_c2">{{l.book.user.account}}</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
+								<th id="gridview-list-grid_c3">{{l.book.name}}</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
+								<th id="gridview-list-grid_c4">{{l.sellOrders.createTime}}</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
+								<th id="gridview-list-grid_c5">{{l.sellOrders.addrPhone}}</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
+								<th id="gridview-list-grid_c6">{{l.sellOrders.addrName+l.sellOrders.addrDesc}}</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
+								<th id="gridview-list-grid_c7">{{l.price * l.count}}元</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
+								<th id="gridview-list-grid_c8">{{l.count}}本</th>
+								<th id="gridview-list-grid_c0">&nbsp;&nbsp;</th>
+								<th id="gridview-list-grid_c9">{{l.sellOrders.state}}</th>
+								<th id="gridview-list-grid_c10">&nbsp;&nbsp;</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td colspan="11" class="empty"><span class="empty">没有找到数据.</span></td>
-							</tr>
-						</tbody>
 					</table>
 					<div class="keys" style="display: none" title="/my/orderList"></div>
 				</div>
+				<script type="text/javascript">
+				var v1=new Vue({
+              	  el:"#gridview-list-grid",
+              	  data:{
+              		  lists:[]
+              	  },
+              	  created(){
+              		  axios.get("queryOrderList").then(res=>{
+              			  this.lists=res.data;
+              		  })
+              	  }
+              	})
+				</script>
 			</div>
 		</div>
 	</div>
