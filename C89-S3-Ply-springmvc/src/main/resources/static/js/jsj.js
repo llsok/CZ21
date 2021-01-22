@@ -161,6 +161,16 @@ Vue.component(
 					this.lu = res.data.data;
 				})
 			},
+			methods : {
+				logout(){
+					if(confirm("确定要退出登录?")){
+						axios.get("logout.do").then(res=>{
+							alert(res.data.msg);
+							location.href = "index.html";
+						});
+					}
+				}
+			},
 			template : `<div class="site_top_row">
 							<div class="center_980">
 								<div class="school_location" style="float: left;">
@@ -171,6 +181,7 @@ Vue.component(
 									<a v-if="lu.account" href="user-01set.html">{{lu.account}}</a>
 									<a v-else href="login.html">登录</a>
 									|
+									<a v-if="lu.account" @click="logout">退出|</a>
 									<a href="sell.html/create">出售</a>|
 									<a style="color: rgb(254, 137, 0);" href="register.html">立即注册</a>|
 									<a class="app_mobile" target="_blank" href="site/app">下载APP</a>

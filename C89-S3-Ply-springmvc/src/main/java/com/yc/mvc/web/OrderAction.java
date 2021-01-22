@@ -51,6 +51,11 @@ public class OrderAction {
 		return odm.queryOrderByOwnId(loginedUser.getId());
 	} 
 	
+	@RequestMapping("queryOrderList")
+	public List<JsjOrder> queryOrderListByUid(@SessionAttribute JsjUser loginedUser) {
+		return om.queryOrderListByUid(loginedUser.getId());
+	}
+	
 	@RequestMapping(path="SendOrder")
 	public Result sendOrder(int id) {
 		om.sendOrder(id);

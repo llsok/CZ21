@@ -214,4 +214,14 @@ public class UserAction {
 		return um.getAllProvince();
 	}
 
+	@RequestMapping("logout.do")
+	public Result logout(HttpSession session) {
+		Object loginedUser = session.getAttribute("loginedUser");
+		if(loginedUser == null) {
+			return Result.failure("你还未登录", null);
+		}
+		session.removeAttribute("loginedUser");
+		return Result.success("成功退出", null);
+	}
+
 }
