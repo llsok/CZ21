@@ -13,7 +13,7 @@ import com.yc.mvc.po.JsjOrderDetail;
 
 public interface OrderDetailMapper {
 	
-	@Insert("insert into jsj_order_detail values(null,#{oid},#{bid},#{count},#{price})")
+	@Insert("insert into jsj_order_detail values(null,#{oid},#{bid},#{count},#{price},#{state})")
 	void insert(JsjOrderDetail od);
 	
 	@Select("select * from  jsj_order_detail a join jsj_book b on a.bid=b.id where b.owner_id=#{ownerId}")

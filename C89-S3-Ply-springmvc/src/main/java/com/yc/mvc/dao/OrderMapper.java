@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.yc.mvc.po.JsjOrder;
 
@@ -26,6 +27,9 @@ public interface OrderMapper {
 	
 	@Select("SELECT * FROM jsj_order WHERE id=#{id}")
     public JsjOrder selectSellOrders(Integer oid);
+
+    @Update("update jsj_order_detail set state=2 where id=#{id}")
+	void sendOrder(int id);
 	
 	
 }
