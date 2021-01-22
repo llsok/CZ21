@@ -2,7 +2,7 @@ server.port: 80
 
 spring:
    datasource:
-      url: jdbc:mysql://127.0.0.1:3306/jsj
+      url: jdbc:mysql://127.0.0.1:3306/C89-S3-Ply-mybatis?allowMultiQueries=true
 #C89-S3-Ply-mybatis
       username: root
       # 配置项之间可以有空行
@@ -10,6 +10,16 @@ spring:
       # yml 支持驼峰命名 + -号分隔符
       driverClassName: com.mysql.jdbc.Driver
       #driver-class-name: com.mysql.jdbc.Driver
+   web:
+      resources:
+         # staticLocations == static-locations
+         # yml 数组类型配置,  file: 表示从磁盘路径读取 ， classpath: 类路径
+         static-locations: 
+            - classpath:/META-INF/resources/
+            - classpath:/resources/
+            - classpath:/static/
+            - classpath:/public/
+            - file:/e:/jsj/
    servlet:
       multipart:
          # 配置文件上传大小限制
@@ -17,11 +27,8 @@ spring:
          
    jackson:
       date-format: yyyy-MM-dd HH:mm:ss
-      time-zone: GMT+8 
-   mvc:
-      view:
-       prefix: /WEB-INF/alipay/
-       suffix: .jsp   
+      time-zone: GMT+8    
+        
 mybatis:
    configuration:
       # 开启驼峰命名映射

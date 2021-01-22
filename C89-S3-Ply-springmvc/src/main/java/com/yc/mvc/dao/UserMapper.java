@@ -78,8 +78,6 @@ public interface UserMapper {
 	@Update("update jsj_user set pwd=#{pwd} where id=#{id}")
 	void updatePwd(String pwd, Integer id);
 
-
-	
 	
 	@Select("select * from jsj_fans GROUP BY uid ORDER BY count(*) desc LIMIT 0,24")
 	@Results(value = { @Result(column = "uid",property = "uid"),
@@ -93,5 +91,5 @@ public interface UserMapper {
 
 	@Select("select * from jsj_dict")
 	List<JsjDict> getAllProvince();
-
+	
 }
