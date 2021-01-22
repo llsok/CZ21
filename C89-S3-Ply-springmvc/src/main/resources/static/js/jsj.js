@@ -308,7 +308,7 @@ Vue.component(
 					<li><a href="site/privacy">隐私政策</a></li>
 					<li><a href="site/term">服务条款</a></li>
 					<li><a href="site/help">帮助</a></li>
-					<li><a href="site/link">友情链接</a></li>
+					<li><a href="link.html">友情链接</a></li>
 				</ul>
 			</div>
 			<div id="copyright">
