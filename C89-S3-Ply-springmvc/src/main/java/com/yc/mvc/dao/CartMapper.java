@@ -29,5 +29,5 @@ public interface CartMapper {
 	@Delete("delete from jsj_cart where bid = #{bid} and uid = #{uid}")
 	public void delete(@Param("bid")Long bid, @Param("uid")Long uid);
 
-}
 
+}
