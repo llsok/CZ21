@@ -78,22 +78,17 @@
 								<th style="width: 70px;" id="gridview-list-grid_c10">操作</th>
 							</tr>
 						</thead>
-<<<<<<< HEAD
-						<tbody align="center">
-							<tr v-for=" c in cart "  class="odd" style="background-color: rgb(255, 255, 255);">
-=======
+
 						<tbody  align="center">
 							<tr v-for=" c in cart " class="odd" style="background-color: rgb(255, 255, 255);">
->>>>>>> branch 'main' of https://github.com/llsok/CZ21.git
+
 								<td>&nbsp;</td>
 								<td class="book_id_checkbox">
-<<<<<<< HEAD
-									<input :value="c.id" v-model="selected" id="gridview-list-grid_c1_0"  
-=======
+
 
 
 									<input :value="c.id" v-model="selected" id="gridview-list-grid_c1_0" 
->>>>>>> branch 'main' of https://github.com/llsok/CZ21.git
+
 										type="checkbox" name="gridview-list-grid_c1[]">
 								</td>
 								<td>
@@ -111,24 +106,19 @@
 								<td class="kucun_count">{{c.book.state}}</td>
 								<td>￥{{c.book.price}}</td>
 								<td>
-<<<<<<< HEAD
-									<a class="cart_action" direction="dec" book_id="395428212" href="javascript:void(0);"
-									@click="c.count > 1 ? c.count-- : 0">-</a>
-=======
+
 									<a class="cart_action" direction="dec" book_id="395428212" href="javascript:void(0);" 
 
 										@click="c.count > 1 ? c.count-- : 0">-</a>
 
->>>>>>> branch 'main' of https://github.com/llsok/CZ21.git
+
 									<input single_price="15.80" id="cart_count_395428212" class="cart_count" book_id="395428212" v-model="c.count" type="text" value="1">
 									<a class="cart_action" direction="inc" book_id="395428212" href="javascript:void(0);"
-<<<<<<< HEAD
-									@click="c.count < c.book.state ? c.count++ : 0">+</a>
-=======
+
 
 										@click="c.count < c.book.state ? c.count++ : 0">+</a>
 
->>>>>>> branch 'main' of https://github.com/llsok/CZ21.git
+
 								</td>
 								<td><span id="single_total_395428212">￥{{c.book.price * c.count}}</span></td>
 								<td>
@@ -144,10 +134,7 @@
 					</table>
 					<div class="keys" style="display: none" title="/cart/index"></div>
 				</div>
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'main' of https://github.com/llsok/CZ21.git
 				<form id="create_order_form" action="/order/index" method="post">
 					<input type="hidden"
 						value="X0J2bzJPTlJDNnVKR1VlM2MyZGxSM3kwdk5RdnlQZVBZ3-XQ36kulkbowelmV8XT2E7ueyPvc9Wu5p6UlRqdvA=="
@@ -158,29 +145,7 @@
 								onclick="deleteBooks(getSelectedIdStr());" type="button"
 								value="删除选中">
 						</div><br>
-<<<<<<< HEAD
-						
-<h3 class="common_title">确认收货地址</h3>
-
-<div id="add" class="common_list_con clearfix">
-    <input type="hidden" id="default_addr"/>
-    <input type="hidden" id="current_addr"/>
-   
-   
-    <dl id="addr_list">
-        <dt>寄送到：</dt>
-         <dd class="current_location">北京市 海淀区 东北旺西路8号中关村软件园 （李思 收） 159****0775 
-			<a href="javascript:void(0)">设为默认</a></dd>
-		<dd class="default_location">北京市 海淀区 东北旺西路8号中关村软件园 （李思 收） 159****0775 
-			<a href="javascript:void(0)">设为默认</a>
-			<a href="javascript:void(0)">设为当前收货地址</a>
-		</dd>
-	</dl>
-    <a href="javascript:showAddrDiv()" class="edit_site">编辑收货地址</a>
-</div>
-						
-						
-=======
+<
 						<div style="float: right;display: inline-block;">
 							<span style="float: left;">备注:</span><textarea v-model="order.remark" rows="5" cols="30"></textarea>
 						</div>
@@ -205,8 +170,7 @@
 							</div>
 						</div>
 						<span style="display:inline-block;width: 108px;position: relative; left: 190px;bottom: 10px;" >{{errors.addrDesc}}</span>
-						<span style="display:inline-block;position: relative;left: 250px;bottom: 10px">{{errors.addrPhone}}</span>							
->>>>>>> branch 'main' of https://github.com/llsok/CZ21.git
+
 						<div style="float: right;">
 							<span class="total_span" style="display: inline;"> 
 								<span class="selected_count">{{number}}</span>本图书&nbsp;&nbsp;总计(不含运费) : 
@@ -214,13 +178,11 @@
 							</span> 
 							<input type="hidden" value="" name="book_ids" id="book_ids">
 							<!--            <a href="/site/app" class="button_link">使用旧书街APP进行结算</a>-->
-<<<<<<< HEAD
-							<input id="submit_button" class="button" @click="createOrder();"
-=======
+
 
 							<input id="submit_button" class="button" @click="createOrder();"
 
->>>>>>> branch 'main' of https://github.com/llsok/CZ21.git
+
 								type="button" value="去结算>">
 						</div>
 						<div class="clearfloat"></div>
@@ -229,44 +191,7 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-<<<<<<< HEAD
-				var vue1 = new Vue({
-					el : "#main_content",
-					data : {
-						cart : [],
-						selected : []
-					},
-					created(){
-						axios.get("queryCart.do").then(res=>{
-							this.cart = this.data;
-							for(c of this.cart){
-								this.selected.push(c.id);
-							}
-						});
-					},
-					methods:{
-						createOrder(){
-							var params = new URLSearchParams();
-							var i = 0
-							for( c of this.cart){
-								for( s of this.selected){
-									if( cid == s){
-										params.append("details["+i+"].bid", c.book.id);
-										params.append("details["+i+"].count", c.count);
-										i++;
-										break;
-									}
-								}
-							}
-							axios.post("addOrder", params).then(res=>{
-								alert(res.data.msg);
-							});
-						}
-					}
-				});
-				</script>
-		
-=======
+
 
 			var vue1 = new Vue({
 				el : "#main_content",
@@ -383,7 +308,7 @@
 			});
 		</script>
 
->>>>>>> branch 'main' of https://github.com/llsok/CZ21.git
+
 	</div>
 
 	<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>

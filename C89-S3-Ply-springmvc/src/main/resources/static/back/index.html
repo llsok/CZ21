@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>源辰-零食网后台登陆</title>
+<link rel="stylesheet" href="css/login.css">
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+</head>
+<body>
+<div id="login_top">
+	<div id="welcome">
+		旧书街后台管理系统
+	</div>
+	<div id="back">
+		<a href="../index.html">返回首页</a>&nbsp;&nbsp; | &nbsp;&nbsp;
+		<a href="#">帮助</a>
+	</div>
+</div>
+<div id="login_center">
+	<div id="login_area">
+		<div id="login_form">
+			<form action="" method="post" id="myform">
+				<div id="login_tip">
+					管理员登录&nbsp;&nbsp;UserLogin
+				</div>
+				<div><input v-model="name" type="text" class="username" id="account" placeholder="请输入账号..."></div>
+				<div><input v-model="pwd" type="password" class="pwd" id="pwd" placeholder="请输入密码..."></div>
+				<div id="btn_area">
+					<input type="button"  @click="log" id="sub_btn" value="登录">&nbsp;&nbsp;
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var vlog = new Vue({
+		el:"#login_center",
+		data:{
+			name:"",
+			pwd:"",
+			
+		},methods:{
+			log(){
+				axios.get("../../log?name="+this.name+"&pwd="+this.pwd).then(res=>{
+					if(res.data.code==1){
+						$("#popup_info").text(res.data.msg);
+						showMsg();
+						setTimeout(function(){
+							location.href = "manager/index.html";
+						},700)
+						//top.location = "index.html";
+					}else{
+						$("#popup_info").text(res.data.msg);
+						showMsg();
+					}
+				})
+			}
+		}
+	})
+</script>
+<div id="login_bottom">
+	<label style="color:#FFF"><a class="copy" href="http://www.hyycinfo.com">旧书街 </a>&copy; 版权所有</label>
+</div>
+<script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+
+function showMsg(){
+	$('.popup_con').fadeIn('fast', function(){
+		setTimeout(function(){
+			$('.popup_con').fadeOut('fast',function(){
+				// location.href = 'alipay/pay/' + data.msg +"/" + price;
+			});	
+		}, 1000)
+	});
+}
+</script>
+
+<div class="popup_con">
+<div class="popup">
+	<p id="popup_info"></p>
+</div>
+</div>
+</body>
+</html>
