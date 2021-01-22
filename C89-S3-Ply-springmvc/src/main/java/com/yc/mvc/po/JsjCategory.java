@@ -1,8 +1,11 @@
 package com.yc.mvc.po;
 
+import javax.validation.constraints.NotEmpty;
+
 public class JsjCategory {
     private Integer id;
 
+    @NotEmpty(message = "名称不能为空")
     private String name;
 
     public Integer getId() {
