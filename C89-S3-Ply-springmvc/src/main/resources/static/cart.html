@@ -16,49 +16,28 @@
 
 <script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
 <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
-
+<script type="text/javascript"
+	src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/jsj.js"></script>
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
-	<div class="site_top_row">
-		<div class="center_980">
-			<div class="school_location" style="float: left;">
-				[<a href="javascript:void(0)"
-					onclick="showSchoolList();return false;">所有学校</a>]
-			</div>
-			<div id="top_user_info" style="float: right;">
-				<a href="login.html">登录</a>|<a
-					href="sell.html/create">出售</a>|<a
-					style="color: rgb(254, 137, 0);"
-					href="register.html">立即注册</a>|<a
-					class="app_mobile" target="_blank"
-					href="site/app">下载APP</a>
-			</div>
-			<div class="clearfloat"></div>
-		</div>
+	<div id="yetou">
+		<yetou></yetou>
 	</div>
+	<script type="text/javascript">
+		var v119 = new Vue({
+			el:"#yetou"
+		})
+	</script>
 	<div id="top">
-		<div class="center_980">
-			<div id="logo">
-				<a href=""> <img
-					src="res/jiushujie-logo.png" alt="买卖二手书,就上旧书街" title="买卖二手书,就上旧书街">
-				</a>
-			</div>
-			<div style="float: left;">
-				<img src="res/slogan1124.png">
-			</div>
-			<div id="top-nav">
-				<ul class="top_menu">
-					<li><a id="home_tab" href="/"
-						class="selectedtab">首页</a></li>
-					<li><a id="sell_tab" href="sell.html">出售</a>
-					</li>
-					<li><a id="buy_tab" href="buy">求购</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+		<top></top>
 	</div>
+	<script type="text/javascript">
+		new Vue({
+			el : "#top"
+		})
+	</script>
 
 	<div class="main_middle">
 		<div id="main_content" class="center_980">
@@ -158,6 +137,7 @@
 								onclick="deleteBooks(getSelectedIdStr());" type="button"
 								value="删除选中">
 						</div><br>
+<<<<<<< HEAD
 						
 <h3 class="common_title">确认收货地址</h3>
 
@@ -179,6 +159,33 @@
 </div>
 						
 						
+=======
+						<div style="float: right;display: inline-block;">
+							<span style="float: left;">备注:</span><textarea v-model="order.remark" rows="5" cols="30"></textarea>
+						</div>
+
+						<div class="clearfloat" style="display:inline-block ;margin: 15px 0px;position:relative; right: 60px">
+							<h3 class="common_title">确认收货地址</h3>
+							<div id="add">
+							    <input type="hidden" id="default_addr"/>
+							    <input type="hidden" id="current_addr"/>
+							    <dl id="addr_list">
+							        <dt>寄送到：</dt>
+									<dd class="default_location">  
+										<input v-model="order.addrName" 
+										style="font-weight: bold;"placeholder="请输入省市">
+										<input v-model="order.addrDesc" name="addrDesc"
+										style="font-weight: bold;"placeholder="请输入详细地址">
+										<input maxlength="11" v-model="order.addrPhone" name="addrPhone"
+										style="font-weight: bold;"placeholder="请输入收货人手机号">
+
+									</dd>
+								</dl>
+							</div>
+						</div>
+						<span style="display:inline-block;width: 108px;position: relative; left: 190px;bottom: 10px;" >{{errors.addrDesc}}</span>
+						<span style="display:inline-block;position: relative;left: 250px;bottom: 10px">{{errors.addrPhone}}</span>							
+>>>>>>> branch 'main' of https://github.com/llsok/CZ21.git
 						<div style="float: right;">
 							<span class="total_span" style="display: inline;"> <span
 								class="selected_count">2</span>本图书&nbsp;&nbsp;总计(不含运费) : <span
@@ -201,7 +208,18 @@
 				el : "#main_content",
 				data : {
 					cart : [],
-					selected : []
+                    selected : [],
+					addr:[],
+					order:{
+						addrName:"",
+						addrDesc:"",
+						addrPhone:"",
+						remark:"",	
+					},
+					errors:{
+						addrDesc:"",
+						addrPhone:"",
+					}
 				},
 				created(){
 					axios.get("queryCart.do").then(res=>{
@@ -213,13 +231,28 @@
 							this.selected.push(c.id);
 						}
 					});
+					axios.get("getaddr.do").then(res=>{
+						//this.addr = res.data;
+						if(res.data.addrName != null){
+							this.order.addrName = res.data.addrName;
+						}
+						if(res.data.addrDesc != null){
+							this.order.addrDesc = res.data.addrDesc;
+						}
+						if(res.data.addrPhone != null){
+							this.order.addrPhone = res.data.addrPhone;
+						}					
+					})
 				},
 				methods:{
 					createOrder(){
 						var params = new URLSearchParams();
 						// springmvc 控制器的写法
 						// public Result addOrder( JsjOrder order, User loginedUser  ){...}
-						// params.append("addrName", "?????")
+						 params.append("addrName", this.order.addrName);
+						 params.append("addrDesc", this.order.addrDesc);
+						 params.append("addrPhone", this.order.addrPhone);
+						 params.append("remark", this.order.remark);
 						// 订单明细提交  
 						// details[0].bid ==?; detials[0].count=?
 						// details[1].bid ==?; detials[1].count=?
@@ -236,8 +269,26 @@
 							}
 						}
 						axios.post("addOrder", params).then(res=>{
-							alert(res.data.msg);
-							location.href="cart.html?" + new Date();
+							if(res.data.code==1){
+								location.href="cart.html?" + new Date();
+							}
+							// 清除之前的错误提示
+							for( let e in this.errors){  // let 定义的局部变量  ~=  var
+								var na = document.getElementsByName(e);
+								$(na).css('boxShadow','');
+								this.errors[e] = '';
+							}
+							if(res.data.code != 1){
+								var es = res.data.data;
+								for( let e of es){  // == java for( e : es)
+									var na = document.getElementsByName(e.field);
+									$(na).css("boxShadow","0px 0px 5px 3px red");
+									if(this.errors[e.field].search("空")==-1){
+										this.errors[e.field] = e.defaultMessage;
+									}
+								}
+							}
+
 						});
 					}
 				}
@@ -254,23 +305,14 @@
 			src="res/android_download.jpg">
 	</div>
 	<div class="clearfloat"></div>
-	<div class="bottom">
-		<div class="center_980">
-			<div class="bottom_left">
-				<ul>
-					<li><a href="site/about">关于我们</a></li>
-					<li><a href="site/joinus">申请合作</a></li>
-					<li><a href="site/privacy">隐私政策</a></li>
-					<li><a href="site/term">服务条款</a></li>
-					<li><a href="site/help">帮助</a></li>
-					<li><a href="site/link">友情链接</a></li>
-				</ul>
-			</div>
-			<div id="copyright">
-				© 2020 by 旧书街 <a href="http://beian.miit.gov.cn/">蜀ICP备16007902号-2</a>
-			</div>
-		</div>
+	<div id="foot">
+	<foot></foot>	
 	</div>
+	<script type="text/javascript">
+		new Vue({
+			el:"#foot"
+		})
+	</script>
 	<h1 class="jiushujie_slogan">买卖二手书，就上旧书街。旧书街二手书交易网-您身边的旧书网站</h1>
 </body>
 </html>

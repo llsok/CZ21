@@ -1,3 +1,4 @@
+
 package com.yc.mvc.dao;
 
 import java.util.List;
@@ -24,3 +25,4 @@ public interface OrderDetailMapper {
 	public List<JsjOrderDetail> queryOrderByOwnId(Integer id);
 
 }
+

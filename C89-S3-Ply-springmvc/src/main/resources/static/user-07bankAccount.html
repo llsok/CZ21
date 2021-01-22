@@ -18,47 +18,26 @@
 <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
 <script type="text/javascript"
 	src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="js/jsj.js"></script>
+
 </head>
 <body>
-	<div class="site_top_row">
-		<div class="center_980">
-			<div class="school_location" style="float: left;">
-				[<a href="javascript:void(0)"
-					onclick="showSchoolList();return false;">所有学校</a>]
-			</div>
-			<div id="top_user_info" style="float: right;">
-				<a href="login.html">登录</a>|<a
-					href="sell.html/create">出售</a>|<a
-					style="color: rgb(254, 137, 0);"
-					href="register.html">立即注册</a>|<a
-					class="app_mobile" target="_blank"
-					href="site/app">下载APP</a>
-			</div>
-			<div class="clearfloat"></div>
-		</div>
+	<div id="yetou">
+		<yetou></yetou>
 	</div>
+	<script type="text/javascript">
+		var v119 = new Vue({
+			el:"#yetou"
+		})
+	</script>
 	<div id="top">
-		<div class="center_980">
-			<div id="logo">
-				<a href=""> <img
-					src="res/jiushujie-logo.png" alt="买卖二手书,就上旧书街" title="买卖二手书,就上旧书街">
-				</a>
-			</div>
-			<div style="float: left;">
-				<img src="res/slogan1124.png">
-			</div>
-			<div id="top-nav">
-				<ul class="top_menu">
-					<li><a id="home_tab" href="/"
-						class="selectedtab">首页</a></li>
-					<li><a id="sell_tab" href="sell.html">出售</a>
-					</li>
-					<li><a id="buy_tab" href="buy">求购</a>
-					</li>
-				</ul>
-			</div>
-		</div>
+		<top></top>
 	</div>
+	<script type="text/javascript">
+		new Vue({
+			el : "#top"
+		})
+	</script>
 	<div class="main_middle">
 		<div id="main_content" class="center_980">
 			<div class="content_left">
@@ -77,7 +56,7 @@
 						<ul>
 							<li><a id="sell_order_list" href="/my/sellOrderList">收到的订单</a></li>
 							<li><a id="mail_fee_set" href="/mailFee">运费设置</a></li>
-							<li><a id="bank_account" href="/set/bankAccount"
+							<li><a id="bank_account" href="user-07bankAccount.html"
 								class="active_link">收款账号设置</a></li>
 						</ul>
 					</div>
@@ -132,7 +111,7 @@
 				<div class="border_white padding_10">
 					<div class="form">
 						<div class="page_title">收款账号设置</div>
-						<form id="user-introduction-form" action="/set/bankAccount"
+						<form id="user-introduction-form" action="login.html"
 							method="post">
 							<input type="hidden"
 								value="aldwNTRsWTk3QTdqbnFsb0w3eUdkWE41NEZrNHdxfnBVszCUZnhj1OTN9RXoDkEBa_S8ZcvJbtfVa7Wuuai2Hw=="
@@ -143,8 +122,8 @@
 										<td><label for="BankAccount_type" class="required">账号类型
 												<span class="required">*</span>
 										</label></td>
-										<td><select class="ubm_textinput"
-											name="collect_type" id="BankAccount_type">
+										<td><select class="ubm_textinput" v-model="user.collectType"
+											name="collectType" id="BankAccount_type">
 												<option value="" selected="selected"></option>
 												<option value="支付宝">支付宝</option>
 												<option value="中国银行">中国银行</option>
@@ -159,8 +138,8 @@
 										<td><label for="BankAccount_realname" class="required">开户名
 												<span class="required">*</span>
 										</label></td>
-										<td><input v-model="user.collect_name" maxlength="45" class="ubm_textinput"
-											name="collect_name" id="BankAccount_realname"
+										<td><input v-model="user.collectName" maxlength="45" class="ubm_textinput"
+											name="collectName" id="BankAccount_realname"
 											type="text"></td>
 										<td><div>{{errors.collectName}}</div></td>
 									</tr>
@@ -168,8 +147,8 @@
 										<td><label for="BankAccount_account" class="required">账号
 												<span class="required">*</span>
 										</label></td>
-										<td><input v-model="user.collect_account" maxlength="45" class="ubm_textinput"
-											name="collect_account" id="BankAccount_account"
+										<td><input v-model="user.collectAccount" maxlength="45" class="ubm_textinput"
+											name="collectType" id="BankAccount_account"
 											type="text"></td>
 										<td><div>{{errors.collectAccount}}</div></td>
 									</tr>
@@ -186,25 +165,29 @@
 							el : "#user-introduction-form",
 							data : {
 								user : {
-									collect_type : "",
-									collect_account : "",
-									collect_name : "",
+									collectType : "",
+									collectType : "",
+									collectName : "",
 								},
 								errors : {
 									collectType : "",
-									collectAccount : "",
+									collectType : "",
 									collectName : "",
 								},
+							},created(){
+								axios.get("getLoginedUser.do").then(res=>{
+	                    			  this.user=res.data.data;
+	                    		  });
 							},
 							methods : {
 								sub(){
 									var type=document.getElementById("BankAccount_type");
 									var index1=type.selectedIndex;
-									this.user.collect_type=type.options[index1].value;
+									this.user.collectType=type.options[index1].value;
 									var param = new URLSearchParams();
-									param.append('collectType',this.user.collect_type);
-									param.append('collectAccount',this.user.collect_account);
-									param.append('collectName',this.user.collect_name);
+									param.append('collectType',this.user.collectType);
+									param.append('collectAccount',this.user.collectAccount);
+									param.append('collectName',this.user.collectName);
 									axios.post("addCollect.do",param).then(res=>{
 										if(res.data.code==1){
 											alert(res.data.msg);
@@ -246,23 +229,14 @@
 			src="res/android_download.jpg">
 	</div>
 	<div class="clearfloat"></div>
-	<div class="bottom">
-		<div class="center_980">
-			<div class="bottom_left">
-				<ul>
-					<li><a href="site/about">关于我们</a></li>
-					<li><a href="site/joinus">申请合作</a></li>
-					<li><a href="site/privacy">隐私政策</a></li>
-					<li><a href="site/term">服务条款</a></li>
-					<li><a href="site/help">帮助</a></li>
-					<li><a href="site/link">友情链接</a></li>
-				</ul>
-			</div>
-			<div id="copyright">
-				© 2020 by 旧书街 <a href="http://beian.miit.gov.cn/">蜀ICP备16007902号-2</a>
-			</div>
-		</div>
+	<div id="foot">
+	<foot></foot>	
 	</div>
+	<script type="text/javascript">
+		new Vue({
+			el:"#foot"
+		})
+	</script>
 	<h1 class="jiushujie_slogan">买卖二手书，就上旧书街。旧书街二手书交易网-您身边的旧书网站</h1>
 </body>
 </html>

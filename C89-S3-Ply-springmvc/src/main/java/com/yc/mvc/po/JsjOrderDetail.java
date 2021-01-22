@@ -1,3 +1,4 @@
+
 package com.yc.mvc.po;
 
 
@@ -18,3 +19,5 @@ public class JsjOrderDetail implements java.io.Serializable{
     private JsjOrder sellOrders;
     
 }
+
+
