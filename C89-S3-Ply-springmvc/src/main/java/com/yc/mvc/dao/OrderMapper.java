@@ -40,6 +40,7 @@ public interface OrderMapper {
     @Update("update jsj_order_detail set state=2 where id=#{id}")
 	void sendOrder(int id);
 	
-	
+    @Select("select * from jsj_order where id=#{id}")
+	public JsjOrder queryOrderById(Integer id);
 }
 

@@ -24,21 +24,18 @@ public class AliPayController{
 	AlipayConfig a=new AlipayConfig();
 	
 	//支付宝支付主页
-	@RequestMapping("/index")
-	public String alipayIndex(HttpServletRequest request,HttpSession session) {
-//		System.out.println("订单数据-"+o);
-//		System.out.println("订单名称-"+orderName);
-//		request.setAttribute("orderPay", orders);
-//		request.setAttribute("orderName", orderName);
-//		session.setAttribute("orders", orders);
+	
+	@RequestMapping("/payin")
+	public String index(){
+
 		return "index";
 	}
 	
-//	@RequestMapping("/pay")
-//	public String pay(Orderinfo o){
-//
-//		return "alipay.trade.page.pay";
-//	}
+	@RequestMapping("/pay")
+	public String pay(){
+
+		return "alipay.trade.page.pay";
+	}
 	
 	@RequestMapping("notifyurl")
 	public String notifyurl(){
