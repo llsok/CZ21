@@ -71,7 +71,7 @@
 					<div class="user_setting_block">
 						<div class="title">书籍</div>
 						<ul>
-							<li><a id="sell_list" href="/mysell" class="active_link">我的出售</a></li>
+							<li><a id="sell_list" href="user-11mysell.html" class="active_link">我的出售</a></li>
 							<li><a id="soldout_list" href="/mysell?soldout=1">我的售罄</a></li>
 							<li><a id="buy_list" href="/mybuy">我的求购</a></li>
 						</ul>
@@ -117,12 +117,39 @@
 							</form>
 						</div>
 					</div>
-					<div id="my_book_list" class="list-view">
-						<div class="items">
-							<span class="empty"><br>&nbsp;&nbsp;&nbsp;&nbsp;没有书籍</span>
-						</div>
-						<div class="keys" style="display: none" title="/mysell"></div>
+					<div class="book_list" style="width:648px; height:1440px;">
+						<ul style="float:left; padding:5px;"  v-for="b in list">
+							<li style="width:128px; height:180px">
+									<a :href="'book.html#' + b.id" target="_blank"> 
+										<img style="width:90px; height:110px" class="book_pic_border" :src="b.pic"></a>
+										<p class="book_name">
+										<a target="_blank"
+												:href="'book.html#' + b.id">{{b.name}}</a>
+										</p>
+										<div style="width:90px; height:16px" class="price">
+											<div style="width:45px; height:16px" class="now_price">￥{{b.price}}</div>
+											<div style="width:45px; height:16px" class="origin_price">￥{{b.markPrice}}</div>
+											<div class="clearfloat"></div>
+									</div>
+							</li>
+						</ul>
 					</div>
+						<script type="text/javascript">
+							new Vue({
+								el:".book_list",
+									data:{
+										list : [],
+									},
+									created(){
+										axios.get("getLoginedUser.do").then(res=>{
+											this.ownerid = res.data.data.id;
+											axios.get("mysell?ownerid="+this.ownerid).then(res=>{
+												this.list=res.data;
+											})
+										})
+									}
+								})
+						</script>
 				</div>
 			</div>
 			<div class="clearfloat"></div>

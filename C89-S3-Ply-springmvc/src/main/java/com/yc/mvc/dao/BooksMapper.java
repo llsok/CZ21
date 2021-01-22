@@ -40,4 +40,7 @@ public interface BooksMapper {
 	@ResultMap("rmbook")
 	public List<JsjBook> selectNew();
 
+	@Select("select *from jsj_book where owner_id = #{ownerid}")
+	public List<JsjBook> queryMySellById(int ownerid);
+
 }

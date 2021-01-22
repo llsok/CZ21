@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-package com.yc.mvc.po;
-
-import lombok.Data;
-
-@Data
-public class JsjOrderDetail implements java.io.Serializable{
-	private static final long serialVersionUID = 1L;
-	private Long id;
-	private Long oid;
-	private Long bid;
-	private Integer count;
-	private Double price;
-}
-=======
-
 package com.yc.mvc.po;
 
 import lombok.Data;
@@ -88,4 +72,4 @@ public class JsjOrderDetail implements java.io.Serializable {
  
 }
 
->>>>>>> branch 'main' of https://github.com/llsok/CZ21.git
+
