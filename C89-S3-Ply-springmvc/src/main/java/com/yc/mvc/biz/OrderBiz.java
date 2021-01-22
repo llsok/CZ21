@@ -50,7 +50,8 @@ public class OrderBiz {
 
 		for (JsjOrderDetail od : order.getDetails()) {
 			od.setOid(order.getId()); // useGeneratedKeys = true  order.getId() 成立
-	        odm.insert(od);
+	        od.setState(order.getState());
+			odm.insert(od);
 			cm.delete(od.getBid(), order.getUid());
 		}
 
