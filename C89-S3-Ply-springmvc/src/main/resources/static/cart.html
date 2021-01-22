@@ -286,7 +286,11 @@
 						}
 						axios.post("addOrder", params).then(res=>{
 							if(res.data.code==1){
-								location.href="cart.html?" + new Date();
+								axios.post("queryNewOrder.do").then(res1=>{	
+									setTimeout(function(){
+										location.href="payin?id="+res1.data;
+									},700)
+								});
 							}
 							// 清除之前的错误提示
 							for( let e in this.errors){  // let 定义的局部变量  ~=  var

@@ -74,4 +74,8 @@ public class OrderAction {
 		return om.queryOrderById(id);
 	}
 
+	@RequestMapping("queryNewOrder.do")
+	public Long queryNewOrder() {
+			return om.queryNewOrder().getId();	
+	}
 }
