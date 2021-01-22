@@ -12,6 +12,8 @@
 <link rel="stylesheet" type="text/css" href="res/ubm_basic.css">
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
 
 <title>买卖二手书,就上旧书街</title>
 </head>
@@ -66,30 +68,84 @@
 					<table class="items">
 						<thead>
 							<tr>
-								<th id="gridview-list-grid_c0">&nbsp;</th>
-								<th id="gridview-list-grid_c1">订单编号</th>
-								<th id="gridview-list-grid_c2">买家</th>
-								<th id="gridview-list-grid_c3">书籍详情</th>
-								<th id="gridview-list-grid_c4">下单时间</th>
-								<th id="gridview-list-grid_c5">收货人</th>
-								<th id="gridview-list-grid_c6">订单金额</th>
-								<th id="gridview-list-grid_c7">卖家确认金额</th>
-								<th id="gridview-list-grid_c8">送货方式</th>
-								<th id="gridview-list-grid_c9">订单状态</th>
-								<th id="gridview-list-grid_c10">&nbsp;</th>
+								
+								<th style="width: 10px;" id="gridview-list-grid_c1">订单编号</th>
+								<th style="width: 70px;" id="gridview-list-grid_c2">图片</th>
+								<th style="width: 70px;" id="gridview-list-grid_c3">书名</th>
+								<th style="width: 70px;" id="gridview-list-grid_c4">下单时间</th>
+								<th style="width: 70px;" id="gridview-list-grid_c5">收货人</th>
+								<th style="width: 70px;" id="gridview-list-grid_c6">订单金额</th>
+								<th style="width: 70px;" id="gridview-list-grid_c7">收货地址</th>
+								<th style="width: 70px;" id="gridview-list-grid_c8">收货电话</th>
+								<th style="width: 10px;" id="gridview-list-grid_c9">订单状态</th>
+								<th style="width: 70px;" id="gridview-list-grid_c9">订单确认</th>
+								
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td colspan="11" class="empty"><span class="empty">没有找到数据.</span></td>
+							
+							
+							<tr v-for=" o in order " class="odd" style="background-color: rgb(255, 255, 255);">
+								
+								<td>{{o.id}}</td>
+								<td>
+									<a target="_blank" :title="o.name" :href="'sell/' + o.id">
+										<img class="cart_pic" :src="o.book.pic">
+									</a>
+								</td>
+								<td>
+									<a :title="o.book.name" target="_blank" :href="'sell/' + o.book.id">{{o.book.name}}</a>
+								</td>
+								
+								<td>{{o.sellOrders.createTime}}</td>
+								
+								<td>{{o.sellOrders.addrName}}</td>
+								
+								<td>{{o.sellOrders.money}}</td>
+								
+								<td>{{o.sellOrders.addrDesc}}</td>
+								
+								<td>{{o.sellOrders.addrPhone}}</td>
+								
+								<td class="kucun_count" v-show="o.sellOrders.state==0">未支付</td>
+								<td class="kucun_count" v-show="o.sellOrders.state==1">已支付</td>
+								<td class="kucun_count" v-show="o.sellOrders.state==2">已收货</td>
+								<td class="kucun_count" v-show="o.sellOrders.state==3">已评价</td>
+								
+								
+								<td>
+									<a class="delete_cart_item" id="delete_link_395428212" href="javascript:deleteBooks('395428212');">确认订单</a>
+								</td>
+								
 							</tr>
+							
+							
 						</tbody>
+						
 					</table>
 					<div class="keys" style="display: none" title="/my/sellOrderList"></div>
 				</div>
 			</div>
+			
+			
 		</div>
 	</div>
+	<script type="text/javascript">
+
+			var vue = new Vue({
+				el : ".main_middle",
+				data : {
+					order : [],
+					
+				},
+				created(){
+					axios.get("querySellOrder").then(res=>{
+						this.order = res.data;
+					})
+				}
+			})
+	</script>
+	
 
 	<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
 	<div style="position: fixed; top: 122px; right: 20px;">
