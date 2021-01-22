@@ -297,7 +297,7 @@ Vue.component(
 					<li><a href="site/privacy">隐私政策</a></li>
 					<li><a href="site/term">服务条款</a></li>
 					<li><a href="site/help">帮助</a></li>
-					<li><a href="site/link">友情链接</a></li>
+					<li><a href="link.html">友情链接</a></li>
 				</ul>
 			</div>
 			<div id="copyright">
@@ -339,80 +339,69 @@ Vue.component(
 Vue.component(
 	'pc',{
 		props: ['uid'],
-		data : function(){
-			return { 
-				id : this.uid, 
-				isActive : false
-			}
-		},
-	created(){
-			/*var a = document.getElementById("div");
-			alert(a);*/
-			
-		},
 		template : `<div  class="content_left">
 				<div id="patent" class="padding_10 border_white">
 					<div class="user_setting_block">
 						<div class="title">个人设置</div>
 						<ul>
-							<li><a id="1" href="user-01set.html" v-bind:class="{ active_link: isActive }">头像&amp;基本信息</a></li>
-							<li><a id="2" href="user-02intro.html">签名档</a></li>
-							<li><a id="3" href="user-03changepwd.html">修改密码</a></li>
-							<li><a id="4" href="user-04inviteLink.html">我的邀请链接</a></li>
+							<li><a id="1" href="user-01set.html" v-bind:class="{  active_link : '1' == uid }">头像&amp;基本信息</a></li>
+							<li><a id="2" href="user-02intro.html" v-bind:class="{  active_link : '2' == uid }">签名档</a></li>
+							<li><a id="3" href="user-03changepwd.html" v-bind:class="{  active_link : '3' == uid }">修改密码</a></li>
+							<li><a id="4" href="user-04inviteLink.html" v-bind:class="{  active_link : '4' == uid }">我的邀请链接</a></li>
 						</ul>
 					</div>
 					<div class="user_setting_block">
 						<div class="title">我是卖家</div>
 						<ul>
-							<li><a id="5" href="user-05sellOrderList.html">收到的订单</a></li>
-							<li><a id="6" href="user-06mailFee.html">运费设置</a></li>
-							<li><a id="7" href="user-07bankAccount.html">收款账号设置</a></li>
+							<li><a id="5" href="user-05sellOrderList.html" v-bind:class="{  active_link : '5' == uid }">收到的订单</a></li>
+							<li><a id="6" href="user-06mailFee.html" v-bind:class="{  active_link : '6' == uid }">运费设置</a></li>
+							<li><a id="7" href="user-07bankAccount.html" v-bind:class="{  active_link : '7' == uid }">收款账号设置</a></li>
 						</ul>
 					</div>
 					<div class="user_setting_block">
 						<div class="title">我是买家</div>
 						<ul>
-							<li><a id="8" href="user-08orderList.html">我下的订单</a></li>
-							<li><a id="9" href="user-09address.html">收货信息</a></li>
+							<li><a id="8" href="user-08orderList.html" v-bind:class="{  active_link : '8' == uid }">我下的订单</a></li>
+							<li><a id="9" href="user-09address.html" v-bind:class="{  active_link : '9' == uid }">收货信息</a></li>
 						</ul>
 					</div>
 					<div class="user_setting_block">
 						<div class="title">动态</div>
 						<ul>
-							<li><a id="10" href="user-10newsList.html">我的动态</a></li>
+							<li><a id="10" href="user-10newsList.html" v-bind:class="{  active_link : '10' == uid }">我的动态</a></li>
 						</ul>
 					</div>
 					<div class="user_setting_block">
 						<div class="title">书籍</div>
 						<ul>
-							<li><a id="11" href="user-11mysell.html">我的出售</a></li>
-							<li><a id="12" href="user-12soldout.html">我的售罄</a></li>
-							<li><a id="13" href="user-13mybuy.html">我的求购</a></li>
+							<li><a id="11" href="user-11mysell.html" v-bind:class="{  active_link : '11' == uid }">我的出售</a></li>
+							<li><a id="12" href="user-12soldout.html" v-bind:class="{  active_link : '12' == uid }">我的售罄</a></li>
+							<li><a id="13" href="user-13mybuy.html" v-bind:class="{  active_link : '13' == uid }">我的求购</a></li>
 						</ul>
 					</div>
 					<div class="user_setting_block">
 						<div class="title">留言</div>
 						<ul>
 							<li><a id="14"
-								href="user-14commsell.html">留言-出售</a></li>
-							<li><a id="15" href="user-15commbuy.html">留言-求购</a></li>
+								href="user-14commsell.html" v-bind:class="{  active_link : '14' == uid }">留言-出售</a></li>
+							<li><a id="15" href="user-15commbuy.html" v-bind:class="{  active_link : '15' == uid }">留言-求购</a></li>
 							<li><a id="16"
-								href="user-16commnews.html">留言-动态</a></li>
+								href="user-16commnews.html" v-bind:class="{  active_link : '16' == uid }">留言-动态</a></li>
 						</ul>
 					</div>
 					<div class="user_setting_block">
 						<div class="title">消息</div>
 						<ul>
-							<li><a id="17" href="user-17inbox.html">收件箱</a></li>
-							<li><a id="18" href="user-18outbox.html">发件箱</a></li>
+							<li><a id="17" href="user-17inbox.html" v-bind:class="{  active_link : '17' == uid }">收件箱</a></li>
+							<li><a id="18" href="user-18outbox.html" v-bind:class="{  active_link : '18' == uid }">发件箱</a></li>
 						</ul>
 					</div>
 					
 					<div id="guanzhu" class="user_setting_block">
 						<div class="title">用户</div>
 						<ul>
-							<li><a id="19" href="user-19follow.html">我的关注</a></li>
-							<li><a id="20" href="user-20fans.html">我的粉丝</a></li>
+							<li><a id="19" href="user-19follow.html" v-bind:class="{  active_link : '19' == uid }">我的关注</a></li>
+							<li><a id="20" href="user-20fans.html" v-bind:class="{  active_link : '20' == uid }">我的粉丝</a></li>
 						</ul>
 					</div>
 				</div>

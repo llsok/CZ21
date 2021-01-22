@@ -39,7 +39,7 @@
 	<div class="main_middle">
 		<div id="main_content" class="center_980">
 		<div id="pc">
-				<pc uid = "1"></pc>
+				<pc uid = "5"></pc>
 			</div>
 			<script type="text/javascript">
 				new Vue({
@@ -58,14 +58,17 @@
 								
 								<th style="width: 10px;" id="gridview-list-grid_c1">订单编号</th>
 								<th style="width: 70px;" id="gridview-list-grid_c2">图片</th>
+								<th style="width: 70px;" id="gridview-list-grid_c2">数量</th>
 								<th style="width: 70px;" id="gridview-list-grid_c3">书名</th>
-								<th style="width: 70px;" id="gridview-list-grid_c4">下单时间</th>
-								<th style="width: 70px;" id="gridview-list-grid_c5">收货人</th>
+								<th style="width: 100px;" id="gridview-list-grid_c4">下单时间</th>
+								
 								<th style="width: 70px;" id="gridview-list-grid_c6">订单金额</th>
+								<th style="width: 70px;" id="gridview-list-grid_c5">收货人</th>
 								<th style="width: 70px;" id="gridview-list-grid_c7">收货地址</th>
 								<th style="width: 70px;" id="gridview-list-grid_c8">收货电话</th>
+								<th style="width: 70px;" id="gridview-list-grid_c8">备注信息</th>
 								<th style="width: 10px;" id="gridview-list-grid_c9">订单状态</th>
-								<th style="width: 70px;" id="gridview-list-grid_c9">订单确认</th>
+								<th style="width: 70px;" id="gridview-list-grid_c9">操作订单</th>
 								
 							</tr>
 						</thead>
@@ -80,28 +83,32 @@
 										<img class="cart_pic" :src="o.book.pic">
 									</a>
 								</td>
+								<td class="kucun_count">{{o.count}}</td>
 								<td>
 									<a :title="o.book.name" target="_blank" :href="'sell/' + o.book.id">{{o.book.name}}</a>
 								</td>
 								
 								<td>{{o.sellOrders.createTime}}</td>
 								
-								<td>{{o.sellOrders.addrName}}</td>
-								
 								<td>{{o.sellOrders.money}}</td>
 								
+								<td>{{o.sellOrders.addrName}}</td>
+							
 								<td>{{o.sellOrders.addrDesc}}</td>
 								
 								<td>{{o.sellOrders.addrPhone}}</td>
 								
-								<td class="kucun_count" v-show="o.sellOrders.state==0">未支付</td>
-								<td class="kucun_count" v-show="o.sellOrders.state==1">已支付</td>
-								<td class="kucun_count" v-show="o.sellOrders.state==2">已收货</td>
-								<td class="kucun_count" v-show="o.sellOrders.state==3">已评价</td>
+								<td>{{o.sellOrders.remark}}</td>
+								
+								<td class="kucun_count" v-show="o.state==0" style="color:red;">未支付</td>
+								<td class="kucun_count" v-show="o.state==1" style="color:green;">未发货</td>
+								<td class="kucun_count" v-show="o.state==2" style="color:blue;">已发货</td>
+								<td class="kucun_count" v-show="o.state==3">已收货</td>
+								<td class="kucun_count" v-show="o.state==4">已评价</td>
 								
 								
 								<td>
-									<a class="delete_cart_item" id="delete_link_395428212" href="javascript:deleteBooks('395428212');">确认订单</a>
+									<a class="delete_cart_item" id="delete_link_395428212" href="user-05sellOrderList.html" type="button" v-if="o.state<2" @click="send(o.id)">发货</a>
 								</td>
 								
 							</tr>
@@ -129,6 +136,15 @@
 					axios.get("querySellOrder").then(res=>{
 						this.order = res.data;
 					})
+				},
+				methods:{
+					send(id){
+						if(confirm("请确认是否要发货 " )){
+							axios.get("SendOrder?id="+id).then(res=>{
+								alert(res.data.msg);
+							})
+					   }
+					}
 				}
 			})
 	</script>

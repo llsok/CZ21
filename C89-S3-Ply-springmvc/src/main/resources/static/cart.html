@@ -79,6 +79,7 @@
 							</tr>
 						</thead>
 
+
 						<tbody  align="center">
 							<tr v-for=" c in cart " class="odd" style="background-color: rgb(255, 255, 255);">
 
@@ -86,8 +87,8 @@
 								<td class="book_id_checkbox">
 
 
-
 									<input :value="c.id" v-model="selected" id="gridview-list-grid_c1_0" 
+
 
 										type="checkbox" name="gridview-list-grid_c1[]">
 								</td>
@@ -107,14 +108,15 @@
 								<td>￥{{c.book.price}}</td>
 								<td>
 
+
 									<a class="cart_action" direction="dec" book_id="395428212" href="javascript:void(0);" 
 
 										@click="c.count > 1 ? c.count-- : 0">-</a>
 
 
+
 									<input single_price="15.80" id="cart_count_395428212" class="cart_count" book_id="395428212" v-model="c.count" type="text" value="1">
 									<a class="cart_action" direction="inc" book_id="395428212" href="javascript:void(0);"
-
 
 										@click="c.count < c.book.state ? c.count++ : 0">+</a>
 
@@ -135,6 +137,7 @@
 					<div class="keys" style="display: none" title="/cart/index"></div>
 				</div>
 
+
 				<form id="create_order_form" action="/order/index" method="post">
 					<input type="hidden"
 						value="X0J2bzJPTlJDNnVKR1VlM2MyZGxSM3kwdk5RdnlQZVBZ3-XQ36kulkbowelmV8XT2E7ueyPvc9Wu5p6UlRqdvA=="
@@ -145,7 +148,7 @@
 								onclick="deleteBooks(getSelectedIdStr());" type="button"
 								value="删除选中">
 						</div><br>
-<
+
 						<div style="float: right;display: inline-block;">
 							<span style="float: left;">备注:</span><textarea v-model="order.remark" rows="5" cols="30"></textarea>
 						</div>
@@ -171,6 +174,7 @@
 						</div>
 						<span style="display:inline-block;width: 108px;position: relative; left: 190px;bottom: 10px;" >{{errors.addrDesc}}</span>
 
+						<span style="display:inline-block;position: relative;left: 250px;bottom: 10px">{{errors.addrPhone}}</span>							
 						<div style="float: right;">
 							<span class="total_span" style="display: inline;"> 
 								<span class="selected_count">{{number}}</span>本图书&nbsp;&nbsp;总计(不含运费) : 
@@ -178,7 +182,6 @@
 							</span> 
 							<input type="hidden" value="" name="book_ids" id="book_ids">
 							<!--            <a href="/site/app" class="button_link">使用旧书街APP进行结算</a>-->
-
 
 							<input id="submit_button" class="button" @click="createOrder();"
 
