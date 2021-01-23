@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="keywords" content="旧书,二手书,二手教材,旧教材,校园书籍,校园旧书，旧书网">
+<meta name="description" content="买卖二手书，就上旧书街">
+<meta name="language" content="zh">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" type="text/css" href="res/form.css">
+<link rel="stylesheet" type="text/css" href="res/pager.css">
+<link rel="stylesheet" type="text/css" href="res/ubm_basic.css">
+<link rel="shortcut icon"
+	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
+
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+<script type="text/javascript"
+	src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jsj.js"></script>
+<title>买卖二手书,就上旧书街</title>
+</head>
+<body>
+	<div id="yetou">
+		<yetou></yetou>
+	</div>
+	<script type="text/javascript">
+		var v119 = new Vue({
+			el:"#yetou"
+		})
+	</script>
+	<div id="top">
+		<top></top>
+	</div>
+	<script type="text/javascript">
+		new Vue({
+			el : "#top"
+		})
+	</script>
+	<div class="main_middle">
+		<div id="main_content" class="center_980">
+			<div id="pc">
+				<pc></pc>
+			</div>
+			<script type="text/javascript">
+				new Vue({
+					el : "#pc"
+				})
+			</script>
+			<div class="content_right">
+				<div class="border_white padding_10">
+					<div class="page_title">我的收货信息</div>
+					<form action="">
+					<table class="ubm_input">
+								<tbody>
+									<tr>
+										<td><label>收获人姓名:
+										</label></td>
+										<td><input maxlength="45" class="ubm_textinput"
+											type="text" v-model="hlist.addrName"></td>
+											<td><div>{{errors.addrName}}</div></td>
+									</tr>
+									<tr>
+										<td><label>收获电话:
+										</label></td>
+										<td><input maxlength="45" class="ubm_textinput"
+											type="text" v-model="hlist.addrPhone"></td>
+											<td><div>{{errors.addrPhone}}</div></td>
+									</tr>
+									<tr>
+										<td><label>邮政编码:
+										</label></td>
+										<td><input maxlength="45" class="ubm_textinput"
+											type="text" v-model="hlist.addrPost"></td>
+											<td><div>{{errors.addrPost}}</div></td>
+									</tr>
+									<tr>
+										<td><label>省份:</label></td>
+													<td><select class="ubm_textinput" v-model="hlist.addrProvince">
+														<option v-for=" d in dlist">{{d.name}}</option>
+													</select>
+													</td>
+													<td><div>{{errors.addrProvince}}</div></td>
+									</tr>
+									<tr>
+										<td><label>详细地址:
+										</label></td>
+										<td><input maxlength="45" class="ubm_textinput"
+											type="text" v-model="hlist.addrDesc"></td>
+											<td><div>{{errors.addrDesc}}</div></td>
+									</tr>
+									<tr>
+										<td><label>默认地址:
+										</label></td>
+										<td>
+											<input type="radio" value="1" name="code" v-model="hlist.code">是
+											<input type="radio" value="0" name="code" v-model="hlist.code">否
+										</td>
+									</tr>
+									</tbody>
+							</table>
+						<div class="margin_left_134">
+							<input id="submit_button" class="button" type="button" name="yt1"
+								@click="change(hlist.id)" value="修改收获地址">
+						</div>
+						</form>
+				</div>
+			</div>
+			<script type="text/javascript">
+				var v1 = new Vue({
+					el : ".content_right",
+					data : {
+						hlist : {
+							id:"",
+							addrName:"",
+							addrPhone:"",
+							addrPost:"",
+							addrProvince:"",
+							addrDesc:"",
+							code:""
+						},
+						dlist : {},
+						errors : {
+							addrName : "",
+							addrPhone : "",
+							addrPost : "",
+							addrProvince:"",
+							addrDesc:""
+						}
+					},
+					created(){
+							var id = location.hash.substring(1);
+							axios.get("getAddrById.do?id="+id).then(res=>{
+								this.hlist = res.data;
+								//alert(res.data);
+						}),
+						axios.get("getAllProvince.do").then(res=>{
+							this.dlist = res.data;
+						})
+					},
+					methods:{
+						change(id){
+							var p = new URLSearchParams();
+							p.append("addrName",this.hlist.addrName);
+							p.append("addrPhone",this.hlist.addrPhone);
+							p.append("addrPost",this.hlist.addrPost);
+							p.append("addrProvince",this.hlist.addrProvince);
+							p.append("addrDesc",this.hlist.addrDesc);
+							p.append("code",this.hlist.code);
+							p.append("id",id);
+							axios.post("changeAddr.do",p).then(res=>{
+								if(res.data.code == 1){
+									alert(res.data.msg);
+									location.href = "user-09address.html";
+								} 
+								for( let e in this.errors){  
+									var na = document.getElementsByName(e);
+									$(na).css('boxShadow','');
+									this.errors[e] = '';
+								}
+								
+									if(res.data.code != 1){
+										var es = res.data.data;
+									for( let e of es){  // == java for( e : es)
+										var na = document.getElementsByName(e.field);
+										$(na).css("boxShadow","0px 0px 5px 3px red");	
+										this.errors[e.field] = e.defaultMessage;  // [ ] 对对象的数字哪个复制
+									}
+									}
+								
+							})
+						}
+					}
+				})
+			
+			</script>
+			<div class="clearfloat"></div>
+		</div>
+	</div>
+
+	<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
+	<div style="position: fixed; top: 122px; right: 20px;">
+		<img style="width: 120px; margin-bottom: 10px;"
+			src="res/ios_download.jpg"><br> <img
+			style="width: 120px; margin-bottom: 10px;"
+			src="res/android_download.jpg">
+	</div>
+	<div class="clearfloat"></div>
+	<div id="foot">
+	<foot></foot>	
+	</div>
+	<script type="text/javascript">
+		new Vue({
+			el:"#foot"
+		})
+	</script>
+	<h1 class="jiushujie_slogan">买卖二手书，就上旧书街。旧书街二手书交易网-您身边的旧书网站</h1>
+</body>
+</html>

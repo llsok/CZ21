@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0034)http://www.jiushujie.com/site/link -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>        
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="keywords" content="旧书,二手书,二手教材,旧教材,校园书籍,校园旧书，旧书网">
+<meta name="description" content="买卖二手书，就上旧书街">
+<meta name="language" content="zh">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" type="text/css" href="res/form.css">
+<link rel="stylesheet" type="text/css" href="res/ubm_basic.css">
+<link rel="shortcut icon"
+	href="index.html" type="image/x-icon">
+	
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+<script type="text/javascript" src="js/jsj.js"></script>
+
+<title>买卖二手书,就上旧书街</title>
+
+    </head>
+    <body>
+	<div id="yetou">
+		<yetou></yetou>
+	</div>
+	<script type="text/javascript">
+		new Vue({
+			el : "#yetou"
+		})
+	</script>
+	<div id="top">
+		<top></top>
+	</div>
+	<script type="text/javascript">
+		new Vue({
+			el : "#top"
+		})
+	</script>
+	
+	
+	
+	
+	
+        <div class="main_middle">
+            <div>
+    <div id="main_content" class="center_980">
+            <div class="padding_10" id="E01">
+                <h1>友情链接</h1>
+<br>
+<a v-for="l in link" style="margin-right: 20px;" :href="l.html" target="_blank">{{l.name}}</a>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+            </div>
+            <script type="text/javascript">
+			var v=new Vue({
+				el:"#E01",
+				data:{
+					link:{}
+				},
+				created(){
+					axios.get("link.do").then(res=>{
+						this.link=res.data;
+					})
+				}
+})
+
+
+</script>
+    </div>
+</div>
+        </div>
+        	<div id="foot">
+	<foot></foot>	
+	</div>
+<script type="text/javascript">
+		new Vue({
+			el:"#foot"
+		})
+	</script>
+<h1 class="jiushujie_slogan">买卖二手书，就上旧书街。旧书街二手书交易网-您身边的旧书网站</h1>    
+
+</body></html>

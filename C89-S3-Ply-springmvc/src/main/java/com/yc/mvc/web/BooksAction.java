@@ -15,6 +15,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.yc.mvc.dao.BooksMapper;
 import com.yc.mvc.po.JsjBook;
+import com.yc.mvc.po.JsjSearch;
 import com.yc.mvc.web.po.Result;
 
 @RestController
@@ -107,6 +108,11 @@ public class BooksAction {
 		System.out.println("id====" + id);
 		return bm.quertBookDetail(id);
 	}
+	
+	@RequestMapping(path="hotquery.do")
+	  public List<JsjSearch> hotquery( ){
+		   return bm.queryhot();
+	  }
 	
 	@GetMapping("mysell")
 	public List<JsjBook> queryMySell(int ownerid){
