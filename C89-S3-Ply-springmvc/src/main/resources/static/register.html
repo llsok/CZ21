@@ -174,11 +174,18 @@
 								
 							},
 							created(){
-								var inviteId = location.search.substring(1);
-								axios.get("queryByInviteId.do?inviteId="+inviteId).then(res=>{
-									this.user.inviteName=res.data.account;
-								})
-							},
+								axios.get("getLoginedUser.do").then(res=>{
+        							if( res.data.code==0 ){
+        								var inviteId = location.search.substring(1);
+        								axios.get("queryByInviteId.do?inviteId="+inviteId).then(res=>{
+        									this.user.inviteName=res.data.account;
+        								})
+        							}else{
+        								alert("您还没有退出");
+        								location.href="user-04inviteLink.html"
+        							}
+        					});
+						},
 							methods : {
 								regist(){
 									var param = new URLSearchParams();
