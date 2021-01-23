@@ -186,11 +186,11 @@ public class UserAction {
 		return um.selectMostFans();
 	}
 
-	@GetMapping("getaddr.do")
-	public JsjUser getaddr(@SessionAttribute JsjUser loginedUser) {
-
-		return um.selectByAccount(loginedUser.getAccount());
-	}
+//	@GetMapping("getaddr.do")
+//	public JsjUser getaddr(@SessionAttribute JsjUser loginedUser) {
+//
+//		return um.selectByAccount(loginedUser.getAccount());
+//	}
 
 	@PostMapping("updateaddr.do")
 	public Result updateaddr(@Valid JsjUser user, Errors errors, @SessionAttribute JsjUser loginedUser) {

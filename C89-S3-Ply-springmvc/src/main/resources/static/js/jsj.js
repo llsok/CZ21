@@ -374,6 +374,7 @@ Vue.component(
 						<ul>
 							<li><a id="8" href="user-08orderList.html" v-bind:class="{  active_link : '8' == uid }">我下的订单</a></li>
 							<li><a id="9" href="user-09address.html" v-bind:class="{  active_link : '9' == uid }">收货信息</a></li>
+							<li><a id="40" href="user-40address.html" v-bind:class="{  active_link : '40' == uid }">添加收货地址</a></li>
 						</ul>
 					</div>
 					<div class="user_setting_block">
