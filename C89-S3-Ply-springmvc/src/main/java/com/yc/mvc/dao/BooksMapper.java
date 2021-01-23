@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
 import com.yc.mvc.po.JsjBook;
+import com.yc.mvc.po.JsjSearch;
 
 public interface BooksMapper {
 
@@ -39,5 +40,6 @@ public interface BooksMapper {
 	@Select("select * from jsj_book order by id desc")
 	@ResultMap("rmbook")
 	public List<JsjBook> selectNew();
-
+	@Select("select * from jsj_search  order by id")
+	  public List<JsjSearch> queryhot();
 }
