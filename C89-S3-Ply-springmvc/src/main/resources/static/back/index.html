@@ -5,7 +5,7 @@
 <title></title>
 <link rel="stylesheet" href="css/login.css">
 
-
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
 </head>
@@ -45,7 +45,7 @@
 			
 		},methods:{
 			log(){
-				axios.get("../../log?name="+this.name+"&pwd="+this.pwd).then(res=>{
+				axios.post("../log?name="+this.name+"&pwd="+this.pwd).then(res=>{
 					if(res.data.code==1){
 						$("#popup_info").text(res.data.msg);
 						showMsg();
