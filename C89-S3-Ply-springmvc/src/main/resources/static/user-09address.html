@@ -13,11 +13,13 @@
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
 
-<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
-<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+<script type="text/javascript"
+	src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
 <script type="text/javascript"
 	src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-	<script type="text/javascript" src="js/jsj.js"></script>
+<script type="text/javascript" src="js/jsj.js"></script>
 <title>买卖二手书,就上旧书街</title>
 </head>
 <body>
@@ -39,133 +41,58 @@
 	</script>
 	<div class="main_middle">
 		<div id="main_content" class="center_980">
-			<div class="content_left">
-				<div class="padding_10 border_white">
-					<div class="user_setting_block">
-						<div class="title">个人设置</div>
-						<ul>
-							<li><a id="user_basic" href="/set">头像&amp;基本信息</a></li>
-							<li><a id="self_introduction" href="/intro">签名档</a></li>
-							<li><a id="user_pwd" href="/changepwd">修改密码</a></li>
-							<li><a id="invite_link" href="/my/inviteLink">我的邀请链接</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">我是卖家</div>
-						<ul>
-							<li><a id="sell_order_list" href="/my/sellOrderList">收到的订单</a></li>
-							<li><a id="mail_fee_set" href="/mailFee">运费设置</a></li>
-							<li><a id="bank_account" href="/set/bankAccount">收款账号设置</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">我是买家</div>
-						<ul>
-							<li><a id="my_order_list" href="/my/orderList">我下的订单</a></li>
-							<li><a id="address_info_set" href="/address/index"
-								class="active_link">收货信息</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">动态</div>
-						<ul>
-							<li><a id="news_list" href="/my/newsList">我的动态</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">书籍</div>
-						<ul>
-							<li><a id="sell_list" href="/mysell">我的出售</a></li>
-							<li><a id="soldout_list" href="/mysell?soldout=1">我的售罄</a></li>
-							<li><a id="buy_list" href="/mybuy">我的求购</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">留言</div>
-						<ul>
-							<li><a id="sell_comment_tab"
-								href="/my/commentList/type/sell.html">留言-出售</a></li>
-							<li><a id="buy_comment_tab" href="/my/commentList/type/buy">留言-求购</a></li>
-							<li><a id="news_comment_tab"
-								href="/my/commentList/type/news">留言-动态</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">消息</div>
-						<ul>
-							<li><a id="inbox_tab" href="/inbox">收件箱</a></li>
-							<li><a id="outbox_tab" href="/outbox">发件箱</a></li>
-						</ul>
-					</div>
-					<div class="user_setting_block">
-						<div class="title">用户</div>
-						<ul>
-							<li><a id="fan_by_me_tab" href="/follow">我的关注</a></li>
-							<li><a id="fan_of_me_tab" href="/fan">我的粉丝</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<div class="content_right">
-				<div class="border_white padding_10">
-					<div class="page_title">我的收货信息</div>
-					<form action="">
-					<table class="ubm_input">
-								<tbody>
-									<tr>
-										<td><label>收获人姓名:
-										</label></td>
-										<td><input maxlength="45" class="ubm_textinput"
-											type="text" v-model="hlist.addrName"></td>
-											<td><div>{{errors.addrName}}</div></td>
-									</tr>
-									<tr>
-										<td><label>收获电话:
-										</label></td>
-										<td><input maxlength="45" class="ubm_textinput"
-											type="text" v-model="hlist.addrPhone"></td>
-											<td><div>{{errors.addrPhone}}</div></td>
-									</tr>
-									<tr>
-										<td><label>邮政编码:
-										</label></td>
-										<td><input maxlength="45" class="ubm_textinput"
-											type="text" v-model="hlist.addrPost"></td>
-											<td><div>{{errors.addrPost}}</div></td>
-									</tr>
-									<tr>
-										<td><label>省份:</label></td>
-													<td><select class="ubm_textinput" v-model="hlist.addrProvince">
-														<option v-for=" d in dlist">{{d.name}}</option>
-													</select>
-													</td>
-									</tr>
-									<tr>
-										<td><label>详细地址:
-										</label></td>
-										<td><input maxlength="45" class="ubm_textinput"
-											type="text" v-model="hlist.addrDesc"></td>
-									</tr>
-									</tbody>
-							</table>
-						<div class="margin_left_134">
-							<input id="submit_button" class="button" type="button" name="yt1"
-								@click="addr" value="修改收获地址">
-						</div>
-						</form>
-				</div>
+			<div id="pc">
+				<pc uid="9"></pc>
 			</div>
 			<script type="text/javascript">
+				new Vue({
+					el : "#pc"
+				})
+			</script>
+			<div class="border_white padding_10">
+				<div id="gridview-list-grid" class="grid-view">
+
+					<table class="items">
+						<thead>
+							<tr>
+								<th style="width: 50px;" id="gridview-list-grid_c1">序号</th>
+								<th style="width: 50px;" id="gridview-list-grid_c1">收货人</th>
+								<th style="width: 150px;" id="gridview-list-grid_c2">电话</th>
+								<th style="width: 70px;" id="gridview-list-grid_c3">邮编</th>
+								<th style="width: 50px;" id="gridview-list-grid_c4">地址</th>
+								<th style="width: 150px;" id="gridview-list-grid_c5">详细地址</th>
+								<th style="width: 100px;" id="gridview-list-grid_c6">操作</th>
+								<th style="width: 100px;" id="gridview-list-grid_c6">操作</th>
+							</tr>
+						</thead>
+						<tbody v-for="(h,index) in hlist">
+							<tr class="odd" style="background-color: rgb(255, 255, 255);">
+								<td>{{index+1}}</td>
+								<td>{{h.addrName}}</td>
+								<td>{{h.addrPhone}}</td>
+								<td>{{h.addrPost}}</td>
+								<td>{{h.addrProvince}}</td>
+								<td>{{h.addrDesc}}</td>
+								<td>
+									<a :href="'change-addr.html#'+h.id">修改</a>
+									<button @click="del(h.id)">删除</button>
+								</td>
+								<td>
+									<button v-if="h.code==0" @click="changeCode(h.id)">设置默认</button>
+									<span v-if="h.code==1" style="color: red;">默认地址</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="keys" style="display: none" title="/my/sellOrderList"></div>
+				</div>
+			</div>
+
+			<script type="text/javascript">
 				var v1 = new Vue({
-					el : ".content_right",
+					el : ".items",
 					data : {
-						hlist : {
-							addrName:"",
-							addrPhone:"",
-							addrPost:"",
-							addrProvince:"",
-							addrDesc:""
-						},
+						hlist : [],
 						dlist : {},
 						errors : {
 							addrName : "",
@@ -183,34 +110,25 @@
 						})
 					},
 					methods:{
-						addr(){
-							var p = new URLSearchParams();
-							p.append("addrName",this.hlist.addrName);
-							p.append("addrPhone",this.hlist.addrPhone);
-							p.append("addrPost",this.hlist.addrPost);
-							p.append("addrProvince",this.hlist.addrProvince);
-							p.append("addrDesc",this.hlist.addrDesc);
-							axios.post("updateaddr.do",p).then(res=>{
-								if(res.data.code == 1){
-									alert(res.data.msg);
-								} 
-								for( let e in this.errors){  
-									var na = document.getElementsByName(e);
-									$(na).css('boxShadow','');
-									this.errors[e] = '';
+							del(id){
+								if(confirm("确认删除该收获地址???")){
+									axios.get("deleteAddr.do?id="+id).then(res=>{
+										if(res.data.code==1){
+											alert(res.data.msg);
+											location.reload();
+										}
+									})
 								}
-								
-									if(res.data.code != 1){
-										var es = res.data.data;
-									for( let e of es){  // == java for( e : es)
-										var na = document.getElementsByName(e.field);
-										$(na).css("boxShadow","0px 0px 5px 3px red");	
-										this.errors[e.field] = e.defaultMessage;  // [ ] 对对象的数字哪个复制
+							},
+							changeCode(id){
+								axios.get("changeCode.do?id="+id).then(res=>{
+									if(res.data.code==1){
+										alert(res.data.msg);
+										location.reload();
 									}
-									}
-								
-							})
-						}
+								})
+							}
+							
 					}
 				})
 			
@@ -228,7 +146,7 @@
 	</div>
 	<div class="clearfloat"></div>
 	<div id="foot">
-	<foot></foot>	
+		<foot></foot>
 	</div>
 	<script type="text/javascript">
 		new Vue({

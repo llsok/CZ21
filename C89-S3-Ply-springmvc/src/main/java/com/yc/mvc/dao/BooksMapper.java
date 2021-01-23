@@ -40,6 +40,11 @@ public interface BooksMapper {
 	@Select("select * from jsj_book order by id desc")
 	@ResultMap("rmbook")
 	public List<JsjBook> selectNew();
+	
 	@Select("select * from jsj_search  order by id")
 	  public List<JsjSearch> queryhot();
+
+	@Select("select *from jsj_book where owner_id = #{ownerid}")
+	public List<JsjBook> queryMySellById(int ownerid);
+
 }

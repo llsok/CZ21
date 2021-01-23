@@ -2,7 +2,8 @@ server.port: 80
 
 spring:
    datasource:
-      url: jdbc:mysql://127.0.0.1:3306/C89-S3-Ply-mybatis
+      url: jdbc:mysql://127.0.0.1:3306/C89-S3-Ply-mybatis?allowMultiQueries=true
+#C89-S3-Ply-mybatis
       username: root
       # 配置项之间可以有空行
       password: a
@@ -26,8 +27,12 @@ spring:
          
    jackson:
       date-format: yyyy-MM-dd HH:mm:ss
-      time-zone: GMT+8    
-        
+      time-zone: GMT+8 
+   #jsp配置(勿删)      
+   mvc:
+      view:
+       prefix: /WEB-INF/alipay/
+       suffix: .jsp     
 mybatis:
    configuration:
       # 开启驼峰命名映射

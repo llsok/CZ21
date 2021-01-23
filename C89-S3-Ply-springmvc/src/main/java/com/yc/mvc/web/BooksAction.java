@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -107,9 +108,15 @@ public class BooksAction {
 		System.out.println("id====" + id);
 		return bm.quertBookDetail(id);
 	}
+	
 	@RequestMapping(path="hotquery.do")
 	  public List<JsjSearch> hotquery( ){
 		   return bm.queryhot();
 	  }
+	
+	@GetMapping("mysell")
+	public List<JsjBook> queryMySell(int ownerid){
+		return bm.queryMySellById(ownerid);
+	}
 
 }

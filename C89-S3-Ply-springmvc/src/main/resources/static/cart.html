@@ -78,13 +78,18 @@
 								<th style="width: 70px;" id="gridview-list-grid_c10">操作</th>
 							</tr>
 						</thead>
+
+
 						<tbody  align="center">
 							<tr v-for=" c in cart " class="odd" style="background-color: rgb(255, 255, 255);">
+
 								<td>&nbsp;</td>
 								<td class="book_id_checkbox">
 
 
 									<input :value="c.id" v-model="selected" id="gridview-list-grid_c1_0" 
+
+
 										type="checkbox" name="gridview-list-grid_c1[]">
 								</td>
 								<td>
@@ -102,14 +107,19 @@
 								<td class="kucun_count">{{c.book.state}}</td>
 								<td>￥{{c.book.price}}</td>
 								<td>
+
+
 									<a class="cart_action" direction="dec" book_id="395428212" href="javascript:void(0);" 
 
 										@click="c.count > 1 ? c.count-- : 0">-</a>
+
+
 
 									<input single_price="15.80" id="cart_count_395428212" class="cart_count" book_id="395428212" v-model="c.count" type="text" value="1">
 									<a class="cart_action" direction="inc" book_id="395428212" href="javascript:void(0);"
 
 										@click="c.count < c.book.state ? c.count++ : 0">+</a>
+
 
 								</td>
 								<td><span id="single_total_395428212">￥{{c.book.price * c.count}}</span></td>
@@ -117,7 +127,7 @@
 									<a class="delete_cart_item" id="delete_link_395428212" href="javascript:deleteBooks('395428212');">删除</a>
 								</td>
 							</tr>
-							<tr v-if="cart != null" style="background-color: rgb(255, 255, 255);">
+							<tr v-if="cart == null" style="background-color: rgb(255, 255, 255);">
 								<td colspan="11" class="empty"><span class="empty">购物车内暂时没有书籍,去<a
 										href="/home">首页</a>购买
 								</span></td>
@@ -126,6 +136,7 @@
 					</table>
 					<div class="keys" style="display: none" title="/cart/index"></div>
 				</div>
+
 
 				<form id="create_order_form" action="/order/index" method="post">
 					<input type="hidden"
@@ -137,6 +148,7 @@
 								onclick="deleteBooks(getSelectedIdStr());" type="button"
 								value="删除选中">
 						</div><br>
+
 						<div style="float: right;display: inline-block;">
 							<span style="float: left;">备注:</span><textarea v-model="order.remark" rows="5" cols="30"></textarea>
 						</div>
@@ -161,15 +173,18 @@
 							</div>
 						</div>
 						<span style="display:inline-block;width: 108px;position: relative; left: 190px;bottom: 10px;" >{{errors.addrDesc}}</span>
+
 						<span style="display:inline-block;position: relative;left: 250px;bottom: 10px">{{errors.addrPhone}}</span>							
 						<div style="float: right;">
-							<span class="total_span" style="display: inline;"> <span
-								class="selected_count">2</span>本图书&nbsp;&nbsp;总计(不含运费) : <span
-								class="selected_price">￥40.80</span>
-							</span> <input type="hidden" value="" name="book_ids" id="book_ids">
+							<span class="total_span" style="display: inline;"> 
+								<span class="selected_count">{{number}}</span>本图书&nbsp;&nbsp;总计(不含运费) : 
+								<span class="selected_price">￥{{total}}</span>
+							</span> 
+							<input type="hidden" value="" name="book_ids" id="book_ids">
 							<!--            <a href="/site/app" class="button_link">使用旧书街APP进行结算</a>-->
 
 							<input id="submit_button" class="button" @click="createOrder();"
+
 
 								type="button" value="去结算>">
 						</div>
@@ -180,11 +195,12 @@
 		</div>
 		<script type="text/javascript">
 
+
 			var vue1 = new Vue({
 				el : "#main_content",
 				data : {
 					cart : [],
-					selected : [],
+                    selected : [],
 					addr:[],
 					order:{
 						addrName:"",
@@ -220,6 +236,30 @@
 						}					
 					})
 				},
+				computed:{
+					number(){
+						var number = 0;
+						for( c of this.cart){
+							for( s of this.selected){
+								if(c.id == s){
+									number+=c.count;
+								}
+							}
+					    }
+						return number;
+					},
+					total(){
+						var total = 0;
+						for( c of this.cart){
+							for( s of this.selected){
+								if(c.id == s){
+									total+=c.book.price * c.count;
+								}
+							}
+					    }
+						return total;
+					}
+				},
 				methods:{
 					createOrder(){
 						var params = new URLSearchParams();
@@ -246,7 +286,11 @@
 						}
 						axios.post("addOrder", params).then(res=>{
 							if(res.data.code==1){
-								location.href="cart.html?" + new Date();
+								axios.post("queryNewOrder.do").then(res1=>{	
+									setTimeout(function(){
+										location.href="payin?id="+res1.data;
+									},700)
+								});
 							}
 							// 清除之前的错误提示
 							for( let e in this.errors){  // let 定义的局部变量  ~=  var
@@ -256,19 +300,24 @@
 							}
 							if(res.data.code != 1){
 								var es = res.data.data;
-								for( let e of es){  // == java for( e : es)
-									var na = document.getElementsByName(e.field);
-									$(na).css("boxShadow","0px 0px 5px 3px red");
-									if(this.errors[e.field].search("空")==-1){
-										this.errors[e.field] = e.defaultMessage;
+								if(es!=null){
+									for( let e of es){  // == java for( e : es)
+										var na = document.getElementsByName(e.field);
+										$(na).css("boxShadow","0px 0px 5px 3px red");
+										if(this.errors[e.field].search("空")==-1){
+											this.errors[e.field] = e.defaultMessage;
+										}
 									}
 								}
+								
 							}
+
 						});
 					}
 				}
 			});
 		</script>
+
 
 	</div>
 

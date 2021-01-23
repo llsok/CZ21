@@ -1,4 +1,3 @@
-
 package com.yc.mvc.po;
 
 import java.sql.Timestamp;
@@ -9,10 +8,11 @@ import javax.validation.constraints.Pattern;
 
 import lombok.Data;
 
-@Data
-public class JsjOrder implements java.io.Serializable {
 
+@Data
+public class JsjOrder implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
+	 
 	private Long id;
 	private Long uid;
 	private String addrName;
@@ -117,7 +117,9 @@ public class JsjOrder implements java.io.Serializable {
 				+ ", addrDesc=" + addrDesc + ", money=" + money + ", createTime=" + createTime + ", state=" + state
 				+ ", remark=" + remark + ", details=" + details + "]";
 	}
+      
 	
-
+	
 }
+
 

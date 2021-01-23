@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.yc.mvc.web.AdminLoginInterceptor;
 import com.yc.mvc.web.LoginInterceptor;
 
 @SpringBootApplication
@@ -33,6 +34,9 @@ public class MvcApp implements WebMvcConfigurer{
 				"/user-*.html",
 				"/getLoginedUser.do",
 				"/addCart.do");
+		registry.addInterceptor(new AdminLoginInterceptor()).addPathPatterns(
+				"/back/manager/*.html",
+				"/getAdminName");
 	}
 
 	/**

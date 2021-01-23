@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>浏览管理员信息</title>
+<link rel="shortcut icon" href="../../images/yc.png" type="image/x-icon" />
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/main.css">
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript">
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script type="text/javascript"
+	src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<style type="text/css">
+input{
+	outline:none;
+}
+input:focus{
+   border: none;
+   box-shadow:  0 0 0 1px #42A7FF,0 0 0 3px #BDE7FF;
+}
+</style>
+</head>
+<body>
+<div id="forms" class="mt10">
+	<div class="box">
+		<div class="box_border">
+			<div class="box_center">
+				<form id="myform">
+				
+				类型名称：<input name="name" v-model="category.tyname" type="text" id="tname" class="input-text lh30" size="40"/>&nbsp;&nbsp;
+				<input type="button" name="button" class="btn btn82 btn_save2" @click="addType" value="添加"/>&nbsp;&nbsp;
+				<span style="position: relative;right: 320px;top: 30px">{{errors.name}}</span>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var vadd = new Vue({
+		el:"#forms",
+		data:{
+			category:{
+				tyname:"",
+			},
+			errors:{
+				name:"",
+			}
+		},methods:{
+			addType(){
+				var param = new URLSearchParams();
+				param.append('name',this.category.tyname);
+				axios.post("../../addCate",param).then(res=>{
+					if(res.data.code==1){
+						$("#popup_info").text(res.data.msg);
+						showMsg();
+						axios.get("../../queryAllCate?"+this.pageIndex).then(res=>{	
+							vtype.tname=[];
+		    				for(var i of res.data.list){
+		    					vtype.tname.push(i.name);
+		    				}
+		    				if(vtype.pages<res.data.pages){
+		    					vtype.pages = res.data.pages;
+		    					
+		    					setTimeout(function(){
+		    						vtype.list = res.data.list;	    						
+		    						axios.get("../../queryAllCate?pageIndex="+vtype.pages).then(res=>{
+		    							vtype.list = res.data.list;
+		    							vtype.pages = res.data.pages;
+		    							vtype.tname=[];
+		    		    				for(var i of res.data.list){
+		    		    					vtype.tname.push(i.name);
+		    		    				}
+		    		    				vtype.active = vtype.pages;
+		    		    			});
+		    						return;
+								},1000) 		    					
+		    				}
+		    				vtype.pages = res.data.pages;
+		    				
+		    				setTimeout(function(){
+		    					axios.get("../../queryAllCate?pageIndex="+vtype.pages).then(res=>{
+		    						vtype.list = res.data.list;
+		    						vtype.pages = res.data.pages;
+		    						vtype.tname=[];
+	    		    				for(var i of res.data.list){
+	    		    					vtype.tname.push(i.name);
+	    		    				}
+	    		    				vtype.active = vtype.pages;
+	    		    			});
+							},1000) 
+		    			});  
+					}
+					// 清除之前的错误提示
+					for( let e in this.errors){  // let 定义的局部变量  ~=  var
+						var na = document.getElementsByName(e);
+						$(na).css('boxShadow','');
+						$("tr").css("boxShadow","");
+						this.errors[e] = '';
+					}
+					// 如果code不等于1，表示失败，要将错误提示展示在页面
+					if(res.data.code != 1){
+						// 将报错信息展示到对应的字段下面
+						var es = res.data.data;
+						for( let e of es){  // == java for( e : es)
+							var na = document.getElementsByName(e.field);
+							$(na).css("boxShadow","0 0 0 1px red,0 0 0 3px red");	
+							this.errors[e.field] = e.defaultMessage;  // [ ] 对对象的数字哪个复制
+							for(let i = 1;i<vtype.pages+1;i++){		
+								axios.get("../../queryAllCate?pageIndex="+i).then(res=>{
+									for(var z in res.data.list){
+										var num = parseInt(z)+1;
+										if(res.data.list[z].name == this.category.tyname){
+											vtype.list = res.data.list;
+											vtype.tname=[];
+			    		    				for(let n of res.data.list){
+			    		    					vtype.tname.push(n.name);
+			    		    				}
+			    		    				vtype.active = parseInt(i);
+											$("tr:eq("+num+")").css("boxShadow","0 0 0 1px #42A7FF,0 0 0 3px red");
+										
+										}
+									}						
+								})						
+							}							
+						}
+					}			
+				})
+			}									
+		}
+	})
+</script>
+<div id="table" class="mt10">
+	<div class="box span10 oh">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table">
+			<thead>
+				<tr>
+                   	<th width="30%">名称编号</th>
+					<th width="40%">名称</th>
+                   	<th>操作</th>
+                </tr>
+             </thead>
+             <tbody id="goodstype_info" align="center">
+				<tr v-for="(i,index) in list">
+					<td>
+						<input disabled="disabled" :value="i.id" style="background-color: white;">
+					</td>
+					<td>
+						<input v-model="i.name" :value="i.name">
+					</td>
+					<td>
+						<a href="#" class="red" @click="del(index)">[删除]</a>
+						<a href="#" class="green" @click="update(index)">[修改]</a>
+					</td>
+				</tr>
+             </tbody>
+		</table>
+		<div class="page mt10">
+			<div class="pagination">
+				<ul id ="pagination_info">
+					<li :class=" active == 1 ? 'active' : ''"><a href="#" @click="changeF">首页</a></li>
+					<li :class=" active == p ? 'active' : ''" v-for="p in pages"><a href="#" @click="changeP(p)">{{p}}</a></li>
+					<li :class=" active == pages ? 'active' : ''"><a href="#" @click="changeL">末页</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	var vtype = new Vue({
+		el:"#table",
+    		data:{
+    			list:{},
+    			pages:"",
+    			tname:[],
+    			pageIndex:0,
+    			active:1,
+    			page:0,
+    		},created(){
+    			this.pageIndex = location.search.substring(1);
+    			axios.get("../../queryAllCate?"+this.pageIndex).then(res=>{
+    				this.list = res.data.list;
+    				this.pages = res.data.pages;
+    				this.tname=[];
+    				for(var i of res.data.list){
+    					this.tname.push(i.name);
+    				}
+    			});  			
+    		},methods:{
+				del(index){
+					if(confirm("确定要删除吗")){
+						$("tr").css("boxShadow","");
+						axios.get("../../del?id="+this.list[index].id).then(res=>{
+							axios.get("../../queryAllCate?"+this.pageIndex).then(res=>{
+			    				this.list = res.data.list;
+			    				this.tname=[];
+			    				for(var i of res.data.list){
+			    					this.tname.push(i.name);
+			    				}
+			    				if(this.pages>res.data.pages){
+			    					this.pages = res.data.pages;
+			    					axios.get("../../queryAllCate?pageIndex="+this.pages).then(res=>{
+		    		    				this.list = res.data.list;
+		    		    				this.pages = res.data.pages;
+		    		    				this.tname=[];
+		    		    				for(var i of res.data.list){
+		    		    					this.tname.push(i.name);
+		    		    				}
+		    		    				this.active = this.pages;
+		    		    			});
+			    					return;
+			    				}
+			    				this.pages = res.data.pages;
+			    				axios.get("../../queryAllCate?pageIndex="+this.page).then(res=>{
+	    		    				this.list = res.data.list;
+	    		    				this.pages = res.data.pages;
+	    		    				this.tname=[];
+	    		    				for(var i of res.data.list){
+	    		    					this.tname.push(i.name);
+	    		    				}
+	    		    				this.active = this.page;
+	    		    			});
+			    			});
+						});
+					}				
+				},
+				update(index){
+					$("tr").css("boxShadow","");
+					if(this.list[index].name == this.tname[index]){
+						$("#popup_info").text("名称未变动");
+						showMsg();
+						return;
+					}
+					axios.get("../../update?id="+this.list[index].id+"&name="+this.list[index].name)
+					.then(res=>{
+						$("#popup_info").text(res.data.msg);
+						showMsg();
+					})					
+				},changeF(){
+					$("tr").css("boxShadow","");
+					this.active = 1;
+					this.page = 1;
+					axios.get("../../queryAllCate?pageIndex=1").then(res=>{
+	    				this.list = res.data.list;
+	    				this.pages = res.data.pages;
+	    				this.tname=[];
+	    				for(var i of res.data.list){
+	    					this.tname.push(i.name);
+	    				}
+	    			});
+				},changeL(){
+					$("tr").css("boxShadow","");
+					this.active = this.pages;
+					this.page = this.pages;
+					axios.get("../../queryAllCate?pageIndex="+this.pages).then(res=>{
+	    				this.list = res.data.list;
+	    				this.pages = res.data.pages;
+	    				this.tname=[];
+	    				for(var i of res.data.list){
+	    					this.tname.push(i.name);
+	    				}
+	    			});
+				},changeP(p){
+					$("tr").css("boxShadow","");
+					this.active = p;
+					this.page = p;
+					axios.get("../../queryAllCate?pageIndex="+p).then(res=>{
+	    				this.list = res.data.list;
+	    				this.pages = res.data.pages;
+	    				this.tname=[];
+	    				for(var i of res.data.list){
+	    					this.tname.push(i.name);
+	    				}
+	    			});
+				}
+    		}
+	})
+	
+	function showMsg(){		
+		$('.popup_con').fadeIn('fast', function(){
+			setTimeout(function(){
+				$('.popup_con').fadeOut('fast',function(){
+					// location.href = 'alipay/pay/' + data.msg +"/" + price;
+				});	
+			}, 1000)
+		});
+	}
+</script>
+
+<div class="popup_con">
+	<div class="popup">
+		<p id="popup_info"></p>
+	</div>
+</div>
+</body>
+</html>
