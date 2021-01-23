@@ -4,6 +4,7 @@ package com.yc.mvc.dao;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Many;
@@ -45,5 +46,19 @@ public interface OrderMapper {
     
     @Select("SELECT * from jsj_order where id =(select MAX(id) from jsj_order)")
 	public JsjOrder queryNewOrder();
+
+
+    @Select("SELECT \r\n" + 
+    		"  SUM(money) sum,\r\n" + 
+    		"  cTime \r\n" + 
+    		"FROM\r\n" + 
+    		"  (SELECT \r\n" + 
+    		"    id,\r\n" + 
+    		"    money,\r\n" + 
+    		"    DATE_FORMAT(create_time, '%c') cTime \r\n" + 
+    		"  FROM\r\n" + 
+    		"    jsj_order) AS o \r\n" + 
+    		"GROUP BY cTime ORDER BY -cTime desc")
+	public List<Map<String, Object>> calMoneyByMonth();
 }
 
