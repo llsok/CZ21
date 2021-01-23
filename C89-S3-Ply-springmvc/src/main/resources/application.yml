@@ -27,8 +27,12 @@ spring:
          
    jackson:
       date-format: yyyy-MM-dd HH:mm:ss
-      time-zone: GMT+8    
-        
+      time-zone: GMT+8 
+   #jsp配置(勿删)      
+   mvc:
+      view:
+       prefix: /WEB-INF/alipay/
+       suffix: .jsp     
 mybatis:
    configuration:
       # 开启驼峰命名映射
