@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.yc.mvc.web.AdminLoginInterceptor;
 import com.yc.mvc.web.LoginInterceptor;
 
 @SpringBootApplication
@@ -32,7 +33,8 @@ public class MvcApp implements WebMvcConfigurer{
 				// 配置要拦截的资源
 				"/user-*.html",
 				"/getLoginedUser.do",
-				"/addCart.do",
+				"/addCart.do");
+		registry.addInterceptor(new AdminLoginInterceptor()).addPathPatterns(
 				"/back/manager/*.html",
 				"/getAdminName");
 	}
