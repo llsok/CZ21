@@ -78,4 +78,10 @@ public class OrderAction {
 	public Long queryNewOrder() {
 			return om.queryNewOrder().getId();	
 	}
+	
+	
+	@RequestMapping("calMoneyByMonth")
+	public List<?> calMoneyByMonth(){
+		return om.calMoneyByMonth();
+	}
 }
