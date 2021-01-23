@@ -99,6 +99,7 @@ input:focus{
 					for( let e in this.errors){  // let 定义的局部变量  ~=  var
 						var na = document.getElementsByName(e);
 						$(na).css('boxShadow','');
+						$("tr").css("boxShadow","");
 						this.errors[e] = '';
 					}
 					// 如果code不等于1，表示失败，要将错误提示展示在页面
@@ -109,6 +110,23 @@ input:focus{
 							var na = document.getElementsByName(e.field);
 							$(na).css("boxShadow","0 0 0 1px red,0 0 0 3px red");	
 							this.errors[e.field] = e.defaultMessage;  // [ ] 对对象的数字哪个复制
+							for(let i = 1;i<vtype.pages+1;i++){		
+								axios.get("../../queryAllCate?pageIndex="+i).then(res=>{
+									for(var z in res.data.list){
+										var num = parseInt(z)+1;
+										if(res.data.list[z].name == this.category.tyname){
+											vtype.list = res.data.list;
+											vtype.tname=[];
+			    		    				for(let n of res.data.list){
+			    		    					vtype.tname.push(n.name);
+			    		    				}
+			    		    				vtype.active = parseInt(i);
+											$("tr:eq("+num+")").css("boxShadow","0 0 0 1px #42A7FF,0 0 0 3px red");
+										
+										}
+									}						
+								})						
+							}							
 						}
 					}			
 				})
@@ -177,6 +195,7 @@ input:focus{
     		},methods:{
 				del(index){
 					if(confirm("确定要删除吗")){
+						$("tr").css("boxShadow","");
 						axios.get("../../del?id="+this.list[index].id).then(res=>{
 							axios.get("../../queryAllCate?"+this.pageIndex).then(res=>{
 			    				this.list = res.data.list;
@@ -212,6 +231,7 @@ input:focus{
 					}				
 				},
 				update(index){
+					$("tr").css("boxShadow","");
 					if(this.list[index].name == this.tname[index]){
 						$("#popup_info").text("名称未变动");
 						showMsg();
@@ -223,6 +243,7 @@ input:focus{
 						showMsg();
 					})					
 				},changeF(){
+					$("tr").css("boxShadow","");
 					this.active = 1;
 					this.page = 1;
 					axios.get("../../queryAllCate?pageIndex=1").then(res=>{
@@ -234,6 +255,7 @@ input:focus{
 	    				}
 	    			});
 				},changeL(){
+					$("tr").css("boxShadow","");
 					this.active = this.pages;
 					this.page = this.pages;
 					axios.get("../../queryAllCate?pageIndex="+this.pages).then(res=>{
@@ -245,6 +267,7 @@ input:focus{
 	    				}
 	    			});
 				},changeP(p){
+					$("tr").css("boxShadow","");
 					this.active = p;
 					this.page = p;
 					axios.get("../../queryAllCate?pageIndex="+p).then(res=>{
