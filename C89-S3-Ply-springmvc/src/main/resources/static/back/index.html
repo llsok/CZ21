@@ -2,10 +2,10 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>源辰-零食网后台登陆</title>
+<title>源辰-旧书街后台登陆</title>
 <link rel="stylesheet" href="css/login.css">
 
-
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
 </head>
@@ -45,16 +45,16 @@
 			
 		},methods:{
 			log(){
-				axios.get("../../log?name="+this.name+"&pwd="+this.pwd).then(res=>{
+				axios.post("../log?name="+this.name+"&pwd="+this.pwd).then(res=>{
 					if(res.data.code==1){
-						$("#popup_info").text(res.data.msg);
+						//$("#popup_info").text(res.data.msg);//$ is not defined
 						showMsg();
 						setTimeout(function(){
 							location.href = "manager/index.html";
 						},700)
 						//top.location = "index.html";
 					}else{
-						$("#popup_info").text(res.data.msg);
+						//$("#popup_info").text(res.data.msg);//$ is not defined
 						showMsg();
 					}
 				})

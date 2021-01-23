@@ -32,7 +32,9 @@ public class MvcApp implements WebMvcConfigurer{
 				// 配置要拦截的资源
 				"/user-*.html",
 				"/getLoginedUser.do",
-				"/addCart.do");
+				"/addCart.do",
+				"/back/manager/*.html",
+				"/getAdminName");
 	}
 
 	/**
