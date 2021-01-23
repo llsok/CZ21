@@ -14,9 +14,25 @@
 	
 <script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
 <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="js/jsj.js"></script>
-
+<script type="text/javascript" src="js/index.js"></script>
 <title>买卖二手书,就上旧书街</title>
+<style type="text/css">
+	#focus{width:980px;height:280px;overflow:hidden;position:relative;margin-bottom: 10px;margin-top: -10px;}
+	#focus ul{height:380px;position:absolute;}
+	#focus ul li{float:left;width:980px;height:280px;overflow:hidden;position:relative;background:#000;}
+	#focus ul li img{width:980px;height:280px;}
+	#focus ul li div{position:absolute;overflow:hidden;}
+	#focus .btnBg{position:absolute;width:980px;height:20px;left:0;bottom:0;background:#000;}
+	#focus .btn{position:absolute;width:960px;height:10px;padding:5px 10px;right:0;bottom:0;text-align:center;}
+	#focus .btn span{display:inline-block;_display:inline;_zoom:1;width:10px;height:10px;border-radius: 5px;_font-size:0;margin-left:5px;cursor:pointer;background:#fff;}
+	#focus .btn span.on{background:#fff;}
+	#focus .preNext{width:45px;height:100px;position:absolute;top:90px;background:url(http://www.jiushujie.com/themes/classic/assets/images/sprite.png) no-repeat 0 0;cursor:pointer;}
+	#focus .pre{left:0;}
+	#focus .next{right:0;background-position:right top;}
+</style>
+
 </head>
 <body>
 	<div id="yetou">
@@ -36,10 +52,41 @@
 		})
 	</script>
 	<div class="main_middle">
-
-
 		<div id="main_content" class="center_980">
-
+			<!--  <div id="focus" class="container" >
+				<ul class="wrap" style=" left:0px; width:3920px ">
+					<li v-for="f in list">
+						<a href="#" target="_blank">
+							<img :src="f.img">
+						</a>
+					</li>
+				</ul>
+			<div class="btnBg" style="opacity:0.1"></div>
+				<div class="btn">
+					<span v-for="f in list" style="opacity:0.4;"></span>
+				</div>
+				<div class="preNext pre" style="opacity: 0.2;"></div>
+				<div class="preNext next" style="opacity: 0.2;"></div>
+			</div> -->
+			<div id="focus">
+    			<ul>
+		        	<li v-for="f in list"><a href="#" target="_blank"><img :src="f.img"/></a></li>
+		        </ul>
+			</div>
+			 <script type="text/javascript">
+				new Vue({
+					el:"#focus",
+					data:{
+						list : []
+					},
+					created(){
+						axios.get("focus?state=1").then(res=>{
+							this.list=res.data;
+						})
+					}
+				})
+				
+			</script>
 			<div class="border_white" style="margin-bottom: 10px; padding: 10px;">
 				<div class="search_tag">
 					<span style="font-size: 16px;">热搜:&nbsp;&nbsp;</span> <a
