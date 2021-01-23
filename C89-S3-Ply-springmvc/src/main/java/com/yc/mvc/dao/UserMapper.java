@@ -18,8 +18,8 @@ import com.yc.mvc.po.JsjUser;
 
 public interface UserMapper {
 
-	@Insert("insert into jsj_user (account,phone,name,pwd,email,gender) values"
-			+ " (#{account},#{phone},#{name},#{pwd},#{email},#{gender})")
+	@Insert("insert into jsj_user (account,phone,name,pwd,invite_id,email,gender,invite_name) values"
+			+ " (#{account},#{phone},#{name},#{pwd},#{inviteId},#{email},#{gender},#{inviteName})")
 	int insert(JsjUser user);
 
 	@Select("select * from jsj_user where account = #{account} and pwd = #{pwd}")
@@ -91,5 +91,11 @@ public interface UserMapper {
 
 	@Select("select * from jsj_dict")
 	List<JsjDict> getAllProvince();
+    
+	@Select("select * from jsj_user where invite_id=#{inviteId}")
+	JsjUser queryByInviteId(String inviteId);
+    
+	@Select("select * from jsj_user where id=#{id}")
+	JsjUser selectUserInviteId(Integer id);
 	
 }

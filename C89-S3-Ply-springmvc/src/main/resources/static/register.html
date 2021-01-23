@@ -124,6 +124,16 @@
 									</select></td>
 									<td><div id="UserRegist_genderTip" class="onShow"
 											style="margin: 0px; padding: 0px; background: transparent;">{{errors.gender}}</div></td>
+											
+								</tr>
+								<tr v-if="user.inviteName!=null">
+									<td><label for="UserRegist_cellphone" class="required">邀请人
+											<span class="required"></span>
+									</label></td>
+									<td><input maxlength="15" class="ubm_textinput"
+										name="name" id="UserRegist_cellphone" value="user.inviteName"
+										type="text"  readonly="true" v-model="user.inviteName"></td>
+									
 								</tr>
 								<tr>
 									<td></td>
@@ -150,6 +160,7 @@
 									email : "",
 									pwd : "",
 									gender:"",
+									inviteName:"",
 								},
 								errors : {
 									phone : "",
@@ -158,7 +169,15 @@
 									email : "",
 									pwd : "",
 									gender:"",
-								}
+									
+								},
+								
+							},
+							created(){
+								var inviteId = location.search.substring(1);
+								axios.get("queryByInviteId.do?inviteId="+inviteId).then(res=>{
+									this.user.inviteName=res.data.account;
+								})
 							},
 							methods : {
 								regist(){
@@ -169,6 +188,7 @@
 									param.append('email',this.user.email);
 									param.append('pwd',this.user.pwd);
 									param.append('gender',this.user.gender);
+									param.append('inviteName',this.user.inviteName);
 									axios.post("regist.do",param).then(res=>{
 										if(res.data.code==1){
 											alert(res.data.msg);

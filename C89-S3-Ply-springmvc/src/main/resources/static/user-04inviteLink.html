@@ -47,14 +47,28 @@
 			<div class="content_right">
 				<div class="border_white padding_10">
 					<div class="page_title">我的邀请链接</div>
-					<div class="padding_10">
+					<div class="padding_10" v-if="inviteId!=null">
 						<p>将下面的链接发给朋友，朋友注册后，你就是TA的注册推荐人喽</p>
 						<br> <a style="font-size: 14px;"
-							href="regist?invited_by=26474639">
-							regist?invited_by=26474639 </a>
+							:href="'http://127.0.0.1/register.html?'+inviteId">
+							http://127.0.0.1/register.html?{{inviteId}} </a>
 					</div>
 				</div>
 			</div>
+			<script type="text/javascript">
+			  var v=new Vue({
+				  el:".content_right",
+				  data:{
+					  inviteId:"",
+				  },
+				  created(){
+				   axios.get("selectUserInviteId.do").then(res=>{
+					 this.inviteId=res.data.inviteId;
+				  })
+				 }
+			  })
+			
+			</script>
 			<div class="clearfloat"></div>
 		</div>
 	</div>
