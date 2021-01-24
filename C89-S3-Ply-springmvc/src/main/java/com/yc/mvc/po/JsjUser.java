@@ -129,7 +129,17 @@ public class JsjUser {
 	
 	private String inviteName;
 	
+	private String qrImg;
 	
+	
+
+	public String getQrImg() {
+		return qrImg;
+	}
+
+	public void setQrImg(String qrImg) {
+		this.qrImg = qrImg;
+	}
 
 	public String getInviteName() {
 		return inviteName;

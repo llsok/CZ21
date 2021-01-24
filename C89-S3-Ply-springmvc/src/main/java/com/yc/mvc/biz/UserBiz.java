@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yc.mvc.dao.UserMapper;
 import com.yc.mvc.po.JsjUser;
+import com.yc.mvc.util.QRCodeUtils;
 import com.yc.mvc.web.po.Result;
 
 @Service
@@ -55,7 +56,7 @@ public class UserBiz {
 	
 	
 	@Transactional
-	public void register(JsjUser user) throws BizException {
+	public void register(JsjUser user) throws Exception {
 		if (um.selectByAccount(user.getAccount()) != null) {
 			throw new BizException("该账号已被使用！");
 		}
@@ -70,6 +71,12 @@ public class UserBiz {
 		if(user.getInviteName().equals("undefined")) {
 			user.setInviteName(null);
 		}
+		String text = "http://127.0.0.1/register.html?"+inviteId;
+		String logoPath = "e:/jsj/upload_head/test.jpg";
+        String destPath = "e:/jsj/upload_head";
+        String jpgName=QRCodeUtils.encode(text, logoPath, destPath,true);
+        String webpath = "upload_head/" + jpgName;
+        user.setQrImg(webpath);
 		um.insert(user);		
 	}
 

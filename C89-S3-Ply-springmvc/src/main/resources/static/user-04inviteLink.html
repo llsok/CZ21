@@ -53,6 +53,10 @@
 							:href="'http://127.0.0.1/register.html?'+inviteId">
 							http://127.0.0.1/register.html?{{inviteId}} </a>
 					</div>
+					<div class="padding_10">
+					<a><img :src="qrImg"></a>
+					</div>
+					
 				</div>
 			</div>
 			<script type="text/javascript">
@@ -60,10 +64,13 @@
 				  el:".content_right",
 				  data:{
 					  inviteId:"",
+					  qrImg:"",
+					  
 				  },
 				  created(){
 				   axios.get("selectUserInviteId.do").then(res=>{
 					 this.inviteId=res.data.inviteId;
+					 this.qrImg=res.data.qrImg;
 				  })
 				 }
 			  })
