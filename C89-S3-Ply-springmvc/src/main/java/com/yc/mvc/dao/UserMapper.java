@@ -12,7 +12,6 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.yc.mvc.po.JsjBook;
 import com.yc.mvc.po.JsjDict;
 import com.yc.mvc.po.JsjFans;
 import com.yc.mvc.po.JsjUser;
@@ -43,21 +42,15 @@ public interface UserMapper {
 
 	@Select("select * from jsj_user where id=#{id}")
 
-	@Results(id="rmuser", value = { @Result(column = "id",property = "id"),
-			@Result(column = "school", property = "schoolObj", 
-	one = @One(select = "com.yc.mvc.dao.SchoolMapper.selectById")),
-			@Result(column = "id",property = "fans",
-			many = @Many(select = "selectFans")),
-			@Result(column = "id",property = "guanzhu",
-			many = @Many(select = "selectGuanzhu"))})
+	@Results(id = "rmuser", value = { @Result(column = "id", property = "id"),
+			@Result(column = "school", property = "schoolObj", one = @One(select = "com.yc.mvc.dao.SchoolMapper.selectById")),
+			@Result(column = "id", property = "fans", many = @Many(select = "selectFans")),
+			@Result(column = "id", property = "guanzhu", many = @Many(select = "selectGuanzhu")) })
 	public JsjUser selectById(int id);
-	
 
-	@Select("select a.* from jsj_user a"
-			+" join jsj_fans b on a.id = b.uid"
-			+" where b.fid=#{fid}")
-	@Results(value = { @Result(column = "school", property = "schoolObj", 
-	one = @One(select = "com.yc.mvc.dao.SchoolMapper.selectById")) })
+	@Select("select a.* from jsj_user a" + " join jsj_fans b on a.id = b.uid" + " where b.fid=#{fid}")
+	@Results(value = {
+			@Result(column = "school", property = "schoolObj", one = @One(select = "com.yc.mvc.dao.SchoolMapper.selectById")) })
 	List<JsjUser> selectByFid(int fid);
 
 	@Update("update jsj_user set collect_type=#{collectType},"
@@ -79,31 +72,30 @@ public interface UserMapper {
 	@Update("update jsj_user set pwd=#{pwd} where id=#{id}")
 	void updatePwd(String pwd, Integer id);
 
-	
 	@Select("select * from jsj_fans GROUP BY uid ORDER BY count(*) desc LIMIT 0,24")
-	@Results(value = { @Result(column = "uid",property = "uid"),
-			@Result(column = "uid", property = "user",
-	one = @One(select = "selectById"))})
+	@Results(value = { @Result(column = "uid", property = "uid"),
+			@Result(column = "uid", property = "user", one = @One(select = "selectById")) })
 	public List<JsjFans> selectMostFans();
-
 
 	@Update("update jsj_user set addr_name=#{addrName},addr_phone=#{addrPhone},addr_post=#{addrPost},addr_province=#{addrProvince},addr_desc=#{addrDesc} where account=#{account}")
 	void updateaddr(JsjUser user);
 
 	@Select("select * from jsj_dict")
 	List<JsjDict> getAllProvince();
-    
+
 	@Select("select * from jsj_user where invite_id=#{inviteId}")
 	JsjUser queryByInviteId(String inviteId);
-    
+
 	@Select("select * from jsj_user where id=#{id}")
 	JsjUser selectUserInviteId(Integer id);
-	
 
-	@Select("select * from jsj_book where isbn=#{contents}")
-	JsjBook searchBookByIsbn(String contents);
+	@Select("select * from jsj_user")
+	public List<JsjUser> selectAll();
 
-	@Select("select * from jsj_book where name=#{name}")
-	JsjBook searchBookByName(String contents);
-	
+	@Update("update jsj_user set status = #{status} where id = #{id}")
+	void frouser(@Param("id") int id, @Param("status") int status);
+
+	@Update("update jsj_user set pwd = #{pwd} where id=#{id}")
+	void resetuser(String pwd, int id);
+
 }
