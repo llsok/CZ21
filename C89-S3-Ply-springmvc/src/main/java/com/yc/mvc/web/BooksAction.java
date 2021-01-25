@@ -24,13 +24,51 @@ public class BooksAction {
 	private BooksMapper bm;
 
 	@RequestMapping("Hbooks.do")
-	public List<JsjBook> queryBooksH() {
-		return bm.SelectBookH();
+	public Map<String, Object> queryBooksH(@RequestParam(defaultValue = "1") int page,
+			@RequestParam(defaultValue = "20") int size) {
+		boolean count = true;
+		if (page<2) {
+			page = 1;
+		}
+		if(page>5) {
+			page = 5;
+		}
+		Page<JsjBook> p = PageHelper.startPage(page, size, count);
+		// Page 封装分页的页码相关的数值： 第几页，每页行数 。。。
+		bm.SelectBookH();
+		//bm.selectNew();
+		Map<String, Object> ret = new HashMap<>();
+		// 分页数据
+		ret.put("list", p);
+		// 总页数
+		ret.put("pages", p.getPages());
+		// 当前页
+		ret.put("page", p.getPageNum());
+		return ret;
 	}
 
 	@RequestMapping("Tbooks.do")
-	public List<JsjBook> queryBooksT() {
-		return bm.SelectBookT();
+	public Map<String, Object> queryBooksT(@RequestParam(defaultValue = "1") int page2,
+			@RequestParam(defaultValue = "20") int size) {
+		boolean count = true;
+		if (page2<2) {
+			page2 = 1;
+		}
+		if(page2>5) {
+			page2 = 5;
+		}
+		Page<JsjBook> p = PageHelper.startPage(page2, size, count);
+		// Page 封装分页的页码相关的数值： 第几页，每页行数 。。。
+		bm.SelectBookT();
+		//bm.selectNew();
+		Map<String, Object> ret = new HashMap<>();
+		// 分页数据
+		ret.put("list", p);
+		// 总页数
+		ret.put("pages", p.getPages());
+		// 当前页
+		ret.put("page", p.getPageNum());
+		return ret;
 	}
 
 	@RequestMapping(path = "queryname")

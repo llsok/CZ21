@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -22,6 +23,7 @@ import com.yc.mvc.biz.BizException;
 import com.yc.mvc.biz.UserBiz;
 import com.yc.mvc.dao.UserMapper;
 import com.yc.mvc.po.JsjFans;
+import com.yc.mvc.po.JsjBook;
 import com.yc.mvc.po.JsjDict;
 import com.yc.mvc.po.JsjUser;
 import com.yc.mvc.web.po.Result;
@@ -223,5 +225,16 @@ public class UserAction {
 		session.removeAttribute("loginedUser");
 		return Result.success("成功退出", null);
 	}
+	
+	@GetMapping("searchBook.do")
+	public JsjBook searchBook(String contents) {
+		// 判断是否为整数
+		Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$"); 
+		if(pattern.matcher(contents).matches()) {
+			return	um.searchBookByIsbn(contents);
+		}
+		return um.searchBookByName(contents);
+	}
+	
 
 }

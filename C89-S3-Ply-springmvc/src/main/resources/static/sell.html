@@ -186,6 +186,7 @@
 						},
 							created(){
 								var pa = location.search.substring(1);
+								console.log(pa);
 								axios.get("queryNew.do?"+pa).then(res=>{
 									this.page = res.data;
 									var p = this.page.page;

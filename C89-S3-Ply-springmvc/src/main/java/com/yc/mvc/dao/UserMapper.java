@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.yc.mvc.po.JsjBook;
 import com.yc.mvc.po.JsjDict;
 import com.yc.mvc.po.JsjFans;
 import com.yc.mvc.po.JsjUser;
@@ -91,5 +92,11 @@ public interface UserMapper {
 
 	@Select("select * from jsj_dict")
 	List<JsjDict> getAllProvince();
+
+	@Select("select * from jsj_book where isbn=#{contents}")
+	JsjBook searchBookByIsbn(String contents);
+	
+	@Select("select * from jsj_book where name=#{name}")
+	JsjBook searchBookByName(String contents);
 	
 }

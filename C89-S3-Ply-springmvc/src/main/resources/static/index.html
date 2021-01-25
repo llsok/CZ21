@@ -9,11 +9,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="stylesheet" type="text/css" href="res/form.css">
 <link rel="stylesheet" type="text/css" href="res/ubm_basic.css">
+<link rel="stylesheet" type="text/css" href="res/pager.css">
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
-	
-<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
-<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+
+<script type="text/javascript"
+	src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
 <script type="text/javascript" src="js/jsj.js"></script>
 
 <title>买卖二手书,就上旧书街</title>
@@ -44,19 +47,18 @@
 				<div class="search_tag">
 					<span style="font-size: 16px;">热搜:&nbsp;&nbsp;</span> <a
 						href="sell.html?q=%E8%8B%B1%E8%AF%AD">英语</a> <a
-						href="sell.html?q=%E8%AE%A1%E7%AE%97%E6%9C%BA">计算机</a>
-					<a href="sell.html?q=%E6%95%B0%E5%AD%A6">数学</a>
-					<a href="sell.html?q=%E6%B3%95%E5%BE%8B">法律</a>
-					<a href="sell.html?q=%E7%BB%8F%E6%B5%8E">经济</a>
-					<a href="sell.html?q=CET4">CET4</a>
+						href="sell.html?q=%E8%AE%A1%E7%AE%97%E6%9C%BA">计算机</a> <a
+						href="sell.html?q=%E6%95%B0%E5%AD%A6">数学</a> <a
+						href="sell.html?q=%E6%B3%95%E5%BE%8B">法律</a> <a
+						href="sell.html?q=%E7%BB%8F%E6%B5%8E">经济</a> <a
+						href="sell.html?q=CET4">CET4</a>
 				</div>
 				<div class="search_div">
-					<form id="search_title_form" action="sell.html"
-						method="get">
+					<form id="search_title_form" action="sell.html" method="get">
 						<input placeholder="请输入关键字" class="queryinput"
-							style="width: 300px;" type="text" value="" name="q" id="q" v-model="name"><input
-							type="button" class="search_div_button" value="搜 索"
-							@click="search()">
+							style="width: 300px;" type="text" value="" name="q" id="q"
+							v-model="name"><input type="button"
+							class="search_div_button" value="搜 索" @click="search()">
 					</form>
 				</div>
 				<script type="text/javascript">
@@ -80,7 +82,7 @@
 							}
 						})
 				</script>
-				
+
 				<div class="clearfloat"></div>
 			</div>
 			<div class="content_left">
@@ -104,72 +106,153 @@
 					})
 				</script>
 			</div>
-			
+
 			<div class="content_right">
 				<div class="border_white padding_10">
-					<div class="home_book_block">
+					<div id="goodbook" class="home_book_block">
 						<div class="title">
 							<div class="left_title">好书推荐</div>
 							<div class="more_link">
-								<a
-									href="sell.html?sort=created_at.desc&amp;tag=recommend">更多&gt;</a>
+								<a href="sell.html?sort=created_at.desc&amp;tag=recommend">更多&gt;</a>
 							</div>
 							<div class="clearfloat"></div>
 						</div>
-						<div class="book_list" >
-							<ul v-for="h in Hbooks">
-								<li><a :href="'book.html#' + h.id"
-									target="_blank"> <img class="book_pic_border"
-										:src="h.pic">
+
+						<div class="book_list">
+							<ul v-for="h in page.list">
+								<li><a :href="'book.html#' + h.id" target="_blank"> <img
+										class="book_pic_border" :src="h.pic">
 								</a>
 									<p class="book_name">
-										<a target="_blank"
-											:href="'book.html#' + h.id">{{h.name}}</a>
+										<a target="_blank" :href="'book.html#' + h.id">{{h.name}}</a>
 									</p>
 									<div class="price">
 										<div class="now_price">￥{{h.price}}</div>
 										<div class="origin_price">￥{{h.markPrice}}</div>
 										<div class="clearfloat"></div>
 									</div></li>
-								
+
 							</ul>
 							<div class="clearfloat"></div>
 						</div>
+
+						<div class="pager">
+							<ul id="yw2" class="yiiPager">
+								<li class="first hidden"><a href="/sell/category/id/3000">&lt;&lt;
+										首页</a></li>
+								<li class="previous"><a
+									:href="'index.html?page='+(page.page-1)">&lt; 前页</a></li>
+
+								<li :class="active==num?'selected':''" v-for=" num in plist ">
+									<a :href="'index.html?page='+num" v-if="num<6">{{num}}</a>
+								</li>
+
+								<li class="previous"><a
+									:href="'index.html?page='+(page.page+1)">后页 &gt;</a></li>
+								<li class="last"><a :href="'index.html?page='+page.pages">末页
+										&gt;&gt;</a></li>
+							</ul>
+						</div>
 					</div>
+
+					<script type="text/javascript">
+						new Vue({
+							el:"#goodbook",
+							data:{ 
+								page : {},
+								plist:1,
+								active:1,
+								cate : [],
+						},
+						created(){
+							//取到当前的page（页数）
+							var pa = location.search.substring(1);
+							axios.get("Hbooks.do?"+pa).then(res=>{
+									this.page = res.data;
+									var p = this.page.page;
+									var ps = this.page.pages;
+									this.active = p;
+									this.plist=ps;
+									this.plist = [1,2,3,4,5];
+								})
+							}
+						})
 					
-					
+					</script>
+
+
 					<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
-					<div class="home_book_block">
+					<div id="ff" class="home_book_block">
 						<div class="title">
 							<div class="left_title">特惠书籍</div>
 							<div class="more_link">
-								<a
-									href="sell.html?sort=now_price&amp;tag=free">更多&gt;</a>
+								<a href="sell.html?sort=now_price&amp;tag=free">更多&gt;</a>
 							</div>
 							<div class="clearfloat"></div>
 						</div>
-						<div class="book_list" >
-							<ul v-for="t in Tbooks">
-								<li><a :href="'book.html#' + t.id"
-									target="_blank"> <img class="book_pic_border"
-										:src="t.pic"
-									>
+
+						<div class="book_list">
+							<ul v-for="t in page.list">
+								<li><a :href="'book.html#' + t.id" target="_blank"> <img
+										class="book_pic_border" :src="t.pic">
 								</a>
 									<p class="book_name">
-										<a target="_blank"
-											:href="'book.html#' + t.id"
-											>{{t.name}}</a>
+										<a target="_blank" :href="'book.html#' + t.id">{{t.name}}</a>
 									</p>
 									<div class="price">
 										<div class="now_price">￥{{t.price}}</div>
 										<div class="origin_price">￥{{t.markPrice}}</div>
 										<div class="clearfloat"></div>
 									</div></li>
-								
+
 							</ul>
 							<div class="clearfloat"></div>
 						</div>
+
+						<div class="pager">
+							<ul id="yw2" class="yiiPager">
+								<li class="first hidden"><a href="/sell/category/id/3000">&lt;&lt;
+										首页</a></li>
+								<li class="previous"><a
+									:href="'index.html?page2='+(page.page-1)">&lt; 前页</a></li>
+
+								<li :class="active==num?'selected':''" v-for=" num in plist ">
+									<a :href="'index.html?page2='+num" v-if="num<6">{{num}}</a>
+								</li>
+
+								<li class="previous"><a
+									:href="'index.html?page2='+(page.page+1)">后页 &gt;</a></li>
+								<li class="last"><a :href="'index.html?page2='+page.pages">末页
+										&gt;&gt;</a></li>
+							</ul>
+						</div>
+
+
 					</div>
+					<script type="text/javascript">
+						new Vue({
+							el:"#ff",
+							data:{ 
+								page : {},
+								plist:1,
+								active:1,
+								cate : [],
+						},
+						created(){
+							//取到当前的page（页数）
+							var pa = location.search.substring(1);
+							axios.get("Tbooks.do?"+pa).then(res=>{
+									this.page = res.data;
+									var p = this.page.page;
+									var ps = this.page.pages;
+									this.active = p;
+									this.plist=ps;
+									this.plist = [1,2,3,4,5];
+								})
+							}
+						})
+					
+					</script>
 					<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
 				</div>
 				<div style="position: fixed; top: 122px; right: 20px;">
@@ -178,35 +261,17 @@
 						style="width: 120px; margin-bottom: 10px;"
 						src="res/android_download.jpg">
 				</div>
-				
+
 			</div>
-			<script type="text/javascript">
-                         var vue=new Vue({
-                    	  el:".content_right",
-                    	  data:{
-                    		  Hbooks:[],
-                    		  Tbooks:[],
-                    	},
-                    	  created(){
-                    		  axios.get("Hbooks.do").then(res=>{
-                    			  this.Hbooks=res.data;
-                    		  }),
-                    		  axios.get("Tbooks.do").then(res=>{
-                    			  this.Tbooks=res.data;
-                    		  })
-                    	  }
-                      })
-                    
-                    
-                    </script>
-			
-			
+
+
+
 			<div class="clearfloat"></div>
 		</div>
 	</div>
-	
+
 	<div id="foot">
-	<foot></foot>	
+		<foot></foot>
 	</div>
 	<script type="text/javascript">
 		new Vue({

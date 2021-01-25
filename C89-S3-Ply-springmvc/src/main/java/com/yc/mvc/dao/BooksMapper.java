@@ -14,12 +14,13 @@ public interface BooksMapper {
 
 	@Results(value = { @Result(column = "mark_price", property = "markPrice"),
 			@Result(column = "owner_id", property = "ownerId") })
-	@Select("select * from jsj_book order by up_time desc limit 0,40")
+	@Select("select * from jsj_book order by up_time desc")
 	public List<JsjBook> SelectBookH();
-
+	
+	
 	@Results(value = { @Result(column = "mark_price", property = "markPrice"),
 			@Result(column = "owner_id", property = "ownerId") })
-	@Select("select * from jsj_book order by price limit 0,40")
+	@Select("select * from jsj_book order by price")
 	public List<JsjBook> SelectBookT();
 
 	@Results(value = { @Result(column = "mark_price", property = "markPrice"),

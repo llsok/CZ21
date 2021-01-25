@@ -50,14 +50,33 @@
 						<a href="/sell.html/create" class="button_link">添加出售</a>&nbsp;&nbsp;<a
 							href="/import/batchUpdate" class="button_link">Excel更新</a>&nbsp;&nbsp;<a
 							href="/import/batchCreate" class="button_link">Excel新建&amp;更新</a>
-						<div style="float: right; margin-top: -5px;">
+						<div class="ss" style="float: right; margin-top: -5px;">
 							<form action="/mysell" method="get">
-								<input class="ubm_textinput" placeholder="书名/ISBN"
+								<input class="ubm_textinput" placeholder="书名/ISBN" v-model="content"
 									style="width: 140px;" type="text" value="" name="keyword"
-									id="keyword"> <input class="button" type="submit"
+									id="keyword"> <input class="button" type="button" @click="search()"
 									value="搜索">
 							</form>
 						</div>
+						<script type="text/javascript">
+							new Vue({
+								el:".ss",
+								data:{
+									content:""
+								},
+								methods:{
+									search(){
+										if(this.content==null || this.content==""){
+											alert("请输入内容在查询");
+											return;
+										}
+										axios.get("searchBook.do?contents="+this.content).then(res=>{
+											// 待实现
+										})
+									}
+								}
+							})
+						</script>
 					</div>
 					<div class="book_list" style="width:648px; height:1440px;">
 						<ul style="float:left; padding:5px;"  v-for="b in list">
