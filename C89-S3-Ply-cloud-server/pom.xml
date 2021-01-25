@@ -22,10 +22,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<dependency>
+		<!-- eureka 客户端依赖， 在业务网元中配置  order 和 user -->
+		<!-- <dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
+		</dependency> -->
+		
+		<!-- eureka 服务端依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
@@ -37,6 +40,8 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	
+	<!-- SpringCloud 工程有自己的依赖管理器 -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -57,6 +62,8 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<!-- spring 自定义的软件仓库   阿里云 、maven官网 都有可能未提供 依赖配置  -->
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>
