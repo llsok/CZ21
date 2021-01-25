@@ -21,7 +21,7 @@ public class OrderAction {
 	@GetMapping("user/way")
 	public String userWay() {
 		// 通过远程调用的方式，获取到 order 应用的 way 的结果
-		String url = "http://127.0.0.1:8001/user/way";
+		String url = "http://cloud-user/user/way";
 		return rt.getForObject(url, String.class);
 	}
 }
