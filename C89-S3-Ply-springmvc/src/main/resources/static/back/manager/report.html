@@ -53,9 +53,20 @@
 	            }
 	        },
 	        xAxis: {
-	            data: YMonth
+	        	name:'单位(月)',
+	            data: YMonth,
+	            axisTick:{alignWithLabel:true}
 	        },
-	        yAxis: {},
+	        yAxis: {
+	        	name:'单位(元)',
+	        	axisLine:{       //y轴
+	                show:true
+	              },
+	            axisTick:{       //y轴刻度线
+	               show:true
+	            },
+	           
+	        },
 	        series: [{
 	            name: '销量',
 	            type: 'line',
