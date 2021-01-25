@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script type="text/javascript"
+	src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	
+<script src="https://cdn.bootcss.com/echarts/5.0.0/echarts.min.js"></script>
+</head>
+<body>
+	<div id="main" style="width: 1200px;height:400px;"></div>
+	<script type="text/javascript">
+	//var echarts = require('echarts');
+
+	var chartDom = document.getElementById('main');
+	var myChart = echarts.init(chartDom);
+	var XMoney = [];
+	var YMonth = [];
+	myChart.showLoading();
+	$.get('../../calMoneyByMonth').done(function (data) {
+		for(var i of data){
+			XMoney.push(i.sum);
+			YMonth.push(i.cTime);
+		}
+		myChart.hideLoading();
+	    myChart.setOption({
+	    	//darkMode: true,
+	        title: {
+	            text: '每月销售总额'
+	        },
+	        
+	        tooltip: {
+	        	//show:true,
+	        },
+	        legend: {
+	            data:['金额']
+	        },
+	        toolbox: {
+	            show: true,
+	            feature: {
+	                dataView: { 
+	                    readOnly: false
+	                }, //数据视图
+	                magicType: {
+	                    type: ['line', 'bar']
+	                },  //切换为曲线图，切换为柱状图
+	                restore: {},  //还原
+	                saveAsImage: {}   //保存为图片
+	            }
+	        },
+	        xAxis: {
+	        	name:'单位(月)',
+	            data: YMonth,
+	            axisTick:{alignWithLabel:true}
+	        },
+	        yAxis: {
+	        	name:'单位(元)',
+	        	axisLine:{       //y轴
+	                show:true
+	              },
+	            axisTick:{       //y轴刻度线
+	               show:true
+	            },
+	           
+	        },
+	        series: [{
+	            name: '销量',
+	            type: 'line',
+	            //smooth:true,
+	            data: XMoney,
+	            label:{
+	                show:true,
+	                position:"top",
+	                textstyle:{
+	                    color:"#FFB6C1", 
+	                    fontSize:20
+	                }
+	            }
+	        }]
+	    });
+	});
+	//myChart.setOption(optionone);
+	//option && myChart.setOption(option);
+	</script>
+</body>
+</html>

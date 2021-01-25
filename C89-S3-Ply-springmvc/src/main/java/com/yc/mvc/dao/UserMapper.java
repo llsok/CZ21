@@ -12,14 +12,15 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import com.yc.mvc.po.JsjBook;
 import com.yc.mvc.po.JsjDict;
 import com.yc.mvc.po.JsjFans;
 import com.yc.mvc.po.JsjUser;
 
 public interface UserMapper {
 
-	@Insert("insert into jsj_user (account,phone,name,pwd,email,gender) values"
-			+ " (#{account},#{phone},#{name},#{pwd},#{email},#{gender})")
+	@Insert("insert into jsj_user (account,phone,name,pwd,invite_id,email,gender,invite_name,qr_img) values"
+			+ " (#{account},#{phone},#{name},#{pwd},#{inviteId},#{email},#{gender},#{inviteName},#{qrImg})")
 	int insert(JsjUser user);
 
 	@Select("select * from jsj_user where account = #{account} and pwd = #{pwd}")
@@ -91,5 +92,18 @@ public interface UserMapper {
 
 	@Select("select * from jsj_dict")
 	List<JsjDict> getAllProvince();
+    
+	@Select("select * from jsj_user where invite_id=#{inviteId}")
+	JsjUser queryByInviteId(String inviteId);
+    
+	@Select("select * from jsj_user where id=#{id}")
+	JsjUser selectUserInviteId(Integer id);
+	
+
+	@Select("select * from jsj_book where isbn=#{contents}")
+	JsjBook searchBookByIsbn(String contents);
+
+	@Select("select * from jsj_book where name=#{name}")
+	JsjBook searchBookByName(String contents);
 	
 }

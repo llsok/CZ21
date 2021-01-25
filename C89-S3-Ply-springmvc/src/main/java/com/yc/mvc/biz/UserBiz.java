@@ -3,6 +3,8 @@ package com.yc.mvc.biz;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -11,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yc.mvc.dao.UserMapper;
 import com.yc.mvc.po.JsjUser;
+import com.yc.mvc.util.QRCodeUtils;
 import com.yc.mvc.web.po.Result;
 
 @Service
@@ -53,18 +56,27 @@ public class UserBiz {
 	
 	
 	@Transactional
-	public void register(JsjUser user) throws BizException {
+	public void register(JsjUser user) throws Exception {
 		if (um.selectByAccount(user.getAccount()) != null) {
 			throw new BizException("该账号已被使用！");
 		}
-		if (user.getGender().equals("m")) { // 空指针异常的风险
-			user.setGender("男");
-		}else {
-			user.setGender("女");
-		}
+		
+		
 		user.setGender("m".equals(user.getGender())?"男":"女");
+		Random r=new Random();
+		Integer inviteId=r.nextInt(10000000)+100000;
 		String phone = user.getPhone().replaceAll("(\\d{7})\\d{4}", "$1****");
 		user.setPhone(phone);
+		user.setInviteId(inviteId);
+		if(user.getInviteName().equals("undefined")) {
+			user.setInviteName(null);
+		}
+		String text = "http://127.0.0.1/register.html?"+inviteId;
+		String logoPath = "e:/jsj/upload_head/test.jpg";
+        String destPath = "e:/jsj/upload_head";
+        String jpgName=QRCodeUtils.encode(text, logoPath, destPath,true);
+        String webpath = "upload_head/" + jpgName;
+        user.setQrImg(webpath);
 		um.insert(user);		
 	}
 
