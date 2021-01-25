@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yc.mvc.dao.BooksMapper;
 import com.yc.mvc.dao.CartMapper;
 import com.yc.mvc.dao.OrderDetailMapper;
 import com.yc.mvc.dao.OrderMapper;
@@ -24,6 +25,8 @@ public class OrderBiz {
 	private OrderDetailMapper odm;
 	@Resource
 	private CartMapper cm;
+	@Resource
+	private BooksMapper bm;
 
 	@Transactional
 	public void addOrder(JsjOrder order) {
@@ -52,6 +55,8 @@ public class OrderBiz {
 			od.setOid(order.getId()); // useGeneratedKeys = true  order.getId() 成立
 	        od.setState(order.getState());
 			odm.insert(od);
+			//在book表中减少库存
+			bm.updateState(od.getCount(), od.getBid().intValue());
 			cm.delete(od.getBid(), order.getUid());
 		}
 

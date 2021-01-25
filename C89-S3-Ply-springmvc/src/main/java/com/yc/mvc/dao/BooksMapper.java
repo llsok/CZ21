@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.yc.mvc.po.JsjBook;
 import com.yc.mvc.po.JsjSearch;
@@ -62,4 +63,7 @@ public interface BooksMapper {
 			+ "where a.name like concat('%',#{name},'%') "
 			+ "and b.name like concat('%',#{catename},'%') ")
 	int queryBookCount(String catename,String name);
+	
+	@Update("update jsj_book set state=state-#{state} where id=#{id}")
+	public void updateState(Integer state, int id);
 }
