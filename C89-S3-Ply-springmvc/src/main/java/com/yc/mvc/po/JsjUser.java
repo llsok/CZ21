@@ -126,6 +126,28 @@ public class JsjUser {
 	private Timestamp regTime;
 
 	private Date lastLoginTime;
+	
+	private String inviteName;
+	
+	private String qrImg;
+	
+	
+
+	public String getQrImg() {
+		return qrImg;
+	}
+
+	public void setQrImg(String qrImg) {
+		this.qrImg = qrImg;
+	}
+
+	public String getInviteName() {
+		return inviteName;
+	}
+
+	public void setInviteName(String inviteName) {
+		this.inviteName = inviteName;
+	}
 
 	public Integer getId() {
 		return id;

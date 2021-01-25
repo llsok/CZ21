@@ -223,5 +223,16 @@ public class UserAction {
 		session.removeAttribute("loginedUser");
 		return Result.success("成功退出", null);
 	}
+	
+	@RequestMapping("queryByInviteId.do")
+	public JsjUser queryByInviteId(String inviteId) {
+		return um.queryByInviteId(inviteId);
+	}
+	
+	@RequestMapping("selectUserInviteId.do")
+	public JsjUser selectUserInviteId(@SessionAttribute JsjUser loginedUser) {
+		return um.selectUserInviteId(loginedUser.getId());
+	}
+	
 
 }
