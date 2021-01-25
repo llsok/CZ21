@@ -376,27 +376,6 @@
 			</div>
 
 		</div>
-		<script type="text/javascript">
-                         var vue=new Vue({
-                    	  el:".content_right",
-                    	  data:{
-                    		  Hbooks:[],
-                    		  Tbooks:[],
-                    	},
-                    	  created(){
-                    		  axios.get("Hbooks.do").then(res=>{
-                    			  this.Hbooks=res.data;
-                    		  }),
-                    		  axios.get("Tbooks.do").then(res=>{
-                    			  this.Tbooks=res.data;
-                    		  })
-                    	  }
-                      })
-                    
-                    
-                    </script>
-
-
 		<div class="clearfloat"></div>
 	</div>
 	</div>
