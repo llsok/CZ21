@@ -11,26 +11,105 @@
 <link rel="stylesheet" type="text/css" href="res/ubm_basic.css">
 <link rel="shortcut icon"
 	href="http://cdnfile.jiushujie.com/images/ubm.ico" type="image/x-icon">
-	
-<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
-<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+<link rel="stylesheet" type="text/css" href="res/pager.css">
+
+<script type="text/javascript"
+	src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
 <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="js/jsj.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <title>买卖二手书,就上旧书街</title>
 <style type="text/css">
-	#focus{width:980px;height:280px;overflow:hidden;position:relative;margin-bottom: 10px;margin-top: -10px;}
-	#focus ul{height:380px;position:absolute;}
-	#focus ul li{float:left;width:980px;height:280px;overflow:hidden;position:relative;background:#000;}
-	#focus ul li img{width:980px;height:280px;}
-	#focus ul li div{position:absolute;overflow:hidden;}
-	#focus .btnBg{position:absolute;width:980px;height:20px;left:0;bottom:0;background:#000;}
-	#focus .btn{position:absolute;width:960px;height:10px;padding:5px 10px;right:0;bottom:0;text-align:center;}
-	#focus .btn span{display:inline-block;_display:inline;_zoom:1;width:10px;height:10px;border-radius: 5px;_font-size:0;margin-left:5px;cursor:pointer;background:#fff;}
-	#focus .btn span.on{background:#fff;}
-	#focus .preNext{width:45px;height:100px;position:absolute;top:90px;background:url(http://www.jiushujie.com/themes/classic/assets/images/sprite.png) no-repeat 0 0;cursor:pointer;}
-	#focus .pre{left:0;}
-	#focus .next{right:0;background-position:right top;}
+#focus {
+	width: 980px;
+	height: 280px;
+	overflow: hidden;
+	position: relative;
+	margin-bottom: 10px;
+	margin-top: -10px;
+}
+
+#focus ul {
+	height: 380px;
+	position: absolute;
+}
+
+#focus ul li {
+	float: left;
+	width: 980px;
+	height: 280px;
+	overflow: hidden;
+	position: relative;
+	background: #000;
+}
+
+#focus ul li img {
+	width: 980px;
+	height: 280px;
+}
+
+#focus ul li div {
+	position: absolute;
+	overflow: hidden;
+}
+
+#focus .btnBg {
+	position: absolute;
+	width: 980px;
+	height: 20px;
+	left: 0;
+	bottom: 0;
+	background: #000;
+}
+
+#focus .btn {
+	position: absolute;
+	width: 960px;
+	height: 10px;
+	padding: 5px 10px;
+	right: 0;
+	bottom: 0;
+	text-align: center;
+}
+
+#focus .btn span {
+	display: inline-block;
+	_display: inline;
+	_zoom: 1;
+	width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	_font-size: 0;
+	margin-left: 5px;
+	cursor: pointer;
+	background: #fff;
+}
+
+#focus .btn span.on {
+	background: #fff;
+}
+
+#focus .preNext {
+	width: 45px;
+	height: 100px;
+	position: absolute;
+	top: 90px;
+	background:
+		url(http://www.jiushujie.com/themes/classic/assets/images/sprite.png)
+		no-repeat 0 0;
+	cursor: pointer;
+}
+
+#focus .pre {
+	left: 0;
+}
+
+#focus .next {
+	right: 0;
+	background-position: right top;
+}
 </style>
 
 </head>
@@ -54,11 +133,12 @@
 	<div class="main_middle">
 		<div id="main_content" class="center_980">
 			<div id="focus">
-    			<ul>
-		        	<li v-for="f in list"><a href="#" target="_blank"><img :src="f.img"/></a></li>
-		        </ul>
+				<ul>
+					<li v-for="f in list"><a href="#" target="_blank"><img
+							:src="f.img" /></a></li>
+				</ul>
 			</div>
-			 <script type="text/javascript">
+			<script type="text/javascript">
 				new Vue({
 					el:"#focus",
 					data:{
@@ -74,8 +154,8 @@
 			</script>
 			<div class="border_white" style="margin-bottom: 10px; padding: 10px;">
 				<div class="search_tag">
-					<span style="font-size: 16px;">热搜:&nbsp;&nbsp;</span> 
-					<a v-for="h in hotquery" :href="'search.html#'+h.keyword">{{h.keyword}}</a>
+					<span style="font-size: 16px;">热搜:&nbsp;&nbsp;</span> <a
+						v-for="h in hotquery" :href="'search.html#'+h.keyword">{{h.keyword}}</a>
 				</div>
 				<script type="text/javascript">
 					var a=new Vue({
@@ -92,12 +172,11 @@
 				
 				</script>
 				<div class="search_div">
-					<form id="search_title_form" action="sell.html"
-						method="get">
+					<form id="search_title_form" action="sell.html" method="get">
 						<input placeholder="请输入关键字" class="queryinput"
-							style="width: 300px;" type="text" value="" name="q" id="q" v-model="name"><input
-							type="button" class="search_div_button" value="搜 索"
-							@click="search()">
+							style="width: 300px;" type="text" value="" name="q" id="q"
+							v-model="name"><input type="button"
+							class="search_div_button" value="搜 索" @click="search()">
 					</form>
 				</div>
 				<script type="text/javascript">
@@ -121,7 +200,7 @@
 							}
 						})
 				</script>
-				
+
 				<div class="clearfloat"></div>
 			</div>
 			<div class="content_left">
@@ -145,83 +224,159 @@
 					})
 				</script>
 			</div>
-			
+
 			<div class="content_right">
 				<div class="border_white padding_10">
-					<div class="home_book_block">
+					<div id="goodbook" class="home_book_block">
 						<div class="title">
 							<div class="left_title">好书推荐</div>
 							<div class="more_link">
-								<a
-									href="sell.html?sort=created_at.desc&amp;tag=recommend">更多&gt;</a>
+								<a href="sell.html?sort=created_at.desc&amp;tag=recommend">更多&gt;</a>
 							</div>
 							<div class="clearfloat"></div>
 						</div>
-						<div class="book_list" >
-							<ul v-for="h in Hbooks">
-								<li><a :href="'book.html#' + h.id"
-									target="_blank"> <img class="book_pic_border"
-										:src="h.pic">
+						<div class="book_list">
+							<ul v-for="h in page.list">
+								<li><a :href="'book.html#' + h.id" target="_blank"> <img
+										class="book_pic_border" :src="h.pic">
 								</a>
 									<p class="book_name">
-										<a target="_blank"
-											:href="'book.html#' + h.id">{{h.name}}</a>
+										<a target="_blank" :href="'book.html#' + h.id">{{h.name}}</a>
 									</p>
 									<div class="price">
 										<div class="now_price">￥{{h.price}}</div>
 										<div class="origin_price">￥{{h.markPrice}}</div>
 										<div class="clearfloat"></div>
 									</div></li>
-								
+
 							</ul>
 							<div class="clearfloat"></div>
 						</div>
-					</div>
-					
-					
-					<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
-					<div class="home_book_block">
-						<div class="title">
-							<div class="left_title">特惠书籍</div>
-							<div class="more_link">
-								<a
-									href="sell.html?sort=now_price&amp;tag=free">更多&gt;</a>
-							</div>
-							<div class="clearfloat"></div>
-						</div>
-						<div class="book_list" >
-							<ul v-for="t in Tbooks">
-								<li><a :href="'book.html#' + t.id"
-									target="_blank"> <img class="book_pic_border"
-										:src="t.pic"
-									>
-								</a>
-									<p class="book_name">
-										<a target="_blank"
-											:href="'book.html#' + t.id"
-											>{{t.name}}</a>
-									</p>
-									<div class="price">
-										<div class="now_price">￥{{t.price}}</div>
-										<div class="origin_price">￥{{t.markPrice}}</div>
-										<div class="clearfloat"></div>
-									</div></li>
-								
+
+						<div class="pager">
+							<ul id="yw2" class="yiiPager">
+								<li class="first hidden"><a href="/sell/category/id/3000">&lt;&lt;
+										首页</a></li>
+								<li class="previous"><a
+									:href="'index.html?page='+(page.page-1)">&lt; 前页</a></li>
+
+								<li :class="active==num?'selected':''" v-for=" num in plist ">
+									<a :href="'index.html?page='+num" v-if="num<6">{{num}}</a>
+								</li>
+
+								<li class="previous"><a
+									:href="'index.html?page='+(page.page+1)">后页 &gt;</a></li>
+								<li class="last"><a :href="'index.html?page='+page.pages">末页
+										&gt;&gt;</a></li>
 							</ul>
-							<div class="clearfloat"></div>
 						</div>
 					</div>
-					<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
+					<script type="text/javascript">
+						new Vue({
+							el:"#goodbook",
+							data:{ 
+								page : {},
+								plist:1,
+								active:1,
+								cate : [],
+						},
+						created(){
+							//取到当前的page（页数）
+							var pa = location.search.substring(1);
+							axios.get("Hbooks.do?"+pa).then(res=>{
+									this.page = res.data;
+									var p = this.page.page;
+									var ps = this.page.pages;
+									this.active = p;
+									this.plist=ps;
+									this.plist = [1,2,3,4,5];
+								})
+							}
+						})
+
+
+					</script>
+
 				</div>
-				<div style="position: fixed; top: 122px; right: 20px;">
-					<img style="width: 120px; margin-bottom: 10px;"
-						src="res/ios_download.jpg"><br> <img
-						style="width: 120px; margin-bottom: 10px;"
-						src="res/android_download.jpg">
+				<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
+				<div id="ff" class="home_book_block">
+					<div class="title">
+						<div class="left_title">特惠书籍</div>
+						<div class="more_link">
+							<a href="sell.html?sort=now_price&amp;tag=free">更多&gt;</a>
+						</div>
+						<div class="clearfloat"></div>
+					</div>
+					<div class="book_list">
+						<ul v-for="t in page.list">
+							<li><a :href="'book.html#' + t.id" target="_blank"> <img
+									class="book_pic_border" :src="t.pic">
+							</a>
+								<p class="book_name">
+									<a target="_blank" :href="'book.html#' + t.id">{{t.name}}</a>
+								</p>
+								<div class="price">
+									<div class="now_price">￥{{t.price}}</div>
+									<div class="origin_price">￥{{t.markPrice}}</div>
+									<div class="clearfloat"></div>
+								</div></li>
+
+						</ul>
+						<div class="clearfloat"></div>
+					</div>
+					<div class="pager">
+						<ul id="yw2" class="yiiPager">
+							<li class="first hidden"><a href="/sell/category/id/3000">&lt;&lt;
+									首页</a></li>
+							<li class="previous"><a
+								:href="'index.html?page2='+(page.page-1)">&lt; 前页</a></li>
+
+							<li :class="active==num?'selected':''" v-for=" num in plist ">
+								<a :href="'index.html?page2='+num" v-if="num<6">{{num}}</a>
+							</li>
+
+							<li class="previous"><a
+								:href="'index.html?page2='+(page.page+1)">后页 &gt;</a></li>
+							<li class="last"><a :href="'index.html?page2='+page.pages">末页
+									&gt;&gt;</a></li>
+						</ul>
+					</div>
 				</div>
-				
+				<script type="text/javascript">
+						new Vue({
+							el:"#ff",
+							data:{ 
+								page : {},
+								plist:1,
+								active:1,
+								cate : [],
+						},
+						created(){
+							//取到当前的page（页数）
+							var pa = location.search.substring(1);
+							axios.get("Tbooks.do?"+pa).then(res=>{
+									this.page = res.data;
+									var p = this.page.page;
+									var ps = this.page.pages;
+									this.active = p;
+									this.plist=ps;
+									this.plist = [1,2,3,4,5];
+								})
+							}
+						})
+
+					</script>
+				<div style="border-bottom: 1px solid rgb(255, 255, 255);"></div>
 			</div>
-			<script type="text/javascript">
+			<div style="position: fixed; top: 122px; right: 20px;">
+				<img style="width: 120px; margin-bottom: 10px;"
+					src="res/ios_download.jpg"><br> <img
+					style="width: 120px; margin-bottom: 10px;"
+					src="res/android_download.jpg">
+			</div>
+
+		</div>
+		<script type="text/javascript">
                          var vue=new Vue({
                     	  el:".content_right",
                     	  data:{
@@ -240,14 +395,14 @@
                     
                     
                     </script>
-			
-			
-			<div class="clearfloat"></div>
-		</div>
+
+
+		<div class="clearfloat"></div>
 	</div>
-	
+	</div>
+
 	<div id="foot">
-	<foot></foot>	
+		<foot></foot>
 	</div>
 	<script type="text/javascript">
 		new Vue({
