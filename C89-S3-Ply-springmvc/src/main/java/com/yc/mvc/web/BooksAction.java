@@ -15,6 +15,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.yc.mvc.dao.BooksMapper;
 import com.yc.mvc.po.JsjBook;
+import com.yc.mvc.po.JsjSearch;
 import com.yc.mvc.web.po.Result;
 
 @RestController
@@ -146,9 +147,27 @@ public class BooksAction {
 		return bm.quertBookDetail(id);
 	}
 	
+	@RequestMapping(path="hotquery.do")
+	  public List<JsjSearch> hotquery( ){
+		   return bm.queryhot();
+	  }
+	
 	@GetMapping("mysell")
 	public List<JsjBook> queryMySell(int ownerid){
 		return bm.queryMySellById(ownerid);
+	}
+	
+	@RequestMapping("queryBookByNameAndCatename.do")
+	public List<JsjBook> queryBookByNameAndCatename(String catename,String name,String pageIndex){
+			int page = pageIndex == null ? 1 : Integer.parseInt(pageIndex);
+		int begin = (page-1)*20;
+		return bm.queryBookByNameAndCatename(catename, name,begin);
+	}
+	
+	@RequestMapping("queryBookCount.do")
+	public int queryBookCount(String catename,String name){
+	
+		return bm.queryBookCount(catename, name);
 	}
 
 }

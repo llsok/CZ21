@@ -3,14 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>源辰-浏览商品信息</title>
-<link rel="shortcut icon" href="../../images/yc.png" type="image/x-icon" />
 <link rel="stylesheet" href="../css/common.css">
 <link rel="stylesheet" href="../css/main.css">
 
-	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/default/easyui.css">
-	<link rel="stylesheet" type="text/css" href="../../js/easyui/themes/icon.css">
-	<script type="text/javascript" src="../../js/easyui/jquery.min.js"></script>
-	<script type="text/javascript" src="../../js/easyui/jquery.easyui.min.js"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
@@ -20,17 +15,18 @@
 </head>
 <script type="text/javascript">
 function queryGood(){
-	axios.get("../../goodStype?tno="+vsearch.tno+
-			"&pageIndex="+vgood.pageIndex+"&gname="+vsearch.goodname
-			+"&num1="+vgood.num1+"&num2="+vgood.num2).then(res=>{
+	axios.get("../../queryBookByNameAndCatename.do?catename="+vsearch.tno+
+			"&pageIndex="+vgood.pageIndex+"&name="+vsearch.goodname+
+			"&num1="+this.num1+"&num2="+this.num2).then(res=>{
 		vgood.list = res.data;
 	})
 }
 
 
 function queryPages(){
-	axios.get("../../countPage?tno="+vsearch.tno+"&gname="+vsearch.goodname
-			+"&num1="+vgood.num1+"&num2="+vgood.num2).then(res=>{
+	axios.get("../../queryBookCount.do?catename="+vsearch.tno+
+			"&name="+vsearch.goodname+
+			"&num1="+this.num1+"&num2="+this.num2).then(res=>{
 		vgood.count = res.data;
 		vgood.pages = parseInt(vgood.count/20);
 		if(vgood.count%20>0){
@@ -49,7 +45,7 @@ function queryPages(){
 				<form id="myform">
 					商品类型：<select class="select" name="tno" id="goodsType" @change="getTname(event)">
 								<option></option>
-								<option v-for="i in list" :value="i.tno">{{i.tname}}</option>
+								<option v-for="i in list" :value="i.name">{{i.name}}</option>
 						</select>&nbsp;&nbsp;
 					商品名称：<input v-model="goodname" type="text" id="gname" class="input-text lh30" size="40" />&nbsp;&nbsp;
 					<input type="button" name="button" class="btn btn82 btn_search"
@@ -68,13 +64,15 @@ function queryPages(){
 			goodname:"",
 			tno:"",
 		},created(){
-			axios.get("../../stype").then(res=>{
-				this.list = res.data;
-			});
+			axios.get("../../queryAllCate?").then(res=>{
+				this.list = res.data.list;
+			});  	
 		},methods:{
 			getTname(e){
 				this.tno = e.target.value;
+				console.info(this.tno);
 			},searchGood(){
+				vgood.pageIndex=1;
 				queryPages();
 			}
 		}		
@@ -87,31 +85,27 @@ function queryPages(){
 			<thead>
 				<tr>
 					<th width="8%">编号</th>
-					<th width="20%">名称</th>
+					<th width="20%">书名</th>
 					<th width="10%">类型</th>
-					<th width="10%">商品价格</th>
+					<th width="10%">原价/卖价</th>
 					<th width="10%">库存</th>
-					<th width="8%">单位</th>
-					<th width="8%">净重</th>
-					<th width="8%">保质期</th>
-					<th width="8%">状态</th>
-					<th>操作</th>
+					<th width="8%">出版单位</th>
+					<th width="8%">折扣</th>
+					<th width="8%">新旧程度</th>
+					<th width="8%">上架时间</th>
 				</tr>
 			</thead>
 			<tbody id="goods_info" align="center">
 				<tr v-for="(g,index) in list">
-					<td>{{g.gno}}</td>
-					<td>{{g.gname}}</td>
-					<td>{{g.tname}}</td>
-					<td>{{g.price}}</td>
-					<td>{{g.balance}}</td>
-					<td>{{g.unit}}</td>
-					<td>{{g.weight}}</td>
-					<td>{{g.qperied}}</td>
-					<td v-if="g.status==1" class="green">已上架</td>
-					<td v-if="g.status==0" class="red">已下架</td>
-					<td v-if="g.status==1"><a @click="status(index)" href='#' class='red'>[下架]</a>&nbsp;&nbsp;<a @click="showDescr(index)" href='#'>[详细]</a></td>
-					<td v-if="g.status==0"><a @click="status(index)" href='#' class='green'>[上架]</a>&nbsp;&nbsp;<a href='#'>[详细]</a></td>					
+					<td>{{g.id}}</td>
+					<td>{{g.name}}</td>
+					<td>{{g.cate.name}}</td>
+					<td>{{g.markPrice}}/{{g.price}}</td>
+					<td>{{g.state}}</td>
+					<td>{{g.press}}</td>
+					<td>{{g.discount}}</td>
+					<td>{{g.oldnew}}</td>
+					<td>{{g.upTime}}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -140,8 +134,9 @@ function queryPages(){
 			active:1,
 			show:false,
 		},created(){
-			axios.get("../../countPage?tno="+vsearch.tno+"&gname="+vsearch.goodname
-					+"&num1="+this.num1+"&num2="+this.num2).then(res=>{
+			axios.get("../../queryBookCount.do?catename="+vsearch.tno+
+					"&name="+vsearch.goodname+
+					"&num1="+this.num1+"&num2="+this.num2).then(res=>{
 				this.count = res.data;
 				this.pages = parseInt(this.count/20);
 				if(this.count%20>0){
