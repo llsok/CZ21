@@ -17,6 +17,9 @@ public interface CategoryMapper {
 	@Select("select * from jsj_category where id=#{id}")
 	JsjCategory selectById(Integer id);
 	
+	@Select("select * from jsj_category where id=#{id}")
+	JsjCategory selectById2(String id);
+	
 	@Select("select * from jsj_category where name=#{name}")
 	JsjCategory selectByName(String name);
 	

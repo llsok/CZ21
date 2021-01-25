@@ -17,6 +17,16 @@ public class JsjBook {
 		this.user = user;
 	}
 
+	public JsjCategory cate;
+	
+	public JsjCategory getCate() {
+		return cate;
+	}
+
+	public void setCate(JsjCategory cate) {
+		this.cate = cate;
+	}
+
 	private Integer id;
 
     private String name;
