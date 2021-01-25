@@ -46,5 +46,19 @@ public interface BooksMapper {
 
 	@Select("select *from jsj_book where owner_id = #{ownerid}")
 	public List<JsjBook> queryMySellById(int ownerid);
+	
+	@Results(id="rmop",value = { @Result(column = "mark_price", property = "markPrice"),
+			@Result(column = "owner_id", property = "ownerId"),
+			@Result(column = "category", property = "cate",
+			one = @One(select = "com.yc.mvc.dao.CategoryMapper.selectById"))})
+	@Select("select * from jsj_book a join jsj_category b on a.category=b.id "
+			+ "where a.name like concat('%',#{name},'%') "
+			+ "and b.name like concat('%',#{catename},'%')"
+			+ " ORDER BY a.id limit #{page},20")
+	List<JsjBook> queryBookByNameAndCatename(String catename,String name,int page);
 
+	@Select("select count(*) from jsj_book a join jsj_category b on a.category=b.id "
+			+ "where a.name like concat('%',#{name},'%') "
+			+ "and b.name like concat('%',#{catename},'%') ")
+	int queryBookCount(String catename,String name);
 }
