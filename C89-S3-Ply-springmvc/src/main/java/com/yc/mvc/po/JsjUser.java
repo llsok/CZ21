@@ -126,12 +126,12 @@ public class JsjUser {
 	private Timestamp regTime;
 
 	private Date lastLoginTime;
-	
+
 	private String inviteName;
-	
+
 	private String qrImg;
-	
-	
+
+	private Integer status;
 
 	public String getQrImg() {
 		return qrImg;
@@ -315,6 +315,20 @@ public class JsjUser {
 
 	public void setLastLoginTime(Date lastLoginTime) {
 		this.lastLoginTime = lastLoginTime;
+	}
+
+	/**
+	 * @return the status
+	 */
+	public Integer getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 }

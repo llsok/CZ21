@@ -2,7 +2,9 @@ package com.yc.mvc.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -18,11 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.yc.mvc.biz.BizException;
 import com.yc.mvc.biz.UserBiz;
 import com.yc.mvc.dao.UserMapper;
-import com.yc.mvc.po.JsjFans;
 import com.yc.mvc.po.JsjDict;
+import com.yc.mvc.po.JsjFans;
 import com.yc.mvc.po.JsjUser;
 import com.yc.mvc.web.po.Result;
 
@@ -136,13 +140,11 @@ public class UserAction {
 		newReg = um.selectNewRegUser();
 		return newReg;
 	}
-	
+
 	@GetMapping("guanzhu")
-	public List<JsjUser> selectByFidd(int fid){
+	public List<JsjUser> selectByFidd(int fid) {
 		return um.selectByFid(fid);
 	}
-	
-	
 
 	@PostMapping("addCollect.do")
 	public Result addCollect(@Valid JsjUser user, Errors errors, @SessionAttribute JsjUser loginedUser) {
@@ -157,8 +159,8 @@ public class UserAction {
 	}
 
 	@RequestMapping("selectById")
-	public JsjUser selectById(Integer id,@SessionAttribute JsjUser loginedUser) {
-		if (id==null) {
+	public JsjUser selectById(Integer id, @SessionAttribute JsjUser loginedUser) {
+		if (id == null) {
 			id = loginedUser.getId();
 		}
 		return um.selectById(id);
@@ -180,9 +182,8 @@ public class UserAction {
 		}
 	}
 
-
 	@RequestMapping("selectMostFans")
-	public List<JsjFans> selectMostFans(){
+	public List<JsjFans> selectMostFans() {
 		return um.selectMostFans();
 	}
 
@@ -217,22 +218,67 @@ public class UserAction {
 	@RequestMapping("logout.do")
 	public Result logout(HttpSession session) {
 		Object loginedUser = session.getAttribute("loginedUser");
-		if(loginedUser == null) {
+		if (loginedUser == null) {
 			return Result.failure("你还未登录", null);
 		}
 		session.removeAttribute("loginedUser");
 		return Result.success("成功退出", null);
 	}
-	
+
 	@RequestMapping("queryByInviteId.do")
 	public JsjUser queryByInviteId(String inviteId) {
 		return um.queryByInviteId(inviteId);
 	}
-	
+
 	@RequestMapping("selectUserInviteId.do")
 	public JsjUser selectUserInviteId(@SessionAttribute JsjUser loginedUser) {
 		return um.selectUserInviteId(loginedUser.getId());
 	}
-	
+
+	@RequestMapping("selectAll.do")
+	public Map<String, Object> selectAll(@RequestParam(defaultValue = "1") int page,
+			@RequestParam(defaultValue = "10") int size) {
+		boolean count = true;
+		if (page < 2) {
+			page = 1;
+		}
+		Page<JsjUser> p = PageHelper.startPage(page, size, count);
+		um.selectAll();
+		Map<String, Object> ret = new HashMap<>();
+		ret.put("list", p);
+		// 总页数
+		ret.put("pages", p.getPages());
+		// 当前页
+		ret.put("page", p.getPageNum());
+		return ret;
+	}
+
+	@PostMapping("frouser.do")
+	public Result frouser(JsjUser user) {
+		int status = user.getStatus();
+		int id = user.getId();
+		if (status == 0) {
+			status = 1;
+		} else if (status == 1) {
+			status = 0;
+		}
+		try {
+			um.frouser(id, status);
+			return Result.success("修改状态成功！", null);
+		} catch (Exception e) {
+			return Result.failure("修改状态失败！", null);
+		}
+	}
+
+	@GetMapping("resetuser.do")
+	public Result resetuser(int id) {
+		try {
+			String pwd = "888";
+			um.resetuser(pwd, id);
+			return Result.success("重置密码成功！", null);
+		} catch (Exception e) {
+			return Result.failure("重置密码失败！", null);
+		}
+	}
 
 }

@@ -11,90 +11,71 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
 </head>
-<script type="text/javascript">
-	function queryMember(){
-		axios.get("../../queryMember?mname="+vsearch.memname+"&tel="+vsearch.mtel
-				+"&pageIndex="+vquery.pageIndex).then(res=>{
-			vquery.list = res.data;	
-		})
-	}
-	
-	function queryPages(){
-		axios.get("../../CountMember?mname="+vsearch.memname+"&tel="+vsearch.mtel).then(res=>{
-			vquery.count = res.data;
-			vquery.pages = parseInt(vquery.count/20);
-			if(vquery.count%20>0){
-				vquery.pages++;
-			}
-			queryMember();
-		})
-	}
-
-</script>
 <body>
 <div class="mt10" id="searchM">
 	<div class="box">
 		<div class="box_border">
 			<div class="box_center">
 				<form id="myform">
-				姓名：<input v-model="memname" type="text" id="mname" class="input-text lh30" size="40"/>&nbsp;&nbsp;
-				手机号码：<input v-model="mtel" type="tel" id="tel"class="input-text lh30" size="40"/>&nbsp;&nbsp;
-				<input type="button" name="button" class="btn btn82 btn_search" @click="sMember" value="查询"/>&nbsp;&nbsp;
+				昵称：<input v-model="field" type="text" id="mname" class="input-text lh30" size="40"/>&nbsp;&nbsp;
+				<input type="button" name="button" class="btn btn82 btn_search" @click="byAccount" value="查询"/>&nbsp;&nbsp;
+				被冻结用户：<input type="button" name="button" class="btn btn82 btn_search" @click="byStatus" value="查询"/>&nbsp;&nbsp;
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-	var vsearch = new Vue({
-		el:"#searchM",
-		data:{
-			memname:"",
-			mtel:"",
-		},methods:{
-			sMember(){
-				queryPages();
-			}
-		}
-	})
-</script>
 <div id="table" class="mt10">
 	<div class="box span10 oh">
 		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table">
 			<thead>
 				<tr>
-					<th width="80">编号</th>
+					<th width="100">编号</th>
                    	<th width="100">昵称</th>
+                   	<th width="100">密码</th>
                    	<th width="100">姓名</th>
-                   	<th width="120">联系方式</th>
-                   	<th width="200">注册邮箱</th>
+                   	<th width="100">联系方式</th>
+                   	<th width="100">注册邮箱</th>
                    	<th width="120">注册时间</th>
 					<th width="8%">状态</th>
                    	<th width="120">操作</th>
                 </tr>
              </thead>
              <tbody id="member_info" align="center">
-				<tr v-for="(m,index) in list">
-					<td>{{m.mno}}</td>
-					<td>{{m.nickName}}</td>
-					<td>{{m.realName}}</td>
-					<td>{{m.tel}}</td>
-					<td>{{m.email}}</td>
-					<td>{{m.regDate}}</td>
-					<td v-if="m.status==1" class="green">正常</td>
-					<td v-if="m.status==0" class="red">冻结</td>
-					<td v-if="m.status==1"><a href='../../reset.html'>[重置密码]</a>&nbsp;&nbsp;<a @click="status(index)" href='#' class="red">[冻结]</a></td>
-					<td v-if="m.status==0"><a href='../../reset.html'>[重置密码]</a>&nbsp;&nbsp;<a @click="status(index)" href='#' class="green">[解冻]</a></td>
+				<tr v-for="u in ulist">
+					<td>{{u.id}}</td>
+					<td>{{u.account}}</td>
+					<td>{{u.pwd}}</td>
+					<td>{{u.name}}</td>
+					<td>{{u.phone}}</td>
+					<td>{{u.email}}</td>
+					<td>{{u.regTime}}</td>
+					<td v-if="u.status==1" class="green">正常</td>
+					<td v-if="u.status==0" class="red">冻结</td>
+					<td >
+						<div>
+							<button v-if="u.status==0" @click="frouser(u.status)">解冻</button>
+							<button v-if="u.status==1" @click="frouser(u.status)">冻结</button>
+							<button @click="resetuser(u.id)">重置密码</button>
+						</div>
+					</td> 
 				</tr>
              </tbody>
 		</table>
         <div class="page mt10">
 		<div class="pagination">
-            <ul id ="pagination_info">
-				<li :class=" active == 1 ? 'active' : ''"><a href="#" @click="change(event)">首页</a></li>
-				<li :class = "active == n ? 'active' : ''" v-for="n in pages"><a href="#" @click="changePage(n)">{{n}}</a></li>
-				<li :class=" active == pages ? 'active' : ''"><a href="#" @click="change(event)">末页</a></li>
-			</ul>
+							<ul id="yw2" class="yiiPager">
+								<li class="first hidden"><a href="/sell/category/id/3000">&lt;&lt;
+										首页</a></li>
+								<li class="previous"><a :href="'member.html?page='+(page.page-1)">&lt; 前一页</a></li>
+								
+								<li :class="active==num?'selected':''" v-for=" num in plist ">
+									<a :href="'member.html?page='+num">{{num}}</a>
+								</li>
+								
+								<li class="previous"><a :href="'member.html?page='+(page.page+1)">后一页 &gt;</a></li>
+								<li class="last"><a :href="'member.html?page='+page.pages">尾页 &gt;&gt;</a></li>
+							</ul>
 		</div>
         </div>
 	</div>
@@ -104,60 +85,58 @@
 	var vquery = new Vue({
 		el:"#table",
 		data:{
-			list:{},
-			count:"",
-			pages:"",
-			active:1,
-			pageIndex:1,
-		},created(){
-			queryPages();
-		},methods:{
-			changePage(n){
-    			this.active = n;
-    			$(".active").removeClass(".active");
-				this.pageIndex = n;
-				queryMember();
-			},change(e){
-    			var text = e.target.innerText;
-    			if(text=="首页"){
-    				this.pageIndex = 1;
-    				this.active = this.pageIndex;
-        			$(".active").removeClass(".active");
-    			}else{   				
-    				this.pageIndex = this.pages;
-    				this.active = this.pages;
-        			$(".active").removeClass(".active");
-    			}
-        		queryMember();
-    		},status(index){
-    			if(this.list[index].status==1){
-					this.list[index].status = 0;
+			ulist : [],
+			page : {},
+			plist:1,
+			active:1
+		},
+		created(){
+			var pa = location.search.substring(1);
+			axios.get("../../selectAll.do?"+pa).then(res=>{
+				this.page = res.data;
+				this.ulist = res.data.list;
+				var p = this.page.page;
+				var ps = this.page.pages;
+				this.active = p;
+				this.plist=ps;
+				
+				if(p>3){
+					this.plist = [];
+					if(ps-p-2<0){
+						for(var i = 0;i<5;i++){
+							this.plist.unshift(ps-i);
+						}
+					}else{
+						for(var i = 0;i<5;i++){
+							this.plist.push(p-2+i);
+						}	
+					}														
 				}else{
-					this.list[index].status = 1;
-				}
-    			axios.get("../../changeMemStatus?status="+this.list[index].status
-    					+"&mno="+this.list[index].mno).then(res=>{
-    						if(res.data.code==1){
-    							$("#popup_info").text(res.data.msg);
-    	    					showMsg();
-    						}else{
-    							$("#popup_info").text(res.data.msg);
-    	    					showMsg();
-    						}
-    					})
-    		}
+					this.plist = [1,2,3,4,5];
+				}												
+				  
+			})
+		},
+		methods : {
+			frouser(){
+				var p = new URLSearchParams();
+				p.append('id',this.ulist[0].id);
+				p.append('status',this.ulist[0].status);
+					axios.post("../../frouser.do",p).then(res=>{
+						alert(res.data.msg);
+						location.reload();
+					})
+			},
+			resetuser(id){
+			if(confirm("确定重置该用户的密码?")){
+				axios.get("../../resetuser.do?id="+id).then(res=>{
+					alert(res.data.msg);
+					location.reload();
+				})
+			}
+		}
 		}
 	})
-	
-	function showMsg(){		
-		$('.popup_con').fadeIn('fast', function(){
-			setTimeout(function(){
-				$('.popup_con').fadeOut('fast',function(){
-					// location.href = 'alipay/pay/' + data.msg +"/" + price;
-				});	
-			}, 1000)
-		});
-	}
 </script>
 
 <div class="popup_con">
