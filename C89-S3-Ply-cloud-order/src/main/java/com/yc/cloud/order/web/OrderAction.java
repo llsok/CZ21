@@ -4,8 +4,12 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import com.yc.cloud.order.bean.Numbers;
 
 @RestController
 public class OrderAction {
@@ -24,4 +28,16 @@ public class OrderAction {
 		String url = "http://cloud-user/user/way";
 		return rt.getForObject(url, String.class);
 	}
+	
+	@PostMapping("add")
+	public String add(@RequestBody Numbers numbers) {
+		return "result: " + (numbers.getA() + numbers.getB());
+	}
+	
+	@PostMapping("show")
+	public String show(@RequestBody Integer a) {
+		return "number is: " + a;
+	}
+	
+	
 }

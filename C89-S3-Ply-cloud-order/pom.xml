@@ -40,6 +40,12 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 		
+		<!-- 声明式远程服务调用 feign-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		
 	</dependencies>
 	
 	<!-- SpringCloud 工程有自己的依赖管理器 -->
