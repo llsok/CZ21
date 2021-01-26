@@ -12,5 +12,7 @@ eureka:
       # 不注册当前应用
       registerWithEureka: false
       fetchRegistry: false
+      serviceUrl:
+         defaultZone: http://127.0.0.1:8000/eureka
 
 # 127.0.0.1:8000 ==> Eureka服务器控制界面

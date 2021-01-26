@@ -1,4 +1,5 @@
 server:
+   # 8001,8005,8006
    port: 8001
    
 spring:
