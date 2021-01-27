@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.yc.cloud.user.bean.Numbers;
 
 @RestController
@@ -16,7 +17,7 @@ public class UserAction {
 	public String way(HttpServletRequest req) {
 		return "user way :" + req.getServerPort();
 	}
-	
+
 	@Resource
 	private RestTemplate rt;
 	@GetMapping("order/way")
@@ -26,7 +27,6 @@ public class UserAction {
 		String url = "http://cloud-order/order/way";
 		return rt.getForObject(url, String.class);
 	}
-	
 	
 	// 注入远程调用接口对象
 	@Resource

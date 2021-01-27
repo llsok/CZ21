@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.yc.cloud.user.bean.Numbers;
 
 // 定义远程调用的服务名
-@FeignClient("cloud-order")
+// fallback 设置降级处理类
+@FeignClient(name = "cloud-order", fallback = OrderAction.class)
 public interface IOrderAction {
 	
 	// 使用SpringMVC的控制器地址映射注解，定义该方法要调用的远程接口方法
