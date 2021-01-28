@@ -1,6 +1,7 @@
 package com.yc.cloud.user.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,17 @@ public class UserAction {
 	
 	@GetMapping("user/way")
 	public String way(HttpServletRequest req) {
+		
+		Cookie[] cookies = req.getCookies();
+		
+		if(cookies!=null) {
+			for(Cookie c : cookies) {
+				System.out.println(c.getName() + ":" + c.getValue());
+			}
+		} else {
+			System.out.println("===========没有cookies数据=============");
+		}
+		
 		return "user way :" + req.getServerPort();
 	}
 
