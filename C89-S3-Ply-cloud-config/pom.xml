@@ -1,12 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.yc</groupId>
-	<artifactId>C89-S3-Ply-cloud-zuul</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-
-	<parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.yc</groupId>
+  <artifactId>C89-S3-Ply-cloud-config</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.3.RELEASE</version>
@@ -29,17 +27,12 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+		
+		<!-- 配置中心服务器依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+			<artifactId>spring-cloud-config-server</artifactId>
 		</dependency>
-		
-		<!-- 配置中心客户端依赖 -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
-		</dependency>
-		
 	</dependencies>
 
 	<!-- SpringCloud 工程有自己的依赖管理器 -->
@@ -72,4 +65,5 @@
 			<url>https://repo.spring.io/milestone</url>
 		</repository>
 	</repositories>
+	
 </project>
