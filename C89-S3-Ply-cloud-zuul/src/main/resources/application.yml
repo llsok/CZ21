@@ -19,3 +19,30 @@ zuul:
          path: /simple/**
          #    跳转的地址，简单路由在配置path的时候是以“http”或“https”开头的。
          url: http://www.163.com
+      # 跳转路由   
+      myForward:
+         path: /us/**
+         url: forward:/cloud-user
+      # ribbon路由，直接跳转到服务名下的地址
+      users:
+         path: /users/**
+         serviceId: cloud-user
+      cloud-order:
+         path: /orders/**
+      # zuul 会默认的将服务名映射称为ribbon 路由
+      #cloud-order:
+      #   path: /cloud-order/**
+      #cloud-user:
+      #   path: /cloud-user/**
+      
+      # 默认路由
+      default:
+         path: /**
+         url: https://taobao.com
+         
+
+         
+         
+         
+         
+         
