@@ -1,0 +1,8 @@
+spring:
+   application:
+      name: blog-user
+   cloud:
+     config:
+       uri: http://localhost:9000
+       #    分支
+       label: main

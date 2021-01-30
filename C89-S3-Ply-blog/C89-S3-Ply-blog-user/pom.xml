@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.yc</groupId>
-	<artifactId>C89-S3-Ply-blog-article</artifactId>
+	<artifactId>C89-S3-Ply-blog-user</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<parent>
@@ -58,7 +58,7 @@
 			<artifactId>C89-S3-Ply-blog-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
+
 		<!-- 配置中心客户端依赖 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -69,7 +69,6 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
-
 	</dependencies>
 	
 	<!-- SpringCloud 工程有自己的依赖管理器 -->
