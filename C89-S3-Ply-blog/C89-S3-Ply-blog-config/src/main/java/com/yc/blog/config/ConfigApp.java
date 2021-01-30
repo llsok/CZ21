@@ -1,4 +1,4 @@
-package com.yc.cloud.config;
+package com.yc.blog.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

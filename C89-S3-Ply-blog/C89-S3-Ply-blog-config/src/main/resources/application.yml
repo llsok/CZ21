@@ -3,7 +3,7 @@ server:
    
 spring:
    application:
-      name: cloud-config
+      name: blog-config
    cloud:
      config:
         server:
@@ -13,7 +13,7 @@ spring:
             # 配置文件所在仓库
             uri: https://github.com/306529917/config/
             # 配置文件所在根目录
-            search-paths: /C89-S3-Ply-cloud
+            search-paths: /C89-S3-Ply-blog
             # 公共仓库不需要配置用户名和密码
             username: 
             password: 
