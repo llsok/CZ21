@@ -28,8 +28,19 @@ public class Article {
     private Integer agreecnt;
 
     private String content;
+    
+    // 创建关联对象
+    private Category category;
 
-    public Integer getId() {
+    public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public Integer getId() {
         return id;
     }
 

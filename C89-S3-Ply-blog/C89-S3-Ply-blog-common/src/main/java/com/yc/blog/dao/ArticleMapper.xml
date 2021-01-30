@@ -14,6 +14,11 @@
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="readCnt" jdbcType="INTEGER" property="readcnt" />
     <result column="agreeCnt" jdbcType="INTEGER" property="agreecnt" />
+    
+    <!-- 文字分类的管理查询 一对一-->
+    <association property="category" column="categoryId" 
+    	select="com.yc.blog.dao.CategoryMapper.selectByPrimaryKey"></association>
+    
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yc.blog.bean.Article">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
