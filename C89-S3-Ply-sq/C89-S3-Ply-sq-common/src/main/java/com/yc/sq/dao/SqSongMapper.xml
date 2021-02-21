@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.sq.dao.SqSongMapper">
+  <resultMap id="BaseResultMap" type="com.yc.sq.bean.SqSong">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="singer" jdbcType="VARCHAR" property="singer" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="size" jdbcType="VARCHAR" property="size" />
+    <result column="heat" jdbcType="INTEGER" property="heat" />
+    <result column="intime" jdbcType="VARCHAR" property="intime" />
+    <result column="down_url" jdbcType="VARCHAR" property="downUrl" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, singer, type, size, heat, intime, down_url
+  </sql>
+  <select id="selectByExample" parameterType="com.yc.sq.bean.SqSongExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sq_song
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sq_song
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sq_song
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yc.sq.bean.SqSongExample">
+    delete from sq_song
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yc.sq.bean.SqSong">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sq_song (name, singer, type, 
+      size, heat, intime, 
+      down_url)
+    values (#{name,jdbcType=VARCHAR}, #{singer,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{size,jdbcType=VARCHAR}, #{heat,jdbcType=INTEGER}, #{intime,jdbcType=VARCHAR}, 
+      #{downUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.sq.bean.SqSong">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sq_song
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="singer != null">
+        singer,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="size != null">
+        size,
+      </if>
+      <if test="heat != null">
+        heat,
+      </if>
+      <if test="intime != null">
+        intime,
+      </if>
+      <if test="downUrl != null">
+        down_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="singer != null">
+        #{singer,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="heat != null">
+        #{heat,jdbcType=INTEGER},
+      </if>
+      <if test="intime != null">
+        #{intime,jdbcType=VARCHAR},
+      </if>
+      <if test="downUrl != null">
+        #{downUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yc.sq.bean.SqSongExample" resultType="java.lang.Long">
+    select count(*) from sq_song
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sq_song
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.singer != null">
+        singer = #{record.singer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.size != null">
+        size = #{record.size,jdbcType=VARCHAR},
+      </if>
+      <if test="record.heat != null">
+        heat = #{record.heat,jdbcType=INTEGER},
+      </if>
+      <if test="record.intime != null">
+        intime = #{record.intime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.downUrl != null">
+        down_url = #{record.downUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sq_song
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      singer = #{record.singer,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      size = #{record.size,jdbcType=VARCHAR},
+      heat = #{record.heat,jdbcType=INTEGER},
+      intime = #{record.intime,jdbcType=VARCHAR},
+      down_url = #{record.downUrl,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.sq.bean.SqSong">
+    update sq_song
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="singer != null">
+        singer = #{singer,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null">
+        size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="heat != null">
+        heat = #{heat,jdbcType=INTEGER},
+      </if>
+      <if test="intime != null">
+        intime = #{intime,jdbcType=VARCHAR},
+      </if>
+      <if test="downUrl != null">
+        down_url = #{downUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.sq.bean.SqSong">
+    update sq_song
+    set name = #{name,jdbcType=VARCHAR},
+      singer = #{singer,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
+      heat = #{heat,jdbcType=INTEGER},
+      intime = #{intime,jdbcType=VARCHAR},
+      down_url = #{downUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

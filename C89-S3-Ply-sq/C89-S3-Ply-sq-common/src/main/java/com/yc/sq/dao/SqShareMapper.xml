@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.sq.dao.SqShareMapper">
+  <resultMap id="BaseResultMap" type="com.yc.sq.bean.SqShare">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="singers" jdbcType="VARCHAR" property="singers" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="tags" jdbcType="VARCHAR" property="tags" />
+    <result column="src_type" jdbcType="VARCHAR" property="srcType" />
+    <result column="format" jdbcType="VARCHAR" property="format" />
+    <result column="intro" jdbcType="VARCHAR" property="intro" />
+    <result column="heat" jdbcType="INTEGER" property="heat" />
+    <result column="down_url" jdbcType="VARCHAR" property="downUrl" />
+    <result column="member" jdbcType="VARCHAR" property="member" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, singers, type, tags, src_type, format, intro, heat, down_url, member, create_time, 
+    status
+  </sql>
+  <select id="selectByExample" parameterType="com.yc.sq.bean.SqShareExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sq_share
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sq_share
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sq_share
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yc.sq.bean.SqShareExample">
+    delete from sq_share
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yc.sq.bean.SqShare">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sq_share (name, singers, type, 
+      tags, src_type, format, 
+      intro, heat, down_url, 
+      member, create_time, status
+      )
+    values (#{name,jdbcType=VARCHAR}, #{singers,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{tags,jdbcType=VARCHAR}, #{srcType,jdbcType=VARCHAR}, #{format,jdbcType=VARCHAR}, 
+      #{intro,jdbcType=VARCHAR}, #{heat,jdbcType=INTEGER}, #{downUrl,jdbcType=VARCHAR}, 
+      #{member,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.sq.bean.SqShare">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sq_share
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="singers != null">
+        singers,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="tags != null">
+        tags,
+      </if>
+      <if test="srcType != null">
+        src_type,
+      </if>
+      <if test="format != null">
+        format,
+      </if>
+      <if test="intro != null">
+        intro,
+      </if>
+      <if test="heat != null">
+        heat,
+      </if>
+      <if test="downUrl != null">
+        down_url,
+      </if>
+      <if test="member != null">
+        member,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="singers != null">
+        #{singers,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null">
+        #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="srcType != null">
+        #{srcType,jdbcType=VARCHAR},
+      </if>
+      <if test="format != null">
+        #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null">
+        #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="heat != null">
+        #{heat,jdbcType=INTEGER},
+      </if>
+      <if test="downUrl != null">
+        #{downUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="member != null">
+        #{member,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yc.sq.bean.SqShareExample" resultType="java.lang.Long">
+    select count(*) from sq_share
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sq_share
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.singers != null">
+        singers = #{record.singers,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tags != null">
+        tags = #{record.tags,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srcType != null">
+        src_type = #{record.srcType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.format != null">
+        format = #{record.format,jdbcType=VARCHAR},
+      </if>
+      <if test="record.intro != null">
+        intro = #{record.intro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.heat != null">
+        heat = #{record.heat,jdbcType=INTEGER},
+      </if>
+      <if test="record.downUrl != null">
+        down_url = #{record.downUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.member != null">
+        member = #{record.member,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sq_share
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      singers = #{record.singers,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      tags = #{record.tags,jdbcType=VARCHAR},
+      src_type = #{record.srcType,jdbcType=VARCHAR},
+      format = #{record.format,jdbcType=VARCHAR},
+      intro = #{record.intro,jdbcType=VARCHAR},
+      heat = #{record.heat,jdbcType=INTEGER},
+      down_url = #{record.downUrl,jdbcType=VARCHAR},
+      member = #{record.member,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.sq.bean.SqShare">
+    update sq_share
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="singers != null">
+        singers = #{singers,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null">
+        tags = #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="srcType != null">
+        src_type = #{srcType,jdbcType=VARCHAR},
+      </if>
+      <if test="format != null">
+        format = #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null">
+        intro = #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="heat != null">
+        heat = #{heat,jdbcType=INTEGER},
+      </if>
+      <if test="downUrl != null">
+        down_url = #{downUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="member != null">
+        member = #{member,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.sq.bean.SqShare">
+    update sq_share
+    set name = #{name,jdbcType=VARCHAR},
+      singers = #{singers,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      tags = #{tags,jdbcType=VARCHAR},
+      src_type = #{srcType,jdbcType=VARCHAR},
+      format = #{format,jdbcType=VARCHAR},
+      intro = #{intro,jdbcType=VARCHAR},
+      heat = #{heat,jdbcType=INTEGER},
+      down_url = #{downUrl,jdbcType=VARCHAR},
+      member = #{member,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
