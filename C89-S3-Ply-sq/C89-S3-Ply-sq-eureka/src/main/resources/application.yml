@@ -1,0 +1,16 @@
+spring:
+   application:
+      # 定义应用名
+      name: sq-eureka
+
+server:
+   # Eureka 服务器的默认端口是：8761
+   port: 8000
+
+eureka:
+   client:
+      # 不注册当前应用
+      registerWithEureka: false
+      fetchRegistry: false
+      serviceUrl:
+         defaultZone: http://127.0.0.1:8000/eureka
