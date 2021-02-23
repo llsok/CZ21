@@ -110,7 +110,7 @@
         <p class="meta">
           <time class="time"><i class="glyphicon glyphicon-time"></i>{{a.createtime}}</time>
           <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 共{{a.readcnt}}人围观</span> <a class="comment" href="article.html#comment"><i class="glyphicon glyphicon-comment"></i> 0个不明物体</a></p>
-        <p class="note" v-html="a.content"></p>
+        <p class="note" v-text="a.content.replace(/(<.+?>|&.+?;|\s+)/g,'').substring(1,100)+'...'"></p>
       </article>
       
       <div id="pagination">

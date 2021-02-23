@@ -1,0 +1,17 @@
+# bootstrap.yml 在 application.yml 之前之前
+spring:
+   application:
+      name: sq-music
+   cloud:
+     config:
+       uri: http://localhost:9000
+       #    分支
+       label: main
+       #   配置片名： 开发（dev），测试（test），生产（prod）
+       # profile: prod
+   
+
+         
+         
+         
+         
