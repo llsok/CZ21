@@ -18,6 +18,11 @@ public class Result implements java.io.Serializable{
 		return new Result(0, msg, data);
 	}
 
+	public Result() {
+		// Spring 框架会默认使用无参数的构造函数创建对象
+		// 扩展： JavaBean 规范： 其中一条： 为每个类定义无参数的构造函数
+	}
+	
 	public Result(int code, String msg) {
 		super();
 		this.code = code;
@@ -55,4 +60,9 @@ public class Result implements java.io.Serializable{
 		this.data = data;
 	}
 
+	@Override
+	public String toString() {
+		return "Result [code=" + code + ", msg=" + msg + ", data=" + data + "]";
+	}
+	
 }

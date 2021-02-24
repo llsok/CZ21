@@ -3,6 +3,7 @@ package com.yc.sq.web;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,12 +18,16 @@ public class MemberAction {
 	@Resource
 	private MemberBiz mb;
 
+	/**
+	 * Feign 接口方法参数要加 RequstBody 注解
+	 */
 	@RequestMapping("login")
-	public Result login(SqMember sm, HttpSession session) {
+	public Result login(@RequestBody SqMember sm, HttpSession session) {
 		try {
 			SqMember ret = mb.login(sm);
 			session.setAttribute("loginedUser", ret);
-			return Result.success("登录成功", null);
+			// 登录成功之后，将用户对象发送给调用中
+			return Result.success("登录成功", ret);
 		} catch (BizException e) {
 			e.printStackTrace();
 			return Result.failure(e.getMessage(), null);
