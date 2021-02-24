@@ -2,7 +2,11 @@ package com.yc.sq.bean;
 
 import java.util.Date;
 
-public class SqMember {
+public class SqMember implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
     private Integer id;
 
     private String name;
