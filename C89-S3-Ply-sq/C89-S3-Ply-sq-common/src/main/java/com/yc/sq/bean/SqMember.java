@@ -18,6 +18,7 @@ public class SqMember implements java.io.Serializable{
     @NotNull(message = "账号不能为空！")
 	@NotEmpty(message = "账号不能为空！")
     private String name;
+    
     @Length(min = 6, max = 16, message = "密码长度必须是6-16位")
 	@NotEmpty(message = "密码不能为空！")
     private String pwd;

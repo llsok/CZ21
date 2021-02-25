@@ -24,8 +24,11 @@ public class MemberAction {
 	 * Feign 接口方法参数要加 RequstBody 注解
 	 */
 	@RequestMapping("login")
-	public Result login(@RequestBody SqMember sm, HttpSession session) {
-		try {
+	public Result login(@Valid @RequestBody SqMember sm,Errors errors,HttpSession session) {
+		 try {
+			 if(errors.hasFieldErrors("name")||errors.hasFieldErrors("pwd")) {
+				 return Result.failure("字段验证错误", errors.getAllErrors());
+			 }
 			SqMember ret = mb.login(sm);
 			session.setAttribute("loginedUser", ret);
 			// 登录成功之后，将用户对象发送给调用中
