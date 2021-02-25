@@ -30,5 +30,11 @@ public class IndexAction {
 	public Result getLoginedUser(HttpSession session) {
 		return Result.success("会话中的用户对象", session.getAttribute("loginedUser"));
 	}
+	
+	@RequestMapping("regist")
+   	public Result regist(SqMember sm) {
+    	Result ret=iua.regist(sm);
+		return ret;
+   	}
 
 }

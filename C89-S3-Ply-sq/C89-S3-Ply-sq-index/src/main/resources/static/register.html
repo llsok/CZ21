@@ -4,6 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script src="res/push.js"></script>
+<script type="text/javascript" src="https://lib.baomitu.com/vue/2.6.12/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js"></script>
+
 <script type="text/javascript">
 	if (/Android|webOS|iPhone|iPod|iPad|Windows Phone|BlackBerry|Mobile/i
 			.test(navigator.userAgent)) {
@@ -53,30 +56,75 @@
 			</h2>
 			<div class="input">
 				<div class="textfiled">
-					<i class="fa fa-user ii"></i> <input type="text" maxlength="50" placeholder="请输入用户名称">
+					<i class="fa fa-user ii"></i> <input type="text" maxlength="50" placeholder="请输入用户名称" v-model="user.name">
 					<div class="msg">
-						<!---->
+						{{errors.name}}
 					</div>
 				</div>
 				<div class="textfiled">
-					<i class="fa fa-lock ii"></i> <input type="password" maxlength="25" placeholder="请输入用户密码">
+					<i class="fa fa-lock ii"></i> <input type="password" maxlength="25" placeholder="请输入用户密码" v-model="user.pwd">
 					<div class="msg">
-						<!---->
+						{{errors.pwd}}
 					</div>
 				</div>
 				<div class="textfiled">
-					<i class="fa fa-tag ii"></i> <input type="text" maxlength="30" placeholder="请输入昵称">
+					<i class="fa fa-tag ii"></i> <input type="text" maxlength="30" placeholder="请输入电话" v-model="user.phone">
 					<div class="msg">
-						<!---->
+						{{errors.phone}}
 					</div>
 				</div>
 				<div class="textfiled">
-					<button>注册</button>
+					<button @click="regist">注册</button>
 					<a href="https://www.sq688.com/login" class="login">用户登录</a>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+						var v = new Vue({
+							el : "#sign",
+							data : {
+								user : {
+									name : "",
+									pwd : "",
+									phone : "",
+								},
+								errors : {
+									name : "",
+									pwd : "",
+									phone : "",
+								},
+							},
+							methods : {
+								regist(){
+									var param = new URLSearchParams();
+									param.append('name',this.user.name);
+									param.append('pwd',this.user.pwd);
+									param.append('phone',this.user.phone);
+									axios.post("regist",param).then(res=>{
+										if(res.data.code==1){
+											alert(res.data.msg);
+											location.href="login.html"
+										}
+										for( let e in this.errors){  
+											var na = document.getElementsByName(e);
+											$(na).css('boxShadow','');
+											this.errors[e] = '';
+										}
+										if(res.data.code != 1){
+											var es = res.data.data;
+											for( let e of es){  
+												var na = document.getElementsByName(e.field);
+												$(na).css("boxShadow","0px 0px 5px 3px red");	
+												this.errors[e.field] = e.defaultMessage;  
+											}
+										}
+									})
+								}
+							}
+						})
+					</script>
+	
 
 	<div class="footer">
 		<div class="warp">

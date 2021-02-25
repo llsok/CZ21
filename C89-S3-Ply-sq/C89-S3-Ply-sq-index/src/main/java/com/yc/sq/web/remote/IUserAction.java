@@ -12,4 +12,7 @@ public interface IUserAction {
 	@PostMapping("login")
 	Result login(SqMember sm);
 	
+	@PostMapping("regist")
+	Result regist(SqMember sm);
+	
 }

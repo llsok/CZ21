@@ -2,6 +2,12 @@ package com.yc.sq.bean;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
+
 public class SqMember implements java.io.Serializable{
 	/**
 	 * 
@@ -9,10 +15,15 @@ public class SqMember implements java.io.Serializable{
 	private static final long serialVersionUID = 1L;
     private Integer id;
 
+    @NotNull(message = "账号不能为空！")
+	@NotEmpty(message = "账号不能为空！")
     private String name;
-
+    @Length(min = 6, max = 16, message = "密码长度必须是6-16位")
+	@NotEmpty(message = "密码不能为空！")
     private String pwd;
-
+    
+    @NotEmpty(message = "电话号码不能为空！")
+    @Pattern(regexp = "1\\d{10}", message = "电话号码必须是1开头的11位数字")
     private String phone;
 
     private String email;

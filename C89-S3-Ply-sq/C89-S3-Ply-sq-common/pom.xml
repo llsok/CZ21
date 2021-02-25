@@ -6,17 +6,16 @@
 	<artifactId>C89-S3-Ply-sq-common</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<!-- 该工程不需要运行（非SpringBoot工程），只提供blog项目的公共代码
-	1. 实体类 
-	2.Result 
-	3.BizException 
-	4. 基本Dao（自动生成的，增删改查） 5.工具类 -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.3.3.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
 	<properties>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+		<java.version>1.8</java.version>
+		<spring-cloud.version>Hoxton.SR8</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -25,6 +24,17 @@
 			<artifactId>mybatis</artifactId>
 			<version>3.5.5</version>
 		</dependency>
+	
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<!-- 实体类，基本Dao自动生成 ==》 MyBatis Generator 插件 -->
